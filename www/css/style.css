@@ -1,1 +1,26 @@
 /* Empty. Add your own CSS if you like */
+*,
+*::after,
+*::before{
+    box-sizing: border-box;
+}
+
+.main__form{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    line-height: .5em;
+}
+.main__form__item{
+    display: block;
+    font-size: 1.3em;
+    width: 100%;
+    margin: 0 auto;
+    padding: 3px 5px;
+}
+
+.main__menu{
+    display: flex;
+    flex-direction: column;
+    letter-spacing: 5px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}

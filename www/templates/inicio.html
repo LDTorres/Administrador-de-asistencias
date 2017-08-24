@@ -1,26 +1,17 @@
 <ion-view title="Inicio" class="padding">
     <ion-pane>
-        <ion-header-bar class="bar-dark" align-title="center">
+        <ion-header-bar class="bar-positive" align-title="center">
             <button class="button icon ion-navicon"></button>
-            <h1 class="title">INICIO</h1>
+            <h1 class="title">IUTEB Móvil</h1>
         </ion-header-bar>
         <ion-content>
-            <div class="list">
-                <label class="item item-input">
-    <input type="text" placeholder="First Name">
-  </label>
-                <label class="item item-input">
-    <input type="text" placeholder="Last Name">
-  </label>
-                <label class="item item-input">
-    <textarea placeholder="Comments"></textarea>
-  </label>
+            <div class="main__menu">
+                <a class="button button-block icon-right ion-android-person-add" ui-sref="login"><span>Registro</span></a>
+                <a class="button-block button icon-right ion-home" ui-sref="inicio"><span>Inicio</span></a>
+                <a class="button button-block icon-right ion-person" ui-sref="perfil"> <span>Perfil</span></a>
+                <a class="button button-block icon-right ion-person-stalker" ui-sref="grupos"><span>Grupos</span></a>
+                <a class="button button-block icon-right ion-gear-a" ui-sref="configuracionC"><span>Configuración</span></a>
             </div>
-            <a class="button button-block" ui-sref="Login">Login</a>
-            <a class="button button-block" ui-sref="inicio">INICIO</a>
-            <a class="button button-block" ui-sref="perfil">perfil</a>
-            <a class="button button-block" ui-sref="grupos">Grupos</a>
-            <a class="button button-block" ui-sref="configuracionC">Config</a>
         </ion-content>
     </ion-pane>
 </ion-view>

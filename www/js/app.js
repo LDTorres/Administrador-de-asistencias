@@ -3,18 +3,18 @@ angular.module('GATE', ['ionic', 'ngCordova'])
 .config(function ($stateProvider, $urlRouterProvider) {
 
     $stateProvider
-        .state('login', {
-            url: '',
-            templateUrl: '../templates/login.html',
-            controller: 'loginController as login',
-        })
-        .state('inicio', {
-            url: '/inicio',
-            templateUrl: '../templates/inicio.html',
-            controller: 'inicioController as inicio'
-        })
-        .state('perfil', {
-            url: 'perfil',
+    .state('inicio', {
+        url: '/',
+        templateUrl: '../templates/inicio.html',
+        controller: 'inicioController as inicio'
+    })
+    .state('login', {
+        url: 'login',
+        templateUrl: '../templates/login.html',
+        controller: 'loginController as login'
+    })
+    .state('perfil', {
+        url: 'perfil',
             templateUrl: '../templates/perfil.html',
             controller: 'perfilController as perfil',
         })
@@ -29,6 +29,6 @@ angular.module('GATE', ['ionic', 'ngCordova'])
             controller: 'gruposController as grupos',
         });
 
-    $urlRouterProvider.otherwise('');
+    $urlRouterProvider.otherwise('/');
 
 })

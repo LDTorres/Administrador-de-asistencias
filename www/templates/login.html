@@ -1,14 +1,39 @@
 <ion-view title="Autor">
     <ion-pane>
-        <ion-header-bar class="bar-dark" align-title="center">
-            <h1 class="title">LOGIN</h1>
+        <ion-header-bar class="bar-positive" align-title="center">
+            <h1 class="title main__bar">Registro de Estudiantes</h1>
         </ion-header-bar>
+
         <ion-content>
-            <a class="button button-block" ui-sref="Login">Login</a>
-            <a class="button button-block" ui-sref="inicio">INICIO</a>
-            <a class="button button-block" ui-sref="perfil">perfil</a>
-            <a class="button button-block" ui-sref="grupos">Grupos</a>
-            <a class="button button-block" ui-sref="configuracionC">Config</a>
+            <div class="list">
+            
+                <label class="item item-input item-floating-label main__form__item">
+                    <span class="input-label">Nombres</span>
+                    <input type="text" placeholder="Nombres">
+                </label>
+                
+                <label class="item item-input item-floating-label main__form__item">
+                    <span class="input-label">Apellidos</span>
+                    <input type="text" placeholder="Apellidos">
+                </label>
+                
+                <label class="item item-input item-floating-label main__form__item">
+                    <span class="input-label main__form__item--span">Cedula</span>
+                    <input type="text" placeholder="Cedula">
+                </label>
+
+                <label class="item item-input item-floating-label main__form__item">
+                    <span class="input-label">Correo</span>
+                    <input type="text" placeholder="Correo">
+                </label>
+
+                <button class="button button-block icon-left ion-android-add button-positive">Registrarse</button>
+
+            </div>
+
+
+            <a class="button button-block icon-center ion-android-arrow-dropleft" ui-sref="inicio"></a>
+            
         </ion-content>
     </ion-pane>
 </ion-view>
