@@ -1,0 +1,32 @@
+Usuarios
+	Listar
+		Profesores
+			Registrar
+			Activar
+		Estudiantes (PNF - Trayecto - Trimeste - Materia - Seccion)
+			Toda Informacion (Nombre Apellido Telefono PNF)
+
+Cron Job (Respaldo)
+Respaldar BD
+Restaurar BD
+
+Malla Curricular 
+	Pemsum
+		id - nombre - pnf
+	Materias
+		id - nombre - trayecto - trismestre - id_pemsum
+		Modificar nombre
+	Secciones
+		id - nombre - id_materia
+
+App Config
+	Nombre
+	Descripcion
+	Version
+	Colaboradores
+	Fecha de creacion
+	
+
+
+
+

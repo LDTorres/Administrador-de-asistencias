@@ -5,6 +5,16 @@
     box-sizing: border-box;
 }
 
+
+input[type="text"] {
+    color: yellow;
+    font-size: 40px;
+}
+
+::-webkit-input-placeholder{
+    color: yellow;
+}
+
 .main__form{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     line-height: .5em;
@@ -37,3 +47,4 @@
     color: white;
     
 }
+
