@@ -1,21 +1,45 @@
 angular.module('GATE')
 
-.controller('inicioController', function ($scope) {
-
-})
-
 .controller('loginController', function ($scope, datosService) {
 
 })
 
-.controller('configuracionCController', function ($scope, datosService) {
-
-})
-
-.controller('gruposController', function ($scope, datosService) {
+.controller('inicioController', function ($scope) {
 
 })
 
 .controller('perfilController', function ($scope, datosService) {
 
 })
+
+.controller('configuracionController', function ($scope, datosService) {
+
+})
+
+.controller('asignaturaController', function ($scope, datosService) {
+
+})
+
+.controller('inscripcionController', function ($scope, datosService) {
+
+})
+
+.controller('materiaController', function ($scope, datosService) {
+
+})
+
+.controller('informacionController', function ($scope, datosService) {
+
+})
+
+.controller('miembrosController', function ($scope, datosService) {
+
+})
+
+.controller('asistenciaController', function ($scope, datosService) {
+
+})
+
+.controller('publicacionController', function ($scope, datosService) {
+
+});

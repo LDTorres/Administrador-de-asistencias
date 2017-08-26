@@ -6,11 +6,31 @@
         </ion-header-bar>
         <ion-content>
             <div class="main__menu">
-                <a class="main__menu__item button button-block icon-right ion-android-person-add" ui-sref="login"><span>Registro</span></a>
+                <a class="main__menu__item button button-block icon-right ion-android-person-add" ui-sref="ingreso"><span>Registro</span></a>
+
                 <a class="main__menu__item button-block button icon-right ion-home" ui-sref="inicio"><span>Inicio</span></a>
-                <a class="main__menu__item button button-block icon-right ion-person" ui-sref="perfil"> <span>Perfil</span></a>
-                <a class="main__menu__item button button-block icon-right ion-person-stalker" ui-sref="grupos"><span>Grupos</span></a>
-                <a class="main__menu__item button button-block icon-right ion-gear-a" ui-sref="configuracionC"><span>Configuración</span></a>
+                
+                <a class="main__menu__item button button-block icon-right ion-person" ui-sref="inicio/perfil"> <span>Perfil</span></a>
+                
+                <a class="main__menu__item button button-block icon-right ion-gear-a" ui-sref="inicio/configuracion"><span>Configuración</span></a>
+                
+                <a class="main__menu__item button button-block icon-right ion-compose" 
+                ui-sref="inicio/asignatura"><span>Asignaturas</span></a>
+                
+                <a class="main__menu__item button button-block icon-right ion-plus-round" ui-sref="inicio/asignaturas/inscripcion"><span>Inscripción</span></a>
+
+                <a class="main__menu__item button button-block icon-right ion-clipboard" ui-sref="inicio/asignaturas/materia"><span>Materia</span></a>
+
+                <a class="main__menu__item button button-block icon-right ion-information-circled" ui-sref="inicio/asignaturas/materia/informacion"><span>Información</span></a>
+
+                <a class="main__menu__item button button-block icon-right ion-person-stalker" ui-sref="inicio/asignaturas/materia/miembros"><span>Miembros</span></a>
+
+                <a class="main__menu__item button button-block icon-right ion-calendar" ui-sref="inicio/asignaturas/materia/asistencia"><span>Asistencias</span></a>
+
+                <a class="main__menu__item button button-block icon-right ion-folder" ui-sref="inicio/asignaturas/materia/publicacion"><span>Publicaciones</span></a>
+
+
+                
             </div>
         </ion-content>
     </ion-pane>

@@ -3,7 +3,7 @@ Area de Usuario -> Instrucciones (modal) = Asignaturas
 Perfil
 	Nombre Apellido Cedula Correo Foto Perfil Pnf Telefono
 	Configuracion
-		Cambiar contraseña 
+		Cambiar contraseÃ±a 
 		Darse De Baja
 			(Administrador) 
 				Puede activar de nuevo un usuario	
@@ -46,7 +46,3 @@ Inicio
 	Resgistrarse 
 		Nombre Apellido Cedula Correo PNF 
 	Ingresar 
-
-
-
-
