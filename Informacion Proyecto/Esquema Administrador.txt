@@ -11,19 +11,13 @@ Respaldar BD
 Restaurar BD
 
 Malla Curricular 
-	Pemsum
-		id - nombre - pnf
-	Materias
-		id - nombre - trayecto - trismestre - id_pemsum
-		Modificar nombre
+	Malla
 	Secciones
-		id - nombre - id_materia
 
 App Config
 	Nombre
 	Descripcion
 	Version
-	Colaboradores
 	Fecha de creacion
 	
 

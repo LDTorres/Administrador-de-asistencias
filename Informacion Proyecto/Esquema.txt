@@ -44,5 +44,4 @@ Materias Agrupadas por (Trayecto-Trimestre-Materias) {
 
 Inicio
 	Resgistrarse 
-		Nombre Apellido Cedula Correo PNF 
 	Ingresar 
