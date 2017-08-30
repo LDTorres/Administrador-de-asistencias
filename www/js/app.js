@@ -57,10 +57,8 @@ angular.module('GATE', ['ionic', 'ngCordova'])
                     url: '/publicacion',
                     templateUrl: '../templates/publicacion.html',
                     controller: 'publicacionController as publicacion'
-                });
-                
+                });             
     
-
     $urlRouterProvider.otherwise('/');
 
 });
