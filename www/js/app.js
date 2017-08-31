@@ -60,4 +60,3 @@ angular.module('GATE', ['ionic', 'ngCordova'])
       });
 
     $urlRouterProvider.otherwise('/inicio');
-

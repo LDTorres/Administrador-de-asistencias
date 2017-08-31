@@ -1,6 +1,6 @@
 angular.module('GATE')
 
-.controller('loginController', function ($scope) {
+.controller('loginController', function ($scope, datosService) {
 
 })
 
