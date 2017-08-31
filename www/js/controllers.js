@@ -1,10 +1,10 @@
 angular.module('GATE')
 
-.controller('loginController', function ($scope, datosService) {
+.controller('loginController', function ($scope) {
 
 })
 
-.controller('inicioController', function ($scope, datosService) {
+.controller('inicioController', function ($scope) {
 
 })
 
@@ -42,4 +42,4 @@ angular.module('GATE')
 
 .controller('publicacionController', function ($scope) {
 
-})
+});
