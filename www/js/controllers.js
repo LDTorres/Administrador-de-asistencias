@@ -1,6 +1,6 @@
 angular.module('GATE')
 
-.controller('loginController', function ($scope, datosService) {
+.controller('loginController', function ($scope) {
 
 })
 
@@ -8,38 +8,38 @@ angular.module('GATE')
 
 })
 
-.controller('perfilController', function ($scope, datosService) {
+.controller('perfilController', function ($scope) {
 
 })
 
-.controller('configuracionController', function ($scope, datosService) {
+.controller('configuracionController', function ($scope) {
 
 })
 
-.controller('asignaturaController', function ($scope, datosService) {
+.controller('asignaturaController', function ($scope) {
 
 })
 
-.controller('inscripcionController', function ($scope, datosService) {
+.controller('inscripcionController', function ($scope) {
 
 })
 
-.controller('materiaController', function ($scope, datosService) {
+.controller('materiaController', function ($scope) {
 
 })
 
-.controller('informacionController', function ($scope, datosService) {
+.controller('informacionController', function ($scope) {
 
 })
 
-.controller('miembrosController', function ($scope, datosService) {
+.controller('miembrosController', function ($scope) {
 
 })
 
-.controller('asistenciaController', function ($scope, datosService) {
+.controller('asistenciaController', function ($scope) {
 
 })
 
-.controller('publicacionController', function ($scope, datosService) {
+.controller('publicacionController', function ($scope) {
 
-});
+})
