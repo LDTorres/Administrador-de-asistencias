@@ -4,7 +4,7 @@ angular.module('GATE')
 
 })
 
-.controller('inicioController', function ($scope) {
+.controller('inicioController', function ($scope, datosService) {
 
 })
 
