@@ -59,6 +59,6 @@ angular.module('GATE', ['ionic', 'ngCordova'])
         controller: 'publicacionController as publicacion'
       });
 
-    $urlRouterProvider.otherwise('/inicio');
 
-  });
+    $urlRouterProvider.otherwise('/');
+});

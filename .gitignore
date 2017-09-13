@@ -6,6 +6,7 @@ platforms/
 plugins/
 
 
+*api/assets
 # Logs
 logs
 *.log
