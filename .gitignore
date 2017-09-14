@@ -7,6 +7,7 @@ plugins/
 
 
 *api/assets
+*api/app/lib/backups
 # Logs
 logs
 *.log

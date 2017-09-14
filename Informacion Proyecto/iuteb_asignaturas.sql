@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 13-09-2017 a las 06:21:55
+-- Tiempo de generación: 13-09-2017 a las 16:53:25
 -- Versión del servidor: 10.1.19-MariaDB
 -- Versión de PHP: 7.0.13
 
@@ -47,14 +47,6 @@ CREATE TABLE `alumnos_has_secciones` (
   `estado` int(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Volcado de datos para la tabla `alumnos_has_secciones`
---
-
-INSERT INTO `alumnos_has_secciones` (`id`, `id_usuario`, `id_seccion`, `estado`) VALUES
-(1, 5, 1, 1),
-(2, 4, 1, 1);
-
 -- --------------------------------------------------------
 
 --
@@ -68,13 +60,6 @@ CREATE TABLE `app_config` (
   `fecha_creaccion` datetime DEFAULT NULL,
   `descripcion` varchar(900) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `app_config`
---
-
-INSERT INTO `app_config` (`id`, `nombre`, `version`, `fecha_creaccion`, `descripcion`) VALUES
-(1, 'AppIUTEB', 'v0.1', '2017-09-12 00:00:00', 'Aplicacion para llevar el control de asistencias y mejorar a interaccion entre el Estudiante y profesor en el IUTEB ');
 
 -- --------------------------------------------------------
 
@@ -322,12 +307,12 @@ ALTER TABLE `alumnos_has_asistencias`
 -- AUTO_INCREMENT de la tabla `alumnos_has_secciones`
 --
 ALTER TABLE `alumnos_has_secciones`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `app_config`
 --
 ALTER TABLE `app_config`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `asistencias`
 --
@@ -366,27 +351,6 @@ ALTER TABLE `usuarios`
 --
 -- Restricciones para tablas volcadas
 --
-
---
--- Filtros para la tabla `alumnos_has_asistencias`
---
-ALTER TABLE `alumnos_has_asistencias`
-  ADD CONSTRAINT `aha_secciones_idSeccion` FOREIGN KEY (`id_seccion`) REFERENCES `secciones` (`id_seccion`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `aha_usuarios_idUsuario` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Filtros para la tabla `alumnos_has_secciones`
---
-ALTER TABLE `alumnos_has_secciones`
-  ADD CONSTRAINT `ahs_secciones_idSeccion` FOREIGN KEY (`id_seccion`) REFERENCES `secciones` (`id_seccion`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `ahs_usuario_idUsuario` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Filtros para la tabla `asistencias`
---
-ALTER TABLE `asistencias`
-  ADD CONSTRAINT `a_secciones_idSeccion` FOREIGN KEY (`id_seccion`) REFERENCES `secciones` (`id_seccion`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `a_usuarios_idUsuario` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `materias`

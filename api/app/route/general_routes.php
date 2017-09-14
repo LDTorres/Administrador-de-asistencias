@@ -1,6 +1,7 @@
 <?php
 
 use App\Model\UserModel;
+use App\Model\BDModel;
 
 $app->post('/login', function ($req, $res, $args) {
     // Se instancia el modelo
@@ -40,14 +41,30 @@ $app->get('/app', function ($req, $res, $args) {
 
 })->add($mw);
 
-$app->group('/BD',function(){
+$app->group('/bd',function(){
 
-    $this->post('/restore',function($req, $res, $args){
-
+    $this->get('/restore',function($req, $res, $args){
+        $m = new BDModel();
+        
+        $result = $m->restore();
+                
+        return $this->response->withJson($result);
     });
 
     $this->get('/backup',function($req, $res, $args){
+        $m = new BDModel();
+
+        $result = $m->backup();
         
+        return $this->response->withJson($result);
+    });
+
+    $this->get('/backups',function($req, $res, $args){
+        $m = new BDModel();
+
+        $result = $m->getBackups();
+        
+        return $this->response->withJson($result);
     });
 
 })->add($mw);
