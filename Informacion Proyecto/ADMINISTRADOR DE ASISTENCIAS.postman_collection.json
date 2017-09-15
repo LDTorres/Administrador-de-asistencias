@@ -9,9 +9,9 @@
 			"description": "Acciones para la Base de datos",
 			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
 			"order": [
-				"b47705ae-cfb9-1e50-deaa-e642ac2069dc",
 				"3ef918cd-956e-ed4e-6477-609642b63b65",
-				"316bc884-d3d3-4a97-74ca-2d397520c158"
+				"316bc884-d3d3-4a97-74ca-2d397520c158",
+				"b47705ae-cfb9-1e50-deaa-e642ac2069dc"
 			],
 			"owner": "2084589",
 			"folders_order": [],
@@ -23,9 +23,9 @@
 			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
 			"order": [
 				"bb6707c9-5f0f-0337-20e8-3933d5a2d430",
-				"c823361b-aa14-9ee4-ea20-d5ac31d388b8",
 				"cabc2b05-f45c-0bc7-2fe2-c8d1a51dbc39",
-				"46b97391-0b9c-b06e-3107-b76bc3589554"
+				"46b97391-0b9c-b06e-3107-b76bc3589554",
+				"c823361b-aa14-9ee4-ea20-d5ac31d388b8"
 			],
 			"owner": "2084589",
 			"folders_order": [],
@@ -67,8 +67,8 @@
 			"order": [
 				"bccc4ef9-d2bc-38a8-71d8-cf03936f6747",
 				"45189f9f-dc2d-c55c-070d-bbc28762bad5",
-				"9e6faba1-e9fc-ef7c-7b2b-25e042861cbe",
-				"83988095-882d-73ad-a6e1-b562c41747a7"
+				"83988095-882d-73ad-a6e1-b562c41747a7",
+				"9e6faba1-e9fc-ef7c-7b2b-25e042861cbe"
 			],
 			"owner": "2084589",
 			"folders_order": [],
@@ -299,8 +299,8 @@
 				{
 					"key": "Content-Type",
 					"value": "application/x-www-form-urlencoded",
-					"enabled": true,
-					"description": ""
+					"description": "",
+					"enabled": true
 				}
 			],
 			"url": "{{url}}/seccion/update",
@@ -330,13 +330,12 @@
 			"version": 2,
 			"tests": null,
 			"currentHelper": "normal",
-			"helperAttributes": "{}",
-			"time": 1505268590597,
+			"helperAttributes": {},
+			"time": 1505402408863,
 			"name": "{{url}}/seccion/update",
 			"description": "Ruta para modificar una seccion",
 			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
-			"responses": [],
-			"timestamp": null
+			"responses": []
 		},
 		{
 			"id": "3ef918cd-956e-ed4e-6477-609642b63b65",
@@ -416,8 +415,8 @@
 				{
 					"key": "Content-Type",
 					"value": "application/x-www-form-urlencoded",
-					"enabled": true,
-					"description": ""
+					"description": "",
+					"enabled": true
 				}
 			],
 			"url": "{{url}}/usuario/update",
@@ -430,21 +429,21 @@
 			"data": [
 				{
 					"key": "id_usuario",
-					"value": "4",
+					"value": "",
 					"description": "",
 					"type": "text",
 					"enabled": true
 				},
 				{
 					"key": "campo",
-					"value": "nombre_completo",
+					"value": "",
 					"description": "",
 					"type": "text",
 					"enabled": true
 				},
 				{
 					"key": "valor",
-					"value": "Vanessa",
+					"value": "",
 					"description": "",
 					"type": "text",
 					"enabled": true
@@ -453,13 +452,12 @@
 			"dataMode": "urlencoded",
 			"tests": null,
 			"currentHelper": "normal",
-			"helperAttributes": "{}",
-			"time": 1505251626895,
+			"helperAttributes": {},
+			"time": 1505401204308,
 			"name": "{{url}}/user/update",
 			"description": "RUTA PARA MODIFICAR UN USUARIO",
 			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
-			"responses": [],
-			"timestamp": null
+			"responses": []
 		},
 		{
 			"id": "66dce75a-848a-3a42-ece3-8d679caebe92",
@@ -601,7 +599,7 @@
 			"currentHelper": "normal",
 			"helperAttributes": {},
 			"time": 1505272896888,
-			"name": "{{url}}/posts/idSeccion/offSet",
+			"name": "{{url}}/seccion/posts/idSeccion/offSet",
 			"description": "Obtenemos los posts de una seccion \n",
 			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
 			"responses": []
@@ -642,12 +640,12 @@
 				}
 			],
 			"url": "{{url}}/pnf/update",
+			"folder": "d59b253f-5eae-2b9e-bf61-cc53631735d6",
 			"queryParams": [],
+			"preRequestScript": null,
 			"pathVariables": {},
 			"pathVariableData": [],
-			"preRequestScript": null,
 			"method": "PUT",
-			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
 			"data": [
 				{
 					"key": "nombre",
@@ -665,16 +663,15 @@
 				}
 			],
 			"dataMode": "urlencoded",
-			"name": "{{url}}/pnf/update",
-			"description": "Ruta para modificar una malla curricular",
-			"descriptionFormat": "html",
-			"time": 1505265651493,
 			"version": 2,
-			"responses": [],
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"folder": "d59b253f-5eae-2b9e-bf61-cc53631735d6"
+			"time": 1505401465186,
+			"name": "{{url}}/pnf/update",
+			"description": "Ruta para modificar una malla curricular",
+			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
+			"responses": []
 		},
 		{
 			"id": "95355b1b-ac83-7f6e-32c1-de72264c5db9",
@@ -696,7 +693,9 @@
 			"name": "{{url}}/user/estado/id/accion",
 			"description": "Ruta para ver el estado de un usuario o cambiarlo si se pasa el segundo parametro.",
 			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
-			"responses": []
+			"responses": [],
+			"isFromCollection": true,
+			"collectionRequestId": "95355b1b-ac83-7f6e-32c1-de72264c5db9"
 		},
 		{
 			"id": "9e6faba1-e9fc-ef7c-7b2b-25e042861cbe",
@@ -733,7 +732,9 @@
 			"name": "{{url}}/pnf/add",
 			"description": "Agregamos una nueva malla",
 			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
-			"responses": []
+			"responses": [],
+			"isFromCollection": true,
+			"collectionRequestId": "9e6faba1-e9fc-ef7c-7b2b-25e042861cbe"
 		},
 		{
 			"id": "a0cd72f6-a388-57bc-bea7-30cceb330eba",
@@ -749,14 +750,14 @@
 			"data": [
 				{
 					"key": "foto",
-					"value": "IMG_20161015_182507.jpg",
+					"value": "",
 					"description": "",
 					"type": "file",
 					"enabled": true
 				},
 				{
 					"key": "id_usuario",
-					"value": "4",
+					"value": "",
 					"description": "",
 					"type": "text",
 					"enabled": true
@@ -766,7 +767,7 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1505276483987,
+			"time": 1505401397226,
 			"name": "{{url}}/user/picture",
 			"description": "Subir la foto del perfil",
 			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
@@ -844,39 +845,39 @@
 			"data": [
 				{
 					"key": "usuario",
-					"value": "Vanessa Yamaliddsada",
+					"value": "",
 					"description": "No puede ser repetido"
 				},
 				{
 					"key": "contrasena",
-					"value": "12345",
+					"value": "",
 					"description": ""
 				},
 				{
 					"key": "nombre_completo",
-					"value": "Juanesasdasd",
+					"value": "",
 					"description": ""
 				},
 				{
 					"key": "cedula",
-					"value": "23532524",
+					"value": "",
 					"description": "Unico",
 					"type": "text",
 					"enabled": true
 				},
 				{
 					"key": "correo",
-					"value": "sadasdsadasd",
+					"value": "",
 					"description": "Unico"
 				},
 				{
 					"key": "telefono",
-					"value": "2343242",
+					"value": "",
 					"description": ""
 				},
 				{
 					"key": "id_malla",
-					"value": "1",
+					"value": "",
 					"description": "",
 					"type": "text",
 					"enabled": true
@@ -886,7 +887,7 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1505262998100,
+			"time": 1505401197502,
 			"name": "{{url}}/user/add",
 			"description": "RUTA PARA AGREGAR UN NUEVO USUARIO\n\nDEVUELVE LOS DATOS EN FORMATO JSON",
 			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
@@ -994,7 +995,9 @@
 			"name": "{{url}}/bd/restore",
 			"description": "Ruta para restaurar la base de datos",
 			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
-			"responses": []
+			"responses": [],
+			"isFromCollection": true,
+			"collectionRequestId": "b47705ae-cfb9-1e50-deaa-e642ac2069dc"
 		},
 		{
 			"id": "bb53b499-7d6c-7799-7426-338f6e256738",
@@ -1137,7 +1140,9 @@
 			"name": "{{url}}/login",
 			"description": "Iniciamos sesion y desbloqueamos las rutas",
 			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
-			"responses": []
+			"responses": [],
+			"isFromCollection": true,
+			"collectionRequestId": "c823361b-aa14-9ee4-ea20-d5ac31d388b8"
 		},
 		{
 			"id": "cabc2b05-f45c-0bc7-2fe2-c8d1a51dbc39",

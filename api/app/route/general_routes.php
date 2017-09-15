@@ -3,13 +3,15 @@
 use App\Model\UserModel;
 use App\Model\BDModel;
 
+// Se instancia el modelo
+$um = new UserModel();
+$bdm = new BDModel();
+
 $app->post('/login', function ($req, $res, $args) {
-    // Se instancia el modelo
-    $m = new UserModel();
 
     $params = $req->getParsedBody();
 
-    $result = $m->login($params);
+    $result =  $GLOBALS['m']->login($params);
 
     if(!isset($result)):
         return $this->response->withJson(array("error"=>"acceso negado"), 405);
@@ -34,37 +36,23 @@ $app->get('/app', function ($req, $res, $args) {
     $sth = $this->db->prepare($sql);
 
     $sth->execute();
-
-    $result = $sth->fetch();
-
-    return $this->response->withJson($result);
+    
+    return $this->response->withJson($sth->fetch());
 
 })->add($mw);
 
+// FIXME: Probar rutas
 $app->group('/bd',function(){
 
     $this->get('/restore',function($req, $res, $args){
-        $m = new BDModel();
-        
-        $result = $m->restore();
-                
-        return $this->response->withJson($result);
+        return $this->response->withJson($GLOBALS['bdm']->restore());
     });
 
     $this->get('/backup',function($req, $res, $args){
-        $m = new BDModel();
-
-        $result = $m->backup();
-        
-        return $this->response->withJson($result);
+        return $this->response->withJson($GLOBALS['bdm']->backup());
     });
 
-    $this->get('/backups',function($req, $res, $args){
-        $m = new BDModel();
-
-        $result = $m->getBackups();
-        
-        return $this->response->withJson($result);
+    $this->get('/backups',function($req, $res, $args){        
+        return $this->response->withJson($GLOBALS['bdm']->getBackups());
     });
-
 })->add($mw);

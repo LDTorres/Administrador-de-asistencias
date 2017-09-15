@@ -82,7 +82,7 @@ class BDModel {
 
         return array('filename'=>$filename, 'sql'=>$return);
     }
-
+    // FIXME: Revisar funcion 
     public function restore($filename){
 
         $texto = file_get_contents($path.$filename);
@@ -96,6 +96,7 @@ class BDModel {
         return $errors;
     }
 
+    // TODO: Probar Funcion
     public function delete($filename){
         /* Borrar Registros Base de datos */
         unlink($path.$filename);

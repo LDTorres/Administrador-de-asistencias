@@ -2,18 +2,19 @@
 
 use App\Model\UserModel;
 
+// Se instancia el modelo
+$m = new UserModel();
+
 // USUARIOS
 $app->group('/user', function () {
 
     $this->get('/all[/{tipo}]', function ($req, $res, $args) {
-        // Se instancia el modelo
-        $m = new UserModel();
 
         // Llamamos a la funcion de obtener usuarios
         if(isset($args['tipo']) && $args['tipo'] == 'Profesor'):
-            $result = $m->getAll($args['tipo']);
+            $result = $GLOBALS['m']->getAll($args['tipo']);
         else:
-            $result = $m->getAll('Estudiante');
+            $result = $GLOBALS['m']->getAll('Estudiante');
         endif;
 
         return $this->response->withJson($result);
@@ -21,37 +22,34 @@ $app->group('/user', function () {
     });
 
     $this->get('/{id}', function ($req, $res, $args) {
-        // Se instancia el modelo
-        $m = new UserModel();
 
-        $result = $m->get($args['id']);
+        $result = $GLOBALS['m']->get($args['id']);
         return $this->response->withJson($result);
 
     });
 
     $this->post('/add', function ($req, $res) {
-        // Se instancia el modelo
-        $m = new UserModel();
 
         $data = $req->getParsedBody();
-        $result = $m->add($data);
+
+        $result = $GLOBALS['m']->add($data);
         
         return $this->response->withJson($result);
+
     });
         
     $this->put('/update', function ($req, $res) {
-        // Se instancia el modelo
-        $m = new UserModel();
+       
         $params = $req->getParsedBody();
 
-        $result = $m->update($params);
+        $result = $GLOBALS['m']->update($params);
+
         return $this->response->withJson($result);
+
     });
     
     $this->post('/picture', function ($req, $res) {
-        // Se instancia el modelo
-        $m = new UserModel();
-
+       
         $directory = $this->upload;
         $archivos = $req->getUploadedFiles();
         $archivo = $archivos['foto'];
@@ -66,7 +64,7 @@ $app->group('/user', function () {
         endif;
     
         $params = $req->getParsedBody();
-        $result = $m->picture($params, $filename);
+        $result = $GLOBALS['m']->picture($params, $filename);
             
         return $this->response->withJson($result);
             
@@ -74,9 +72,8 @@ $app->group('/user', function () {
 
     $this->get('/status/{id}[/{accion}]', function ($req, $res, $args) {
 
-        $m = new UserModel();
+        return $this->response->withJson($GLOBALS['m']->status($args));      
 
-        return $this->response->withJson($m->status($args));             
     });
 
 })->add($mw);

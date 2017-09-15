@@ -4,6 +4,11 @@ namespace App\Model;
 
 use App\Lib\Database;
 
+/**
+ * 
+ * @var mixed
+ */
+
 class PnfModel {
     private $db;
     private $table = 'malla_curricular';
