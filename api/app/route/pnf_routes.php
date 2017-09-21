@@ -2,19 +2,19 @@
 
 use App\Model\PnfModel;
 
-$m = new PnfModel();
+$pm = new PnfModel();
 
 $app->group('/pnf',function(){
     $this->get('/all',function($req, $res, $args){
 
-        $result = $GLOBALS['m']->getAll();
+        $result = $GLOBALS['pm']->getAll();
 
         return $this->response->withJson($result);
     });
 
     $this->get('/{id}',function($req, $res, $args){
 
-        $result = $GLOBALS['m']->get($args['id']);
+        $result = $GLOBALS['pm']->get($args['id']);
         
         return $this->response->withJson($result);
     });
@@ -23,7 +23,7 @@ $app->group('/pnf',function(){
 
         $params = $req->getParsedBody();
 
-        $result = $GLOBALS['m']->add($params);
+        $result = $GLOBALS['pm']->add($params);
         
         return $this->response->withJson($result);
     });
@@ -32,9 +32,9 @@ $app->group('/pnf',function(){
 
         $params = $req->getParsedBody();
 
-        $result = $GLOBALS['m']->update($params);
+        $result = $GLOBALS['pm']->update($params);
 
         return $this->response->withJson($result, 200);
     });
 
-})->add($mw);
+});

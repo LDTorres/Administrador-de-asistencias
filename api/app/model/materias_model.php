@@ -17,18 +17,26 @@ class MateriasModel {
 
         $sth = $this->db->prepare($sql);
 
+        if($_SESSION['tipo'] == 'Estudiante' || $_SESSION['tipo'] == 'Profesor'):
+            $id = $_SESSION['id_malla'];
+        endif;
+
         $sth->execute(array($id));
 
         $result = $sth->fetchAll();
         return $result;
     }
 
-    public function get($id){
-        $sql = "SELECT * FROM $this->table WHERE id_materia = ?";
+    public function get($params){
+        $sql = "SELECT * FROM $this->table WHERE id_materia = ? AND trimestre = ? AND id_malla = ?";
 
         $sth = $this->db->prepare($sql);
 
-        $sth->execute(array($id));
+        if($_SESSION['tipo'] == 'Estudiante' || $_SESSION['tipo'] == 'Profesor'):
+            $params['pnf'] = $_SESSION['id_malla'];
+        endif;
+
+        $sth->execute(array($params['id'], $params['trimestre'], $params['pnf']));
 
         $result = $sth->fetch();
         
@@ -36,6 +44,9 @@ class MateriasModel {
     }
 
     public function add($params){
+        if($_SESSION['tipo'] !== 'Administrador'):
+            return array('msg'=>'acceso negado');
+        endif;
 
         $sql = "INSERT INTO $this->table (nombre, trimestre, id_malla) VALUES (?,?,?)";
 
@@ -49,6 +60,9 @@ class MateriasModel {
     }
 
     public function update($params){
+        if($_SESSION['tipo'] !== 'Administrador'):
+            return array('msg'=>'acceso negado');
+        endif;
         
         $sql = "UPDATE $this->table SET nombre = ? WHERE id_malla = ? AND trimestre = ?";
 

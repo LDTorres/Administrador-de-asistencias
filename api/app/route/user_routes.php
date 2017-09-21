@@ -3,7 +3,7 @@
 use App\Model\UserModel;
 
 // Se instancia el modelo
-$m = new UserModel();
+$um = new UserModel();
 
 // USUARIOS
 $app->group('/user', function () {
@@ -12,9 +12,9 @@ $app->group('/user', function () {
 
         // Llamamos a la funcion de obtener usuarios
         if(isset($args['tipo']) && $args['tipo'] == 'Profesor'):
-            $result = $GLOBALS['m']->getAll($args['tipo']);
+            $result = $GLOBALS['um']->getAll($args['tipo']);
         else:
-            $result = $GLOBALS['m']->getAll('Estudiante');
+            $result = $GLOBALS['um']->getAll('Estudiante');
         endif;
 
         return $this->response->withJson($result);
@@ -23,17 +23,7 @@ $app->group('/user', function () {
 
     $this->get('/{id}', function ($req, $res, $args) {
 
-        $result = $GLOBALS['m']->get($args['id']);
-        return $this->response->withJson($result);
-
-    });
-
-    $this->post('/add', function ($req, $res) {
-
-        $data = $req->getParsedBody();
-
-        $result = $GLOBALS['m']->add($data);
-        
+        $result = $GLOBALS['um']->get($args['id']);
         return $this->response->withJson($result);
 
     });
@@ -42,7 +32,7 @@ $app->group('/user', function () {
        
         $params = $req->getParsedBody();
 
-        $result = $GLOBALS['m']->update($params);
+        $result = $GLOBALS['um']->update($params);
 
         return $this->response->withJson($result);
 
@@ -64,7 +54,7 @@ $app->group('/user', function () {
         endif;
     
         $params = $req->getParsedBody();
-        $result = $GLOBALS['m']->picture($params, $filename);
+        $result = $GLOBALS['um']->picture($params, $filename);
             
         return $this->response->withJson($result);
             
@@ -72,9 +62,19 @@ $app->group('/user', function () {
 
     $this->get('/status/{id}[/{accion}]', function ($req, $res, $args) {
 
-        return $this->response->withJson($GLOBALS['m']->status($args));      
+        return $this->response->withJson($GLOBALS['um']->status($args));      
 
     });
 
 })->add($mw);
+
+$app->post('/registro', function ($req, $res) {
+
+    $data = $req->getParsedBody();
+
+    $result = $GLOBALS['um']->add($data);
+        
+    return $this->response->withJson($result);
+
+});
 

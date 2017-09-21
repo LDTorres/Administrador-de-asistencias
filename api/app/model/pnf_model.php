@@ -4,11 +4,6 @@ namespace App\Model;
 
 use App\Lib\Database;
 
-/**
- * 
- * @var mixed
- */
-
 class PnfModel {
     private $db;
     private $table = 'malla_curricular';
@@ -18,6 +13,7 @@ class PnfModel {
     }
 
     public function getAll(){
+
         $sql = "SELECT * FROM $this->table";
 
         $sth = $this->db->prepare($sql);
@@ -25,6 +21,11 @@ class PnfModel {
         $sth->execute();
 
         $result = $sth->fetchAll();
+
+        if(count($result) == 0):
+            return array('msg' => 'No hay registros');
+        endif;
+
         return $result;
     }
 
@@ -41,6 +42,10 @@ class PnfModel {
     }
 
     public function add($params){
+        if($_SESSION['tipo'] !== 'Administrador'):
+            return array('msg'=>'acceso negado');
+        endif;
+
         $sql = "INSERT INTO $this->table (nombre) VALUES (?)";
 
         $sth = $this->db->prepare($sql);
@@ -53,6 +58,10 @@ class PnfModel {
     }
 
     public function update($params){
+        if($_SESSION['tipo'] !== 'Administrador'):
+            return array('msg'=>'acceso negado');
+        endif;
+
         $sql = "UPDATE $this->table SET nombre = ? WHERE id_malla = ?";
 
         $sth = $this->db->prepare($sql);

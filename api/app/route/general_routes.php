@@ -7,11 +7,11 @@ use App\Model\BDModel;
 $um = new UserModel();
 $bdm = new BDModel();
 
-$app->post('/login', function ($req, $res, $args) {
+$app->post('/login', function ($req, $res) {
 
     $params = $req->getParsedBody();
 
-    $result =  $GLOBALS['m']->login($params);
+    $result =  $GLOBALS['um']->login($params);
 
     if(!isset($result)):
         return $this->response->withJson(array("error"=>"acceso negado"), 405);
@@ -26,7 +26,10 @@ $app->get('/logout', function ($req, $res, $args) {
 });
 
 $app->get('/session', function ($req, $res, $args) {
-    return $this->response->withJson(array("usuario"=>$_SESSION['usuario']));
+    if($_SESSION['tipo'] !== 'Administrador'):
+        return$this->response->withJson(array('msg'=>'acceso negado'));
+    endif;
+    return $this->response->withJson(array("usuario"=>$_SESSION['usuario'], "tipo"=>$_SESSION['tipo']));
 });
 
 $app->get('/app', function ($req, $res, $args) {
@@ -41,15 +44,28 @@ $app->get('/app', function ($req, $res, $args) {
 
 })->add($mw);
 
-// FIXME: Probar rutas
 $app->group('/bd',function(){
 
-    $this->get('/restore',function($req, $res, $args){
-        return $this->response->withJson($GLOBALS['bdm']->restore());
+    // FIXME: Probar ruta restaurar
+    $this->post('/restore',function($req, $res){
+        $params = $req->getParsedBody();
+        $result = $GLOBALS['bdm']->restore($params['filename']);
+        $this->logger->info("Restauracion de Base de datos");
+        return $this->response->withJson($result);
     });
 
     $this->get('/backup',function($req, $res, $args){
-        return $this->response->withJson($GLOBALS['bdm']->backup());
+        $result = $GLOBALS['bdm']->backup();
+        $this->logger->info("Respaldo de Base de datos Ruta Archivo:".$result['filename']);
+        return $this->response->withJson($result);
+    });
+
+    $this->post('/delete',function($req, $res){
+        $params = $req->getParsedBody();
+        $result = $GLOBALS['bdm']->delete($params['filename'], $params['id']);
+        $this->logger->info("Archivo Borrado: ".$result['archivo']);
+
+        return $this->response->withJson($result);
     });
 
     $this->get('/backups',function($req, $res, $args){        

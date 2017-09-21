@@ -9,11 +9,13 @@ class SeccionesModel {
     private $table = 'secciones';
     private $table2 = 'alumnos_has_secciones';
     private $table3 = 'publicaciones';
+    private $table4 = 'alumnos_has_asistencias';
 
     public function __CONSTRUCT(){
         $this->db = Database::conexion();
     }
 
+    // Secciones
     public function getAll($id){
         $sql = "SELECT * FROM $this->table WHERE id_materia = ?";
 
@@ -64,6 +66,8 @@ class SeccionesModel {
         return $params;
     }
 
+    // Miembros Seccion
+
     public function getMembers($id){
         
         $sql = "SELECT * FROM $this->table2 WHERE id_seccion = ? AND estado = 1";
@@ -112,6 +116,8 @@ class SeccionesModel {
         return $this->db->lastInsertId();
     }
 
+    // Publicaciones
+
     public function getPosts($id,$offset){
         
         $sql = "SELECT * FROM $this->table3 WHERE id_seccion = ? LIMIT $offset,10";
@@ -159,5 +165,48 @@ class SeccionesModel {
         
         return  array('deleted_id' => $params['id_publicacion']);
     }
+
+    // Asistencias 
+
+    public function setAsistence($params){
+        
+        $sql = "INSERT INTO $this->table4 (id_seccion, id_usuario, fecha, asistio) VALUES (?,?,?,?)";
+
+        $sth = $this->db->prepare($sql);
+
+        if($params['fecha'] !== NULL):
+            $fecha = $params['fecha'];
+        else:
+            $fecha = date("Y-m-d");
+        endif; 
+
+        $sth->execute(array($params['id_seccion'], $params['id_usuario'], $fecha,$params['asistio']));
+
+        return $this->db->lastInsertId();
+    }
+
+    public function getAsistences($params){
+        
+        $sql = "SELECT * FROM $this->table4 WHERE id_seccion = ? AND fecha = ?";
+
+        $sth = $this->db->prepare($sql);
+
+        $sth->execute(array($params['id_seccion'], $params['fecha']));
+
+        return $sth->fetchAll();
+    }
+
+    public function updateAsistence($params){
+        
+        $sql = "UPDATE $this->table4 SET asistio = ? WHERE id_usuario = ? AND fecha = ?";
+
+        $sth = $this->db->prepare($sql);
+        
+        $sth->execute(array($params['asistio'], $params['id_usuario'],$param['fecha']));
+
+        return $this->db->lastInsertId();
+    }
+
+
 
 }

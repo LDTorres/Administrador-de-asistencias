@@ -16,36 +16,41 @@ class UserModel
 
     public function getAll($t)
     {
+        if($_SESSION['tipo'] !== 'Administrador' || $_SESSION['tipo'] !== 'Profesor'):
+            return array('msg'=>'acceso negado');
+        endif;
         $sth = $this->db->prepare("SELECT * FROM $this->table WHERE tipo = :tipoU ORDER BY id_usuario");
 
         $sth->execute(array(':tipoU' => $t));
         $result = $sth->fetchAll();
+
+        if(count($result) == 0):
+            return array('msg' => 'No hay registros');
+        endif;
 
         return $result;
     }
 
     public function get($id)
     {
+        if($_SESSION['tipo'] !== 'Administrador' || $_SESSION['tipo'] !== 'Profesor'):
+            return array('msg'=>'acceso negado');
+        endif;
         $sth = $this->db->prepare("SELECT * FROM $this->table WHERE id_usuario=:id");
         $sth->bindParam("id", $id);
         $sth->execute();
         $result = $sth->fetchObject();
+
+        if(count($result) == 0):
+            return array('msg' => 'No hay registros');
+        endif;
 
         return $result;
     }
 
     public function add($params){
 
-        $arrRtn['user'] = $params['nombre_completo'];
-        $arrRtn['type'] = $params['Estudiante'];
-        $arrRtn['token'] = bin2hex(openssl_random_pseudo_bytes(16)); 
-        $tokenExpiration = date('Y-m-d H:i:s', strtotime('+72 hour'));
-
-        $token = json_encode($arrRtn);
-        $params['token'] = $token;
-        $params['expiracion_token'] = $tokenExpiration;
-
-        $sql = "INSERT INTO $this->table (usuario, contrasena, nombre_completo, cedula, correo, telefono, id_malla, token, expiracion_token) VALUES (:usuario, :contrasena, :nombre_completo, :cedula, :correo, :telefono, :id_malla, :token, :expiracion_token)";
+        $sql = "INSERT INTO $this->table (usuario, contrasena, nombre_completo, cedula, correo, telefono, id_malla) VALUES (:usuario, :contrasena, :nombre_completo, :cedula, :correo, :telefono, :id_malla)";
         $sth = $this->db->prepare($sql);
         $sth->execute(array(
             ':usuario' => $params['usuario'], 
@@ -54,9 +59,7 @@ class UserModel
             ':cedula' => $params['cedula'], 
             ':correo' => $params['correo'],
             ':telefono' => $params['telefono'],
-            ':id_malla' => $params['id_malla'],
-            ':token' => $token,
-            ':expiracion_token' => $tokenExpiration
+            ':id_malla' => $params['id_malla']
         ));
 
         $params['id'] = $this->db->lastInsertId();
@@ -76,6 +79,7 @@ class UserModel
         return $params;
     }
 
+    // TODO: Falta por definir que se va a actualizar
     public function picture($params, $filename){
         $sql = "UPDATE $this->table SET foto_perfil = :foto_perfil WHERE id_usuario=:id";
         $sth = $this->db->prepare($sql);
@@ -88,7 +92,7 @@ class UserModel
     }
 
     public function login($params){
-        $sql = "SELECT usuario, correo, contrasena FROM $this->table WHERE usuario = :user OR correo = :user AND contrasena = :pass";
+        $sql = "SELECT usuario, correo, contrasena, tipo, id_malla FROM $this->table WHERE usuario = :user OR correo = :user AND contrasena = :pass";
         $sth = $this->db->prepare($sql);
         $sth->execute(array(':user' => $params['usuario'], ':pass' => $params['contrasena']));
 
@@ -96,6 +100,8 @@ class UserModel
 
         if(count($result) > 0):
             $_SESSION["usuario"] = $result['usuario'];
+            $_SESSION["tipo"] = $result['tipo'];
+            $_SESSION["id_malla"] = $result['id_malla'];
             $result['ok'] = 'Acceso Autorizado';
             return $result;
         else:

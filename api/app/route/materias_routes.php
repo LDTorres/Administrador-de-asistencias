@@ -3,19 +3,19 @@
 use App\Model\MateriasModel;
 
 // Instanciamos el modelo
-$m = new MateriasModel();
+$mm = new MateriasModel();
 
 $app->group('/materia',function(){
-    $this->get('/all',function($req, $res, $args){
+    $this->get('/all[/{id}]',function($req, $res, $args){
 
-        $result = $GLOBALS['m']->getAll($args['id_malla']);
+        $result = $GLOBALS['mm']->getAll($args['id']);
         
         return $this->response->withJson($result);
     });
 
-    $this->get('/{id}',function($req, $res, $args){
+    $this->get('/{id}/{trimestre}[/{pnf}]',function($req, $res, $args){
 
-        $result = $GLOBALS['m']->get($args['id']);
+        $result = $GLOBALS['mm']->get($args);
         
         return $this->response->withJson($result);
     });
@@ -24,7 +24,7 @@ $app->group('/materia',function(){
 
         $params = $req->getParsedBody();
 
-        $result = $GLOBALS['m']->add($params);
+        $result = $GLOBALS['mm']->add($params);
         
         return $this->response->withJson($result);
     });
@@ -33,7 +33,7 @@ $app->group('/materia',function(){
 
         $params = $req->getParsedBody();
 
-        $result = $GLOBALS['m']->update($params);
+        $result = $GLOBALS['mm']->update($params);
 
         return $this->response->withJson($result, 200);
     });

@@ -2,20 +2,19 @@
 
 use App\Model\SeccionesModel;
 
-$m = new SeccionesModel();
+$sm = new SeccionesModel();
 
 $app->group('/seccion',function(){
 
     $this->get('/all',function($req, $res, $args){
 
-
-        $result = $GLOBALS['m']->getAll($args['id_materia']);
+        $result = $GLOBALS['sm']->getAll($args['id_materia']);
         return $this->response->withJson($result);
     });
 
     $this->get('/{id}/{idP}',function($req, $res, $args){
 
-        $result = $GLOBALS['m']->get($args['id'],$args['idP']);
+        $result = $GLOBALS['sm']->get($args['id'],$args['idP']);
         
         return $this->response->withJson($result);
     });
@@ -24,7 +23,7 @@ $app->group('/seccion',function(){
 
         $params = $req->getParsedBody();
 
-        $result = $GLOBALS['m']->add($params);
+        $result = $GLOBALS['sm']->add($params);
         
         return $this->response->withJson($result);
     });
@@ -33,21 +32,21 @@ $app->group('/seccion',function(){
 
         $params = $req->getParsedBody();
 
-        $result = $GLOBALS['m']->update($params);
+        $result = $GLOBALS['sm']->update($params);
 
         return $this->response->withJson($result, 200);
     });
 
     $this->get('/members/{id}', function($req, $res, $args){
 
-        $result = $GLOBALS['m']->getMembers($args['id']);
+        $result = $GLOBALS['sm']->getMembers($args['id']);
 
         return $this->response->withJson($result, 200);
     });
 
     $this->get('/member/{id}', function($req, $res, $args){
 
-        $result = $GLOBALS['m']->getMember($args['id']);
+        $result = $GLOBALS['sm']->getMember($args['id']);
 
         return $this->response->withJson($result, 200);
 
@@ -55,7 +54,7 @@ $app->group('/seccion',function(){
 
     $this->get('/member/delete/{id}', function($req, $res, $args){
 
-        $result = $GLOBALS['m']->deleteMember($args['id']);
+        $result = $GLOBALS['sm']->deleteMember($args['id']);
 
         return $this->response->withJson($result, 200);
     });
@@ -64,14 +63,14 @@ $app->group('/seccion',function(){
 
         $params = $req->getParsedBody();
 
-        $result = $GLOBALS['m']->addMember($params);
+        $result = $GLOBALS['sm']->addMember($params);
         
         return $this->response->withJson($result);
     });
 
     $this->get('/posts/{id}/{offset}', function($req, $res, $args){
 
-        $result = $GLOBALS['m']->getPosts($args['id'], $args['offset']);
+        $result = $GLOBALS['sm']->getPosts($args['id'], $args['offset']);
 
         return $this->response->withJson($result, 200);
     });
@@ -80,7 +79,7 @@ $app->group('/seccion',function(){
 
         $params = $req->getParsedBody();
         
-        $result = $GLOBALS['m']->getPost($params['id']);
+        $result = $GLOBALS['sm']->getPost($params['id']);
 
         return $this->response->withJson($result, 200);
     });
@@ -104,7 +103,7 @@ $app->group('/seccion',function(){
             $filename = NULL;
         endif;
 
-        $result = $GLOBALS['m']->addPost($params, $filename);
+        $result = $GLOBALS['sm']->addPost($params, $filename);
         
         return $this->response->withJson($result);
     });
@@ -113,7 +112,19 @@ $app->group('/seccion',function(){
 
         $params = $req->getParsedBody();
 
-        return $this->response->withJson($GLOBALS['m']->deletePost($params), 200);
+        return $this->response->withJson($GLOBALS['sm']->deletePost($params), 200);
+    });
+
+    $this->post('/asistencia', function($req, $res){
+        $params = $req->getParsedBody();
+
+        return $this->response->withJson($GLOBALS['sm']->setAsistence($params), 200);
+    });
+    
+    $this->post('/asistencia/get', function($req, $res){
+        $params = $req->getParsedBody();
+
+        return $this->response->withJson($GLOBALS['sm']->getAsistences($params), 200);
     });
 
 })->add($mw);
