@@ -17,7 +17,7 @@ class SeccionesModel {
 
     // Secciones
     public function getAll($id){
-        $sql = "SELECT * FROM $this->table WHERE id_materia = ?";
+        $sql = "SELECT * FROM $this->table WHERE id_asignatura = ?";
 
         $sth = $this->db->prepare($sql);
 
@@ -42,13 +42,13 @@ class SeccionesModel {
 
     public function add($params){
 
-        $sql = "INSERT INTO $this->table (nombre, id_materia, codigo, id_usuario) VALUES (?,?,?,?)";
+        $sql = "INSERT INTO $this->table (nombre, id_asignatura, codigo, id_usuario) VALUES (?,?,?,?)";
 
         $sth = $this->db->prepare($sql);
 
         $codigo = bin2hex(openssl_random_pseudo_bytes(16)); 
 
-        $sth->execute(array($params['nombre'], $params['id_materia'], $codigo, $params['id_usuario']));
+        $sth->execute(array($params['nombre'], $params['id_asignatura'], $codigo, $params['id_usuario']));
 
         $result = $this->db->lastInsertId();
         
@@ -205,6 +205,17 @@ class SeccionesModel {
         $sth->execute(array($params['asistio'], $params['id_usuario'],$param['fecha']));
 
         return $this->db->lastInsertId();
+    }
+
+    public function getReport($params){
+        
+        $sql = "SELECT * FROM $this->table4 INNER JOIN usuarios WHERE id_seccion = ? AND $this->table4.id_usuario = usuarios.id_usuario AND fecha >= ? AND fecha <= ? GROUP BY fecha";
+
+        $sth = $this->db->prepare($sql);
+        
+        $sth->execute(array($params['seccion'], $params['desde'], $params['hasta']));
+
+        return $sth->fetchAll();
     }
 
 

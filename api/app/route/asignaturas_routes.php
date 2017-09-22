@@ -1,11 +1,11 @@
 <?php
 
-use App\Model\MateriasModel;
+use App\Model\AsignaturasModel;
 
 // Instanciamos el modelo
-$mm = new MateriasModel();
+$mm = new AsignaturasModel();
 
-$app->group('/materia',function(){
+$app->group('/asignatura',function(){
     $this->get('/all[/{id}]',function($req, $res, $args){
 
         $result = $GLOBALS['mm']->getAll($args['id']);

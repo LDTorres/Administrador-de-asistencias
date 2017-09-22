@@ -1,6 +1,6 @@
 angular.module('GATE')
 
-  .controller('loginController', ['$scope', 'ingresarService', function ($scope, ingresarService) {
+  .controller('loginController', function ($scope, servicioGeneral) {
     var bz = this;
 
     bz.datos = {
@@ -19,8 +19,8 @@ angular.module('GATE')
       }
     };
 
-    bz.ingresar = function () {
-      ingresarService.ingresar(bz.datos.login).then(function (res) {
+    bz.ingresar = function (datos) {
+      servicioGeneral.ingresar(bz.datos.login).then(function (res) {
         console.log(res)
       }).catch(function (res) {
         console.log(res)
@@ -28,23 +28,21 @@ angular.module('GATE')
     }
 
     bz.registrar = function (datos) {
-      ingresarService.registrar(bz.datos.registro).then(function () {
+      servicioGeneral.registrar(bz.datos.registro).then(function () {
         console.log(res)
       }).catch(function (res) {
         console.log(res)
       });
     }
-
-
 
     bz.salir = function (datos) {
-      ingresarService.salir(datos).then(function () {
+      servicioGeneral.salir(datos).then(function () {
         console.log(res)
       }).catch(function (res) {
         console.log(res)
       });
     }
-  }])
+  })
 
   .controller('inicioController', function ($scope) {
 

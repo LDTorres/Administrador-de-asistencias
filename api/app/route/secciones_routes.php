@@ -8,7 +8,7 @@ $app->group('/seccion',function(){
 
     $this->get('/all',function($req, $res, $args){
 
-        $result = $GLOBALS['sm']->getAll($args['id_materia']);
+        $result = $GLOBALS['sm']->getAll($args['id_asignatura']);
         return $this->response->withJson($result);
     });
 
@@ -125,6 +125,12 @@ $app->group('/seccion',function(){
         $params = $req->getParsedBody();
 
         return $this->response->withJson($GLOBALS['sm']->getAsistences($params), 200);
+    });
+
+    $this->post('/reporte', function($req, $res){
+        $params = $req->getParsedBody();
+
+        return $this->response->withJson($GLOBALS['sm']->getReport($params), 200);
     });
 
 })->add($mw);

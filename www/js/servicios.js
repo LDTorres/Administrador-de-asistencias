@@ -1,8 +1,11 @@
 angular.module('GATE')
+
+  .constant("ruta", "http://localhost:3454")
   /* INGRESAR */
 
-  .service("ingresarService", ["$http", "$q", function ($http, $q) {
-    var ruta = 'http://localhost:3454';
+  .service("servicioGeneral", ["$http", "$q", "ruta", function ($http, $q, ruta) {
+
+    // Espera por parametro {usuario | correo, contrasena}
     this.ingresar = function (datos) {
       /* Declaramos una promesa */
       var defered = $q.defer();
@@ -19,7 +22,7 @@ angular.module('GATE')
       })
       return promise;
     }
-
+    // Cierra la session
     this.salir = function () {
       /* Declaramos una promesa */
       var defered = $q.defer();
@@ -37,13 +40,13 @@ angular.module('GATE')
       })
       return promise;
     }
-
+    // Espera por parametro {usuario, contrasena, nombre_completo, cedula, correo, telefono, id_malla}
     this.registrar = function (datos) {
       /* Declaramos una promesa */
       var defered = $q.defer();
       var promise = defered.promise;
 
-      $http.post(ruta + '/registro', datos).then(function (res) {
+      $http.post(ruta + '/singup', datos).then(function (res) {
 
         /* Si el valor fue devuelto */
         defered.resolve(res);
@@ -55,20 +58,72 @@ angular.module('GATE')
       })
       return promise;
     }
+    // Devuelve la informacion de la aplicacion
+    this.app = function () {
+      /* Declaramos una promesa */
+      var defered = $q.defer();
+      var promise = defered.promise;
+
+      $http.get(ruta + '/app').then(function (res) {
+
+        /* Si el valor fue devuelto */
+        defered.resolve(res);
+
+      }).catch(function (res) {
+
+        /* Si hubo algun error */
+        defered.reject(res);
+      })
+      return promise;
+    };
   }])
 
-  /* USUARIOS */
+  // USUARIOS
 
-  .service("usuariosService", ["$http", "$q", function ($http, $q) {
+  .service("servicioUsuario", ["$http", "$q", "ruta", function ($http, $q, ruta) {
 
-    /* Alumnos */
+    // Colocamos la imagen de perfil  // TODO: Upload
+    this.setPicture = function (datos) {
 
-    this.listarAlumnos = function () {
-      /* Declaramos una promesa */
+      //var defered = $q.defer();
+      //var promise = defered.promise;
+
+      /* Ver si se envia el archivo 
+      console.log(datos)
+      */
+
+      /*Upload.upload({
+        url: ruta + '/user/picture',
+        method: 'POST',
+        file: {
+          filename: datos.perfilPicture
+        },
+        data: datos
+      }).then(function (res) {
+
+        defered.resolve(res);
+
+      }).catch(function (res) {
+
+        defered.reject(res);
+
+      })
+      return promise;
+      */
+    }
+
+    // Espera un id de usuario y opcionamente la accion
+    this.estado = function (datos) {
       var defered = $q.defer();
       var promise = defered.promise;
 
-      $http.get('ruta').then(function (res) {
+      if (datos.accion) {
+        var rutaCompleta = '/status/' + id + '/' + accion;
+      }
+
+      var rutaCompleta = '/status/' + id;
+
+      $http.get(ruta + rutaCompleta).then(function (res) {
 
         /* Si el valor fue devuelto */
         defered.resolve(res);
@@ -81,264 +136,13 @@ angular.module('GATE')
       return promise;
     }
 
-    this.obtenerAlumno = function () {
+    // Espera como parametro {contrasena, nombre_completo, telefono}
+    this.update = function (datos) {
       /* Declaramos una promesa */
       var defered = $q.defer();
       var promise = defered.promise;
 
-      $http.get('ruta').then(function (res) {
-
-        /* Si el valor fue devuelto */
-        defered.resolve(res);
-
-      }).catch(function (res) {
-
-        /* Si hubo algun error */
-        defered.reject(res);
-      })
-      return promise;
-    }
-
-    /* Profesores */
-
-    this.listarProfesores = function () {
-      /* Declaramos una promesa */
-      var defered = $q.defer();
-      var promise = defered.promise;
-
-      $http.get('ruta').then(function (res) {
-
-        /* Si el valor fue devuelto */
-        defered.resolve(res);
-
-      }).catch(function (res) {
-
-        /* Si hubo algun error */
-        defered.reject(res);
-      })
-      return promise;
-    }
-
-    this.obtenerProfesor = function () {
-      /* Declaramos una promesa */
-      var defered = $q.defer();
-      var promise = defered.promise;
-
-      $http.get('ruta').then(function (res) {
-
-        /* Si el valor fue devuelto */
-        defered.resolve(res);
-
-      }).catch(function (res) {
-
-        /* Si hubo algun error */
-        defered.reject(res);
-      })
-      return promise;
-    }
-
-    /* GENERALES */
-
-    this.usuarioPerfil = function () {
-      /* Declaramos una promesa */
-      var defered = $q.defer();
-      var promise = defered.promise;
-
-      $http.get('ruta').then(function (res) {
-
-        /* Si el valor fue devuelto */
-        defered.resolve(res);
-
-      }).catch(function (res) {
-
-        /* Si hubo algun error */
-        defered.reject(res);
-      })
-      return promise;
-    }
-
-    this.usuarioModificar = function () {
-      /* Declaramos una promesa */
-      var defered = $q.defer();
-      var promise = defered.promise;
-
-      $http.get('ruta').then(function (res) {
-
-        /* Si el valor fue devuelto */
-        defered.resolve(res);
-
-      }).catch(function (res) {
-
-        /* Si hubo algun error */
-        defered.reject(res);
-      })
-      return promise;
-    }
-
-    this.usuarioBaja = function () {
-      /* Declaramos una promesa */
-      var defered = $q.defer();
-      var promise = defered.promise;
-
-      $http.get('ruta').then(function (res) {
-
-        /* Si el valor fue devuelto */
-        defered.resolve(res);
-
-      }).catch(function (res) {
-
-        /* Si hubo algun error */
-        defered.reject(res);
-      })
-      return promise;
-    }
-
-  }])
-
-  /* Programas de formacion */
-
-  .service("mallaService", ["$http", "$q", function ($http, $q) {
-
-    this.listarPnf = function () {
-      /* Declaramos una promesa */
-      var defered = $q.defer();
-      var promise = defered.promise;
-
-      $http.get('ruta').then(function (res) {
-
-        /* Si el valor fue devuelto */
-        defered.resolve(res);
-
-      }).catch(function (res) {
-
-        /* Si hubo algun error */
-        defered.reject(res);
-      })
-      return promise;
-    }
-
-    this.listarMaterias = function () {
-      /* Declaramos una promesa */
-      var defered = $q.defer();
-      var promise = defered.promise;
-
-      $http.get('ruta').then(function (res) {
-
-        /* Si el valor fue devuelto */
-        defered.resolve(res);
-
-      }).catch(function (res) {
-
-        /* Si hubo algun error */
-        defered.reject(res);
-      })
-      return promise;
-    }
-
-    /* Secciones */
-
-    this.listarSecciones = function () {
-      /* Declaramos una promesa */
-      var defered = $q.defer();
-      var promise = defered.promise;
-
-      $http.get('ruta').then(function (res) {
-
-        /* Si el valor fue devuelto */
-        defered.resolve(res);
-
-      }).catch(function (res) {
-
-        /* Si hubo algun error */
-        defered.reject(res);
-      })
-      return promise;
-    }
-
-    this.crearSeccion = function () {
-      /* Declaramos una promesa */
-      var defered = $q.defer();
-      var promise = defered.promise;
-
-      $http.get('ruta').then(function (res) {
-
-        /* Si el valor fue devuelto */
-        defered.resolve(res);
-
-      }).catch(function (res) {
-
-        /* Si hubo algun error */
-        defered.reject(res);
-      })
-      return promise;
-    }
-
-    this.modificarSeccion = function () {
-      /* Declaramos una promesa */
-      var defered = $q.defer();
-      var promise = defered.promise;
-
-      $http.get('ruta').then(function (res) {
-
-        /* Si el valor fue devuelto */
-        defered.resolve(res);
-
-      }).catch(function (res) {
-
-        /* Si hubo algun error */
-        defered.reject(res);
-      })
-      return promise;
-    }
-
-    this.usuariosSeccion = function () {
-      /* Declaramos una promesa */
-      var defered = $q.defer();
-      var promise = defered.promise;
-
-      $http.get('ruta').then(function (res) {
-
-        /* Si el valor fue devuelto */
-        defered.resolve(res);
-
-      }).catch(function (res) {
-
-        /* Si hubo algun error */
-        defered.reject(res);
-      })
-      return promise;
-    }
-
-    this.eliminarAlumnoSeccion = function () {
-      /* Declaramos una promesa */
-      var defered = $q.defer();
-      var promise = defered.promise;
-
-      $http.get('ruta').then(function (res) {
-
-        /* Si el valor fue devuelto */
-        defered.resolve(res);
-
-      }).catch(function (res) {
-
-        /* Si hubo algun error */
-        defered.reject(res);
-      })
-      return promise;
-    }
-
-  }])
-
-  /* Info App */
-
-  .service("infoAppService", ["$http", "$q", function ($http, $q) {
-
-    this.informacionApp = function () {
-      /* Declaramos una promesa */
-      var defered = $q.defer();
-      var promise = defered.promise;
-
-      $http.get('ruta').then(function (res) {
+      $http.post(ruta + '/user/update', datos).then(function (res) {
 
         /* Si el valor fue devuelto */
         defered.resolve(res);

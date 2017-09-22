@@ -28,7 +28,7 @@ $app->group('/user', function () {
 
     });
         
-    $this->put('/update', function ($req, $res) {
+    $this->post('/update', function ($req, $res) {
        
         $params = $req->getParsedBody();
 
@@ -68,7 +68,7 @@ $app->group('/user', function () {
 
 })->add($mw);
 
-$app->post('/registro', function ($req, $res) {
+$app->post('/singup', function ($req, $res) {
 
     $data = $req->getParsedBody();
 

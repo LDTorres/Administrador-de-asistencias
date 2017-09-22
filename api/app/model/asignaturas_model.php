@@ -4,9 +4,9 @@ namespace App\Model;
 
 use App\Lib\Database;
 
-class MateriasModel {
+class AsignaturasModel {
     private $db;
-    private $table = 'materias';
+    private $table = 'asignaturas';
 
     public function __CONSTRUCT(){
         $this->db = Database::conexion();
@@ -28,7 +28,7 @@ class MateriasModel {
     }
 
     public function get($params){
-        $sql = "SELECT * FROM $this->table WHERE id_materia = ? AND trimestre = ? AND id_malla = ?";
+        $sql = "SELECT * FROM $this->table WHERE id_asignatura = ? AND trimestre = ? AND id_malla = ?";
 
         $sth = $this->db->prepare($sql);
 
