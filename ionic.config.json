@@ -5,5 +5,12 @@
   "integrations": {
     "cordova": {}
   },
-  "watchPatterns": []
+  "watchPatterns": [
+    "www/js/*",
+    "!www/css/**/*"
+  ],
+  "proxies": [{
+    "path": "/",
+    "proxyUrl": "http://localhost:3454/"
+  }]
 }

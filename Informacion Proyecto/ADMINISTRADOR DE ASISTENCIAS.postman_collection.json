@@ -5,13 +5,27 @@
 	"order": [],
 	"folders": [
 		{
+			"name": "Asistencias",
+			"description": "",
+			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
+			"order": [
+				"364ec9af-c6ab-22fa-bc88-9aa8b298ac43",
+				"abfd641d-f8d6-f6c5-b4d2-494676ba0534"
+			],
+			"owner": "2084589",
+			"folder": "d0a4af9a-1e80-a376-a478-b2d7addd86b1",
+			"folders_order": [],
+			"id": "bb0bd518-8bee-2785-0c46-508c4eb322dc"
+		},
+		{
 			"name": "BD",
 			"description": "Acciones para la Base de datos",
 			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
 			"order": [
 				"3ef918cd-956e-ed4e-6477-609642b63b65",
 				"316bc884-d3d3-4a97-74ca-2d397520c158",
-				"b47705ae-cfb9-1e50-deaa-e642ac2069dc"
+				"b47705ae-cfb9-1e50-deaa-e642ac2069dc",
+				"b9f3c9f8-f6c0-1bb1-7f96-0821631bba35"
 			],
 			"owner": "2084589",
 			"folders_order": [],
@@ -22,10 +36,10 @@
 			"description": "",
 			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
 			"order": [
+				"c823361b-aa14-9ee4-ea20-d5ac31d388b8",
 				"bb6707c9-5f0f-0337-20e8-3933d5a2d430",
 				"cabc2b05-f45c-0bc7-2fe2-c8d1a51dbc39",
-				"46b97391-0b9c-b06e-3107-b76bc3589554",
-				"c823361b-aa14-9ee4-ea20-d5ac31d388b8"
+				"46b97391-0b9c-b06e-3107-b76bc3589554"
 			],
 			"owner": "2084589",
 			"folders_order": [],
@@ -97,12 +111,14 @@
 				"7ecde924-324f-37bb-6021-889a4c5fabb2",
 				"671ce723-b74e-df44-cc47-0f68017a8837",
 				"68657109-ae02-586f-08f0-e805460e63bc",
-				"3964e71a-6bc8-c3ca-c448-f9fd2ad0d60b"
+				"3964e71a-6bc8-c3ca-c448-f9fd2ad0d60b",
+				"0408f49e-c3d2-95ef-aaca-b1c0bff11451"
 			],
 			"owner": "2084589",
 			"folders_order": [
 				"6cf692b2-b2fb-b982-2010-c98c2c38de39",
-				"f1ba4e66-8b37-1bdc-72d0-6981ccb4fc37"
+				"f1ba4e66-8b37-1bdc-72d0-6981ccb4fc37",
+				"bb0bd518-8bee-2785-0c46-508c4eb322dc"
 			],
 			"id": "d0a4af9a-1e80-a376-a478-b2d7addd86b1"
 		},
@@ -111,11 +127,11 @@
 			"description": "Api Rest Administrador de asistencias",
 			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
 			"order": [
+				"66dce75a-848a-3a42-ece3-8d679caebe92",
+				"2a42b3d1-5fec-c6d6-6582-7b0a20a6415c",
 				"a323a87a-4940-b6d8-eda2-78aa62a62c28",
 				"5a632524-d9e3-2530-32d8-7a0516f5f754",
-				"66dce75a-848a-3a42-ece3-8d679caebe92",
 				"a0cd72f6-a388-57bc-bea7-30cceb330eba",
-				"2a42b3d1-5fec-c6d6-6582-7b0a20a6415c",
 				"95355b1b-ac83-7f6e-32c1-de72264c5db9"
 			],
 			"owner": "2084589",
@@ -124,8 +140,8 @@
 		}
 	],
 	"folders_order": [
-		"a2cacbd8-40d4-6e52-ad12-35783c7a6a91",
 		"f32508d4-730e-12e8-2acc-776205cef0e8",
+		"a2cacbd8-40d4-6e52-ad12-35783c7a6a91",
 		"d59b253f-5eae-2b9e-bf61-cc53631735d6",
 		"1456b303-d0bb-4ac9-077b-6dccb0a81b12",
 		"d0a4af9a-1e80-a376-a478-b2d7addd86b1",
@@ -135,6 +151,57 @@
 	"owner": "2084589",
 	"public": false,
 	"requests": [
+		{
+			"id": "0408f49e-c3d2-95ef-aaca-b1c0bff11451",
+			"headers": "Content-Type: application/x-www-form-urlencoded\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/x-www-form-urlencoded",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "{{url}}/seccion/reporte",
+			"folder": "d0a4af9a-1e80-a376-a478-b2d7addd86b1",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [
+				{
+					"key": "seccion",
+					"value": "1",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "desde",
+					"value": "2017-09-05",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "hasta",
+					"value": "2017-09-21",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1506040920064,
+			"name": "{{url}}/seccion/reporte",
+			"description": "Reporte de asistencias",
+			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
+			"responses": []
+		},
 		{
 			"id": "29620a16-f2b7-31e9-3672-4c0b5b797fd4",
 			"headers": "Content-Type: application/x-www-form-urlencoded\n",
@@ -293,6 +360,66 @@
 			"responses": []
 		},
 		{
+			"id": "364ec9af-c6ab-22fa-bc88-9aa8b298ac43",
+			"headers": "Content-Type: application/x-www-form-urlencoded\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/x-www-form-urlencoded",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "{{url}}/seccion/asistencia",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "POST",
+			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
+			"data": [
+				{
+					"key": "id_usuario",
+					"value": "1",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "id_seccion",
+					"value": "1",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "asistio",
+					"value": "1",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "fecha",
+					"value": "2017-08-25",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"name": "{{url}}/seccion/asistencia",
+			"description": "Colocar asistencia",
+			"descriptionFormat": "html",
+			"time": 1505826280254,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"folder": "bb0bd518-8bee-2785-0c46-508c4eb322dc"
+		},
+		{
 			"id": "3964e71a-6bc8-c3ca-c448-f9fd2ad0d60b",
 			"headers": "Content-Type: application/x-www-form-urlencoded\n",
 			"headerData": [
@@ -425,7 +552,7 @@
 			"preRequestScript": null,
 			"pathVariables": {},
 			"pathVariableData": [],
-			"method": "PUT",
+			"method": "POST",
 			"data": [
 				{
 					"key": "id_usuario",
@@ -453,7 +580,7 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1505401204308,
+			"time": 1506042903210,
 			"name": "{{url}}/user/update",
 			"description": "RUTA PARA MODIFICAR UN USUARIO",
 			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
@@ -486,7 +613,7 @@
 			"id": "66e69161-7400-e514-f0e1-cb3711503cf5",
 			"headers": "",
 			"headerData": [],
-			"url": "{{url}}/materia/id",
+			"url": "{{url}}/materia/id/trimestre",
 			"folder": "1456b303-d0bb-4ac9-077b-6dccb0a81b12",
 			"queryParams": [],
 			"preRequestScript": null,
@@ -499,8 +626,8 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": "{}",
-			"time": 1505266028225,
-			"name": "{{url}}/materia/id",
+			"time": 1505576806882,
+			"name": "{{url}}/materia/id/trimestre[/pnf]",
 			"description": "Obtenemos una materia en especifico",
 			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
 			"responses": [],
@@ -677,7 +804,7 @@
 			"id": "95355b1b-ac83-7f6e-32c1-de72264c5db9",
 			"headers": "",
 			"headerData": [],
-			"url": "{{url}}/user/estado/id/accion",
+			"url": "{{url}}/user/status/id/accion",
 			"folder": "a2cacbd8-40d4-6e52-ad12-35783c7a6a91",
 			"queryParams": [],
 			"preRequestScript": null,
@@ -689,13 +816,11 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1505263012413,
+			"time": 1505570280303,
 			"name": "{{url}}/user/estado/id/accion",
 			"description": "Ruta para ver el estado de un usuario o cambiarlo si se pasa el segundo parametro.",
 			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
-			"responses": [],
-			"isFromCollection": true,
-			"collectionRequestId": "95355b1b-ac83-7f6e-32c1-de72264c5db9"
+			"responses": []
 		},
 		{
 			"id": "9e6faba1-e9fc-ef7c-7b2b-25e042861cbe",
@@ -835,7 +960,7 @@
 					"enabled": true
 				}
 			],
-			"url": "{{url}}/user/add",
+			"url": "{{url}}/singup",
 			"folder": "a2cacbd8-40d4-6e52-ad12-35783c7a6a91",
 			"queryParams": [],
 			"preRequestScript": null,
@@ -877,7 +1002,7 @@
 				},
 				{
 					"key": "id_malla",
-					"value": "",
+					"value": "1",
 					"description": "",
 					"type": "text",
 					"enabled": true
@@ -887,8 +1012,8 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1505401197502,
-			"name": "{{url}}/user/add",
+			"time": 1506041142396,
+			"name": "{{url}}/singup",
 			"description": "RUTA PARA AGREGAR UN NUEVO USUARIO\n\nDEVUELVE LOS DATOS EN FORMATO JSON",
 			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
 			"responses": []
@@ -915,6 +1040,52 @@
 			"description": "Obtenemos todas las materias de una malla",
 			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
 			"responses": []
+		},
+		{
+			"id": "abfd641d-f8d6-f6c5-b4d2-494676ba0534",
+			"headers": "Content-Type: application/x-www-form-urlencoded\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/x-www-form-urlencoded",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "{{url}}/seccion/asistencia/get",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "POST",
+			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
+			"data": [
+				{
+					"key": "id_seccion",
+					"value": "1",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "fecha",
+					"value": "2017-08-25",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"name": "{{url}}/seccion/asistencia/get",
+			"description": "Obetnemos el listado de asistencia de la fecha pasada por parametro",
+			"descriptionFormat": "html",
+			"time": 1505938607682,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"folder": "bb0bd518-8bee-2785-0c46-508c4eb322dc"
 		},
 		{
 			"id": "ae38676b-7beb-9722-e872-026d6bfb8aea",
@@ -969,35 +1140,85 @@
 		},
 		{
 			"id": "b47705ae-cfb9-1e50-deaa-e642ac2069dc",
-			"headers": "",
-			"headerData": [],
+			"headers": "Content-Type: application/x-www-form-urlencoded\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/x-www-form-urlencoded",
+					"description": "",
+					"enabled": true
+				}
+			],
 			"url": "{{url}}/bd/restore",
 			"folder": "8805482e-d8b8-da8e-16d9-4ddd5b9d58a0",
 			"queryParams": [],
 			"preRequestScript": null,
 			"pathVariables": {},
 			"pathVariableData": [],
-			"method": "GET",
+			"method": "POST",
 			"data": [
 				{
-					"key": "sql",
-					"value": "",
-					"description": "",
-					"type": "file",
+					"key": "filename",
+					"value": "bd-19-09-2017-12-57-37.sql",
+					"description": "Nombre del archivo",
+					"type": "text",
 					"enabled": true
 				}
 			],
-			"dataMode": "params",
+			"dataMode": "urlencoded",
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1505317020637,
+			"time": 1505818995698,
 			"name": "{{url}}/bd/restore",
 			"description": "Ruta para restaurar la base de datos",
 			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
+			"responses": []
+		},
+		{
+			"id": "b9f3c9f8-f6c0-1bb1-7f96-0821631bba35",
+			"headers": "Content-Type: application/x-www-form-urlencoded\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/x-www-form-urlencoded",
+					"enabled": true,
+					"description": ""
+				}
+			],
+			"url": "{{url}}/bd/delete",
+			"folder": "8805482e-d8b8-da8e-16d9-4ddd5b9d58a0",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [
+				{
+					"key": "id",
+					"value": "",
+					"description": "id de la base de datos",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "filename",
+					"value": "",
+					"description": "nombre del archivo",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1505569337151,
+			"name": "{{url}}/bd/delete",
+			"description": "Borrar un archivo sql \n",
+			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
 			"responses": [],
-			"isFromCollection": true,
-			"collectionRequestId": "b47705ae-cfb9-1e50-deaa-e642ac2069dc"
+			"timestamp": null
 		},
 		{
 			"id": "bb53b499-7d6c-7799-7426-338f6e256738",
@@ -1119,14 +1340,14 @@
 			"data": [
 				{
 					"key": "usuario",
-					"value": "Luis",
+					"value": "Admin",
 					"description": "",
 					"type": "text",
 					"enabled": true
 				},
 				{
 					"key": "contrasena",
-					"value": "123456789",
+					"value": "1234",
 					"description": "",
 					"type": "text",
 					"enabled": true
@@ -1136,13 +1357,11 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1505276488811,
+			"time": 1506039587118,
 			"name": "{{url}}/login",
 			"description": "Iniciamos sesion y desbloqueamos las rutas",
 			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
-			"responses": [],
-			"isFromCollection": true,
-			"collectionRequestId": "c823361b-aa14-9ee4-ea20-d5ac31d388b8"
+			"responses": []
 		},
 		{
 			"id": "cabc2b05-f45c-0bc7-2fe2-c8d1a51dbc39",
@@ -1162,7 +1381,85 @@
 			"descriptionFormat": "html",
 			"time": 1505257298878,
 			"version": 2,
-			"responses": [],
+			"responses": [
+				{
+					"status": "",
+					"responseCode": {
+						"code": 200,
+						"name": "OK",
+						"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+					},
+					"time": 144,
+					"headers": [
+						{
+							"name": "Cache-Control",
+							"key": "Cache-Control",
+							"value": "no-store, no-cache, must-revalidate",
+							"description": "Tells all caching mechanisms from server to client whether they may cache this object. It is measured in seconds"
+						},
+						{
+							"name": "Connection",
+							"key": "Connection",
+							"value": "close",
+							"description": "Options that are desired for the connection"
+						},
+						{
+							"name": "Content-Type",
+							"key": "Content-Type",
+							"value": "application/json;charset=utf-8",
+							"description": "The mime type of this content"
+						},
+						{
+							"name": "Expires",
+							"key": "Expires",
+							"value": "Thu, 19 Nov 1981 08:52:00 GMT",
+							"description": "Gives the date/time after which the response is considered stale"
+						},
+						{
+							"name": "Host",
+							"key": "Host",
+							"value": "localhost:3454",
+							"description": "Custom header"
+						},
+						{
+							"name": "Pragma",
+							"key": "Pragma",
+							"value": "no-cache",
+							"description": "Implementation-specific headers that may have various effects anywhere along the request-response chain."
+						},
+						{
+							"name": "X-Powered-By",
+							"key": "X-Powered-By",
+							"value": "PHP/7.0.13",
+							"description": "Specifies the technology (ASP.NET, PHP, JBoss, e.g.) supporting the web application (version details are often in X-Runtime, X-Version, or X-AspNet-Version)"
+						}
+					],
+					"cookies": [],
+					"mime": "",
+					"text": "{\"usuario\":\"Luis\",\"tipo\":\"Administrador\"}",
+					"language": "json",
+					"rawDataType": "text",
+					"previewType": "text",
+					"searchResultScrolledTo": -1,
+					"forceNoPretty": false,
+					"write": true,
+					"empty": false,
+					"failed": false,
+					"name": "{{url}}/session",
+					"id": "6942aa77-e09e-04fb-92d4-f6f774dc283a",
+					"request": {
+						"url": "{{url}}/session",
+						"pathVariables": {},
+						"pathVariableData": [],
+						"queryParams": [],
+						"headerData": [],
+						"headers": "",
+						"data": null,
+						"method": "GET",
+						"dataMode": "params"
+					}
+				}
+			],
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
