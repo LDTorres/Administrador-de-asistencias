@@ -29,7 +29,7 @@ $app->group('/asignatura',function(){
         return $this->response->withJson($result);
     });
 
-    $this->put('/update', function($req, $res){
+    $this->post('/update', function($req, $res){
 
         $params = $req->getParsedBody();
 

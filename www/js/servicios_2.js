@@ -281,6 +281,4 @@ angular.module('GATE')
             })
             return promise;
         }
-        
-
     }])
