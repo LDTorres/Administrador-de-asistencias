@@ -112,7 +112,7 @@ angular.module('GATE')
       */
     }
 
-    // Espera un id de usuario y opcionamente la accion
+    // Espera un id de usuario y opcionalmente la accion
     this.estado = function (datos) {
       var defered = $q.defer();
       var promise = defered.promise;
