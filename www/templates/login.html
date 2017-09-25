@@ -5,31 +5,53 @@
         </ion-header-bar>
 
         <ion-content>
-            <div class="list">
+            <form  ng-submit="login.ingresar(login.datos.registro)" class="list">
             
                 <label class="item item-input item-floating-label main__form__item">
-                    <span class="input-label">Nombres</span>
-                    <input type="text" placeholder="Nombres">
+                    <span class="input-label">Nombre de Usuario</span>
+                    <input type="text" ng-model="login.datos.registro.usuario" placeholder="Nombre de Usuario">
                 </label>
                 
                 <label class="item item-input item-floating-label main__form__item">
-                    <span class="input-label">Apellidos</span>
-                    <input type="text" placeholder="Apellidos">
+                    <span class="input-label">Contraseña</span>
+                    <input type="password" ng-model="login.datos.registro.contrasena" placeholder="Contraseña">
                 </label>
                 
                 <label class="item item-input item-floating-label main__form__item">
-                    <span class="input-label main__form__item--span">Cedula</span>
-                    <input type="text" placeholder="Cedula">
+                    <span class="input-label main__form__item--span">Nombre Completo</span>
+                    <input type="text" ng-model="login.datos.registro.nombre_completo" placeholder="Nombre Compoleto">
+                </label>
+
+                <label class="item item-input item-floating-label main__form__item">
+                    <span class="input-label">Cedula</span>
+                    <input type="text" ng-model="login.datos.registro.cedula" placeholder="Cedula">
                 </label>
 
                 <label class="item item-input item-floating-label main__form__item">
                     <span class="input-label">Correo</span>
-                    <input type="text" placeholder="Correo">
+                    <input type="text" ng-model="login.datos.registro.correo" placeholder="Correo">
                 </label>
 
-                <button class="button button-block icon-left ion-android-add button-positive">Registrarse</button>
+                <label class="item item-input item-floating-label main__form__item">
+                    <span class="input-label">Telefono</span>
+                    <input type="text" ng-model="login.datos.registro.telefono" placeholder="Telefono">
+                </label>
 
-            </div>
+                <label class="item item-input item-select">
+                    <div class="input-label">
+                    Malla Curricular
+                    </div>
+                    <select ng-model="login.datos.registro.id_malla">
+                    <option ng-value="1" selected>Informática</option>
+                    <option>Electricidad</option>
+                    <option>Geociencias</option>
+                    </select>
+                </label>
+
+
+                <input type="submit" class="button button-block icon-left ion-android-add button-positive">Registrarse</input>
+
+            </form>
 
 
             <a class="button button-block icon-center ion-android-arrow-dropleft" ui-sref="inicio"></a>

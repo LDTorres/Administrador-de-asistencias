@@ -20,7 +20,7 @@ angular.module('GATE')
     };
 
     bz.ingresar = function (datos) {
-      servicioGeneral.ingresar(bz.datos.login).then(function (res) {
+      servicioGeneral.ingresar(datos).then(function (res) {
         console.log(res)
       }).catch(function (res) {
         console.log(res)
