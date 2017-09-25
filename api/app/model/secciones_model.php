@@ -94,19 +94,27 @@ class SeccionesModel {
         return $result;
     }
 
-    public function deleteMember($id){
+    public function statusMember($accion, $id){
         
-        $sql = "UPDATE $this->table2 SET estado = 0 WHERE id_usuario = ?";
+        $sql = "UPDATE $this->table2 SET estado = ? WHERE id_usuario = ? and id_seccion = ?";
 
         $sth = $this->db->prepare($sql);
 
-        $sth->execute(array($id));
+        $sth->execute(array($params['accion'],$params['id_usuario'], $params['id_seccion']));
         
-        return $id;
+        return $params;
     }
 
     public function addMember($params){
+
+        $sth = $this->db->prepare("SELECT * FROM secciones WHERE codigo = ?");
+        $sth->execute(array($params['codigo']));
+        $seccion = $sth->fetch();
         
+        if(count($seccion) == 0):
+            return array('estado' => 'codigo invalido');
+        endif;
+
         $sql = "INSERT INTO $this->table2 (id_usuario, id_seccion) VALUES (?,?)";
 
         $sth = $this->db->prepare($sql);
@@ -118,28 +126,44 @@ class SeccionesModel {
 
     // Publicaciones
 
-    public function getPosts($id,$offset){
-        
+    public function getPosts($params){
+        $offset = $params['offset'];
+
         $sql = "SELECT * FROM $this->table3 WHERE id_seccion = ? LIMIT $offset,10";
 
         $sth = $this->db->prepare($sql);
 
-        $sth->execute(array($id));
+        $sth->execute(array($params['id_seccion']));
 
         $result = $sth->fetchAll();
 
         return  $result;
     }
 
-    public function getPost($id){
+    public function getPost($params){
         
-        $sql = "SELECT * FROM $this->table3 WHERE id_publicacion = ?";
+        $sql = "SELECT * FROM $this->table3 WHERE id_publicacion = ? AND id_usuario = ? AND id_seccion = ?";
 
         $sth = $this->db->prepare($sql);
 
-        $sth->execute(array($id));
+        $sth->execute(array($params['id_publicacion'],$params['id_usuario'], $params['id_seccion']));
 
         $result = $sth->fetch();
+
+        return $result;
+    }
+
+    public function updatePost($params, $filename){
+        
+        $sql = "UPDATE $this->table3 SET titulo = ?, descripcion = ?, nombre_archivo = ? WHERE id_publicacion = ? AND id_usuario = ? AND id_seccion = ?";
+
+        $sth = $this->db->prepare($sql);
+
+        $sth->execute(array($params['titulo'], $params['descripcion'], $filename, $params['id_publicacion'],$params['id_usuario'], $params['id_seccion']));
+
+        $result = $params;
+        $result['filas_afectadas'] = $sth->rowCount();
+        $result['nombre_archivo'] = $filename;
 
         return $result;
     }
@@ -213,7 +237,7 @@ class SeccionesModel {
 
         $sth = $this->db->prepare($sql);
         
-        $sth->execute(array($params['seccion'], $params['desde'], $params['hasta']));
+        $sth->execute(array($params['id_seccion'], $params['desde'], $params['hasta']));
 
         return $sth->fetchAll();
     }

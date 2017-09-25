@@ -1,4 +1,4 @@
-angular.module('GATE', ['ionic', 'ngCordova'])
+angular.module('GATE', ['ionic', 'ngCordova', 'ngFileUpload'])
 
   .run(function ($ionicPlatform) {
     $ionicPlatform.ready(function () {

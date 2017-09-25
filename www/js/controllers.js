@@ -4,19 +4,8 @@ angular.module('GATE')
     var bz = this;
 
     bz.datos = {
-      registro: {
-        usuario: 'Michelyuuf',
-        contrasena: '12345678432',
-        nombre_completo: 'Juan sdfdsrperroncho',
-        cedula: 123478756,
-        correo: 'michefsdfl.com',
-        telefono: 1234,
-        id_malla: 1
-      },
-      login: {
-        usuario: 'Luis',
-        contrasena: '123456789'
-      }
+      registro: {},
+      login: {}
     };
 
     bz.ingresar = function (datos) {
