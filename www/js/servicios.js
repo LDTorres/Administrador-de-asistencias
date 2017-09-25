@@ -155,7 +155,133 @@ angular.module('GATE')
       return promise;
     }
 
+    /* Espera como parametro {tipo de ususario, por defecto es ESTUDIANTE} */
+
+    this.getAll = function (datos) {
+      /* Declaramos una promesa */
+      var defered = $q.defer();
+      var promise = defered.promise;
+
+      $http.get(ruta + '/user/all/' + datos).then(function (res) {
+
+        /* Si el valor fue devuelto */
+        defered.resolve(res);
+
+      }).catch(function (res) {
+
+        /* Si hubo algun error */
+        defered.reject(res);
+      })
+      return promise;
+    }
+
+    /* Espera como parametro {id del usuario} */
+
+    this.get = function (datos) {
+      /* Declaramos una promesa */
+      var defered = $q.defer();
+      var promise = defered.promise;
+
+      $http.get(ruta + '/user/' + datos).then(function (res) {
+
+        /* Si el valor fue devuelto */
+        defered.resolve(res);
+
+      }).catch(function (res) {
+
+        /* Si hubo algun error */
+        defered.reject(res);
+      })
+      return promise;
+    }
+
   }])
+
+  /* ASIGNATURAS */
+
+  .service("servicioAsignatura", ["$http", "$q", "ruta", function ($http, $q, ruta) {
+
+    /* Esperan el id de todas las asignaturas */
+
+    this.getAll = function (datos) {
+      /* Declaramos una promesa */
+      var defered = $q.defer();
+      var promise = defered.promise;
+
+      $http.get(ruta + '/asignatura/all').then(function (res) {
+
+        /* Si el valor fue devuelto */
+        defered.resolve(res);
+
+      }).catch(function (res) {
+
+        /* Si hubo algun error */
+        defered.reject(res);
+      })
+      return promise;
+    }
+
+    /* Esperan el id, trimestre y opcionalmente el pnf */
+
+    this.get = function (datos) {
+      /* Declaramos una promesa */
+      var defered = $q.defer();
+      var promise = defered.promise;
+
+      $http.get(ruta + '/asignatura/' + datos.id + '/' + datos.trimestre).then(function (res) {
+
+        /* Si el valor fue devuelto */
+        defered.resolve(res);
+
+      }).catch(function (res) {
+
+        /* Si hubo algun error */
+        defered.reject(res);
+      })
+      return promise;
+    }
+
+    /* Se añadiran nombre, trimestre, id_malla */
+
+    this.add = function (datos) {
+      /* Declaramos una promesa */
+      var defered = $q.defer();
+      var promise = defered.promise;
+
+      $http.post(ruta + '/asignatura/add', datos).then(function (res) {
+
+        /* Si el valor fue devuelto */
+        defered.resolve(res);
+
+      }).catch(function (res) {
+
+        /* Si hubo algun error */
+        defered.reject(res);
+      })
+      return promise;
+    }
+
+    /* Se actualizaran nombre dentro de una id_malla y trimestre */
+    this.update = function (datos) {
+      /* Declaramos una promesa */
+      var defered = $q.defer();
+      var promise = defered.promise;
+
+      $http.post(ruta + '/asignatura/update', datos).then(function (res) {
+
+        /* Si el valor fue devuelto */
+        defered.resolve(res);
+
+      }).catch(function (res) {
+
+        /* Si hubo algun error */
+        defered.reject(res);
+      })
+      return promise;
+    }
+  }])
+
+  /* SECCIONES */
 
   .service("servicioSecciones", ["$http", "$q", "ruta", "Upload", function ($http, $q, ruta, Upload) {
 
