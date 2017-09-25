@@ -5,7 +5,8 @@ angular.module('GATE')
 
     bz.datos = {
       registro: {},
-      login: {}
+      login: {},
+      mostrarForm: 1
     };
 
     bz.ingresar = function (datos) {
