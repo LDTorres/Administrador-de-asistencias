@@ -8,12 +8,12 @@ return [
         'renderer' => [
             'template_path' => __DIR__ . '/../templates/',
         ],
-        // Database
-        'db'=>[
-            'host' => 'localhost',
-            'user' => 'root',
-            'pass' => '',
-            'dbname' => 'iuteb_asignaturas'
-        ]
+
+        // Monolog settings
+        'logger' => [
+            'name' => 'slim-app',
+            'path' => __DIR__ . '/../logs/app.log',
+            'level' => \Monolog\Logger::DEBUG,
+        ],
     ],
 ];

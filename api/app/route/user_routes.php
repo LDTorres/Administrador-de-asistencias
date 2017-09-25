@@ -74,7 +74,7 @@ $app->post('/singup', function ($req, $res) {
 
     $result = $GLOBALS['um']->add($data);
         
-    return $this->response->withJson($result);
+    return $this->response->withJson($result, 200);
 
 });
 
