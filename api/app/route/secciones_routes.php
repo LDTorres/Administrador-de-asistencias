@@ -6,7 +6,7 @@ $sm = new SeccionesModel();
 
 $app->group('/seccion',function(){
 
-    $this->get('/all',function($req, $res, $args){
+    $this->get('/all/{id_asignatura}',function($req, $res, $args){
 
         $result = $GLOBALS['sm']->getAll($args['id_asignatura']);
         return $this->response->withJson($result);
@@ -28,7 +28,7 @@ $app->group('/seccion',function(){
         return $this->response->withJson($result);
     });
 
-    $this->put('/update', function($req, $res){
+    $this->post('/update', function($req, $res){
 
         $params = $req->getParsedBody();
 
@@ -52,11 +52,14 @@ $app->group('/seccion',function(){
 
     });
 
-    $this->get('/member/delete/{id}', function($req, $res, $args){
+    $this->post('/member/status', function($req, $res){
 
-        $result = $GLOBALS['sm']->deleteMember($args['id']);
+        $params = $req->getParsedBody();
+
+        $result = $GLOBALS['sm']->statusMember($params);
 
         return $this->response->withJson($result, 200);
+        
     });
 
     $this->post('/member/add', function($req, $res){
@@ -68,18 +71,21 @@ $app->group('/seccion',function(){
         return $this->response->withJson($result);
     });
 
-    $this->get('/posts/{id}/{offset}', function($req, $res, $args){
+    $this->post('/posts', function($req, $res){
 
-        $result = $GLOBALS['sm']->getPosts($args['id'], $args['offset']);
+        $params = $req->getParsedBody();
+
+        $result = $GLOBALS['sm']->getPosts($params);
 
         return $this->response->withJson($result, 200);
+
     });
 
-    $this->post('/posts/get', function($req, $res){
+    $this->post('/post/get', function($req, $res){
 
         $params = $req->getParsedBody();
         
-        $result = $GLOBALS['sm']->getPost($params['id']);
+        $result = $GLOBALS['sm']->getPost($params);
 
         return $this->response->withJson($result, 200);
     });
@@ -92,7 +98,7 @@ $app->group('/seccion',function(){
 
         $params = $req->getParsedBody();
 
-        if(isset($archivo)):
+        if(isset($archivos)):
             $archivo = $archivos['archivo'];
             if (!empty($archivo)):
                 if ($archivo->getError() === UPLOAD_ERR_OK):
@@ -108,7 +114,31 @@ $app->group('/seccion',function(){
         return $this->response->withJson($result);
     });
 
-    $this->post('/posts/delete', function($req, $res){
+    $this->post('/post/update', function($req, $res){
+
+        $directory = $this->upload;
+
+        $archivos = $req->getUploadedFiles();
+
+        $params = $req->getParsedBody();
+
+        if(isset($archivos)):
+            $archivo = $archivos['archivo'];
+            if (!empty($archivo)):
+                if ($archivo->getError() === UPLOAD_ERR_OK):
+                    $filename = moveUploadedFile($directory, $archivo);
+                endif;
+            endif;
+        else:
+            $filename = NULL;
+        endif;
+
+        $result = $GLOBALS['sm']->updatePost($params, $filename);
+        
+        return $this->response->withJson($result);
+    });
+
+    $this->post('/post/delete', function($req, $res){
 
         $params = $req->getParsedBody();
 
@@ -125,6 +155,12 @@ $app->group('/seccion',function(){
         $params = $req->getParsedBody();
 
         return $this->response->withJson($GLOBALS['sm']->getAsistences($params), 200);
+    });
+
+    $this->post('/asistencia/update', function($req, $res){
+        $params = $req->getParsedBody();
+
+        return $this->response->withJson($GLOBALS['sm']->updateAsistences($params), 200);
     });
 
     $this->post('/reporte', function($req, $res){
