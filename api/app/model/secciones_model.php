@@ -126,6 +126,27 @@ class SeccionesModel {
 
     // Publicaciones
 
+    public function getPostsTimeline($params){
+        $offset = $params['offset'];
+        
+        $sth = $this->db->prepare("SELECT id_seccion FROM alumnos_has_secciones WHERE id_usuario = ?");
+
+        $sth->execute(array($params['id_usuario']));
+
+        $secciones = $sth->fetchAll();
+
+        $publicaciones = [];
+
+        foreach($secciones as $seccion):
+            $sth = $this->db->prepare("SELECT * FROM publicaciones WHERE id_seccion = ?");
+            $sth->execute(array($seccion['id_seccion']));
+            $publicacion = $sth->fetchAll();
+            array_push($publicaciones, $publicacion);
+        endforeach;
+
+        return  $publicaciones;
+    }
+
     public function getPosts($params){
         $offset = $params['offset'];
 

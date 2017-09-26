@@ -1,4 +1,4 @@
-angular.module('GATE', ['ionic', 'ngCordova', 'ngFileUpload'])
+angular.module('GATE', ['ionic', 'ngCordova', 'ngFileUpload', 'ionic-datepicker'])
 
   .run(function ($ionicPlatform) {
     $ionicPlatform.ready(function () {
@@ -14,12 +14,26 @@ angular.module('GATE', ['ionic', 'ngCordova', 'ngFileUpload'])
     });
   })
 
-  .config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
+  .config(function ($stateProvider, $urlRouterProvider, $httpProvider, ionicDatePickerProvider) {
 
-    $httpProvider.defaults.headers.common = {};
-    $httpProvider.defaults.headers.post = {};
-    $httpProvider.defaults.headers.put = {};
-    $httpProvider.defaults.headers.patch = {};
+    var datePickerObj = {
+      inputDate: new Date(),
+      setLabel: 'Colocar',
+      todayLabel: 'Hoy',
+      closeLabel: 'Cerrar',
+      mondayFirst: true,
+      weeksList: ["D", "L", "Ma", "Mi", "J", "V", "S"],
+      monthsList: ["Jan", "Feb", "March", "April", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"],
+      templateType: 'popup',
+      from: new Date(2017, 1, 1),
+      to: new Date(2030, 12, 30),
+      showTodayButton: true,
+      dateFormat: 'dd MMMM yyyy',
+      closeOnSelect: false,
+      disableWeekdays: [0, 6],
+    };
+
+    ionicDatePickerProvider.configDatePicker(datePickerObj);
 
     $stateProvider
       .state('ingreso', {
@@ -42,7 +56,7 @@ angular.module('GATE', ['ionic', 'ngCordova', 'ngFileUpload'])
         templateUrl: '../templates/configuracion.html',
         controller: 'configuracionController as configuracion'
       })
-      .state('inicio/asignatura', {
+      .state('inicio/asignaturas', {
         url: '/asignatura',
         templateUrl: '../templates/asignatura.html',
         controller: 'asignaturaController as asignatura'

@@ -71,6 +71,16 @@ $app->group('/seccion',function(){
         return $this->response->withJson($result);
     });
 
+    $this->post('/posts/timeline', function($req, $res){
+
+        $params = $req->getParsedBody();
+
+        $result = $GLOBALS['sm']->getPostsTimeline($params);
+
+        return $this->response->withJson($result, 200);
+
+    });
+
     $this->post('/posts', function($req, $res){
 
         $params = $req->getParsedBody();

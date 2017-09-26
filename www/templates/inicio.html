@@ -1,34 +1,43 @@
-<ion-view title="Inicio" class="padding">
-    <ion-pane>
-        <ion-header-bar class="bar-positive" align-title="center">
-            <button class="button icon ion-navicon"></button>
-            <h1 class="title">IUTEB Móvil</h1>
-        </ion-header-bar>
-        <ion-content>
-            <div class="main__menu">
-                <a class="main__menu__item button button-block icon-right ion-android-person-add" ui-sref="ingreso"><span>Registro</span></a>
-
-                <a class="main__menu__item button-block button icon-right ion-home" ui-sref="inicio"><span>Inicio</span></a>
-                
-                <a class="main__menu__item button button-block icon-right ion-person" ui-sref="inicio/perfil"> <span>Perfil</span></a>
-                
-                <a class="main__menu__item button button-block icon-right ion-gear-a" ui-sref="inicio/configuracion"><span>Configuración</span></a>
-                
-                <a class="main__menu__item button button-block icon-right ion-compose" 
-                ui-sref="inicio/asignatura"><span>Asignaturas</span></a>
-                
-                <a class="main__menu__item button button-block icon-right ion-plus-round" ui-sref="inicio/asignaturas/inscripcion"><span>Inscripción</span></a>
-
-                <a class="main__menu__item button button-block icon-right ion-clipboard" ui-sref="inicio/asignaturas/materia"><span>Materia</span></a>
-
-                <a class="main__menu__item button button-block icon-right ion-information-circled" ui-sref="inicio/asignaturas/materia/informacion"><span>Información</span></a>
-
-                <a class="main__menu__item button button-block icon-right ion-person-stalker" ui-sref="inicio/asignaturas/materia/miembros"><span>Miembros</span></a>
-
-                <a class="main__menu__item button button-block icon-right ion-calendar" ui-sref="inicio/asignaturas/materia/asistencia"><span>Asistencias</span></a>
-
-                <a class="main__menu__item button button-block icon-right ion-folder" ui-sref="inicio/asignaturas/materia/publicacion"><span>Publicaciones</span></a>    
-            </div>
-        </ion-content>
-    </ion-pane>
+<ion-view view-title="Inicio">
+  <ion-pane>
+    <ion-nav-bar class="bar-assertive" align-title="center">
+      <ion-nav-back-button></ion-nav-back-button>
+    </ion-nav-bar>
+    <div class="tabs-striped tabs-background-assertive tabs-color-light">
+      <div class="tabs">
+        <a class="tab-item active" ui-sref="inicio">
+          <i class="icon ion-home"></i>
+          Test
+        </a>
+        <a class="tab-item" href="inicio/asignaturas">
+          <i class="icon ion-star"></i>
+          Favorites
+        </a>
+        <a class="tab-item" ui-sref="inicio/perfil">
+          <i class="icon ion-gear-a"></i>
+          Settings
+        </a>
+      </div>
+    </div>
+    <ion-content class="padding">
+      <h4>Publicaciones Recientes</h4>
+      <div class="list card" ng-repeat="post in inicio.datos.posts track by $index">
+        <div class="item item-avatar">
+          <img src="{{post.foto_usuario}}">
+          <h2>{{post.titulo}}</h2>
+          <p>{{post.fecha}}</p>
+        </div>
+        <div class="item item-body">
+          {{post.descripcion}}
+          <div ng-if="post.nombre_archivo">
+            <p>Archivo : <b>{{post.nombre_archivo}}</b></p>
+          </div>
+        </div>
+        <a ng-click="inicio.descargarArchivo(post.nombre_archivo)" class="item item-icon-left">
+          <i class="icon ion-card"></i>
+          Descargar
+        </a>
+      </div>
+    </ion-content>
+  </ion-pane>
 </ion-view>

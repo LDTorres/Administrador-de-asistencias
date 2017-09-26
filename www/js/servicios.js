@@ -58,6 +58,7 @@ angular.module('GATE')
       })
       return promise;
     }
+
     // Devuelve la informacion de la aplicacion
     this.app = function () {
       /* Declaramos una promesa */
@@ -75,7 +76,27 @@ angular.module('GATE')
         defered.reject(res);
       })
       return promise;
-    };
+    }
+
+    // Espera como parametro {id_usuario, offset}
+
+    this.timeline = function (datos) {
+      /* Declaramos una promesa */
+      var defered = $q.defer();
+      var promise = defered.promise;
+
+      $http.post(ruta + '/seccion/posts/timeline', datos).then(function (res) {
+
+        /* Si el valor fue devuelto */
+        defered.resolve(res);
+
+      }).catch(function (res) {
+
+        /* Si hubo algun error */
+        defered.reject(res);
+      })
+      return promise;
+    }
   }])
 
   // USUARIOS
