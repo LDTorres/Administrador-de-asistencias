@@ -7,8 +7,8 @@
       <ion-tabs class="tabs-positive tabs-icon-top">
         <ion-tab title="Publicaciones" icon-on="ion-ios-filing" icon-off="ion-ios-filing-outline">
           <ion-content class="padding has-tabs">
+            <h4 class="text-center">Publicaciones</h4>
             <div class="list card" ng-repeat="post in inicio.datos.posts">
-
               <a ui-sref="inicio/seccion/{{post.id_seccion}}" class="item item-avatar">
                 <img src="../img/{{post.nombre_archivo}}">
                 <h2>{{post.titulo}}</h2>
@@ -32,7 +32,7 @@
         </ion-tab>
         <ion-tab title="Asignaturas" icon-on="ion-ios-clock" icon-off="ion-ios-clock-outline">
           <ion-content class="padding">
-            <h4>Buscar seccion</h4>
+            <h4 class="text-center">Buscar seccion</h4>
             <div class="list">
               <label class="item item-input item-select">
                     <div class="input-label">
@@ -82,7 +82,7 @@
                   <p>{{user.malla}}</p>
                 </div>
               </div>
-              <h3>Datos</h3>
+              <h4 class="text-center">Datos</h4>
               <form class="input-inset list">
                 <label class="item item-input">
                   <input type="text" placeholder="Nombre Completo" ng-value="{{user.nombre_completo}}">

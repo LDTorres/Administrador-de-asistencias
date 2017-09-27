@@ -7,6 +7,7 @@
       <ion-tabs class="tabs-positive tabs-icon-top">
         <ion-tab title="Publicaciones" icon-on="ion-ios-filing" icon-off="ion-ios-filing-outline">
           <ion-content class="padding has-tabs">
+            <h4 class="text-center">Publicaciones</h4>
             <div class="list card" ng-repeat="post in seccion.datos.posts">
               <a ui-sref="seccion/seccion/{{post.id_seccion}}" class="item item-avatar">
                 <img src="../img/{{post.nombre_archivo}}">
@@ -32,6 +33,7 @@
 
         <ion-tab title="Miembros" icon-on="ion-ios-clock" icon-off="ion-ios-clock-outline">
           <ion-content class="padding has-tabs">
+            <h4 class="text-center">Miembros</h4>
             <div class="list card" ng-repeat="miembro in seccion.datos.miembros">
               <a class="item item-avatar">
                 <img src="../img/{{miembro.foto_perfil}}">
@@ -44,6 +46,7 @@
 
         <ion-tab title="Asistencia" icon-on="ion-ios-gear" icon-off="ion-ios-gear-outline">
           <ion-content class="padding">
+            <h4 class="text-center">Asistencias</h4>
             <div class="list card">
               <div class="item">
                 <h4 ng-click="seccion.openDatePicker()">Seleccionar Fecha</h4>
@@ -60,7 +63,7 @@
         <ion-tab title="Informacion" icon-on="ion-ios-gear" icon-off="ion-ios-gear-outline">
           <ion-content class="padding">
             <div class="list card" ng-repeat="s in seccion.datos.seccion">
-              <h4 style="text-align:center;">Informacion Seccion</h4>
+              <h4 class="text-center">Informacion Seccion</h4>
               <div class="item">
                 <b>Nombre Seccion: </b> {{s.nombre}}
               </div>
