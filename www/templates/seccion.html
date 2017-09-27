@@ -1,34 +1,77 @@
 <ion-view view-title="Seccion">
   <ion-pane>
-    <ion-nav-bar class="bar-assertive" align-title="center">
+    <ion-nav-bar class="bar-positive" align-title="center">
       <ion-nav-back-button></ion-nav-back-button>
     </ion-nav-bar>
-    <div class="tabs-striped tabs-background-assertive tabs-color-light">
+    <div class="tabs-striped tabs-background-positive tabs-color-light">
       <ion-tabs class="tabs-positive tabs-icon-top">
+        <ion-tab title="Publicaciones" icon-on="ion-ios-filing" icon-off="ion-ios-filing-outline">
+          <ion-content class="padding has-tabs">
+            <div class="list card" ng-repeat="post in seccion.datos.posts">
+              <a ui-sref="seccion/seccion/{{post.id_seccion}}" class="item item-avatar">
+                <img src="../img/{{post.nombre_archivo}}">
+                <h2>{{post.titulo}}</h2>
+                <p>{{post.fecha_publicacion}}</p>
+              </a>
 
-        <ion-tab title="Home" icon-on="ion-ios-filing" icon-off="ion-ios-filing-outline">
-          <ion-content class="padding">
-
+              <div class="item item-body">
+                <p>
+                  {{post.descripcion}}
+                </p>
+                <p>
+                  <a class="subdued">{{post.nombre_archivo}}</a>
+                </p>
+              </div>
+              <a href="#" class="item item-icon-left">
+                <i class="icon ion-code-download"></i>
+                Descargar
+              </a>
+            </div>
           </ion-content>
         </ion-tab>
 
-        <ion-tab title="About" icon-on="ion-ios-clock" icon-off="ion-ios-clock-outline">
+        <ion-tab title="Miembros" icon-on="ion-ios-clock" icon-off="ion-ios-clock-outline">
+          <ion-content class="padding has-tabs">
+            <div class="list card" ng-repeat="miembro in seccion.datos.miembros">
+              <a class="item item-avatar">
+                <img src="../img/{{miembro.foto_perfil}}">
+                <h2>{{miembro.nombre_completo}}</h2>
+                <p>{{miembro.telefono}}</p>
+              </a>
+            </div>
+          </ion-content>
+        </ion-tab>
+
+        <ion-tab title="Asistencia" icon-on="ion-ios-gear" icon-off="ion-ios-gear-outline">
           <ion-content class="padding">
-            <h4>Acerca de nosotros</h4>
             <div class="list card">
               <div class="item">
-                <a ui-sref="inicio/asignaturas">Asignaturas</a>
+                <h4 ng-click="seccion.openDatePicker()">Seleccionar Fecha</h4>
+              </div>
+            </div>
+            <div class="list card" ng-if="seccion.datos.asistencias.length">
+              <div class="item" ng-repeat="asistencia in seccion.datos.asistencias">
+                <p><b>Nombre:</b>{{asistencia.usuario}} <b>Asistio:</b> {{asistencia.asistio}}</p>
               </div>
             </div>
           </ion-content>
         </ion-tab>
 
-        <ion-tab title="Settings" icon-on="ion-ios-gear" icon-off="ion-ios-gear-outline">
+        <ion-tab title="Informacion" icon-on="ion-ios-gear" icon-off="ion-ios-gear-outline">
           <ion-content class="padding">
-            <h4>Publicaciones Recientes</h4>
-            <div class="list card">
+            <div class="list card" ng-repeat="s in seccion.datos.seccion">
+              <h4 style="text-align:center;">Informacion Seccion</h4>
               <div class="item">
-                <h2>Hola 3</h2>
+                <b>Nombre Seccion: </b> {{s.nombre}}
+              </div>
+              <div class="item">
+                <b>Materia:</b> {{s.nombre_asig}}
+              </div>
+              <div class="item">
+                <b>Profesor:</b> {{s.nombre_completo}}
+              </div>
+              <div class="item">
+                <b>Miembros:</b> {{seccion.datos.miembros.length}}
               </div>
             </div>
           </ion-content>

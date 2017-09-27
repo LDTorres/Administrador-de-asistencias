@@ -6,6 +6,16 @@ $sm = new SeccionesModel();
 
 $app->group('/seccion',function(){
 
+    $this->post('/getInfo', function($req, $res){
+
+        $params = $req->getParsedBody();
+        
+        $result = $GLOBALS['sm']->getInfoSeccion($params);
+
+        return $this->response->withJson($result, 200);
+
+    });
+
     $this->get('/all/{id_asignatura}',function($req, $res, $args){
 
         $result = $GLOBALS['sm']->getAll($args['id_asignatura']);
@@ -37,9 +47,10 @@ $app->group('/seccion',function(){
         return $this->response->withJson($result, 200);
     });
 
-    $this->get('/members/{id}', function($req, $res, $args){
+    $this->post('/members', function($req, $res){
+        $params = $req->getParsedBody();
 
-        $result = $GLOBALS['sm']->getMembers($args['id']);
+        $result = $GLOBALS['sm']->getMembers($params);
 
         return $this->response->withJson($result, 200);
     });

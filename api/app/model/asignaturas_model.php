@@ -36,15 +36,12 @@ class AsignaturasModel {
     }
 
     public function add($params){
-        if($_SESSION['tipo'] !== 'Administrador'):
-            return array('msg'=>'acceso negado');
-        endif;
 
-        $sql = "INSERT INTO $this->table (nombre, trimestre, id_malla) VALUES (?,?,?)";
+        $sql = "INSERT INTO $this->table (nombre_asig, trimestre, id_malla) VALUES (?,?,?)";
 
         $sth = $this->db->prepare($sql);
 
-        $sth->execute(array($params['nombre'], $params['trimestre'], $params['id_malla']));
+        $sth->execute(array($params['nombre_asig'], $params['trimestre'], $params['id_malla']));
 
         $result = $this->db->lastInsertId();
         
@@ -56,11 +53,11 @@ class AsignaturasModel {
             return array('msg'=>'acceso negado');
         endif;
         
-        $sql = "UPDATE $this->table SET nombre = ? WHERE id_malla = ? AND trimestre = ?";
+        $sql = "UPDATE $this->table SET nombre_asig = ? WHERE id_malla = ? AND trimestre = ?";
 
         $sth = $this->db->prepare($sql);
 
-        $sth->execute(array($params['nombre'], $params['id_malla'], $params['trimestre']));
+        $sth->execute(array($params['nombre_asig'], $params['id_malla'], $params['trimestre']));
 
         return $params;
     }

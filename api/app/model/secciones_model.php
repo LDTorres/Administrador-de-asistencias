@@ -17,7 +17,7 @@ class SeccionesModel {
 
     // Secciones
     public function getAll($id){
-        $sql = "SELECT * FROM $this->table WHERE id_asignatura = ?";
+        $sql = "SELECT * FROM $this->table WHERE id_seccion = ?";
 
         $sth = $this->db->prepare($sql);
 
@@ -33,7 +33,7 @@ class SeccionesModel {
 
         $sth = $this->db->prepare($sql);
 
-        $sth->execute(array($id));
+        $sth->execute(array($id, $idP));
 
         $result = $sth->fetch();
         
@@ -68,13 +68,12 @@ class SeccionesModel {
 
     // Miembros Seccion
 
-    public function getMembers($id){
-        
-        $sql = "SELECT * FROM $this->table2 WHERE id_seccion = ? AND estado = 1";
+    public function getMembers($params){
+        $sql = "SELECT * FROM $this->table2 INNER JOIN usuarios WHERE id_seccion = ? AND $this->table2.id_usuario = usuarios.id_usuario";
 
         $sth = $this->db->prepare($sql);
 
-        $sth->execute(array($id));
+        $sth->execute(array($params['id_seccion']));
 
         $result = $sth->fetchAll();
 
@@ -231,8 +230,8 @@ class SeccionesModel {
     }
 
     public function getAsistences($params){
-        
-        $sql = "SELECT * FROM $this->table4 WHERE id_seccion = ? AND fecha = ?";
+
+        $sql = "SELECT * FROM $this->table4 INNER JOIN usuarios WHERE id_seccion = ? AND fecha = ? AND $this->table4.id_usuario = usuarios.id_usuario";
 
         $sth = $this->db->prepare($sql);
 
@@ -259,6 +258,16 @@ class SeccionesModel {
         $sth = $this->db->prepare($sql);
         
         $sth->execute(array($params['id_seccion'], $params['desde'], $params['hasta']));
+
+        return $sth->fetchAll();
+    }
+
+    public function getInfoSeccion($params){
+        $sql = "SELECT * FROM $this->table AS s INNER JOIN usuarios AS u ON s.id_usuario = u.id_usuario INNER JOIN asignaturas AS a ON s.id_asignatura = a.id_asignatura WHERE id_seccion = ?";
+
+        $sth = $this->db->prepare($sql);
+
+        $sth->execute(array($params['id_seccion']));
 
         return $sth->fetchAll();
     }
