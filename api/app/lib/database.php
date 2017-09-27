@@ -9,10 +9,10 @@ class Database
     public static function conexion()
     {
         $db = [
-            'host' => 'localhost',
+            'host' => '127.0.0.1',
             'user' => 'root',
             'pass' => '',
-            'dbname' => 'iuteb_asignaturas'
+            'dbname' => 'Iuteb_asignaturas'
         ];
         
         $pdo = new PDO("mysql:host=" . $db['host'] . ";dbname=" . $db['dbname'], $db['user'], $db['pass']);

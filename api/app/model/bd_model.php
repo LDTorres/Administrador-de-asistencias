@@ -10,13 +10,13 @@ class BDModel {
     private $path = "app/lib/backups/";
     private $table;
     private $aplication = 'Administrador de Asistencias';
-    private $database = 'iuteb_asignaturas';
+    private $database = 'Iuteb_asignaturas';
     private $description = 'Base de datos para aplicacion de asistencias del IUTEB';
     
     public function __CONSTRUCT()
     {
         $this->table = 'basededatos';
-        $this->db = new mysqli('localhost', 'root', '', 'iuteb_asignaturas');
+        $this->db = new mysqli('127.0.0.1', 'root', '', 'Iuteb_asignaturas');
         
         // Check connection
         if ($this->db->connect_error) {

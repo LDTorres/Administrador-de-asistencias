@@ -1,78 +1,83 @@
 <ion-view title="Registro">
-  <ion-pane ng-switch="login.datos.mostrarForm">
-    <ion-header-bar class="bar-positive" align-title="center">
-      <h1 class="title main__bar">IUTEB Móvil | Registro/Login</h1>
-    </ion-header-bar>
-
+  <ion-pane ng-switch="login.datos.mostrarForm"> 
+      
     <ion-content ng-switch-when="1">
+      <ion-header-bar class="bar-positive" align-title="center">
+        <h1 class="title main__bar">IUTEB Móvil | Login</h1>
+      </ion-header-bar>
+      <div class="header_membrete">
+        <img src="/img/logoIuteb.png" class="logo_iuteb">
+        <h2 class="subtitulo">Login de usuarios</h2>
+      </div>
       <form ng-submit="login.ingresar(login.datos.login)" class="list">
+        <div class="list list-inset formlogin">
+          <label class="item item-input">
+            <input type="text" placeholder="Nombre de Usuario" ng-model="login.datos.login.usuario">
+          </label>
+          
+          <label class="item item-input">
+            <input type="password" placeholder="Contraseña" ng-model="login.datos.login.contrasena">
+          </label>
 
-        <label class="item item-input item-floating-label main__form__item">
-                    <span class="input-label">Nombre de Usuario</span>
-                    <input type="text" ng-model="login.datos.login.usuario" placeholder="Nombre de Usuario">
-                </label>
-
-        <label class="item item-input item-floating-label main__form__item">
-                    <span class="input-label">Contraseña</span>
-                    <input type="password" ng-model="login.datos.login.contrasena" placeholder="Contraseña">
-                </label>
-
-        <input type="submit" value="Entrar" class="button button-block icon-left ion-android-add button-positive"></input>
-
+        <input type="submit" value="Entrar"  class="button button-block button-positive"></input>
+        </div>
       </form>
 
-      <a class="button button-block icon-center ion-android-arrow-dropleft" ng-click="login.datos.mostrarForm=2"> Registrarse</a>
+      <a class="button button-clear button-full button-positive" ng-click="login.datos.mostrarForm=2">¿No posees cuenta? ¡.Registrate aquí.!</a>
       <a class="button button-block icon-center ion-android-arrow-dropleft" ui-sref="inicio"></a>
     </ion-content>
 
     <ion-content ng-switch-when="2">
+      <ion-header-bar class="bar-positive" align-title="center">
+        <h1 class="title subtitulo">Registrarse</h1>
+      </ion-header-bar>
+      <div class="header_membrete">
+        <img src="/img/logoIuteb.png" class="logo_iuteb">
+        <h2 class="subtitulo">Registra tus datos</h2>
+      </div>
       <form ng-submit="login.registrar(login.datos.registro)" class="list">
 
-        <label class="item item-input item-floating-label main__form__item">
-                    <span class="input-label">Nombre de Usuario</span>
-                    <input type="text" ng-model="login.datos.registro.usuario" placeholder="Nombre de Usuario">
-                </label>
+        <div class="list list-inset formlogin">
+          <label class="item item-input">
+              <input type="text" placeholder="Nombre de Usuario" ng-model="login.datos.registro.usuario">
+          </label>
 
-        <label class="item item-input item-floating-label main__form__item">
-                    <span class="input-label">Contraseña</span>
-                    <input type="password" ng-model="login.datos.registro.contrasena" placeholder="Contraseña">
-                </label>
+          <label class="item item-input">
+              <input type="password" placeholder="Contraseña" ng-model="login.datos.registro.contrasena">
+          </label>
 
-        <label class="item item-input item-floating-label main__form__item">
-                    <span class="input-label main__form__item--span">Nombre Completo</span>
-                    <input type="text" ng-model="login.datos.registro.nombre_completo" placeholder="Nombre Compoleto">
-                </label>
+          <label class="item item-input">
+              <input type="text" placeholder="Nombre Completo" ng-model="login.datos.registro.nombre_completo">
+          </label>
 
-        <label class="item item-input item-floating-label main__form__item">
-                    <span class="input-label">Cedula</span>
-                    <input type="text" ng-model="login.datos.registro.cedula" placeholder="Cedula">
-                </label>
+          <label class="item item-input">
+              <input type="text" placeholder="Cedula" ng-model="login.datos.registro.cedula">
+          </label>
 
-        <label class="item item-input item-floating-label main__form__item">
-                    <span class="input-label">Correo</span>
-                    <input type="text" ng-model="login.datos.registro.correo" placeholder="Correo">
-                </label>
+          <label class="item item-input">
+              <input type="text" placeholder="Correo" ng-model="login.datos.registro.correo">
+          </label>
 
-        <label class="item item-input item-floating-label main__form__item">
-                    <span class="input-label">Telefono</span>
-                    <input type="text" ng-model="login.datos.registro.telefono" placeholder="Telefono">
-                </label>
+          <label class="item item-input">
+              <input type="text" placeholder="Telefono" ng-model="login.datos.registro.telefono">
+          </label>
 
-        <label class="item item-input item-select">
-                    <div class="input-label">
-                    Malla Curricular
-                    </div>
-                    <select ng-model="login.datos.registro.id_malla">
-                    <option ng-value="1" selected>Informática</option>
-                    <option>Electricidad</option>
-                    <option>Geociencias</option>
-                    </select>
-                </label>
+          <label class="item item-input item-select">
+                      <div class="input-label">
+                      Malla Curricular
+                      </div>
+                      <select ng-model="login.datos.registro.id_malla">
+                      <option ng-value="1">Informática</option>
+                      <option ng-value="2">Electricidad</option>
+                      <option ng-value="3">Geociencias</option>
+                      </select>
+                  </label>
 
-
-        <input type="submit" value="Registrar" class="button button-block icon-left ion-android-add button-positive"></input>
+          <input type="submit" value="Registrarse" class="button button-block button-positive"></input>
+        </div>
       </form>
-      <a class="button button-block icon-center ion-android-arrow-dropleft" ng-click="login.datos.mostrarForm=1">Entrar</a>
+      
+      <a class="button button-clear button-full button-positive" ng-click="login.datos.mostrarForm=1">¡.Si ya estas registrado, pulsa aquí.!</a>
       <a class="button button-block icon-center ion-android-arrow-dropleft" ui-sref="inicio"></a>
     </ion-content>
   </ion-pane>

@@ -50,7 +50,7 @@ class UserModel
 
     public function add($params){
 
-        $sql = "INSERT INTO $this->table (usuario, contrasena, nombre_completo, cedula, correo, telefono, id_malla) VALUES (:usuario, :contrasena, :nombre_completo, :cedula, :correo, :telefono, :id_malla)";
+        $sql = "INSERT INTO $this->table (usuario, contrasena, nombre_completo, cedula, correo, telefono, id_malla) VALUES (:usuario, :contrasena, :nombre_completo, :cedula, :correo, :telefono, :id_malla ) ";
         $sth = $this->db->prepare($sql);
         $sth->execute(array(
             ':usuario' => $params['usuario'], 

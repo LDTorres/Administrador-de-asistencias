@@ -30,7 +30,8 @@ angular.module('GATE', ['ionic', 'ngCordova', 'ngFileUpload', 'ionic-datepicker'
       showTodayButton: true, 
       dateFormat: 'dd MMMM yyyy', 
       closeOnSelect: false, 
-      disableWeekdays: [0, 6], };
+      disableWeekdays: [0, 6], 
+    };
 
     ionicDatePickerProvider.configDatePicker(datePickerObj);
 
