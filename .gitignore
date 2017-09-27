@@ -6,6 +6,7 @@ platforms/
 plugins/
 
 
+*www/lib
 *api/assets
 *api/app/lib/backups
 # Logs
@@ -92,3 +93,4 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+www/img/Thumbs.db

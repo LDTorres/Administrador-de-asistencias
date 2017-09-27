@@ -1,18 +1,40 @@
+<ion-view view-title="Perfil">
+  <ion-pane>
+    <ion-nav-bar class="bar-assertive" align-title="center">
+      <ion-nav-back-button></ion-nav-back-button>
+    </ion-nav-bar>
+    <div class="tabs-striped tabs-background-assertive tabs-color-light">
+      <ion-tabs class="tabs-positive tabs-icon-top">
 
-<ion-view class="padding" title="Perfil">
-    <ion-pane>
-        <ion-header-bar class="bar-positive" align-title="center">
-            <button class="button icon ion-navicon"></button>
-            <h1 class="title">IUTEB Móvil | Perfil</h1>
-        </ion-header-bar>
-        <ion-content>
-            <div class="main__menu">
-                <a class="main__menu__item button button-block icon-right ion-android-person-add" ui-sref="login"><span>Registro</span></a>
-                <a class="main__menu__item button-block button icon-right ion-home" ui-sref="inicio"><span>Inicio</span></a>
-                <a class="main__menu__item button button-block icon-right ion-person" ui-sref="perfil"> <span>Perfil</span></a>
-                <a class="main__menu__item button button-block icon-right ion-person-stalker" ui-sref="grupos"><span>Grupos</span></a>
-                <a class="main__menu__item button button-block icon-right ion-gear-a" ui-sref="configuracionC"><span>Configuración</span></a>
+        <ion-tab title="Home" icon-on="ion-ios-filing" icon-off="ion-ios-filing-outline">
+          <ion-content class="padding">
+
+          </ion-content>
+        </ion-tab>
+
+        <ion-tab title="About" icon-on="ion-ios-clock" icon-off="ion-ios-clock-outline">
+          <ion-content class="padding">
+            <h4>Acerca de nosotros</h4>
+            <div class="list card">
+              <div class="item">
+                <a ui-sref="inicio/asignaturas">Asignaturas</a>
+              </div>
             </div>
-        </ion-content>
-    </ion-pane>
+          </ion-content>
+        </ion-tab>
+
+        <ion-tab title="Settings" icon-on="ion-ios-gear" icon-off="ion-ios-gear-outline">
+          <ion-content class="padding">
+            <h4>Publicaciones Recientes</h4>
+            <div class="list card">
+              <div class="item">
+                <h2>Hola 3</h2>
+              </div>
+            </div>
+          </ion-content>
+        </ion-tab>
+
+      </ion-tabs>
+    </div>
+  </ion-pane>
 </ion-view>

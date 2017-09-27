@@ -1,64 +1,64 @@
 <ion-view title="Registro">
-    <ion-pane ng-switch="login.datos.mostrarForm">
-        <ion-header-bar class="bar-positive" align-title="center">
-            <h1 class="title main__bar">IUTEB Móvil | Registro/Login</h1>
-        </ion-header-bar>
+  <ion-pane ng-switch="login.datos.mostrarForm">
+    <ion-header-bar class="bar-positive" align-title="center">
+      <h1 class="title main__bar">IUTEB Móvil | Registro/Login</h1>
+    </ion-header-bar>
 
-        <ion-content ng-switch-when="1">
-            <form ng-submit="login.registrar(login.datos.registro)" class="list">
+    <ion-content ng-switch-when="1">
+      <form ng-submit="login.ingresar(login.datos.login)" class="list">
 
-                <label class="item item-input item-floating-label main__form__item">
+        <label class="item item-input item-floating-label main__form__item">
                     <span class="input-label">Nombre de Usuario</span>
                     <input type="text" ng-model="login.datos.login.usuario" placeholder="Nombre de Usuario">
                 </label>
 
-                <label class="item item-input item-floating-label main__form__item">
+        <label class="item item-input item-floating-label main__form__item">
                     <span class="input-label">Contraseña</span>
                     <input type="password" ng-model="login.datos.login.contrasena" placeholder="Contraseña">
                 </label>
 
-                <input type="submit" value="Entrar" class="button button-block icon-left ion-android-add button-positive"></input>
+        <input type="submit" value="Entrar" class="button button-block icon-left ion-android-add button-positive"></input>
 
-            </form>
+      </form>
 
-            <a class="button button-block icon-center ion-android-arrow-dropleft" ng-click="login.datos.mostrarForm=2"> Registrarse</a>
-            <a class="button button-block icon-center ion-android-arrow-dropleft" ui-sref="inicio"></a>
-        </ion-content>
+      <a class="button button-block icon-center ion-android-arrow-dropleft" ng-click="login.datos.mostrarForm=2"> Registrarse</a>
+      <a class="button button-block icon-center ion-android-arrow-dropleft" ui-sref="inicio"></a>
+    </ion-content>
 
-        <ion-content ng-switch-when="2">
-            <form  ng-submit="login.registrar(login.datos.registro)" class="list">
-            
-                <label class="item item-input item-floating-label main__form__item">
+    <ion-content ng-switch-when="2">
+      <form ng-submit="login.registrar(login.datos.registro)" class="list">
+
+        <label class="item item-input item-floating-label main__form__item">
                     <span class="input-label">Nombre de Usuario</span>
                     <input type="text" ng-model="login.datos.registro.usuario" placeholder="Nombre de Usuario">
                 </label>
-                
-                <label class="item item-input item-floating-label main__form__item">
+
+        <label class="item item-input item-floating-label main__form__item">
                     <span class="input-label">Contraseña</span>
                     <input type="password" ng-model="login.datos.registro.contrasena" placeholder="Contraseña">
                 </label>
-                
-                <label class="item item-input item-floating-label main__form__item">
+
+        <label class="item item-input item-floating-label main__form__item">
                     <span class="input-label main__form__item--span">Nombre Completo</span>
                     <input type="text" ng-model="login.datos.registro.nombre_completo" placeholder="Nombre Compoleto">
                 </label>
 
-                <label class="item item-input item-floating-label main__form__item">
+        <label class="item item-input item-floating-label main__form__item">
                     <span class="input-label">Cedula</span>
                     <input type="text" ng-model="login.datos.registro.cedula" placeholder="Cedula">
                 </label>
 
-                <label class="item item-input item-floating-label main__form__item">
+        <label class="item item-input item-floating-label main__form__item">
                     <span class="input-label">Correo</span>
                     <input type="text" ng-model="login.datos.registro.correo" placeholder="Correo">
                 </label>
 
-                <label class="item item-input item-floating-label main__form__item">
+        <label class="item item-input item-floating-label main__form__item">
                     <span class="input-label">Telefono</span>
                     <input type="text" ng-model="login.datos.registro.telefono" placeholder="Telefono">
                 </label>
 
-                <label class="item item-input item-select">
+        <label class="item item-input item-select">
                     <div class="input-label">
                     Malla Curricular
                     </div>
@@ -70,11 +70,10 @@
                 </label>
 
 
-                <input type="submit" value="Registrar" class="button button-block icon-left ion-android-add button-positive"></input>
-
-            </form>            
-            <a class="button button-block icon-center ion-android-arrow-dropleft" ng-click="login.datos.mostrarForm=1">Entrar</a>
-            <a class="button button-block icon-center ion-android-arrow-dropleft" ui-sref="inicio"></a>
-        </ion-content>
-    </ion-pane>
+        <input type="submit" value="Registrar" class="button button-block icon-left ion-android-add button-positive"></input>
+      </form>
+      <a class="button button-block icon-center ion-android-arrow-dropleft" ng-click="login.datos.mostrarForm=1">Entrar</a>
+      <a class="button button-block icon-center ion-android-arrow-dropleft" ui-sref="inicio"></a>
+    </ion-content>
+  </ion-pane>
 </ion-view>
