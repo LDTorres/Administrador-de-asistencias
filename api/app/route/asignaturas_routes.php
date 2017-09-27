@@ -6,9 +6,9 @@ use App\Model\AsignaturasModel;
 $mm = new AsignaturasModel();
 
 $app->group('/asignatura',function(){
-    $this->get('/all[/{id}]',function($req, $res, $args){
+    $this->get('/all/{id_malla}/{id_trimestre}',function($req, $res, $args){
 
-        $result = $GLOBALS['mm']->getAll($args['id']);
+        $result = $GLOBALS['mm']->getAll($args);
         
         return $this->response->withJson($result);
     });
