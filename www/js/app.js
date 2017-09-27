@@ -73,9 +73,9 @@ angular.module('GATE', ['ionic', 'ngCordova', 'ngFileUpload', 'ionic-datepicker'
       })
       // Esta ruta va a contener {posts de la seccion, miembros, informacion, asistencias}
       .state('inicio/seccion', {
-        url: '/seccion',
+        url: '/seccion:id_seccion',
         templateUrl: '../templates/seccion.html',
-        controller: 'seccionController as seccion'
+        controller: 'seccionController as seccion',
       })
       // Esta ruta va a contener {nueva publicacion}
       .state('inicio/seccion/publicacion', {

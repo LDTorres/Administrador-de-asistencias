@@ -12,16 +12,12 @@ class AsignaturasModel {
         $this->db = Database::conexion();
     }
 
-    public function getAll($id){
-        $sql = "SELECT * FROM $this->table WHERE id_malla = ?";
+    public function getAll($params){
+        $sql = "SELECT * FROM $this->table WHERE id_malla = ? AND trimestre = ?";
 
         $sth = $this->db->prepare($sql);
 
-        if($_SESSION['tipo'] == 'Estudiante' || $_SESSION['tipo'] == 'Profesor'):
-            $id = $_SESSION['id_malla'];
-        endif;
-
-        $sth->execute(array($id));
+        $sth->execute(array($params['id_malla'], $params['id_trimestre']));
 
         $result = $sth->fetchAll();
         return $result;
@@ -31,10 +27,6 @@ class AsignaturasModel {
         $sql = "SELECT * FROM $this->table WHERE id_asignatura = ? AND trimestre = ? AND id_malla = ?";
 
         $sth = $this->db->prepare($sql);
-
-        if($_SESSION['tipo'] == 'Estudiante' || $_SESSION['tipo'] == 'Profesor'):
-            $params['pnf'] = $_SESSION['id_malla'];
-        endif;
 
         $sth->execute(array($params['id'], $params['trimestre'], $params['pnf']));
 

@@ -248,7 +248,9 @@ angular.module('GATE')
       var defered = $q.defer();
       var promise = defered.promise;
 
-      $http.get(ruta + '/asignatura/all').then(function (res) {
+      console.log(datos)
+
+      $http.get(ruta + '/asignatura/all/' + datos.id_malla + '/' + datos.id_trimestre).then(function (res) {
 
         /* Si el valor fue devuelto */
         defered.resolve(res);
@@ -268,7 +270,7 @@ angular.module('GATE')
       var defered = $q.defer();
       var promise = defered.promise;
 
-      $http.get(ruta + '/asignatura/' + datos.id + '/' + datos.trimestre).then(function (res) {
+      $http.get(ruta + '/asignatura/' + datos.id_malla + '/' + datos.id_trimestre).then(function (res) {
 
         /* Si el valor fue devuelto */
         defered.resolve(res);

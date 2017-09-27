@@ -7,11 +7,11 @@
       <ion-tabs class="tabs-positive tabs-icon-top">
 
         <ion-tab title="Publicaciones" icon-on="ion-ios-filing" icon-off="ion-ios-filing-outline">
-          <ion-content class="padding has-tabs" style="padding-top:5%;">
+          <ion-content class="padding has-tabs" style="padding-top:100px;">
             <div class="list card" ng-repeat="post in inicio.datos.posts">
 
               <a ui-sref="inicio/seccion/{{post.id_seccion}}" class="item item-avatar">
-                <img src="{{post.nombre_archivo}}">
+                <img src="../img/{{post.nombre_archivo}}">
                 <h2>{{post.titulo}}</h2>
                 <p>{{post.fecha_publicacion}}</p>
               </a>
@@ -33,40 +33,75 @@
         </ion-tab>
 
         <ion-tab title="Asignaturas" icon-on="ion-ios-clock" icon-off="ion-ios-clock-outline">
-          <ion-content class="padding">
+          <ion-content class="padding" style="padding-top:100px;">
+            <h4>Buscar seccion</h4>
             <div class="list">
               <label class="item item-input item-select">
+                  <div class="input-label">
+                     Trimestre
+                  </div>
+                  <select ng-model="inicio.datos.listarAsignaturas.id_trimestre" ng-change="inicio.listarAsignaturas(inicio.datos.listarAsignaturas)">
+<option ng-repeat="trimestre in inicio.datos.trimestres" ng-value="trimestre.id_trimestre">trimestre {{trimestre.id_trimestre}}</option>
+                  </select>
+              </label>
+
+              <label class="item item-input item-select" ng-if="inicio.datos.asignaturas">
+
                 <div class="input-label">
                  Asignaturas
                 </div>
-                <select>
+                <select ng-model="inicio.datos.asignaturaSeleccionada" ng-change="inicio.buscarSecciones(inicio.datos.asignaturaSeleccionada)">
                   <option ng-repeat="asignatura in inicio.datos.asignaturas" ng-value="asignatura.id_asignatura">{{asignatura.nombre}}</option>
                 </select>
               </label>
-            </div>
 
-            <div class="list" ng-ig="">
-              <label class="item item-input item-select">
-                <div class="input-label">
-                 Asignaturas
-                </div>
-                <select>
-                  <option>Blue</option>
-                  <option selected>Green</option>
-                  <option>Red</option>
-                </select>
-              </label>
+              <div class="list" ng-if="inicio.datos.secciones">
+                <form ng-submit="inicio.irSeccion(inicio.datos.seccionSeleccionada)">
+                  <label class="item item-input item-select">
+                    <form ng-submit="inicio.irSeccion(inicio.datos.seccionSeleccionada)" ng-if="inicio.datos.secciones">
+                      <div class="input-label">
+                          Secciones
+                      </div>
+                      <select ng-model="inicio.datos.seccionSeleccionada">
+                        <option ng-repeat="seccion in inicio.datos.secciones" ng-value="seccion.id_seccion">{{seccion.nombre}}</option>
+                      </select>
+                  </label>
+                  <input type="submit" ng-if="inicio.datos.seccionSeleccionada" value="IR" class="button button-block button-positive">
+
+                </form>
+              </div>
+
             </div>
           </ion-content>
         </ion-tab>
 
-        <ion-tab title="Settings" icon-on="ion-ios-gear" icon-off="ion-ios-gear-outline">
-          <ion-content class="padding">
-            <h4>Publicaciones Recientes</h4>
-            <div class="list card">
-              <div class="item">
-                <h2>Hola 3</h2>
+        <ion-tab title="Perfil" icon-on="ion-ios-gear" icon-off="ion-ios-gear-outline">
+          <ion-content class="padding" style="padding-top:100px;">
+            <div ng-repeat="user in inicio.datos.user">
+              <div class="list card">
+                <div class="item item-avatar">
+                  <img src="../img/{{user.foto_perfil}}">
+                  <h2>{{user.usuario}}</h2>
+                  <p>{{user.malla}}</p>
+                </div>
               </div>
+              <h3>Datos</h3>
+              <form class="input-inset list">
+                <label class="item item-input">
+<input type="text" placeholder="Nombre Completo" ng-value="{{user.nombre_completo}}">
+              </label>
+                <label class="item item-input">
+<input type="number" placeholder="Cedula" ng-value="{{user.cedula}}">
+                  </label>
+                <label class="item item-input">
+<input type="tel" placeholder="Telefono" ng-value="{{user.telefono}}">
+                  </label>
+                <label class="item item-input">
+<input type="number" placeholder="Contraseña" ng-value="{{user.contrasena}}">
+                  </label>
+                <input type="submit" value="Guardar" class="button button-block button-positive">
+
+              </form>
             </div>
           </ion-content>
         </ion-tab>
