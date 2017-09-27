@@ -16,10 +16,6 @@ angular.module('GATE', ['ionic', 'ngCordova', 'ngFileUpload'])
 
   .config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
 
-    $httpProvider.defaults.headers.common = {};
-    $httpProvider.defaults.headers.post = {};
-    $httpProvider.defaults.headers.put = {};
-    $httpProvider.defaults.headers.patch = {};
 
     $stateProvider
       .state('ingreso', {
