@@ -1,13 +1,13 @@
 <ion-view view-title="Inicio">
   <ion-pane>
-    <ion-nav-bar class="bar-assertive" align-title="center">
+    <ion-nav-bar class="bar-positive" align-title="center">
       <ion-nav-back-button></ion-nav-back-button>
     </ion-nav-bar>
-    <div class="tabs-striped tabs-background-assertive tabs-color-light">
+    <div class="tabs-striped tabs-background-positive tabs-color-light">
       <ion-tabs class="tabs-positive tabs-icon-top">
 
-        <ion-tab title="Publicaciones" icon-on="ion-ios-filing" icon-off="ion-ios-filing-outline">
-          <ion-content class="padding has-tabs" style="padding-top:100px;">
+        <ion-tab title="Publicaciones" icon-on="ion-compose" icon-off="ion-compose">
+          <ion-content class="padding has-tabs">
             <div class="list card" ng-repeat="post in inicio.datos.posts">
 
               <a ui-sref="inicio/seccion/{{post.id_seccion}}" class="item item-avatar">
@@ -32,16 +32,16 @@
           </ion-content>
         </ion-tab>
 
-        <ion-tab title="Asignaturas" icon-on="ion-ios-clock" icon-off="ion-ios-clock-outline">
-          <ion-content class="padding" style="padding-top:100px;">
-            <h4>Buscar seccion</h4>
+        <ion-tab title="Asignaturas" icon-on="ion-clipboard" icon-off="ion-clipboard">
+          <ion-content class="padding">
+            <h4 class="subtitulo">Buscar seccion</h4>
             <div class="list">
               <label class="item item-input item-select">
                   <div class="input-label">
                      Trimestre
                   </div>
                   <select ng-model="inicio.datos.listarAsignaturas.id_trimestre" ng-change="inicio.listarAsignaturas(inicio.datos.listarAsignaturas)">
-<option ng-repeat="trimestre in inicio.datos.trimestres" ng-value="trimestre.id_trimestre">trimestre {{trimestre.id_trimestre}}</option>
+                    <option ng-repeat="trimestre in inicio.datos.trimestres" ng-value="trimestre.id_trimestre">trimestre {{trimestre.id_trimestre}}</option>
                   </select>
               </label>
 
@@ -70,13 +70,13 @@
 
                 </form>
               </div>
-
+                <a class="button button-block icon-right ion-android-arrow-dropright" ui-sref="inicio/asignatura/inscripcion"> Inscripción </a>
             </div>
           </ion-content>
         </ion-tab>
 
-        <ion-tab title="Perfil" icon-on="ion-ios-gear" icon-off="ion-ios-gear-outline">
-          <ion-content class="padding" style="padding-top:100px;">
+        <ion-tab title="Perfil" icon-on="ion-person" icon-off="ion-person">
+          <ion-content class="padding">
             <div ng-repeat="user in inicio.datos.user">
               <div class="list card">
                 <div class="item item-avatar">
@@ -85,20 +85,21 @@
                   <p>{{user.malla}}</p>
                 </div>
               </div>
-              <h3>Datos</h3>
+              <h3 class="subtitulo" >Datos</h3>
               <form class="input-inset list">
                 <label class="item item-input">
-<input type="text" placeholder="Nombre Completo" ng-value="{{user.nombre_completo}}">
-              </label>
+                  <input type="text" placeholder="Nombre Completo" ng-value="{{user.nombre_completo}}">
+                </label>
                 <label class="item item-input">
-<input type="number" placeholder="Cedula" ng-value="{{user.cedula}}">
-                  </label>
+                  <input type="number" placeholder="Cedula" ng-value="{{user.cedula}}">
+                </label>
+               <label class="item item-input">
+                  <input type="tel" placeholder="Telefono" ng-value="{{user.telefono}}">
+                </label>
                 <label class="item item-input">
-<input type="tel" placeholder="Telefono" ng-value="{{user.telefono}}">
-                  </label>
-                <label class="item item-input">
-<input type="number" placeholder="Contraseña" ng-value="{{user.contrasena}}">
-                  </label>
+                  <input type="number" placeholder="Contraseña" ng-value="{{user.contrasena}}">
+                </label>
+                
                 <input type="submit" value="Guardar" class="button button-block button-positive">
 
               </form>

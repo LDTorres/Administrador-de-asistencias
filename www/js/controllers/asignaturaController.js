@@ -1,5 +1,11 @@
 angular.module('GATE')
 
-  .controller('asignaturaController', function ($scope) {
+  .controller('asignaturaController', ["$scope", "servicioGeneral", "$state", "servicioSecciones", "servicioAsignatura", function ($scope, servicioGeneral, $state, servicioSecciones, servicioAsignatura) {
+    var bz = this;
 
-  })
+    bz.datos = {
+      user: [{
+        tipo: 'estudiante'
+      }]
+  }
+}])

@@ -1,6 +1,6 @@
 angular.module('GATE')
 
-  .constant("ruta", "http://127.0.0.1:3454")
+  .constant("ruta", "http://0.0.0.0:3454")
   /* INGRESAR */
 
   .service("servicioGeneral", ["$http", "$q", "ruta", function ($http, $q, ruta) {
