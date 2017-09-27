@@ -1,10 +1,6 @@
 angular.module('GATE')
 
-<<<<<<< HEAD
   .constant("ruta", "http://0.0.0.0:3454")
-=======
-  .constant("ruta", "http://localhost:3454")
->>>>>>> Desarrollo
   /* INGRESAR */
 
   .service("servicioGeneral", ["$http", "$q", "ruta", function ($http, $q, ruta) {

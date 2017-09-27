@@ -43,15 +43,9 @@
     color: white;
     
 } */
-<<<<<<< HEAD
-.tabs-striped .overflow-scroll>.scroll {
-    
-    margin-top: 7em;
-=======
 
 .tabs-striped .overflow-scroll>.scroll {
   margin-top: 7em;
->>>>>>> Desarrollo
 }
 
 .list.list-inset.formlogin {
@@ -66,7 +60,6 @@
   flex-direction: column;
 }
 
-<<<<<<< HEAD
 .logo_iuteb{
     width: 45%;
     margin-top: 4em;
@@ -80,18 +73,3 @@
     opacity: .6;
     text-align: center;
 }
-=======
-.logo_iuteb {
-  width: 45%;
-  margin-top: 4em;
-  opacity: .8;
-}
-
-.subtitulo {
-  font-size: 1.2em;
-  font-weight: bolder;
-  text-transform: uppercase;
-  opacity: .6;
-  margin-left: 1em;
-}
->>>>>>> Desarrollo
