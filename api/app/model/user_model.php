@@ -96,6 +96,8 @@ class UserModel
         $sth = $this->db->prepare($sql);
         $sth->execute(array(':user' => $params['usuario'], ':pass' => $params['contrasena']));
 
+        
+
         $result = $sth->fetch();
 
         if(count($result) > 0):

@@ -10,7 +10,7 @@ angular.module('GATE')
       },
       user: [{
         foto_perfil: 'grabatar.jpg',
-        nombre_completo: 'Luis Torres',
+        hola: 'Luis',
         cedula: '25659843',
         malla: 'Informatica',
         telefono: '04128594981',
@@ -58,14 +58,12 @@ angular.module('GATE')
     bz.listarAsignaturas = function (datos) {
       servicioAsignatura.getAll(datos).then(function (res) {
         bz.datos.asignaturas = res.data;
-        console.log(res)
       });
     }
 
     bz.buscarSecciones = function (id) {
       servicioSecciones.getAll(id).then(function (res) {
         bz.datos.secciones = res.data;
-        console.log(res);
       });
     }
 

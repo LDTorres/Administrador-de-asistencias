@@ -5,11 +5,16 @@
     </ion-nav-bar>
     <div class="tabs-striped tabs-background-positive tabs-color-light">
       <ion-tabs class="tabs-positive tabs-icon-top">
+<<<<<<< HEAD
 
         <ion-tab title="Publicaciones" icon-on="ion-compose" icon-off="ion-compose">
           <ion-content class="padding has-tabs">
+=======
+        <ion-tab title="Publicaciones" icon-on="ion-ios-filing" icon-off="ion-ios-filing-outline">
+          <ion-content class="padding has-tabs">
+            <h4 class="text-center">Publicaciones</h4>
+>>>>>>> Desarrollo
             <div class="list card" ng-repeat="post in inicio.datos.posts">
-
               <a ui-sref="inicio/seccion/{{post.id_seccion}}" class="item item-avatar">
                 <img src="../img/{{post.nombre_archivo}}">
                 <h2>{{post.titulo}}</h2>
@@ -31,6 +36,7 @@
             </div>
           </ion-content>
         </ion-tab>
+<<<<<<< HEAD
 
         <ion-tab title="Asignaturas" icon-on="ion-clipboard" icon-off="ion-clipboard">
           <ion-content class="padding">
@@ -44,28 +50,42 @@
                     <option ng-repeat="trimestre in inicio.datos.trimestres" ng-value="trimestre.id_trimestre">trimestre {{trimestre.id_trimestre}}</option>
                   </select>
               </label>
+=======
+        <ion-tab title="Asignaturas" icon-on="ion-ios-clock" icon-off="ion-ios-clock-outline">
+          <ion-content class="padding">
+            <h4 class="text-center">Buscar seccion</h4>
+            <div class="list">
+              <label class="item item-input item-select">
+                    <div class="input-label">
+                      Trimestre
+                    </div>
+                    <select ng-model="inicio.datos.listarAsignaturas.id_trimestre" ng-change="inicio.listarAsignaturas(inicio.datos.listarAsignaturas)">
+            <option ng-repeat="trimestre in inicio.datos.trimestres" ng-value="trimestre.id_trimestre">trimestre {{trimestre.id_trimestre}}</option>
+                    </select>
+                </label>
+>>>>>>> Desarrollo
 
               <label class="item item-input item-select" ng-if="inicio.datos.asignaturas">
 
-                <div class="input-label">
-                 Asignaturas
-                </div>
-                <select ng-model="inicio.datos.asignaturaSeleccionada" ng-change="inicio.buscarSecciones(inicio.datos.asignaturaSeleccionada)">
-                  <option ng-repeat="asignatura in inicio.datos.asignaturas" ng-value="asignatura.id_asignatura">{{asignatura.nombre}}</option>
-                </select>
-              </label>
+                  <div class="input-label">
+                  Asignaturas
+                  </div>
+                  <select ng-model="inicio.datos.asignaturaSeleccionada" ng-change="inicio.buscarSecciones(inicio.datos.asignaturaSeleccionada)">
+                    <option ng-repeat="asignatura in inicio.datos.asignaturas" ng-value="asignatura.id_asignatura">{{asignatura.nombre_asig}}</option>
+                  </select>
+                </label>
 
               <div class="list" ng-if="inicio.datos.secciones">
                 <form ng-submit="inicio.irSeccion(inicio.datos.seccionSeleccionada)">
                   <label class="item item-input item-select">
-                    <form ng-submit="inicio.irSeccion(inicio.datos.seccionSeleccionada)" ng-if="inicio.datos.secciones">
-                      <div class="input-label">
-                          Secciones
-                      </div>
-                      <select ng-model="inicio.datos.seccionSeleccionada">
-                        <option ng-repeat="seccion in inicio.datos.secciones" ng-value="seccion.id_seccion">{{seccion.nombre}}</option>
-                      </select>
-                  </label>
+                      <form ng-submit="inicio.irSeccion(inicio.datos.seccionSeleccionada)" ng-if="inicio.datos.secciones">
+                        <div class="input-label">
+                            Secciones
+                        </div>
+                        <select ng-model="inicio.datos.seccionSeleccionada">
+                          <option ng-repeat="seccion in inicio.datos.secciones" ng-value="seccion.id_seccion">{{seccion.nombre}}</option>
+                        </select>
+                    </label>
                   <input type="submit" ng-if="inicio.datos.seccionSeleccionada" value="IR" class="button button-block button-positive">
 
                 </form>
@@ -74,8 +94,12 @@
             </div>
           </ion-content>
         </ion-tab>
+<<<<<<< HEAD
 
         <ion-tab title="Perfil" icon-on="ion-person" icon-off="ion-person">
+=======
+        <ion-tab title="Perfil" icon-on="ion-ios-gear" icon-off="ion-ios-gear-outline">
+>>>>>>> Desarrollo
           <ion-content class="padding">
             <div ng-repeat="user in inicio.datos.user">
               <div class="list card">
@@ -85,28 +109,41 @@
                   <p>{{user.malla}}</p>
                 </div>
               </div>
+<<<<<<< HEAD
               <h3 class="subtitulo" >Datos</h3>
+=======
+              <h4 class="text-center">Datos</h4>
+>>>>>>> Desarrollo
               <form class="input-inset list">
                 <label class="item item-input">
                   <input type="text" placeholder="Nombre Completo" ng-value="{{user.nombre_completo}}">
                 </label>
+<<<<<<< HEAD
                 <label class="item item-input">
                   <input type="number" placeholder="Cedula" ng-value="{{user.cedula}}">
                 </label>
                <label class="item item-input">
+=======
+                <label class="item item-input">
+                  <input type="number" placeholder="Cedula" ng-value="{{user.cedula}}">
+                </label>
+                <label class="item item-input">
+>>>>>>> Desarrollo
                   <input type="tel" placeholder="Telefono" ng-value="{{user.telefono}}">
                 </label>
                 <label class="item item-input">
                   <input type="number" placeholder="Contraseña" ng-value="{{user.contrasena}}">
                 </label>
+<<<<<<< HEAD
                 
+=======
+>>>>>>> Desarrollo
                 <input type="submit" value="Guardar" class="button button-block button-positive">
 
               </form>
             </div>
           </ion-content>
         </ion-tab>
-
       </ion-tabs>
     </div>
   </ion-pane>
