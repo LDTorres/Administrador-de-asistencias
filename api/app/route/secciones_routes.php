@@ -71,11 +71,9 @@ $app->group('/seccion',function(){
         return $this->response->withJson($result);
     });
 
-    $this->post('/posts/timeline', function($req, $res){
+    $this->get('/posts/timeline/{id}', function($req, $res, $args){
 
-        $params = $req->getParsedBody();
-
-        $result = $GLOBALS['sm']->getPostsTimeline($params);
+        $result = $GLOBALS['sm']->getPostsTimeline($args);
 
         return $this->response->withJson($result, 200);
 
@@ -179,4 +177,6 @@ $app->group('/seccion',function(){
         return $this->response->withJson($GLOBALS['sm']->getReport($params), 200);
     });
 
-})->add($mw);
+});
+
+// ->add($mw);

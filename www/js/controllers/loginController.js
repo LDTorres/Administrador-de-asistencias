@@ -29,6 +29,15 @@ angular.module('GATE')
 
       servicioGeneral.ingresar(datos).then(function (res) {
         console.log(res)
+        bz.session();
+      }).catch(function (res) {
+        console.log(res)
+      });
+    }
+
+    bz.session = function () {
+      servicioGeneral.session().then(function (res) {
+        console.log(res)
       }).catch(function (res) {
         console.log(res)
       });

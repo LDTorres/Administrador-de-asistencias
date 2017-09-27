@@ -41,57 +41,54 @@ angular.module('GATE', ['ionic', 'ngCordova', 'ngFileUpload', 'ionic-datepicker'
         templateUrl: '../templates/login.html',
         controller: 'loginController as login'
       })
+      // Inicio va a contener {timeline, todas las asignaturas y las secciones, perfil}
       .state('inicio', {
         url: '/inicio',
         templateUrl: '../templates/inicio.html',
         controller: 'inicioController as inicio'
       })
+      // Ayuda va a contener {informacion de la app, y el manual}
+      .state('inicio/ayuda', {
+        url: '/ayuda',
+        templateUrl: '../templates/ayuda.html',
+        controller: 'ayudaController as ayuda'
+      })
+      // Perfil va a contener {informacion del usuario a modificar y colocar la foto de perfil}
       .state('inicio/perfil', {
         url: '/perfil',
         templateUrl: '../templates/perfil.html',
         controller: 'perfilController as perfil'
       })
+      // Configuracion va a contener {}
       .state('inicio/configuracion', {
         url: '/configuracion',
         templateUrl: '../templates/configuracion.html',
         controller: 'configuracionController as configuracion'
       })
-      .state('inicio/asignaturas', {
-        url: '/asignatura',
-        templateUrl: '../templates/asignatura.html',
-        controller: 'asignaturaController as asignatura'
-      })
-      .state('inicio/asignaturas/inscripcion', {
+      // Esta ruta va a contener {inscribir una asignatura {alumno}, crear una seccion {profesor}}
+      .state('inicio/asignatura/inscripcion', {
         url: '/inscripcion',
         templateUrl: '../templates/inscripcion.html',
         controller: 'inscripcionController as inscripcion'
       })
-      .state('inicio/asignaturas/materia', {
-        url: '/materia',
-        templateUrl: '../templates/materia.html',
-        controller: 'materiaController as materia'
+      // Esta ruta va a contener {posts de la seccion, miembros, informacion, asistencias}
+      .state('inicio/seccion', {
+        url: '/seccion',
+        templateUrl: '../templates/seccion.html',
+        controller: 'seccionController as seccion'
       })
-      .state('inicio/asignaturas/materia/informacion', {
-        url: '/informacion',
-        templateUrl: '../templates/informacion.html',
-        controller: 'informacionController as informacion'
-      })
-      .state('inicio/asignaturas/materia/miembros', {
-        url: '/miembros',
-        templateUrl: '../templates/miembros.html',
-        controller: 'miembrosController as miembros'
-      })
-      .state('inicio/asignaturas/materia/asistencia', {
-        url: '/asistencia',
-        templateUrl: '../templates/asistencia.html',
-        controller: 'asistenciaController as asistencia'
-      })
-      .state('inicio/asignaturas/materia/publicacion', {
+      // Esta ruta va a contener {nueva publicacion}
+      .state('inicio/seccion/publicacion', {
         url: '/publicacion',
         templateUrl: '../templates/publicacion.html',
         controller: 'publicacionController as publicacion'
+      })
+      // Esta ruta va a contener {posts de la seccion, miembros, informacion, asistencias}
+      .state('inicio/seccion/reportes', {
+        url: '/reportes',
+        templateUrl: '../templates/reportes.html',
+        controller: 'reportesController as reportes'
       });
-
 
     $urlRouterProvider.otherwise('/');
   });

@@ -42,11 +42,12 @@ $app->get('/app', function ($req, $res, $args) {
     
     return $this->response->withJson($sth->fetch());
 
-})->add($mw);
+});
+
+// ->add($mw);
 
 $app->group('/bd',function(){
-
-    // FIXME: Probar ruta restaurar
+    
     $this->post('/restore',function($req, $res){
         $params = $req->getParsedBody();
         $result = $GLOBALS['bdm']->restore($params['filename']);
@@ -71,4 +72,6 @@ $app->group('/bd',function(){
     $this->get('/backups',function($req, $res, $args){        
         return $this->response->withJson($GLOBALS['bdm']->getBackups());
     });
-})->add($mw);
+});
+
+// ->add($mw);

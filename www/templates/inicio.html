@@ -4,40 +4,73 @@
       <ion-nav-back-button></ion-nav-back-button>
     </ion-nav-bar>
     <div class="tabs-striped tabs-background-assertive tabs-color-light">
-      <div class="tabs">
-        <a class="tab-item active" ui-sref="inicio">
-          <i class="icon ion-home"></i>
-          Test
-        </a>
-        <a class="tab-item" href="inicio/asignaturas">
-          <i class="icon ion-star"></i>
-          Favorites
-        </a>
-        <a class="tab-item" ui-sref="inicio/perfil">
-          <i class="icon ion-gear-a"></i>
-          Settings
-        </a>
-      </div>
+      <ion-tabs class="tabs-positive tabs-icon-top">
+
+        <ion-tab title="Publicaciones" icon-on="ion-ios-filing" icon-off="ion-ios-filing-outline">
+          <ion-content class="padding has-tabs" style="padding-top:5%;">
+            <div class="list card" ng-repeat="post in inicio.datos.posts">
+
+              <a ui-sref="inicio/seccion/{{post.id_seccion}}" class="item item-avatar">
+                <img src="{{post.nombre_archivo}}">
+                <h2>{{post.titulo}}</h2>
+                <p>{{post.fecha_publicacion}}</p>
+              </a>
+
+              <div class="item item-body">
+                <p>
+                  {{post.descripcion}}
+                </p>
+                <p>
+                  <a class="subdued">{{post.nombre_archivo}}</a>
+                </p>
+              </div>
+              <a href="#" class="item item-icon-left">
+                <i class="icon ion-code-download"></i>
+                Descargar
+              </a>
+            </div>
+          </ion-content>
+        </ion-tab>
+
+        <ion-tab title="Asignaturas" icon-on="ion-ios-clock" icon-off="ion-ios-clock-outline">
+          <ion-content class="padding">
+            <div class="list">
+              <label class="item item-input item-select">
+                <div class="input-label">
+                 Asignaturas
+                </div>
+                <select>
+                  <option ng-repeat="asignatura in inicio.datos.asignaturas" ng-value="asignatura.id_asignatura">{{asignatura.nombre}}</option>
+                </select>
+              </label>
+            </div>
+
+            <div class="list" ng-ig="">
+              <label class="item item-input item-select">
+                <div class="input-label">
+                 Asignaturas
+                </div>
+                <select>
+                  <option>Blue</option>
+                  <option selected>Green</option>
+                  <option>Red</option>
+                </select>
+              </label>
+            </div>
+          </ion-content>
+        </ion-tab>
+
+        <ion-tab title="Settings" icon-on="ion-ios-gear" icon-off="ion-ios-gear-outline">
+          <ion-content class="padding">
+            <h4>Publicaciones Recientes</h4>
+            <div class="list card">
+              <div class="item">
+                <h2>Hola 3</h2>
+              </div>
+            </div>
+          </ion-content>
+        </ion-tab>
+      </ion-tabs>
     </div>
-    <ion-content class="padding">
-      <h4>Publicaciones Recientes</h4>
-      <div class="list card" ng-repeat="post in inicio.datos.posts track by $index">
-        <div class="item item-avatar">
-          <img src="{{post.foto_usuario}}">
-          <h2>{{post.titulo}}</h2>
-          <p>{{post.fecha}}</p>
-        </div>
-        <div class="item item-body">
-          {{post.descripcion}}
-          <div ng-if="post.nombre_archivo">
-            <p>Archivo : <b>{{post.nombre_archivo}}</b></p>
-          </div>
-        </div>
-        <a ng-click="inicio.descargarArchivo(post.nombre_archivo)" class="item item-icon-left">
-          <i class="icon ion-card"></i>
-          Descargar
-        </a>
-      </div>
-    </ion-content>
   </ion-pane>
 </ion-view>

@@ -127,11 +127,11 @@ class SeccionesModel {
     // Publicaciones
 
     public function getPostsTimeline($params){
-        $offset = $params['offset'];
+        //$offset = $params['offset'];
         
         $sth = $this->db->prepare("SELECT id_seccion FROM alumnos_has_secciones WHERE id_usuario = ?");
 
-        $sth->execute(array($params['id_usuario']));
+        $sth->execute(array($params['id']));
 
         $secciones = $sth->fetchAll();
 
