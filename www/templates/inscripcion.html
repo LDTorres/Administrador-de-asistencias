@@ -1,40 +1,49 @@
 <ion-view view-title="Inscripcion">
+
   <ion-pane>
-    <ion-nav-bar class="bar-assertive" align-title="center">
+    <ion-nav-bar class="bar-positive" align-title="center">
+
       <ion-nav-back-button></ion-nav-back-button>
+
     </ion-nav-bar>
-    <div class="tabs-striped tabs-background-assertive tabs-color-light">
+
+    <div class="tabs-striped tabs-background-positive tabs-color-light">
+    
       <ion-tabs class="tabs-positive tabs-icon-top">
 
-        <ion-tab title="Home" icon-on="ion-ios-filing" icon-off="ion-ios-filing-outline">
+        <ion-tab ng-if="user.tipo == profesor" title="Profesor" icon-on="ion-android-create" icon-off="ion-android-create">
           <ion-content class="padding">
-
-          </ion-content>
-        </ion-tab>
-
-        <ion-tab title="About" icon-on="ion-ios-clock" icon-off="ion-ios-clock-outline">
-          <ion-content class="padding">
-            <h4>Acerca de nosotros</h4>
-            <div class="list card">
-              <div class="item">
-                <a ui-sref="inicio/asignaturas">Asignaturas</a>
+            <h4 class="subtitulo">Añadir Sección</h4>
+            <div class="list">
+              <div class="item item-input-inset padding">
+                <label class="item-input-wrapper">
+                  <input type="text" placeholder="Código de la Sección">
+                </label>
+                <button class="button button-small">Añadir</button>
               </div>
+
             </div>
           </ion-content>
         </ion-tab>
 
-        <ion-tab title="Settings" icon-on="ion-ios-gear" icon-off="ion-ios-gear-outline">
+        <ion-tab ng-if="user.tipo == estudiante" title="Estudiante" icon-on="ion-android-add" icon-off="ion-android-add">
           <ion-content class="padding">
-            <h4>Publicaciones Recientes</h4>
-            <div class="list card">
-              <div class="item">
-                <h2>Hola 3</h2>
+            <h4 class="subtitulo">Inscribir Sección</h4>
+            <div class="list">
+              <div class="item item-input-inset padding">
+                <label class="item-input-wrapper">
+                  <input type="text" placeholder="Código de la Sección">
+                </label>
+                <button class="button button-small">Inscribir</button>
               </div>
-            </div>
           </ion-content>
         </ion-tab>
+
 
       </ion-tabs>
+    
     </div>
+
   </ion-pane>
+  
 </ion-view>

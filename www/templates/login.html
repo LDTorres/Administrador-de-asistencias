@@ -1,13 +1,14 @@
 <ion-view title="Registro">
+  
   <ion-pane ng-switch="login.datos.mostrarForm"> 
       
     <ion-content ng-switch-when="1">
       <ion-header-bar class="bar-positive" align-title="center">
-        <h1 class="title main__bar">IUTEB Móvil | Login</h1>
+        <h1 class="title subtitulo">Iniciar Sesión</h1>
       </ion-header-bar>
       <div class="header_membrete">
         <img src="/img/logoIuteb.png" class="logo_iuteb">
-        <h2 class="subtitulo">Login de usuarios</h2>
+        <h2 class="subtitulo">Ingreso de Usuarios</h2>
       </div>
       <form ng-submit="login.ingresar(login.datos.login)" class="list">
         <div class="list list-inset formlogin">
@@ -24,8 +25,13 @@
       </form>
 
       <a class="button button-clear button-full button-positive" ng-click="login.datos.mostrarForm=2">¿No posees cuenta? ¡.Registrate aquí.!</a>
-      <a class="button button-block icon-center ion-android-arrow-dropleft" ui-sref="inicio"></a>
+
+      <a class="button button-clear button-full button-assertive">Olvide mi contraseña</a>
+
+      <a class="button button-block icon-center ion-home" ui-sref="inicio"></a>
     </ion-content>
+
+
 
     <ion-content ng-switch-when="2">
       <ion-header-bar class="bar-positive" align-title="center">
@@ -63,22 +69,24 @@
           </label>
 
           <label class="item item-input item-select">
-                      <div class="input-label">
-                      Malla Curricular
-                      </div>
-                      <select ng-model="login.datos.registro.id_malla">
-                      <option ng-value="1">Informática</option>
-                      <option ng-value="2">Electricidad</option>
-                      <option ng-value="3">Geociencias</option>
-                      </select>
-                  </label>
+            <div class="input-label">
+              Malla Curricular
+            </div>
+            <select ng-model="login.datos.registro.id_malla">
+             <option ng-value="1">Informática</option>
+             <option ng-value="2">Electricidad</option>
+             <option ng-value="3">Geociencias</option>
+            </select>
+          </label>
 
           <input type="submit" value="Registrarse" class="button button-block button-positive"></input>
         </div>
       </form>
       
       <a class="button button-clear button-full button-positive" ng-click="login.datos.mostrarForm=1">¡.Si ya estas registrado, pulsa aquí.!</a>
-      <a class="button button-block icon-center ion-android-arrow-dropleft" ui-sref="inicio"></a>
+      <a class="button button-block icon-center ion-home" ui-sref="inicio"></a>
     </ion-content>
+
   </ion-pane>
+
 </ion-view>
