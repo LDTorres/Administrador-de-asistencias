@@ -1,4 +1,5 @@
 <ion-view title="Registro">
+  
   <ion-pane ng-switch="login.datos.mostrarForm"> 
       
     <ion-content ng-switch-when="1">
@@ -26,6 +27,8 @@
       <a class="button button-clear button-full button-positive" ng-click="login.datos.mostrarForm=2">¿No posees cuenta? ¡.Registrate aquí.!</a>
       <a class="button button-block icon-center ion-home" ui-sref="inicio"></a>
     </ion-content>
+
+
 
     <ion-content ng-switch-when="2">
       <ion-header-bar class="bar-positive" align-title="center">
@@ -80,5 +83,7 @@
       <a class="button button-clear button-full button-positive" ng-click="login.datos.mostrarForm=1">¡.Si ya estas registrado, pulsa aquí.!</a>
       <a class="button button-block icon-center ion-home" ui-sref="inicio"></a>
     </ion-content>
+
   </ion-pane>
+  
 </ion-view>
