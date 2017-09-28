@@ -1,39 +1,46 @@
-<ion-view view-title="Asistencia">
+<ion-view view-title="Asistencias">
   <ion-pane>
-    <ion-nav-bar class="bar-assertive" align-title="center">
+    <ion-nav-bar class="bar-positive" align-title="center">
       <ion-nav-back-button></ion-nav-back-button>
     </ion-nav-bar>
-    <div class="tabs-striped tabs-background-assertive tabs-color-light">
+    <div class="tabs-striped tabs-background-positive tabs-color-light">
       <ion-tabs class="tabs-positive tabs-icon-top">
 
-        <ion-tab title="Home" icon-on="ion-ios-filing" icon-off="ion-ios-filing-outline">
+        <ion-tab title="Nueva Asistencia" icon-on="ion-ios-filing" icon-off="ion-ios-filing-outline">
           <ion-content class="padding">
+            <h4 class="text-center">Colocar asistencia</h4>
+            <ul class="list">
 
+              <li class="item item-toggle" ng-repeat="miembro in asistencia.datos.miembros">
+                {{miembro.nombre}}
+                <label class="toggle toggle-assertive">
+                  <input type="checkbox">
+                  <div class="track">
+                    <div class="handle"></div>
+                  </div>
+                </label>
+              </li>
+            </ul>
           </ion-content>
         </ion-tab>
 
-        <ion-tab title="About" icon-on="ion-ios-clock" icon-off="ion-ios-clock-outline">
+        <ion-tab title="Editar Asistencia" icon-on="ion-ios-clock" icon-off="ion-ios-clock-outline">
           <ion-content class="padding">
-            <h4>Acerca de nosotros</h4>
             <div class="list card">
+              <div class="item item-divider">
+                <h4 class="text-center">Editar Asistencia</h4>
+              </div>
               <div class="item">
-                <a ui-sref="inicio/asignaturas">Asignaturas</a>
+                <h4 ng-click="seccion.openDatePicker()">Seleccionar Fecha</h4>
+              </div>
+            </div>
+            <div class="list card" ng-if="seccion.datos.asistencias.length">
+              <div class="item" ng-repeat="asistencia in seccion.datos.asistencias">
+                <p><b>Nombre:</b>{{asistencia.usuario}} <b>Asistio:</b> {{asistencia.asistio}}</p>
               </div>
             </div>
           </ion-content>
         </ion-tab>
-
-        <ion-tab title="Settings" icon-on="ion-ios-gear" icon-off="ion-ios-gear-outline">
-          <ion-content class="padding">
-            <h4>Publicaciones Recientes</h4>
-            <div class="list card">
-              <div class="item">
-                <h2>Hola 3</h2>
-              </div>
-            </div>
-          </ion-content>
-        </ion-tab>
-
       </ion-tabs>
     </div>
   </ion-pane>

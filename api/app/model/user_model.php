@@ -2,6 +2,7 @@
 
 namespace App\Model;
 
+use Firebase\JWT\JWT;
 use App\Lib\Database;
 
 class UserModel
@@ -16,9 +17,6 @@ class UserModel
 
     public function getAll($t)
     {
-        if($_SESSION['tipo'] !== 'Administrador' || $_SESSION['tipo'] !== 'Profesor'):
-            return array('msg'=>'acceso negado');
-        endif;
         $sth = $this->db->prepare("SELECT * FROM $this->table WHERE tipo = :tipoU ORDER BY id_usuario");
 
         $sth->execute(array(':tipoU' => $t));
@@ -33,9 +31,6 @@ class UserModel
 
     public function get($id)
     {
-        if($_SESSION['tipo'] !== 'Administrador' || $_SESSION['tipo'] !== 'Profesor'):
-            return array('msg'=>'acceso negado');
-        endif;
         $sth = $this->db->prepare("SELECT * FROM $this->table WHERE id_usuario=:id");
         $sth->bindParam("id", $id);
         $sth->execute();
@@ -92,20 +87,34 @@ class UserModel
     }
 
     public function login($params){
-        $sql = "SELECT usuario, correo, contrasena, tipo, id_malla FROM $this->table WHERE usuario = :user OR correo = :user AND contrasena = :pass";
+
+        $sql = "SELECT id_usuario, usuario, correo, contrasena, tipo, id_malla FROM $this->table WHERE usuario = :user OR correo = :user AND contrasena = :pass";
         $sth = $this->db->prepare($sql);
         $sth->execute(array(':user' => $params['usuario'], ':pass' => $params['contrasena']));
-
-        
 
         $result = $sth->fetch();
 
         if(count($result) > 0):
-            $_SESSION["usuario"] = $result['usuario'];
-            $_SESSION["tipo"] = $result['tipo'];
-            $_SESSION["id_malla"] = $result['id_malla'];
-            $result['ok'] = 'Acceso Autorizado';
-            return $result;
+            $time = time();
+            $key = 'm.iuteb';
+
+            $token = array(
+                'iat' => $time,
+                'exp' => $time + (60*60),
+                'data' => [
+                    'id' => $result['id_usuario'],
+                    'name' => $result['usuario'],
+                    'tipo' => $result['tipo'],
+                    'id_malla' => $result['id_malla']
+                ]
+            );
+
+            $jwt = JWT::encode($token, $key);
+
+            // $data = JWT::decode($jwt, $key, array('HS256'));
+
+            // var_dump($data);
+            return $jwt;
         else:
             return false;
         endif;

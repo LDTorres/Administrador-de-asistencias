@@ -10,6 +10,15 @@
   text-align: center;
 }
 
+.button-personalizado {
+  display: flex;
+  background: darkblue;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  border-radius: 50%;
+}
+
 
 /* .main__form{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;

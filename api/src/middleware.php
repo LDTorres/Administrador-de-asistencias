@@ -1,11 +1,19 @@
 <?php
 // Application middleware
+use Firebase\JWT\JWT;
+
+require 'config.php';
 
 $mw = function ($request, $response, $next) {
-    if(!isset($_SESSION["usuario"])):
+
+    $jwt = $request->getHeader('Auth');
+    $data = JWT::decode($jwt, $key, array('HS256'));
+
+    
+    if(true):
         return $this->response->withJson(array("error"=>"acceso negado"));
     else:
-        $newResponse = $response->withHeader('auth', $_SESSION['usuario']);
+        $newResponse = $response->withHeader('auth', var_dump($data));
         $response = $next($request, $newResponse);
         return $response;
     endif;

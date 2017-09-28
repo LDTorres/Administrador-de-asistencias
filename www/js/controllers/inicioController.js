@@ -10,10 +10,10 @@ angular.module('GATE')
       },
       user: [{
         foto_perfil: 'grabatar.jpg',
-        hola: 'Luis',
-        cedula: '25659843',
+        nombre_completo: 'Luis',
+        cedula: 25659843,
         malla: 'Informatica',
-        telefono: '04128594981',
+        telefono: 04128594981,
         usuario: 'Luis',
         correo: 'luisdtc2696.gmail.com',
         contrasena: '12345678'

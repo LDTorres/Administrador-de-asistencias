@@ -1,5 +1,5 @@
 angular.module('GATE')
 
-  .controller('informacionController', function ($scope) {
+  .controller('inscripcionController', function ($scope) {
 
   })

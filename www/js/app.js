@@ -16,21 +16,21 @@ angular.module('GATE', ['ionic', 'ngCordova', 'ngFileUpload', 'ionic-datepicker'
 
   .config(function ($stateProvider, $urlRouterProvider, $httpProvider, ionicDatePickerProvider) {
 
-    var datePickerObj = { 
-      inputDate: new Date(), 
-      setLabel: 'Colocar', 
-      todayLabel: 'Hoy', 
-      closeLabel: 'Cerrar', 
-      mondayFirst: true, 
-      weeksList: ["D", "L", "Ma", "Mi", "J", "V", "S"], 
-      monthsList: ["Jan", "Feb", "March", "April", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"], 
-      templateType: 'popup', 
-      from: new Date(2017, 1, 1), 
-      to: new Date(2030, 12, 30), 
-      showTodayButton: true, 
-      dateFormat: 'dd MMMM yyyy', 
-      closeOnSelect: false, 
-      disableWeekdays: [0, 6], 
+    var datePickerObj = {
+      inputDate: new Date(),
+      setLabel: 'Colocar',
+      todayLabel: 'Hoy',
+      closeLabel: 'Cerrar',
+      mondayFirst: true,
+      weeksList: ["D", "L", "Ma", "Mi", "J", "V", "S"],
+      monthsList: ["Jan", "Feb", "March", "April", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"],
+      templateType: 'popup',
+      from: new Date(2017, 1, 1),
+      to: new Date(2030, 12, 30),
+      showTodayButton: true,
+      dateFormat: 'dd MMMM yyyy',
+      closeOnSelect: false,
+      disableWeekdays: [0, 6],
     };
 
     ionicDatePickerProvider.configDatePicker(datePickerObj);
@@ -76,6 +76,15 @@ angular.module('GATE', ['ionic', 'ngCordova', 'ngFileUpload', 'ionic-datepicker'
         url: '/seccion:id_seccion',
         templateUrl: '../templates/seccion.html',
         controller: 'seccionController as seccion',
+      })
+      // Esta ruta va a contener {posts de la seccion, miembros, informacion, asistencias}
+      .state('inicio/seccion/asistencias', {
+        url: '/asistencias',
+        templateUrl: '../templates/asistencia.html',
+        controller: 'asistenciaController as asistencia',
+        params: {
+          datos: null
+        }
       })
       // Esta ruta va a contener {nueva publicacion}
       .state('inicio/seccion/publicacion', {

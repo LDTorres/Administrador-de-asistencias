@@ -11,6 +11,7 @@
     "slim/slim": "^3.0",
     "slim/php-view": "^2.0",
     "monolog/monolog": "^1.17",
-    "oscarotero/psr7-middlewares": "^3.21"
+    "oscarotero/psr7-middlewares": "^3.21",
+    "firebase/php-jwt": "^5.0"
   }
 }
