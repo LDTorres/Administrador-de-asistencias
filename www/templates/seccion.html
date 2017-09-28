@@ -8,8 +8,8 @@
         <ion-tab title="Publicaciones" icon-on="ion-ios-filing" icon-off="ion-ios-filing-outline">
           <ion-content class="padding has-tabs">
             <div class="card-list list">
-              <a ui-sref="inicio/seccion/publicacion" class="item item-icon-right">
-                 Nueva Publicacion
+              <a ui-sref="inicio/seccion/publicacion({datos: seccion.datos})" class="item item-icon-right">
+                 Gestionar Publicaciones
                 <i class="icon ion-ios-plus-outline"></i>
               </a>
             </div>
@@ -19,10 +19,9 @@
                 <h4 class="text-center">Publicaciones</h4>
               </div>
             </div>
-
             <div class="list card" ng-repeat="post in seccion.datos.posts">
 
-              <a ui-sref="seccion/seccion/{{post.id_seccion}}" class="item item-avatar">
+              <a class="item item-avatar">
                 <img ng-src="../img/{{post.nombre_archivo}}">
                 <h2>{{post.titulo}}</h2>
                 <p>{{post.fecha_publicacion}}</p>
@@ -70,13 +69,23 @@
               <div class="item item-divider">
                 <h4 class="text-center">Asistencias</h4>
               </div>
-              <div class="item">
-                <h4 ng-click="seccion.openDatePicker()">Seleccionar Fecha</h4>
+              <div class="item row">
+                <h4 class="col col-40" ng-click="seccion.openDatePicker()">Seleccionar Fecha:</h4>
+                <h4 class="col col-30 col-offset-10"> {{seccion.datos.fechaSeleccionada}}</h4>
               </div>
             </div>
             <div class="list card" ng-if="seccion.datos.asistencias.length">
+              <div class="item item-divider">
+                <div class="row">
+                  <b class="col col-50">Nombre:</b>
+                  <b class="col col-50">Asistio:</b>
+                </div>
+              </div>
               <div class="item" ng-repeat="asistencia in seccion.datos.asistencias">
-                <p><b>Nombre:</b>{{asistencia.usuario}} <b>Asistio:</b> {{asistencia.asistio}}</p>
+                <div class="row">
+                  <span class="col col-50">{{asistencia.usuario}}</span>
+                  <span class="col col-50">{{asistencia.asistio}}</span>
+                </div>
               </div>
             </div>
           </ion-content>

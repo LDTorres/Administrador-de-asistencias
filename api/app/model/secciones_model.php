@@ -17,7 +17,7 @@ class SeccionesModel {
 
     // Secciones
     public function getAll($id){
-        $sql = "SELECT * FROM $this->table WHERE id_seccion = ?";
+        $sql = "SELECT * FROM $this->table WHERE id_asignatura = ?";
 
         $sth = $this->db->prepare($sql);
 
@@ -46,13 +46,13 @@ class SeccionesModel {
 
         $sth = $this->db->prepare($sql);
 
-        $codigo = bin2hex(openssl_random_pseudo_bytes(16)); 
+        $codigo = bin2hex(openssl_random_pseudo_bytes(4)); 
 
         $sth->execute(array($params['nombre'], $params['id_asignatura'], $codigo, $params['id_usuario']));
 
-        $result = $this->db->lastInsertId();
+        $params['insert_id'] = $this->db->lastInsertId();
         
-        return $result;
+        return $params;
     }
 
     public function update($params){
@@ -109,18 +109,26 @@ class SeccionesModel {
         $sth = $this->db->prepare("SELECT * FROM secciones WHERE codigo = ?");
         $sth->execute(array($params['codigo']));
         $seccion = $sth->fetch();
+
+        if($seccion === false):
+            return array('msg' => 'codigo invalido');
+        endif;
+
+        $sth = $this->db->prepare("SELECT * FROM alumnos_has_secciones WHERE id_usuario = ? AND id_seccion = ?");
+        $sth->execute(array($params['id_usuario'],$seccion['id_seccion']));
+        $valid = $sth->fetch();
         
-        if(count($seccion) == 0):
-            return array('estado' => 'codigo invalido');
+        if($valid !== false):
+            return array('msg' => 'Ya formas parte de esa seccion');
         endif;
 
         $sql = "INSERT INTO $this->table2 (id_usuario, id_seccion) VALUES (?,?)";
 
         $sth = $this->db->prepare($sql);
 
-        $sth->execute(array($params['id_usuario'], $params['id_seccion']));
+        $sth->execute(array($params['id_usuario'], $seccion['id_seccion']));
 
-        return $this->db->lastInsertId();
+        return array("msg" => "Registro Exitoso!","insertId" => $this->db->lastInsertId());
     }
 
     // Publicaciones
@@ -213,20 +221,42 @@ class SeccionesModel {
     // Asistencias 
 
     public function setAsistence($params){
-        
-        $sql = "INSERT INTO $this->table4 (id_seccion, id_usuario, fecha, asistio) VALUES (?,?,?,?)";
+        $asistencias = [];
 
-        $sth = $this->db->prepare($sql);
-
+        // Si no existe el parametro fecha entonces esta se la del dia actual
         if($params['fecha'] !== NULL):
             $fecha = $params['fecha'];
         else:
             $fecha = date("Y-m-d");
         endif; 
 
-        $sth->execute(array($params['id_seccion'], $params['id_usuario'], $fecha,$params['asistio']));
+        // Tomamos por parametros todos los miembros de una seccion
+        foreach($params['miembros'] as $miembro):
+            // Verificamos si ya existe la asistencia en la base de datos
+            $sth = $this->db->prepare("SELECT * FROM alumnos_has_asistencias WHERE id_usuario = ? AND id_seccion = ? AND fecha = ?");
 
-        return $this->db->lastInsertId();
+            $sth->execute(array($miembro['id_usuario'],$params['id_seccion'], $fecha));
+            $valid = $sth->fetch();
+            // Si existe actualizamos el registro
+            if($valid !== false):
+                $sth = $this->db->prepare("UPDATE alumnos_has_asistencias SET asistio = ?  WHERE id_usuario = ? AND id_seccion = ? AND fecha = ?");
+                $sth->execute(array($miembro['asistio'],$miembro['id_usuario'],$params['id_seccion'], $fecha));
+                $asistencia = array("msg" => 'Asistencia Colocada', "filasAfectadas" => $sth->rowCount(), "usuario" => $miembro['nombre_completo']);
+                array_push($asistencias,$asistencia);
+                continue;
+            endif;
+            // Sino, creamos un nuevo registro en la bd
+            $sql = "INSERT INTO $this->table4 (id_seccion, id_usuario, fecha, asistio) VALUES (?,?,?,?)";
+            $sth = $this->db->prepare($sql);
+
+            $sth->execute(array($params['id_seccion'], $miembro['id_usuario'], $fecha,$miembro['asistio']));
+
+            $asistencia = array("msg" => 'Asistencia Colocada', "insertId" => $this->db->lastInsertId(), "usuario" => $miembro['nombre_completo']);
+
+            array_push($asistencias,$asistencia);
+        endforeach;
+
+        return $asistencias;
     }
 
     public function getAsistences($params){
@@ -238,17 +268,6 @@ class SeccionesModel {
         $sth->execute(array($params['id_seccion'], $params['fecha']));
 
         return $sth->fetchAll();
-    }
-
-    public function updateAsistence($params){
-        
-        $sql = "UPDATE $this->table4 SET asistio = ? WHERE id_usuario = ? AND fecha = ?";
-
-        $sth = $this->db->prepare($sql);
-        
-        $sth->execute(array($params['asistio'], $params['id_usuario'],$param['fecha']));
-
-        return $this->db->lastInsertId();
     }
 
     public function getReport($params){

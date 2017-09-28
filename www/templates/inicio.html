@@ -6,25 +6,23 @@
     </ion-nav-bar>
 
     <div class="tabs-striped tabs-background-positive tabs-color-light">
-
       <ion-tabs class="tabs-positive tabs-icon-top">
-
         <ion-tab title="Publicaciones" icon-on="ion-compose" icon-off="ion-compose">
           <ion-content class="padding has-tabs">
             <div class="list card" ng-repeat="post in inicio.datos.posts">
-              <a ui-sref="inicio/seccion/{{post.id_seccion}}" class="item item-avatar">
+              <a ui-sref="inicio/seccion({id_seccion: post.id_seccion})" class="item item-avatar">
                 <img ng-src="../img/{{post.nombre_archivo}}">
                 <h2>{{post.titulo}}</h2>
                 <p>{{post.fecha_publicacion}}</p>
               </a>
 
               <div class="item item-body">
-                <p>
+                <span>
                   {{post.descripcion}}
-                </p>
-                <p>
+                </span><br>
+                <span>
                   <a class="subdued">{{post.nombre_archivo}}</a>
-                </p>
+                </span>
               </div>
               <a href="#" class="item item-icon-left">
                 <i class="icon ion-code-download"></i>
@@ -37,10 +35,7 @@
         <ion-tab title="Asignaturas" icon-on="ion-clipboard" icon-off="ion-clipboard">
           <ion-content class="padding">
             <div class="card-list list">
-              <a class="item item-icon-right" ui-sref="inicio/asignatura/inscripcion">
-                 Nueva Seccion
-                <i class="icon ion-ios-plus-outline"></i>
-              </a>
+              <a class="item button button-block icon-right ion-android-arrow-dropright" ui-sref="inicio/asignatura/inscripcion"> Inscripción </a>
             </div>
             <div class="card-list list">
               <div class="item item-divider">
@@ -81,42 +76,38 @@
 
                 </form>
               </div>
-              <a class="button button-block icon-right ion-android-arrow-dropright" ui-sref="inicio/asignatura/inscripcion"> Inscripción </a>
-
-              <a class="button button-block icon-right ion-android-arrow-dropright" ui-sref="inicio/seccion"> Inscripción </a>
-
-
             </div>
           </ion-content>
         </ion-tab>
 
         <ion-tab title="Perfil" icon-on="ion-person" icon-off="ion-person">
           <ion-content class="padding">
-            <div ng-repeat="user in inicio.datos.user">
+            <div>
               <div class="list card">
                 <div class="item item-avatar">
-                  <img ng-src="../img/{{user.foto_perfil}}">
-                  <h2>{{user.usuario}}</h2>
-                  <p>{{user.malla}}</p>
+                  <img ng-src="../img/{{inicio.datos.user.foto_perfil}}">
+                  <h2>{{inicio.datos.user.usuario}}</h2>
+                  <p>{{inicio.datos.user.malla}}</p>
                 </div>
               </div>
               <h4 class="text-center">Datos</h4>
               <form class="input-inset list" ng-submit="inicio.actualizarUsuario(inicio.datos.user)">
                 <label class="item item-input">
-                  <input type="text" placeholder="Nombre Completo" ng-model="user.nombre_completo">
+                  <input type="text" placeholder="Nombre Completo" ng-model="inicio.datos.user.nombre_completo">
                 </label>
                 <label class="item item-input">
-                  <input type="number" placeholder="Cedula" ng-model="user.cedula">
+                  <input type="number" placeholder="Cedula" ng-model="inicio.datos.user.cedula">
                 </label>
                 <label class="item item-input">
-                  <input type="tel" placeholder="Telefono" ng-model="user.telefono">
+                  <input type="tel" placeholder="Telefono" ng-model="inicio.datos.user.telefono">
                 </label>
                 <label class="item item-input">
-                  <input type="password" placeholder="Contraseña" ng-model="user.contrasena">
+                  <input type="password" placeholder="Contraseña" ng-model="inicio.datos.user.contrasena">
                 </label>
                 <input type="submit" value="Guardar" class="button button-block button-positive">
 
               </form>
+              <h4 class="text-center">{{inicio.actualizado}}</h4>
             </div>
           </ion-content>
         </ion-tab>

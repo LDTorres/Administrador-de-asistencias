@@ -90,7 +90,10 @@ angular.module('GATE', ['ionic', 'ngCordova', 'ngFileUpload', 'ionic-datepicker'
       .state('inicio/seccion/publicacion', {
         url: '/publicacion',
         templateUrl: '../templates/publicacion.html',
-        controller: 'publicacionController as publicacion'
+        controller: 'publicacionController as publicacion',
+        params: {
+          datos: null
+        }
       })
       // Esta ruta va a contener {posts de la seccion, miembros, informacion, asistencias}
       .state('inicio/seccion/reportes', {

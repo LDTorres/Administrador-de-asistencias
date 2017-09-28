@@ -8,37 +8,29 @@
 
         <ion-tab title="Nueva Asistencia" icon-on="ion-ios-filing" icon-off="ion-ios-filing-outline">
           <ion-content class="padding">
-            <h4 class="text-center">Colocar asistencia</h4>
-            <ul class="list">
-
-              <li class="item item-toggle" ng-repeat="miembro in asistencia.datos.miembros">
-                {{miembro.nombre}}
-                <label class="toggle toggle-assertive">
-                  <input type="checkbox">
+            <div class="list card">
+              <div class="item item-divider">
+                <h4 class="text-center">Colocar o Editar Asistencia</h4>
+              </div>
+              <div class="item row">
+                <h4 class="col col-40" ng-click="asistencia.openDatePicker()">Seleccionar Fecha:</h4>
+                <h4 class="col col-30 col-offset-10"> {{asistencia.datos.fechaSeleccionada}}</h4>
+              </div>
+            </div>
+            <form ng-submit="asistencia.setAsistencia()">
+              <ul class="list">
+                <li class="item item-toggle" ng-repeat="miembro in asistencia.datos.miembros">
+                  {{miembro.nombre_completo}}
+                  <label class="toggle toggle-assertive">
+                  <input type="checkbox" ng-model="miembro.asistio">
                   <div class="track">
                     <div class="handle"></div>
                   </div>
                 </label>
-              </li>
-            </ul>
-          </ion-content>
-        </ion-tab>
-
-        <ion-tab title="Editar Asistencia" icon-on="ion-ios-clock" icon-off="ion-ios-clock-outline">
-          <ion-content class="padding">
-            <div class="list card">
-              <div class="item item-divider">
-                <h4 class="text-center">Editar Asistencia</h4>
-              </div>
-              <div class="item">
-                <h4 ng-click="seccion.openDatePicker()">Seleccionar Fecha</h4>
-              </div>
-            </div>
-            <div class="list card" ng-if="seccion.datos.asistencias.length">
-              <div class="item" ng-repeat="asistencia in seccion.datos.asistencias">
-                <p><b>Nombre:</b>{{asistencia.usuario}} <b>Asistio:</b> {{asistencia.asistio}}</p>
-              </div>
-            </div>
+                </li>
+              </ul>
+              <input type="submit" class="button button-positive button-block" value="Guardar">
+            </form>
           </ion-content>
         </ion-tab>
       </ion-tabs>

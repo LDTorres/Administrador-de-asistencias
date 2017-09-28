@@ -1,6 +1,6 @@
 angular.module('GATE')
 
-  .controller('inicioController', ["$scope", "servicioGeneral", "$state", "servicioSecciones", "servicioAsignatura", function ($scope, servicioGeneral, $state, servicioSecciones, servicioAsignatura) {
+  .controller('inicioController', ["$scope", "servicioGeneral", "$state", "servicioSecciones", "servicioAsignatura", "servicioUsuario", function ($scope, servicioGeneral, $state, servicioSecciones, servicioAsignatura, servicioUsuario) {
     var bz = this;
 
     bz.datos = {
@@ -8,7 +8,9 @@ angular.module('GATE')
       listarAsignaturas: {
         id_malla: 1
       },
-      user: [{
+      crearSeccion: {},
+      user: {
+        id_usuario: 1,
         foto_perfil: 'grabatar.jpg',
         nombre_completo: 'Luis',
         cedula: 25659843,
@@ -17,7 +19,7 @@ angular.module('GATE')
         usuario: 'Luis',
         correo: 'luisdtc2696.gmail.com',
         contrasena: '12345678'
-      }],
+      },
       trimestres: [{
         id_trimestre: 1
       }, {
@@ -73,4 +75,12 @@ angular.module('GATE')
       });
     }
 
+    bz.actualizarUsuario = function () {
+      servicioUsuario.update(bz.datos.user).then(function (res) {
+        bz.datos.user = res.data;
+        bz.actualizado = 'Tus datos han sido actualizados';
+      }).catch(function (res) {
+        console.log(res)
+      });
+    }
   }])

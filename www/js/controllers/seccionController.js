@@ -15,10 +15,11 @@ angular.module('GATE')
       miembros: []
     }
 
+
+
     bz.getInfo = function () {
       servicioSecciones.getInfo(bz.datos.datosSeccion).then(function (res) {
         bz.datos.seccion = res.data;
-        console.log(res)
       }).catch(function (res) {
         console.log(res)
       });
@@ -51,7 +52,7 @@ angular.module('GATE')
       callback: function (val) {
         date = new Date(val);
         bz.datos.getAsistence.fecha = formatDate(date);
-        console.log(bz.datos.getAsistence)
+        bz.datos.fechaSeleccionada = formatDate(date);
         bz.getAsistencias(bz.datos.getAsistence);
       }
     }

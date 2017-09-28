@@ -1,6 +1,6 @@
 angular.module('GATE')
 
-  .constant("ruta", "http://0.0.0.0:3454")
+  .constant("ruta", "http://localhost:3454")
   /* INGRESAR */
 
   .service("servicioGeneral", ["$http", "$q", "ruta", function ($http, $q, ruta) {
@@ -176,7 +176,7 @@ angular.module('GATE')
       return promise;
     }
 
-    // Espera como parametro {contrasena, nombre_completo, telefono}
+    // Espera como parametro {id_usuario, contrasena, nombre_completo, telefono, cedula}
     this.update = function (datos) {
       /* Declaramos una promesa */
       var defered = $q.defer();
@@ -471,6 +471,26 @@ angular.module('GATE')
       var promise = defered.promise;
 
       $http.get(ruta + '/seccion/member/delete/' + id).then(function (res) {
+
+        /* Si el valor fue devuelto */
+        defered.resolve(res);
+
+      }).catch(function (res) {
+
+        /* Si hubo algun error */
+        defered.reject(res);
+      })
+      return promise;
+    }
+
+    // Espera como parametro {id_usuario, codigo}
+
+    this.addMember = function (datos) {
+      /* Declaramos una promesa */
+      var defered = $q.defer();
+      var promise = defered.promise;
+
+      $http.post(ruta + '/seccion/member/add', datos).then(function (res) {
 
         /* Si el valor fue devuelto */
         defered.resolve(res);

@@ -176,12 +176,6 @@ $app->group('/seccion',function(){
         return $this->response->withJson($GLOBALS['sm']->getAsistences($params), 200);
     });
 
-    $this->post('/asistencia/update', function($req, $res){
-        $params = $req->getParsedBody();
-
-        return $this->response->withJson($GLOBALS['sm']->updateAsistences($params), 200);
-    });
-
     $this->post('/reporte', function($req, $res){
         $params = $req->getParsedBody();
 

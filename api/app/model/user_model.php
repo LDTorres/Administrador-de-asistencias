@@ -57,19 +57,38 @@ class UserModel
             ':id_malla' => $params['id_malla']
         ));
 
-        $params['id'] = $this->db->lastInsertId();
+        $params['id_usuario'] = $this->db->lastInsertId();
+
+        $time = time();
+            $key = 'm.iuteb';
+
+            $token = array(
+                'iat' => $time,
+                'exp' => $time + (60*60),
+                'data' => [
+                    'id' => $params['id_usuario'],
+                    'name' => $params['usuario'],
+                    'tipo' => 'Estudiante',
+                    'id_malla' => $params['id_malla']
+                ]
+            );
+
+            $jwt = JWT::encode($token, $key);
+
+            // $data = JWT::decode($jwt, $key, array('HS256'));
+
+            // var_dump($data);
+            
+        $params['token'] = $jwt;
 
         return $params;
     }
 
     public function update($params){
 
-        $sql = "UPDATE $this->table SET nombre_completo = :nombre_completo WHERE id_usuario = :id";
+        $sql = "UPDATE $this->table SET nombre_completo = ?, cedula = ?, telefono = ?, contrasena = ? WHERE id_usuario = ?";
         $sth = $this->db->prepare($sql);
-        $sth->execute(array(
-            ':id' => $params['id_usuario'],
-            ':nombre_completo' => $params['nombre_completo']
-        ));
+        $sth->execute(array($params['nombre_completo'], $params['cedula'], $params['telefono'], $params['contrasena'],$params['id_usuario']));
 
         return $params;
     }
@@ -114,7 +133,7 @@ class UserModel
             // $data = JWT::decode($jwt, $key, array('HS256'));
 
             // var_dump($data);
-            return $jwt;
+            return array("token" => $jwt);
         else:
             return false;
         endif;
