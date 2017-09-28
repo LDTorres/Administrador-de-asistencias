@@ -118,7 +118,7 @@ angular.module('GATE')
     }
   }])
 
-  // USUARIOS
+  /* USUARIOS */
 
   .service("servicioUsuario", ["$http", "$q", "ruta", "Upload", function ($http, $q, ruta, Upload) {
 
