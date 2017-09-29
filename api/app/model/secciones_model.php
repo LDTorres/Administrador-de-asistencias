@@ -204,7 +204,7 @@ class SeccionesModel {
 
         $sth->execute(array($params['titulo'],$params['descripcion'], $params['id_seccion'], $params['id_usuario'], $filename));
 
-        return  $this->db->lastInsertId();
+        return  array("msg" => 'Publicacion Subida', "InsertId" => $this->db->lastInsertId());
     }
 
     public function deletePost($params){

@@ -1,6 +1,6 @@
 angular.module('GATE')
 
-  .controller('seccionController', function ($scope, $stateParams, servicioSecciones, ionicDatePicker) {
+  .controller('seccionController', function ($scope, $stateParams, servicioSecciones, ionicDatePicker, $state) {
     var bz = this;
     bz.datos = {
       seccion: [],
@@ -15,7 +15,22 @@ angular.module('GATE')
       miembros: []
     }
 
+    bz.crearPublicacion = function () {
+      $state.go('inicio/seccion/publicacion', {
+        datos: {
+          id_seccion: $stateParams.id_seccion,
+          id_usuario: 1,
+          accion: 'new'
+        }
+      });
+    }
 
+    bz.editarPublicacion = function (index) {
+      bz.datos.posts[index].accion = 'edit';
+      $state.go('inicio/seccion/publicacion', {
+        datos: bz.datos.posts[index]
+      });
+    }
 
     bz.getInfo = function () {
       servicioSecciones.getInfo(bz.datos.datosSeccion).then(function (res) {

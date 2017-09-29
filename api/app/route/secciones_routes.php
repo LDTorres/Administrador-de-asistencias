@@ -117,7 +117,7 @@ $app->group('/seccion',function(){
 
         $params = $req->getParsedBody();
 
-        if(isset($archivos)):
+        if(isset($archivos['archivo'])):
             $archivo = $archivos['archivo'];
             if (!empty($archivo)):
                 if ($archivo->getError() === UPLOAD_ERR_OK):
@@ -141,7 +141,7 @@ $app->group('/seccion',function(){
 
         $params = $req->getParsedBody();
 
-        if(isset($archivos)):
+        if(isset($archivos['archivo'])):
             $archivo = $archivos['archivo'];
             if (!empty($archivo)):
                 if ($archivo->getError() === UPLOAD_ERR_OK):
