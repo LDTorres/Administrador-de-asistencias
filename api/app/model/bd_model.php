@@ -39,7 +39,7 @@ class BDModel {
         $return = "-- MySQL Script generado por $this->aplication \n-- $date \n-- Version: 1.0 \n-- MySQL Admin \n\n";
         $return .= "SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;\nSET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;\nSET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES'; \n\n\n -- ----------------------------------------------------- \n -- Schema $this->database \n -- \n -- $this->description \n -- \n -- Luis Torres -- \n -- Adrian Flores -- \n -- Michel Novellino \n \n CREATE SCHEMA IF NOT EXISTS `$this->database`;\n USE `$this->database`; \n\n ";
 
-        //get all of the tables
+        //get all of the tables  
         if($tables == '*'):
             $tables = array();
             $result = $this->db->query('SHOW TABLES');

@@ -3,95 +3,92 @@ angular.module('GATE')
   .constant("ruta", "http://localhost:3454")
   /* INGRESAR */
 
-  .service("servicioGeneral", ["$http", "$q", "ruta", function ($http, $q, ruta) {
+  .service("servicioGeneral", ["$http", "$q", "ruta", "$rootScope", "$window", function ($http, $q, ruta, $rootScope, $window) {
 
     // Espera por parametro {usuario | correo, contrasena}
     this.ingresar = function (datos) {
-      /* Declaramos una promesa */
+
       var defered = $q.defer();
       var promise = defered.promise;
 
       $http.post(ruta + '/login', datos).then(function (res) {
-        /* Si el valor fue devuelto */
-        defered.resolve(res);
+
+        $window.localStorage.setItem('token', JSON.stringify(res.data));
+        $rootScope.objectoCliente = res.data;
+
+        defered.resolve();
 
       }).catch(function (res) {
-
-        /* Si hubo algun error */
-        defered.reject(res);
+        $window.localStorage.removeItem('token');
+        defered.reject();
       })
+
       return promise;
     }
-    // Cierra la session
+
     this.salir = function () {
-      /* Declaramos una promesa */
-      var defered = $q.defer();
-      var promise = defered.promise;
-
-      $http.get(ruta + '/logout').then(function (res) {
-
-        /* Si el valor fue devuelto */
-        defered.resolve(res);
-
-      }).catch(function (res) {
-
-        /* Si hubo algun error */
-        defered.reject(res);
-      })
-      return promise;
+      $rootScope.objectoCliente = false;
+      $window.localStorage.removeItem('token');
     }
 
-    this.session = function () {
-      /* Declaramos una promesa */
-      var defered = $q.defer();
-      var promise = defered.promise;
-
-      $http.get(ruta + '/session').then(function (res) {
-
-        /* Si el valor fue devuelto */
-        defered.resolve(res);
-
-      }).catch(function (res) {
-
-        /* Si hubo algun error */
-        defered.reject(res);
-      })
-      return promise;
-    }
     // Espera por parametro {usuario, contrasena, nombre_completo, cedula, correo, telefono, id_malla}
     this.registrar = function (datos) {
-      /* Declaramos una promesa */
+
       var defered = $q.defer();
       var promise = defered.promise;
 
       $http.post(ruta + '/singup', datos).then(function (res) {
 
-        /* Si el valor fue devuelto */
+        $window.localStorage.setItem('token', JSON.stringify(res.data));
+        $rootScope.objectoCliente = res.data;
         defered.resolve(res);
 
       }).catch(function (res) {
 
-        /* Si hubo algun error */
         defered.reject(res);
+
       })
       return promise;
     }
 
+    this.autorizado = function () {
+
+      if ($rootScope.objectoCliente) {
+
+        return $rootScope.objectoCliente;
+
+      } else {
+
+        if ($window.localStorage.getItem('token')) {
+
+          $rootScope.objectoCliente = JSON.parse($window.localStorage.getItem('token'));
+
+          return $rootScope.objectoCliente;
+
+        } else {
+
+          return false;
+
+        }
+
+      }
+
+    }
+
     // Devuelve la informacion de la aplicacion
     this.app = function () {
-      /* Declaramos una promesa */
+
       var defered = $q.defer();
       var promise = defered.promise;
 
       $http.get(ruta + '/app').then(function (res) {
 
-        /* Si el valor fue devuelto */
         defered.resolve(res);
 
       }).catch(function (res) {
 
-        /* Si hubo algun error */
         defered.reject(res);
+
       })
       return promise;
     }
@@ -99,18 +96,18 @@ angular.module('GATE')
     // Espera como parametro {id_usuario, offset}
 
     this.timeline = function (id) {
-      /* Declaramos una promesa */
+
       var defered = $q.defer();
       var promise = defered.promise;
 
       $http.get(ruta + '/seccion/posts/timeline/' + id).then(function (res) {
 
-        /* Si el valor fue devuelto */
+
         defered.resolve(res);
 
       }).catch(function (res) {
 
-        /* Si hubo algun error */
+
         defered.reject(res);
 
       })
@@ -165,12 +162,12 @@ angular.module('GATE')
 
       $http.get(ruta + rutaCompleta).then(function (res) {
 
-        /* Si el valor fue devuelto */
+
         defered.resolve(res);
 
       }).catch(function (res) {
 
-        /* Si hubo algun error */
+
         defered.reject(res);
       })
       return promise;
@@ -178,18 +175,18 @@ angular.module('GATE')
 
     // Espera como parametro {id_usuario, contrasena, nombre_completo, telefono, cedula}
     this.update = function (datos) {
-      /* Declaramos una promesa */
+
       var defered = $q.defer();
       var promise = defered.promise;
 
       $http.post(ruta + '/user/update', datos).then(function (res) {
 
-        /* Si el valor fue devuelto */
+
         defered.resolve(res);
 
       }).catch(function (res) {
 
-        /* Si hubo algun error */
+
         defered.reject(res);
       })
       return promise;
@@ -198,18 +195,18 @@ angular.module('GATE')
     /* Espera como parametro {tipo de ususario, por defecto es ESTUDIANTE} */
 
     this.getAll = function (datos) {
-      /* Declaramos una promesa */
+
       var defered = $q.defer();
       var promise = defered.promise;
 
       $http.get(ruta + '/user/all/' + datos).then(function (res) {
 
-        /* Si el valor fue devuelto */
+
         defered.resolve(res);
 
       }).catch(function (res) {
 
-        /* Si hubo algun error */
+
         defered.reject(res);
       })
       return promise;
@@ -218,18 +215,18 @@ angular.module('GATE')
     /* Espera como parametro {id del usuario} */
 
     this.get = function (datos) {
-      /* Declaramos una promesa */
+
       var defered = $q.defer();
       var promise = defered.promise;
 
       $http.get(ruta + '/user/' + datos).then(function (res) {
 
-        /* Si el valor fue devuelto */
+
         defered.resolve(res);
 
       }).catch(function (res) {
 
-        /* Si hubo algun error */
+
         defered.reject(res);
       })
       return promise;
@@ -244,18 +241,18 @@ angular.module('GATE')
     /* Esperan el id de todas las asignaturas */
 
     this.getAll = function (datos) {
-      /* Declaramos una promesa */
+
       var defered = $q.defer();
       var promise = defered.promise;
 
       $http.get(ruta + '/asignatura/all/' + datos.id_malla + '/' + datos.id_trimestre).then(function (res) {
 
-        /* Si el valor fue devuelto */
+
         defered.resolve(res);
 
       }).catch(function (res) {
 
-        /* Si hubo algun error */
+
         defered.reject(res);
       })
       return promise;
@@ -264,18 +261,18 @@ angular.module('GATE')
     /* Esperan el id, trimestre y opcionalmente el pnf */
 
     this.get = function (datos) {
-      /* Declaramos una promesa */
+
       var defered = $q.defer();
       var promise = defered.promise;
 
       $http.get(ruta + '/asignatura/' + datos.id_malla + '/' + datos.id_trimestre).then(function (res) {
 
-        /* Si el valor fue devuelto */
+
         defered.resolve(res);
 
       }).catch(function (res) {
 
-        /* Si hubo algun error */
+
         defered.reject(res);
       })
       return promise;
@@ -284,18 +281,18 @@ angular.module('GATE')
     /* Se añadiran nombre, trimestre, id_malla */
 
     this.add = function (datos) {
-      /* Declaramos una promesa */
+
       var defered = $q.defer();
       var promise = defered.promise;
 
       $http.post(ruta + '/asignatura/add', datos).then(function (res) {
 
-        /* Si el valor fue devuelto */
+
         defered.resolve(res);
 
       }).catch(function (res) {
 
-        /* Si hubo algun error */
+
         defered.reject(res);
       })
       return promise;
@@ -303,18 +300,18 @@ angular.module('GATE')
 
     /* Se actualizaran nombre dentro de una id_malla y trimestre */
     this.update = function (datos) {
-      /* Declaramos una promesa */
+
       var defered = $q.defer();
       var promise = defered.promise;
 
       $http.post(ruta + '/asignatura/update', datos).then(function (res) {
 
-        /* Si el valor fue devuelto */
+
         defered.resolve(res);
 
       }).catch(function (res) {
 
-        /* Si hubo algun error */
+
         defered.reject(res);
       })
       return promise;
@@ -328,18 +325,18 @@ angular.module('GATE')
     // Espera como parametro {id_seccion, fecha}
 
     this.getInfo = function (datos) {
-      /* Declaramos una promesa */
+
       var defered = $q.defer();
       var promise = defered.promise;
 
       $http.post(ruta + '/seccion/getInfo', datos).then(function (res) {
 
-        /* Si el valor fue devuelto */
+
         defered.resolve(res);
 
       }).catch(function (res) {
 
-        /* Si hubo algun error */
+
         defered.reject(res);
       })
       return promise;
@@ -347,18 +344,18 @@ angular.module('GATE')
 
     // Espera como parametro {id_asignatura}
     this.getAll = function (id) {
-      /* Declaramos una promesa */
+
       var defered = $q.defer();
       var promise = defered.promise;
 
       $http.get(ruta + '/seccion/all/' + id).then(function (res) {
 
-        /* Si el valor fue devuelto */
+
         defered.resolve(res);
 
       }).catch(function (res) {
 
-        /* Si hubo algun error */
+
         defered.reject(res);
       })
       return promise;
@@ -366,18 +363,18 @@ angular.module('GATE')
 
     // Espera como parametro {id_seccion, id_profesor}
     this.get = function (datos) {
-      /* Declaramos una promesa */
+
       var defered = $q.defer();
       var promise = defered.promise;
 
       $http.get(ruta + '/seccion/' + datos.id + '/' + datos.idProfesor).then(function (res) {
 
-        /* Si el valor fue devuelto */
+
         defered.resolve(res);
 
       }).catch(function (res) {
 
-        /* Si hubo algun error */
+
         defered.reject(res);
       })
       return promise;
@@ -385,18 +382,18 @@ angular.module('GATE')
 
     // Espera como parametro {id_seccion, id_profesor}
     this.add = function (datos) {
-      /* Declaramos una promesa */
+
       var defered = $q.defer();
       var promise = defered.promise;
 
       $http.post(ruta + '/seccion/add', datos).then(function (res) {
 
-        /* Si el valor fue devuelto */
+
         defered.resolve(res);
 
       }).catch(function (res) {
 
-        /* Si hubo algun error */
+
         defered.reject(res);
       })
       return promise;
@@ -404,18 +401,18 @@ angular.module('GATE')
 
     // Espera como parametro {nombre, id_seccion}
     this.update = function (datos) {
-      /* Declaramos una promesa */
+
       var defered = $q.defer();
       var promise = defered.promise;
 
       $http.post(ruta + '/seccion/update', datos).then(function (res) {
 
-        /* Si el valor fue devuelto */
+
         defered.resolve(res);
 
       }).catch(function (res) {
 
-        /* Si hubo algun error */
+
         defered.reject(res);
       })
       return promise;
@@ -426,18 +423,18 @@ angular.module('GATE')
     // Espera como parametro {id_seccion}
 
     this.getMembers = function (datos) {
-      /* Declaramos una promesa */
+
       var defered = $q.defer();
       var promise = defered.promise;
 
       $http.post(ruta + '/seccion/members', datos).then(function (res) {
 
-        /* Si el valor fue devuelto */
+
         defered.resolve(res);
 
       }).catch(function (res) {
 
-        /* Si hubo algun error */
+
         defered.reject(res);
       })
       return promise;
@@ -446,18 +443,18 @@ angular.module('GATE')
     // Espera como parametro {id_usuario}
 
     this.getMember = function (id) {
-      /* Declaramos una promesa */
+
       var defered = $q.defer();
       var promise = defered.promise;
 
       $http.get(ruta + '/seccion/member/' + id).then(function (res) {
 
-        /* Si el valor fue devuelto */
+
         defered.resolve(res);
 
       }).catch(function (res) {
 
-        /* Si hubo algun error */
+
         defered.reject(res);
       })
       return promise;
@@ -466,18 +463,18 @@ angular.module('GATE')
     // Espera como parametro {id_usuario}
 
     this.deleteMember = function (id) {
-      /* Declaramos una promesa */
+
       var defered = $q.defer();
       var promise = defered.promise;
 
       $http.get(ruta + '/seccion/member/delete/' + id).then(function (res) {
 
-        /* Si el valor fue devuelto */
+
         defered.resolve(res);
 
       }).catch(function (res) {
 
-        /* Si hubo algun error */
+
         defered.reject(res);
       })
       return promise;
@@ -486,18 +483,18 @@ angular.module('GATE')
     // Espera como parametro {id_usuario, codigo}
 
     this.addMember = function (datos) {
-      /* Declaramos una promesa */
+
       var defered = $q.defer();
       var promise = defered.promise;
 
       $http.post(ruta + '/seccion/member/add', datos).then(function (res) {
 
-        /* Si el valor fue devuelto */
+
         defered.resolve(res);
 
       }).catch(function (res) {
 
-        /* Si hubo algun error */
+
         defered.reject(res);
       })
       return promise;
@@ -506,18 +503,18 @@ angular.module('GATE')
     // Espera como parametro {id_usuario, id_seccion, accion}
 
     this.statusMember = function (datos) {
-      /* Declaramos una promesa */
+
       var defered = $q.defer();
       var promise = defered.promise;
 
       $http.post(ruta + '/seccion/member/status', datos).then(function (res) {
 
-        /* Si el valor fue devuelto */
+
         defered.resolve(res);
 
       }).catch(function (res) {
 
-        /* Si hubo algun error */
+
         defered.reject(res);
       })
       return promise;
@@ -528,18 +525,18 @@ angular.module('GATE')
     // Espera como parametro {id_seccion, offset}
 
     this.getPosts = function (datos) {
-      /* Declaramos una promesa */
+
       var defered = $q.defer();
       var promise = defered.promise;
 
       $http.post(ruta + '/seccion/posts', datos).then(function (res) {
 
-        /* Si el valor fue devuelto */
+
         defered.resolve(res);
 
       }).catch(function (res) {
 
-        /* Si hubo algun error */
+
         defered.reject(res);
       })
       return promise;
@@ -548,18 +545,18 @@ angular.module('GATE')
     // Espera como parametro {id_publicacion, id_seccion, id_usuario}
 
     this.getPost = function (datos) {
-      /* Declaramos una promesa */
+
       var defered = $q.defer();
       var promise = defered.promise;
 
       $http.post(ruta + '/seccion/post/get', datos).then(function (res) {
 
-        /* Si el valor fue devuelto */
+
         defered.resolve(res);
 
       }).catch(function (res) {
 
-        /* Si hubo algun error */
+
         defered.reject(res);
       })
       return promise;
@@ -628,18 +625,18 @@ angular.module('GATE')
     // Espera como parametro {id_publicacion, id_seccion, id_usuario}
 
     this.deletePost = function (datos) {
-      /* Declaramos una promesa */
+
       var defered = $q.defer();
       var promise = defered.promise;
 
       $http.post(ruta + '/seccion/post/delete', datos).then(function (res) {
 
-        /* Si el valor fue devuelto */
+
         defered.resolve(res);
 
       }).catch(function (res) {
 
-        /* Si hubo algun error */
+
         defered.reject(res);
       })
       return promise;
@@ -650,18 +647,18 @@ angular.module('GATE')
     // Espera como parametro {id_seccion, id_usuario, fecha, asistio}
 
     this.setAsistence = function (datos) {
-      /* Declaramos una promesa */
+
       var defered = $q.defer();
       var promise = defered.promise;
 
       $http.post(ruta + '/seccion/asistencia', datos).then(function (res) {
 
-        /* Si el valor fue devuelto */
+
         defered.resolve(res);
 
       }).catch(function (res) {
 
-        /* Si hubo algun error */
+
         defered.reject(res);
       })
       return promise;
@@ -670,18 +667,18 @@ angular.module('GATE')
     // Espera como parametro {id_seccion, fecha}
 
     this.getAsistence = function (datos) {
-      /* Declaramos una promesa */
+
       var defered = $q.defer();
       var promise = defered.promise;
 
       $http.post(ruta + '/seccion/asistencia/get', datos).then(function (res) {
 
-        /* Si el valor fue devuelto */
+
         defered.resolve(res);
 
       }).catch(function (res) {
 
-        /* Si hubo algun error */
+
         defered.reject(res);
       })
       return promise;
@@ -690,18 +687,18 @@ angular.module('GATE')
     // Espera como parametro {id_usuario, fecha, aistio}
 
     this.updateAsistence = function (datos) {
-      /* Declaramos una promesa */
+
       var defered = $q.defer();
       var promise = defered.promise;
 
       $http.post(ruta + '/seccion/asistencia/update', datos).then(function (res) {
 
-        /* Si el valor fue devuelto */
+
         defered.resolve(res);
 
       }).catch(function (res) {
 
-        /* Si hubo algun error */
+
         defered.reject(res);
       })
       return promise;
@@ -710,21 +707,59 @@ angular.module('GATE')
     // Espera como parametro {id_seccion, desde, hasta}
 
     this.report = function (datos) {
-      /* Declaramos una promesa */
+
       var defered = $q.defer();
       var promise = defered.promise;
 
       $http.post(ruta + '/seccion/reporte', datos).then(function (res) {
 
-        /* Si el valor fue devuelto */
+
         defered.resolve(res);
 
       }).catch(function (res) {
 
-        /* Si hubo algun error */
+
         defered.reject(res);
       })
       return promise;
     }
 
-  }]);
+  }])
+
+  .factory('AuthInterceptor', function ($window, $q, $rootScope) {
+    function salir() {
+      $rootScope.objectoCliente = false;
+      $window.localStorage.removeItem('bzToken');
+    }
+
+    function autorizado() {
+      if ($rootScope.objectoCliente) {
+        return $rootScope.objectoCliente;
+      } else {
+        if ($window.localStorage.getItem('token')) {
+          $rootScope.objectoCliente = JSON.parse($window.localStorage.getItem('token'));
+          return $rootScope.objectoCliente;
+        } else {
+          return false;
+        }
+      }
+    }
+    return {
+      request: function (config) {
+
+        config.headers = config.headers || {};
+        if (autorizado()) {
+          config.headers.auth = autorizado().token;
+        }
+
+        return config || $q.when(config);
+
+      },
+      response: function (response) {
+        if (response.status === 401 || response.status === 403) {
+          salir();
+        }
+        return response || $q.when(response);
+      }
+    };
+  });
