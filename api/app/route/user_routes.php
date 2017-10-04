@@ -66,7 +66,7 @@ $app->group('/user', function () {
 
     });
 
-})->add($mw);
+});
 
 // ->add($mw);
 

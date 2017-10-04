@@ -8,7 +8,7 @@ angular.module('GATE')
         id_malla: 1
       },
       user: {
-        tipo: 'profesor'
+        tipo: 'estudiante'
       },
       trimestres: [{
         id_trimestre: 1

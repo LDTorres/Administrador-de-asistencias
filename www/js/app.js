@@ -43,34 +43,12 @@ angular.module('GATE', ['ionic', 'ngCordova', 'ngFileUpload', 'ionic-datepicker'
         url: '/',
         templateUrl: '../templates/login.html',
         controller: 'loginController as login',
-        resolve: {
-          "currentAuth": ["$q", "servicioGeneral", function ($q, servicioGeneral) {
-
-            if (servicioGeneral.autorizado()) {
-
-              return $q.reject("LOGOUT_REQUIRED");
-
-            }
-
-          }]
-        }
       })
       // Inicio va a contener {timeline, todas las asignaturas y las secciones, perfil}
       .state('inicio', {
         url: '/inicio',
         templateUrl: '../templates/inicio.html',
         controller: 'inicioController as inicio',
-        resolve: {
-          "currentAuth": ["$q", "servicioGeneral", function ($q, servicioGeneral) {
-
-            if (!servicioGeneral.autorizado()) {
-
-              return $q.reject("AUTH_REQUIRED");
-
-            }
-
-          }]
-        }
       })
       // Ayuda va a contener {informacion de la app, y el manual}
       .state('inicio/ayuda', {
