@@ -14,7 +14,7 @@ $app->post('/login', function ($req, $res) {
     $result =  $GLOBALS['um']->login($params);
 
     if(!isset($result)):
-        return $this->response->withJson(array("error"=>"acceso negado"), 405);
+        return $this->response->withJson(array("error"=>"Datos Invalidos"), 405);
     else:
         return $this->response->withJson($result, 200);
     endif;
@@ -25,11 +25,14 @@ $app->get('/logout', function ($req, $res, $args) {
     return $this->response->withJson(array("ok"=>"sesion finalizada"));
 });
 
-$app->get('/session', function ($req, $res, $args) {
-    if($_SESSION['tipo'] !== 'Administrador'):
-        return$this->response->withJson(array('msg'=>'acceso negado'));
-    endif;
-    return $this->response->withJson(array("usuario"=>$_SESSION['usuario'], "tipo"=>$_SESSION['tipo']));
+$app->post('/checkAuth', function ($req, $res) {
+    $params = $req->getParsedBody();
+    return $this->response->withJson($GLOBALS['um']->check($params['token']));
+});
+
+$app->get('/getDataAuth', function ($req, $res) {
+    $params = $req->getParsedBody();
+    return $this->response->withJson($GLOBALS['um']->getData($params['token']));
 });
 
 $app->get('/app', function ($req, $res, $args) {

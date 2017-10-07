@@ -5,10 +5,15 @@ namespace App\Model;
 use Firebase\JWT\JWT;
 use App\Lib\Database;
 
+use Exception;
+
 class UserModel
 {
     private $table = 'usuarios';
     private $db;
+    private static $secret_key = 'm.iuteb';
+    private static $encrypt = ['HS256'];
+    private static $aud = null;
 
     public function __CONSTRUCT()
     {
@@ -43,47 +48,6 @@ class UserModel
         return $result;
     }
 
-    public function add($params){
-
-        $sql = "INSERT INTO $this->table (usuario, contrasena, nombre_completo, cedula, correo, telefono, id_malla) VALUES (:usuario, :contrasena, :nombre_completo, :cedula, :correo, :telefono, :id_malla ) ";
-        $sth = $this->db->prepare($sql);
-        $sth->execute(array(
-            ':usuario' => $params['usuario'], 
-            ':contrasena' => $params['contrasena'], 
-            ':nombre_completo' => $params['nombre_completo'],
-            ':cedula' => $params['cedula'], 
-            ':correo' => $params['correo'],
-            ':telefono' => $params['telefono'],
-            ':id_malla' => $params['id_malla']
-        ));
-
-        $params['id_usuario'] = $this->db->lastInsertId();
-
-        $time = time();
-            $key = 'm.iuteb';
-
-            $token = array(
-                'iat' => $time,
-                'exp' => $time + (60*60),
-                'data' => [
-                    'id' => $params['id_usuario'],
-                    'name' => $params['usuario'],
-                    'tipo' => 'Estudiante',
-                    'id_malla' => $params['id_malla']
-                ]
-            );
-
-            $jwt = JWT::encode($token, $key);
-
-            // $data = JWT::decode($jwt, $key, array('HS256'));
-
-            // var_dump($data);
-            
-        $params['token'] = $jwt;
-
-        return $params;
-    }
-
     public function update($params){
 
         $sql = "UPDATE $this->table SET nombre_completo = ?, cedula = ?, telefono = ?, contrasena = ? WHERE id_usuario = ?";
@@ -93,7 +57,6 @@ class UserModel
         return $params;
     }
 
-    // TODO: Falta por definir que se va a actualizar
     public function picture($params, $filename){
         $sql = "UPDATE $this->table SET foto_perfil = :foto_perfil WHERE id_usuario=:id";
         $sth = $this->db->prepare($sql);
@@ -103,40 +66,6 @@ class UserModel
         ));
 
         return array('message' => 'Registro Almacenado', 'filename' => $filename);
-    }
-
-    public function login($params){
-
-        $sql = "SELECT id_usuario, usuario, correo, contrasena, tipo, id_malla FROM $this->table WHERE usuario = :user OR correo = :user AND contrasena = :pass";
-        $sth = $this->db->prepare($sql);
-        $sth->execute(array(':user' => $params['usuario'], ':pass' => $params['contrasena']));
-
-        $result = $sth->fetch();
-
-        if(count($result) > 0):
-            $time = time();
-            $key = 'm.iuteb';
-
-            $token = array(
-                'iat' => $time,
-                'exp' => $time + (60*60),
-                'data' => [
-                    'id' => $result['id_usuario'],
-                    'name' => $result['usuario'],
-                    'tipo' => $result['tipo'],
-                    'id_malla' => $result['id_malla']
-                ]
-            );
-
-            $jwt = JWT::encode($token, $key);
-
-            // $data = JWT::decode($jwt, $key, array('HS256'));
-
-            // var_dump($data);
-            return array("token" => $jwt);
-        else:
-            return false;
-        endif;
     }
 
     public function status($params){
@@ -168,5 +97,143 @@ class UserModel
         endif;
 
         return $result;
+    }
+
+    // AUTENTIFICACION
+
+    public function login($params){
+
+        $sql = "SELECT id_usuario, usuario, correo, contrasena, tipo, id_malla FROM $this->table WHERE usuario = :user OR correo = :user AND contrasena = :pass";
+        $sth = $this->db->prepare($sql);
+        $sth->execute(array(':user' => $params['usuario'], ':pass' => $params['contrasena']));
+
+        $result = $sth->fetch();
+
+        if(count($result) > 0):
+            $time = time();
+
+            $token = array(
+                'iat' => $time,
+                'exp' => $time + (60*60*60),
+                'aud' => self::Aud(),
+                'data' => [
+                    'id' => $result['id_usuario'],
+                    'name' => $result['usuario'],
+                    'tipo' => $result['tipo'],
+                    'id_malla' => $result['id_malla']
+                ]
+            );
+
+            $jwt = JWT::encode($token, self::$secret_key);
+
+            // $data = JWT::decode($jwt, self::$secret_key, array('HS256'));
+
+            // var_dump($data);
+            return array("token" => $jwt);
+        else:
+            return false;
+        endif;
+    }
+
+    public function add($params){
+
+        if(isset($params['tipo']) != NULL && $params['tipo'] == 'Profesor'){
+            $tipo = $params['tipo'];
+        }else{
+            $tipo = 'Estudiante';
+        }
+
+        $sql = "INSERT INTO $this->table (usuario, contrasena, nombre_completo, cedula, correo, telefono, id_malla) VALUES (:usuario, :contrasena, :nombre_completo, :cedula, :correo, :telefono, :id_malla ) ";
+        $sth = $this->db->prepare($sql);
+        $sth->execute(array(
+            ':usuario' => $params['usuario'], 
+            ':contrasena' => $params['contrasena'], 
+            ':nombre_completo' => $params['nombre_completo'],
+            ':cedula' => $params['cedula'], 
+            ':correo' => $params['correo'],
+            ':telefono' => $params['telefono'],
+            ':id_malla' => $params['id_malla']
+        ));
+
+        $params['id_usuario'] = $this->db->lastInsertId();
+
+        $time = time();
+
+            $token = array(
+                'iat' => $time,
+                'exp' => $time + (60*60*60),
+                'aud' => self::Aud(),
+                'data' => [
+                    'id' => $params['id_usuario'],
+                    'name' => $params['usuario'],
+                    'tipo' => $tipo,
+                    'id_malla' => $params['id_malla']
+                ]
+            );
+
+            $jwt = JWT::encode($token, self::$secret_key);
+
+            // $data = JWT::decode($jwt, self::$secret_key, array('HS256'));
+
+            // var_dump($data);
+
+        return array('token' => $jwt, 'tipo' => $tipo);
+    }
+    
+    public static function Check($token)
+    {
+        if(empty($token))
+        {
+        return "Token Vacio";
+        }
+        
+        $decode = JWT::decode(
+            $token,
+            self::$secret_key,
+            self::$encrypt
+        );
+        // TODO: COMO SABER SI EL TOKEN EXPIRO
+        if($decode['iat']):
+            return 'Token Expirado';
+        endif;
+        
+        if($decode->aud !== self::Aud())
+        {
+            return "Aud Invalido";
+        }
+
+    }
+    
+    public static function GetData($token)
+    {   
+        if(empty($token))
+        {
+            throw new Exception( "Token Invalido");
+        }
+
+        $decode = JWT::decode(
+            $token,
+            self::$secret_key,
+            self::$encrypt
+        );
+        return $decode;
+    }
+    
+    private static function Aud()
+    {
+        $aud = '';
+        
+        if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+            $aud = $_SERVER['HTTP_CLIENT_IP'];
+        } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+            $aud = $_SERVER['HTTP_X_FORWARDED_FOR'];
+        } else {
+            $aud = $_SERVER['REMOTE_ADDR'];
+        }
+        
+        $aud .= @$_SERVER['HTTP_USER_AGENT'];
+        $aud .= gethostname();
+        
+        return sha1($aud);
     }
 }

@@ -16,6 +16,9 @@ angular.module('GATE', ['ionic', 'ngCordova', 'ngFileUpload', 'ionic-datepicker'
 
   .config(function ($stateProvider, $urlRouterProvider, $httpProvider, ionicDatePickerProvider) {
 
+    /* INTERCEPTADOR */
+    $httpProvider.interceptors.push('AuthInterceptor');
+
     var datePickerObj = {
       inputDate: new Date(),
       setLabel: 'Colocar',
@@ -39,13 +42,13 @@ angular.module('GATE', ['ionic', 'ngCordova', 'ngFileUpload', 'ionic-datepicker'
       .state('ingreso', {
         url: '/',
         templateUrl: '../templates/login.html',
-        controller: 'loginController as login'
+        controller: 'loginController as login',
       })
       // Inicio va a contener {timeline, todas las asignaturas y las secciones, perfil}
       .state('inicio', {
         url: '/inicio',
         templateUrl: '../templates/inicio.html',
-        controller: 'inicioController as inicio'
+        controller: 'inicioController as inicio',
       })
       // Ayuda va a contener {informacion de la app, y el manual}
       .state('inicio/ayuda', {
@@ -103,4 +106,19 @@ angular.module('GATE', ['ionic', 'ngCordova', 'ngFileUpload', 'ionic-datepicker'
       });
 
     $urlRouterProvider.otherwise('/');
-  });
+  })
+
+  .run(function ($rootScope, $state) {
+
+    $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
+
+    });
+
+    $rootScope.$on("$stateChangeError", function (event, toState, toParams, fromState, fromParams, error) {
+      if (error === "AUTH_REQUIRED") {
+        $state.go("ingreso");
+      } else if (error === "LOGOUT_REQUIRED") {
+        $state.go('dashboard');
+      }
+    });
+  })
