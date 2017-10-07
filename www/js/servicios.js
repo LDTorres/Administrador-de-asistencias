@@ -19,9 +19,9 @@ angular.module('GATE')
 
         /* Si hubo algun error */
         defered.reject(res);
-      })
+      });
       return promise;
-    }
+    };
     // Cierra la session
     this.salir = function () {
       /* Declaramos una promesa */
@@ -37,9 +37,9 @@ angular.module('GATE')
 
         /* Si hubo algun error */
         defered.reject(res);
-      })
+      });
       return promise;
-    }
+    };
 
     this.session = function () {
       /* Declaramos una promesa */
@@ -55,9 +55,9 @@ angular.module('GATE')
 
         /* Si hubo algun error */
         defered.reject(res);
-      })
+      });
       return promise;
-    }
+    };
     // Espera por parametro {usuario, contrasena, nombre_completo, cedula, correo, telefono, id_malla}
     this.registrar = function (datos) {
       /* Declaramos una promesa */
@@ -73,9 +73,9 @@ angular.module('GATE')
 
         /* Si hubo algun error */
         defered.reject(res);
-      })
+      });
       return promise;
-    }
+    };
 
     // Devuelve la informacion de la aplicacion
     this.app = function () {
@@ -92,9 +92,9 @@ angular.module('GATE')
 
         /* Si hubo algun error */
         defered.reject(res);
-      })
+      });
       return promise;
-    }
+    };
 
     // Espera como parametro {id_usuario, offset}
 
@@ -113,9 +113,9 @@ angular.module('GATE')
         /* Si hubo algun error */
         defered.reject(res);
 
-      })
+      });
       return promise;
-    }
+    };
   }])
 
   /* USUARIOS */
@@ -147,11 +147,9 @@ angular.module('GATE')
 
         defered.reject(res);
 
-      })
+      });
       return promise;
-
-    }
-
+    };
     // Espera un id de usuario y opcionalmente la accion
     this.estado = function (datos) {
       var defered = $q.defer();
@@ -172,9 +170,9 @@ angular.module('GATE')
 
         /* Si hubo algun error */
         defered.reject(res);
-      })
+      });
       return promise;
-    }
+    };
 
     // Espera como parametro {id_usuario, contrasena, nombre_completo, telefono, cedula}
     this.update = function (datos) {
@@ -191,9 +189,9 @@ angular.module('GATE')
 
         /* Si hubo algun error */
         defered.reject(res);
-      })
+      });
       return promise;
-    }
+    };
 
     /* Espera como parametro {tipo de ususario, por defecto es ESTUDIANTE} */
 
@@ -211,9 +209,9 @@ angular.module('GATE')
 
         /* Si hubo algun error */
         defered.reject(res);
-      })
+      });
       return promise;
-    }
+    };
 
     /* Espera como parametro {id del usuario} */
 
@@ -231,9 +229,9 @@ angular.module('GATE')
 
         /* Si hubo algun error */
         defered.reject(res);
-      })
+      });
       return promise;
-    }
+    };
 
   }])
 
@@ -257,9 +255,9 @@ angular.module('GATE')
 
         /* Si hubo algun error */
         defered.reject(res);
-      })
+      });
       return promise;
-    }
+    };
 
     /* Esperan el id, trimestre y opcionalmente el pnf */
 
@@ -277,9 +275,9 @@ angular.module('GATE')
 
         /* Si hubo algun error */
         defered.reject(res);
-      })
+      });
       return promise;
-    }
+    };
 
     /* Se añadiran nombre, trimestre, id_malla */
 
@@ -297,9 +295,9 @@ angular.module('GATE')
 
         /* Si hubo algun error */
         defered.reject(res);
-      })
+      });
       return promise;
-    }
+    };
 
     /* Se actualizaran nombre dentro de una id_malla y trimestre */
     this.update = function (datos) {
@@ -316,9 +314,9 @@ angular.module('GATE')
 
         /* Si hubo algun error */
         defered.reject(res);
-      })
+      });
       return promise;
-    }
+    };
   }])
 
   /* SECCIONES */
@@ -341,9 +339,9 @@ angular.module('GATE')
 
         /* Si hubo algun error */
         defered.reject(res);
-      })
+      });
       return promise;
-    }
+    };
 
     // Espera como parametro {id_asignatura}
     this.getAll = function (id) {
@@ -360,9 +358,9 @@ angular.module('GATE')
 
         /* Si hubo algun error */
         defered.reject(res);
-      })
+      });
       return promise;
-    }
+    };
 
     // Espera como parametro {id_seccion, id_profesor}
     this.get = function (datos) {
@@ -379,9 +377,9 @@ angular.module('GATE')
 
         /* Si hubo algun error */
         defered.reject(res);
-      })
+      });
       return promise;
-    }
+    };
 
     // Espera como parametro {id_seccion, id_profesor}
     this.add = function (datos) {
@@ -398,9 +396,9 @@ angular.module('GATE')
 
         /* Si hubo algun error */
         defered.reject(res);
-      })
+      });
       return promise;
-    }
+    };
 
     // Espera como parametro {nombre, id_seccion}
     this.update = function (datos) {
@@ -417,9 +415,9 @@ angular.module('GATE')
 
         /* Si hubo algun error */
         defered.reject(res);
-      })
+      });
       return promise;
-    }
+    };
 
     // Miembros
 
@@ -439,9 +437,9 @@ angular.module('GATE')
 
         /* Si hubo algun error */
         defered.reject(res);
-      })
+      });
       return promise;
-    }
+    };
 
     // Espera como parametro {id_usuario}
 
@@ -459,9 +457,9 @@ angular.module('GATE')
 
         /* Si hubo algun error */
         defered.reject(res);
-      })
+      });
       return promise;
-    }
+    };
 
     // Espera como parametro {id_usuario}
 
@@ -479,9 +477,9 @@ angular.module('GATE')
 
         /* Si hubo algun error */
         defered.reject(res);
-      })
+      });
       return promise;
-    }
+    };
 
     // Espera como parametro {id_usuario, codigo}
 
@@ -499,9 +497,9 @@ angular.module('GATE')
 
         /* Si hubo algun error */
         defered.reject(res);
-      })
+      });
       return promise;
-    }
+    };
 
     // Espera como parametro {id_usuario, id_seccion, accion}
 
@@ -519,9 +517,9 @@ angular.module('GATE')
 
         /* Si hubo algun error */
         defered.reject(res);
-      })
+      });
       return promise;
-    }
+    };
 
     //POSTS
 
@@ -541,9 +539,9 @@ angular.module('GATE')
 
         /* Si hubo algun error */
         defered.reject(res);
-      })
+      });
       return promise;
-    }
+    };
 
     // Espera como parametro {id_publicacion, id_seccion, id_usuario}
 
@@ -561,9 +559,9 @@ angular.module('GATE')
 
         /* Si hubo algun error */
         defered.reject(res);
-      })
+      });
       return promise;
-    }
+    };
 
     // Espera como parametro {titulo, descripcion, id_seccion, id_usuario, nombre_archivo}
 
@@ -590,10 +588,10 @@ angular.module('GATE')
 
         defered.reject(res);
 
-      })
+      });
       return promise;
 
-    }
+    };
 
     // Espera como parametro {titulo, descripcion, nombre_archivo, id_publicacion, id_seccion, id_usuario}
 
@@ -620,10 +618,9 @@ angular.module('GATE')
 
         defered.reject(res);
 
-      })
+      });
       return promise;
-
-    }
+    };
 
     // Espera como parametro {id_publicacion, id_seccion, id_usuario}
 
@@ -641,9 +638,9 @@ angular.module('GATE')
 
         /* Si hubo algun error */
         defered.reject(res);
-      })
+      });
       return promise;
-    }
+    };
 
     // ASISTENCIAS
 
@@ -663,9 +660,9 @@ angular.module('GATE')
 
         /* Si hubo algun error */
         defered.reject(res);
-      })
+      });
       return promise;
-    }
+    };
 
     // Espera como parametro {id_seccion, fecha}
 
@@ -683,9 +680,9 @@ angular.module('GATE')
 
         /* Si hubo algun error */
         defered.reject(res);
-      })
+      });
       return promise;
-    }
+    };
 
     // Espera como parametro {id_usuario, fecha, aistio}
 
@@ -703,9 +700,9 @@ angular.module('GATE')
 
         /* Si hubo algun error */
         defered.reject(res);
-      })
+      });
       return promise;
-    }
+    };
 
     // Espera como parametro {id_seccion, desde, hasta}
 
@@ -723,8 +720,8 @@ angular.module('GATE')
 
         /* Si hubo algun error */
         defered.reject(res);
-      })
+      });
       return promise;
-    }
+    };
 
   }]);
