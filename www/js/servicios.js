@@ -1,6 +1,20 @@
 angular.module('GATE')
 
   .constant("ruta", "http://localhost:3454")
+
+  .factory('LS', ['$window', '$rootScope', function ($window, $rootScope) {
+    return {
+      definir: function (llave, valor) {
+        $window.localStorage.setItem(llave, JSON.stringify(valor));
+        return this;
+      },
+      obtener: function (llave) {
+        return $window.localStorage.getItem(llave);
+      }
+    };
+
+  }])
+
   /* INGRESAR */
 
   .service("servicioGeneral", ["$http", "$q", "ruta", "$rootScope", "$window", function ($http, $q, ruta, $rootScope, $window) {
@@ -15,12 +29,11 @@ angular.module('GATE')
 
         $window.localStorage.setItem('token', JSON.stringify(res.data));
         $rootScope.objectoCliente = res.data;
-
-        defered.resolve();
+        defered.resolve(res);
 
       }).catch(function (res) {
         $window.localStorage.removeItem('token');
-        defered.reject();
+        defered.reject(res);
       })
 
       return promise;

@@ -109,7 +109,7 @@ class UserModel
 
         $result = $sth->fetch();
 
-        if(count($result) > 0):
+        if($result != false):
             $time = time();
 
             $token = array(

@@ -13,8 +13,8 @@ $app->post('/login', function ($req, $res) {
 
     $result =  $GLOBALS['um']->login($params);
 
-    if(!isset($result)):
-        return $this->response->withJson(array("error"=>"Datos Invalidos"), 405);
+    if($result == false):
+        return $this->response->withJson(array("error"=>"Datos Invalidos"), 404);
     else:
         return $this->response->withJson($result, 200);
     endif;

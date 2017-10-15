@@ -1,6 +1,6 @@
 angular.module('GATE')
 
-  .controller('loginController', function ($scope, servicioGeneral, ionicDatePicker) {
+  .controller('loginController', ['$scope', 'servicioGeneral', 'ionicDatePicker', '$state', function ($scope, servicioGeneral, ionicDatePicker, $state) {
     var bz = this;
 
     bz.datos = {
@@ -9,37 +9,16 @@ angular.module('GATE')
       mostrarForm: 1
     };
 
-
-    // FUNCION PARA LLAMAR AL DATE PICKER
-    var ipObj1 = {
-      callback: function (val) { //Mandatory
-        console.log('Return value from the datepicker popup is : ' + val, new Date(val));
-      }
-    };
-
-    bz.openDatePicker = function () {
-      ionicDatePicker.openDatePicker(ipObj1);
-    };
-    // bz.openDatePicker();
-    ////////////////////////////////////////
-
-
-
     bz.ingresar = function (datos) {
-
       servicioGeneral.ingresar(datos).then(function (res) {
-        console.log(res)
-        bz.session();
+        bz.good = 'Datos Correctos';
+        bz.validacion = 0;
+        setTimeout(function () {
+          $state.go('inicio');
+        }, 2000);
       }).catch(function (res) {
-        console.log(res)
-      });
-    }
-
-    bz.session = function () {
-      servicioGeneral.session().then(function (res) {
-        console.log(res)
-      }).catch(function (res) {
-        console.log(res)
+        bz.good = 0;
+        bz.validacion = 'Datos Invalidos';
       });
     }
 
@@ -58,4 +37,5 @@ angular.module('GATE')
         console.log(res)
       });
     }
-  })
+
+  }])

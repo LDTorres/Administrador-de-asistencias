@@ -1,7 +1,7 @@
 <ion-view title="Registro">
-  
-  <ion-pane ng-switch="login.datos.mostrarForm"> 
-      
+
+  <ion-pane ng-switch="login.datos.mostrarForm">
+
     <ion-content ng-switch-when="1">
       <ion-header-bar class="bar-positive" align-title="center">
         <h1 class="title subtitulo">Iniciar Sesión</h1>
@@ -15,12 +15,14 @@
           <label class="item item-input">
             <input type="text" placeholder="Nombre de Usuario" ng-model="login.datos.login.usuario">
           </label>
-          
+
           <label class="item item-input">
             <input type="password" placeholder="Contraseña" ng-model="login.datos.login.contrasena">
           </label>
 
-        <input type="submit" value="Entrar"  class="button button-block button-positive"></input>
+          <input type="submit" value="Entrar" class="button button-block button-positive"></input>
+          <h4 class="text-center padding" ng-if="login.good">{{login.good}}</h4>
+          <h4 style="color:red;" class="text-center padding" ng-if="login.validacion">{{login.validacion}}</h4>
         </div>
       </form>
 
@@ -82,7 +84,7 @@
           <input type="submit" value="Registrarse" class="button button-block button-positive"></input>
         </div>
       </form>
-      
+
       <a class="button button-clear button-full button-positive" ng-click="login.datos.mostrarForm=1">¡.Si ya estas registrado, pulsa aquí.!</a>
       <a class="button button-block icon-center ion-home" ui-sref="inicio"></a>
     </ion-content>

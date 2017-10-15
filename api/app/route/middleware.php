@@ -14,7 +14,7 @@ $mw = function ($request, $response, $next) {
         return $this->response->withJson($data, 401);
     else:
         $newResponse = $response->withHeader('auth', $data);
-        $response = $next($request, $newResponse);
+        $response = $next($request, $newResponse); 
         return $response;
     endif;
 };
