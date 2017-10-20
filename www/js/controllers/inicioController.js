@@ -1,61 +1,25 @@
 angular.module('GATE')
 
-  .controller('inicioController', ["$scope", "servicioGeneral", "$state", "servicioSecciones", "servicioAsignatura", "servicioUsuario", function ($scope, servicioGeneral, $state, servicioSecciones, servicioAsignatura, servicioUsuario) {
+  .controller('inicioController', ["$scope", "servicioGeneral", "$state", "servicioSecciones", "servicioAsignatura", "servicioUsuario", '$rootScope', 'trimestresConstante', function ($scope, servicioGeneral, $state, servicioSecciones, servicioAsignatura, servicioUsuario, $rootScope, trimestresConstante) {
     var bz = this;
+
+    //console.log($rootScope.objectoCliente)
 
     bz.datos = {
       posts: [],
-      listarAsignaturas: {
-        id_malla: 1
-      },
-      crearSeccion: {},
-      user: {
-        id_usuario: 1,
-        foto_perfil: 'grabatar.jpg',
-        nombre_completo: 'Luis',
-        cedula: 25659843,
-        malla: 'Informatica',
-        telefono: 04128594981,
-        usuario: 'Luis',
-        correo: 'luisdtc2696.gmail.com',
-        contrasena: '12345678'
-      },
-      trimestres: [{
-        id_trimestre: 1
-      }, {
-        id_trimestre: 2
-      }, {
-        id_trimestre: 3
-      }, {
-        id_trimestre: 4
-      }, {
-        id_trimestre: 5
-      }, {
-        id_trimestre: 6
-      }, {
-        id_trimestre: 7
-      }, {
-        id_trimestre: 8
-      }, {
-        id_trimestre: 9
-      }, {
-        id_trimestre: 10
-      }, {
-        id_trimestre: 11
-      }, {
-        id_trimestre: 12
-      }]
+      listarAsignaturas: {},
+      user: {},
+      objectoCliente: $rootScope.objectoCliente,
+      trimestres: trimestresConstante
     }
 
-    bz.posts = function () {
-      servicioGeneral.timeline(1).then(function (res) {
-        bz.datos.posts = res.data[0];
+    bz.posts = function (id) {
+      servicioGeneral.timeline(id).then(function (res) {
+        bz.datos.posts = res.data;
       }).catch(function (res) {
         console.log(res)
       });
     }
-
-    bz.posts();
 
     bz.listarAsignaturas = function (datos) {
       servicioAsignatura.getAll(datos).then(function (res) {
@@ -75,12 +39,39 @@ angular.module('GATE')
       });
     }
 
+    bz.datosUsuario = function () {
+      servicioUsuario.get(bz.datos.objectoCliente.id).then(function (res) {
+        bz.datos.user = res.data;
+        bz.datos.listarAsignaturas.id_malla = res.data.id_malla;
+        bz.posts(bz.datos.user.id_usuario);
+
+        servicioAsignatura.getMalla(res.data.id_malla).then(function (res) {
+          bz.datos.user.malla = res.data.nombre;
+        });
+
+      }).catch(function (res) {
+        console.log(res)
+      });
+    }
+
+    bz.datosUsuario();
+
     bz.actualizarUsuario = function () {
       servicioUsuario.update(bz.datos.user).then(function (res) {
         bz.datos.user = res.data;
         bz.actualizado = 'Tus datos han sido actualizados';
+        setTimeout(function () {
+          bz.actualizado = '';
+        }, 2000);
       }).catch(function (res) {
         console.log(res)
+
       });
+    }
+
+    bz.cerrarSesion = function () {
+      servicioGeneral.salir();
+      console.log('Sesion cerrada')
+      $state.go('ingreso')
     }
   }])

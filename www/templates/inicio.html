@@ -1,121 +1,147 @@
 <ion-view view-title="Inicio">
-  <ion-pane>
+  <ion-nav-bar class="bar-positive has-tabs-top" align-title="center">
+    <ion-nav-back-button></ion-nav-back-button>
+  </ion-nav-bar>
+  <div class="tabs-striped tabs-background-positive tabs-color-light">
+    <ion-tabs class="tabs-positive tabs-icon-top">
+      <ion-tab title="Publicaciones" icon-on="ion-compose" icon-off="ion-compose">
+        <ion-content class="padding">
+          <div class="list card" ng-repeat="post in inicio.datos.posts">
+            <a ui-sref="inicio/seccion({id_seccion: post.id_seccion})" class="item item-avatar item-cabecera">
+              <img ng-src="../img/{{post.nombre_archivo}}">
+              <h2 class="text-white">{{post.titulo}}</h2>
+              <h4 class="text-white">Asignatura: {{post.nombre}}</h4>
+              <h6 class="text-white">{{post.fecha_publicacion}}</h6>
+            </a>
 
-    <ion-nav-bar class="bar-positive" align-title="center">
-      <ion-nav-back-button></ion-nav-back-button>
-    </ion-nav-bar>
-
-    <div class="tabs-striped tabs-background-positive tabs-color-light">
-      <ion-tabs class="tabs-positive tabs-icon-top">
-        <ion-tab title="Publicaciones" icon-on="ion-compose" icon-off="ion-compose">
-          <ion-content class="padding has-tabs">
-            <div class="list card" ng-repeat="post in inicio.datos.posts">
-              <a ui-sref="inicio/seccion({id_seccion: post.id_seccion})" class="item item-avatar">
-                <img ng-src="../img/{{post.nombre_archivo}}">
-                <h2>{{post.titulo}}</h2>
-                <p>{{post.fecha_publicacion}}</p>
-              </a>
-
-              <div class="item item-body">
-                <span>
-                  {{post.descripcion}}
-                </span><br>
-                <span>
-                  <a class="subdued">{{post.nombre_archivo}}</a>
-                </span>
-              </div>
-              <a href="#" class="item item-icon-left">
-                <i class="icon ion-code-download"></i>
-                Descargar
-              </a>
+            <div class="item item-body">
+              <span>
+                {{post.descripcion}}
+              </span>
+              <br>
+              <span>
+                <a class="subdued">{{post.nombre_archivo}}</a>
+              </span>
             </div>
-          </ion-content>
-        </ion-tab>
+            <a href="#" class="item item-icon-left">
+              <i class="icon ion-code-download"></i>
+              Descargar
+            </a>
+          </div>
+        </ion-content>
+      </ion-tab>
 
-        <ion-tab title="Asignaturas" icon-on="ion-clipboard" icon-off="ion-clipboard">
-          <ion-content class="padding">
-            <div class="card-list list">
-              <a class="item button button-block icon-right ion-android-arrow-dropright" ui-sref="inicio/asignatura/inscripcion"> Inscripción </a>
+      <ion-tab title="Asignaturas" icon-on="ion-clipboard" icon-off="ion-clipboard">
+        <ion-content class="padding">
+          <a class="button button-block button-outline button-positive icon-right ion-android-arrow-dropright" ui-sref="inicio/asignatura/inscripcion">
+            Inscripción
+          </a>
+          <div class="card-list list">
+            <div class="item item-divider">
+              <h4 class="text-center">Buscar seccion</h4>
             </div>
-            <div class="card-list list">
-              <div class="item item-divider">
-                <h4 class="text-center">Buscar seccion</h4>
+            <label class="item item-input item-select">
+
+              <div class="input-label">
+                Trimestre
               </div>
-              <label class="item item-input item-select">
-                  
+              <select ng-model="inicio.datos.listarAsignaturas.id_trimestre" ng-change="inicio.listarAsignaturas(inicio.datos.listarAsignaturas)">
+                <option ng-repeat="trimestre in inicio.datos.trimestres" ng-value="trimestre.id_trimestre">trimestre {{trimestre.id_trimestre}}</option>
+              </select>
+            </label>
+
+            <label class="item item-input item-select" ng-if="inicio.datos.asignaturas">
+
+              <div class="input-label">
+                Asignaturas
+              </div>
+              <select ng-model="inicio.datos.asignaturaSeleccionada" ng-change="inicio.buscarSecciones(inicio.datos.asignaturaSeleccionada)">
+                <option ng-repeat="asignatura in inicio.datos.asignaturas" ng-value="asignatura.id_asignatura">{{asignatura.nombre_asig}}</option>
+              </select>
+            </label>
+
+            <div class="list" ng-if="inicio.datos.secciones">
+              <form ng-submit="inicio.irSeccion(inicio.datos.seccionSeleccionada)">
+                <label class="item item-input item-select">
+                  <form ng-submit="inicio.irSeccion(inicio.datos.seccionSeleccionada)" ng-if="inicio.datos.secciones">
                     <div class="input-label">
-                      Trimestre
+                      Secciones
                     </div>
-                    <select ng-model="inicio.datos.listarAsignaturas.id_trimestre" ng-change="inicio.listarAsignaturas(inicio.datos.listarAsignaturas)">
-            <option ng-repeat="trimestre in inicio.datos.trimestres" ng-value="trimestre.id_trimestre">trimestre {{trimestre.id_trimestre}}</option>
+                    <select ng-model="inicio.datos.seccionSeleccionada">
+                      <option ng-repeat="seccion in inicio.datos.secciones" ng-value="seccion.id_seccion">{{seccion.nombre}}</option>
                     </select>
                 </label>
-
-              <label class="item item-input item-select" ng-if="inicio.datos.asignaturas">
-
-                  <div class="input-label">
-                  Asignaturas
-                  </div>
-                  <select ng-model="inicio.datos.asignaturaSeleccionada" ng-change="inicio.buscarSecciones(inicio.datos.asignaturaSeleccionada)">
-                    <option ng-repeat="asignatura in inicio.datos.asignaturas" ng-value="asignatura.id_asignatura">{{asignatura.nombre_asig}}</option>
-                  </select>
-                </label>
-
-              <div class="list" ng-if="inicio.datos.secciones">
-                <form ng-submit="inicio.irSeccion(inicio.datos.seccionSeleccionada)">
-                  <label class="item item-input item-select">
-                      <form ng-submit="inicio.irSeccion(inicio.datos.seccionSeleccionada)" ng-if="inicio.datos.secciones">
-                        <div class="input-label">
-                            Secciones
-                        </div>
-                        <select ng-model="inicio.datos.seccionSeleccionada">
-                          <option ng-repeat="seccion in inicio.datos.secciones" ng-value="seccion.id_seccion">{{seccion.nombre}}</option>
-                        </select>
-                    </label>
-                  <input type="submit" ng-if="inicio.datos.seccionSeleccionada" value="IR" class="button button-block button-positive">
+                <input type="submit" ng-if="inicio.datos.seccionSeleccionada" value="IR" class="button button-outline button-block button-positive">
 
                 </form>
+            </div>
+          </div>
+        </ion-content>
+      </ion-tab>
+
+      <ion-tab title="Perfil" icon-on="ion-person" icon-off="ion-person">
+        <ion-content class="padding">
+          <div>
+            <div class="list card item-border">
+              <div class="item item-avatar">
+                <img ng-src="../img/{{inicio.datos.user.foto_perfil}}">
+                <h2>{{inicio.datos.user.usuario}}</h2>
+                <p>{{inicio.datos.user.malla}}</p>
               </div>
             </div>
-          </ion-content>
-        </ion-tab>
 
-        <ion-tab title="Perfil" icon-on="ion-person" icon-off="ion-person">
-          <ion-content class="padding">
-            <div>
-              <div class="list card">
-                <div class="item item-avatar">
-                  <img ng-src="../img/{{inicio.datos.user.foto_perfil}}">
-                  <h2>{{inicio.datos.user.usuario}}</h2>
-                  <p>{{inicio.datos.user.malla}}</p>
-                </div>
-              </div>
-              <h4 class="text-center">Datos</h4>
-              <form class="input-inset list" ng-submit="inicio.actualizarUsuario(inicio.datos.user)">
-                <label class="item item-input">
-                  <input type="text" placeholder="Nombre Completo" ng-model="inicio.datos.user.nombre_completo">
-                </label>
-                <label class="item item-input">
-                  <input type="number" placeholder="Cedula" ng-model="inicio.datos.user.cedula">
-                </label>
-                <label class="item item-input">
-                  <input type="tel" placeholder="Telefono" ng-model="inicio.datos.user.telefono">
-                </label>
-                <label class="item item-input">
-                  <input type="password" placeholder="Contraseña" ng-model="inicio.datos.user.contrasena">
-                </label>
-                <input type="submit" value="Guardar" class="button button-block button-positive">
+            <form class="input-inset list" ng-submit="inicio.actualizarUsuario(inicio.datos.user)">
+              <h4 class="text-center item-cabecera item text-white">Datos</h4>
+              <label class="item item-input">
+                <input type="text" placeholder="Nombre Completo" ng-model="inicio.datos.user.nombre_completo">
+              </label>
+              <label class="item item-input">
+                <input type="number" placeholder="Cedula" ng-model="inicio.datos.user.cedula">
+              </label>
+              <label class="item item-input">
+                <input type="tel" placeholder="Telefono" ng-model="inicio.datos.user.telefono">
+              </label>
+              <label class="item item-input">
+                <input type="password" placeholder="Contraseña" ng-model="inicio.datos.user.contrasena">
+              </label>
+              <input type="submit" value="Guardar" class="button button-outline button-block button-positive">
 
-              </form>
-              <h4 class="text-center">{{inicio.actualizado}}</h4>
+            </form>
+            <h4 class="text-center">{{inicio.actualizado}}</h4>
+          </div>
+        </ion-content>
+      </ion-tab>
+
+      <ion-tab title="Config" icon-on="ion-gear-b" icon-off="ion-gear-b">
+        <ion-content class="padding">
+          <form class="list" ng-submit="inicio.actualizarConfiguracion(inicio.config)">
+            <div class="item item-divider">
+              <h4 class="text-center">Numero De Entradas</h4>
             </div>
-          </ion-content>
-        </ion-tab>
+            <div class="item range range-positive">
+              <i class="icon ion-document-text"></i>
+              <input ng-model="inicio.config.cantPosts" type="range" name="posts" min="1" max="15" ng-value="5">
+              <span>{{inicio.config.cantPosts}}</span>
+            </div>
+            <!--
+              <li class="item item-toggle">
+                HTML5
+                <label class="toggle toggle-assertive">
+                  <input type="checkbox">
+                  <div class="track">
+                    <div class="handle"></div>
+                  </div>
+                </label>
+              </li>
+            -->
+            <input type="submit" class="button button-outline button-block button-positive" value="Guardar Preferencias">
+          </form>
+          <div class="bar bar-footer">
+            <button class="button button-outline button-block button-positive" ng-click="inicio.cerrarSesion()">Cerrar Sesion</button>
+          </div>
+        </ion-content>
+      </ion-tab>
 
-      </ion-tabs>
-
-    </div>
-
-  </ion-pane>
-
+    </ion-tabs>
+  </div>
 </ion-view>

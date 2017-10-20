@@ -1,6 +1,6 @@
 angular.module('GATE')
 
-  .controller('loginController', ['$scope', 'servicioGeneral', 'ionicDatePicker', '$state', function ($scope, servicioGeneral, ionicDatePicker, $state) {
+  .controller('loginController', ['$scope', 'servicioGeneral', 'ionicDatePicker', '$state', '$rootScope', function ($scope, servicioGeneral, ionicDatePicker, $state, $rootScope) {
     var bz = this;
 
     bz.datos = {
@@ -13,9 +13,12 @@ angular.module('GATE')
       servicioGeneral.ingresar(datos).then(function (res) {
         bz.good = 'Datos Correctos';
         bz.validacion = 0;
+
         setTimeout(function () {
           $state.go('inicio');
         }, 2000);
+
+        //console.log($rootScope.objectoCliente);
       }).catch(function (res) {
         bz.good = 0;
         bz.validacion = 'Datos Invalidos';

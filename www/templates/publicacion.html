@@ -9,43 +9,43 @@
           <ion-content class="padding has-tabs">
             <div ng-if="publicacion.datos.nuevoPost.accion == 'new'">
               <div class="list card">
-                <div class="item item-divider">
-                  <h4 class="text-center">Nueva Publicacion</h4>
+                <div class="item item-cabecera">
+                  <h4 class="text-center text-white">Nueva Publicacion</h4>
                 </div>
               </div>
               <form class="input-inset list" ng-submit="publicacion.nuevoPost(publicacion.datos.nuevoPost)">
                 <label class="item item-input">
                   <input type="text" placeholder="Titulo" ng-model="publicacion.datos.nuevoPost.titulo">
-              </label>
+                </label>
                 <label class="item item-input">
-                  <textarea placeholder="Descripcion" ng-model="publicacion.datos.nuevoPost.descripcion"></textarea>   
-              </label>
+                  <textarea placeholder="Descripcion" ng-model="publicacion.datos.nuevoPost.descripcion"></textarea>
+                </label>
                 <div class="item item-input inputArchivo" ngf-select ng-model="iconos.datos.nuevoPost.archivo" name="archivo" ngf-max-size="20MB"
                   required>
                   <div>SELECCIONA UN ARCHIVO</div>
                 </div>
-                <input type="submit" value="Crear" class="button button-block button-positive">
+                <input type="submit" value="Crear" class="button button-block button-outline button-positive">
               </form>
             </div>
 
             <div ng-if="publicacion.datos.modificarPost.accion == 'edit'">
               <div class="list card">
-                <div class="item item-divider">
-                  <h4 class="text-center">Modificar Publicacion</h4>
+                <div class="item item-cabecera">
+                  <h4 class="text-center text-white">Modificar Publicacion</h4>
                 </div>
               </div>
               <form class="input-inset list" ng-submit="publicacion.modificarPost(publicacion.datos.modificarPost)">
                 <label class="item item-input">
                   <input type="text" placeholder="Titulo" ng-model="publicacion.datos.modificarPost.titulo">
-              </label>
+                </label>
                 <label class="item item-input">
-                  <textarea placeholder="Descripcion" ng-model="publicacion.datos.modificarPost.descripcion"></textarea>   
-              </label>
+                  <textarea placeholder="Descripcion" ng-model="publicacion.datos.modificarPost.descripcion"></textarea>
+                </label>
                 <div class="item item-input inputArchivo" ngf-select ng-model="iconos.datos.modificarPost.archivo" name="archivo" ngf-max-size="20MB"
                   required>
                   <div>SELECCIONA UN ARCHIVO</div>
                 </div>
-                <input type="submit" value="Modificar" class="button button-block button-positive">
+                <input type="submit" value="Modificar" class="button button-block button-outline button-positive">
               </form>
             </div>
           </ion-content>

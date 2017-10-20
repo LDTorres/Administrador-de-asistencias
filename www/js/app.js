@@ -43,12 +43,33 @@ angular.module('GATE', ['ionic', 'ngCordova', 'ngFileUpload', 'ionic-datepicker'
         url: '/',
         templateUrl: '../templates/login.html',
         controller: 'loginController as login',
+        resolve: {
+          "currentAuth": ["$q", "servicioGeneral", function ($q, servicioGeneral) {
+
+            if (servicioGeneral.autorizado()) {
+
+              return $q.reject("LOGOUT_REQUIRED");
+
+            }
+          }]
+        }
       })
       // Inicio va a contener {timeline, todas las asignaturas y las secciones, perfil}
       .state('inicio', {
         url: '/inicio',
         templateUrl: '../templates/inicio.html',
         controller: 'inicioController as inicio',
+        resolve: {
+          "currentAuth": ["$q", "servicioGeneral", function ($q, servicioGeneral) {
+
+            if (!servicioGeneral.autorizado()) {
+
+              return $q.reject("AUTH_REQUIRED");
+
+            }
+
+          }]
+        }
       })
       // Ayuda va a contener {informacion de la app, y el manual}
       .state('inicio/ayuda', {
@@ -56,29 +77,39 @@ angular.module('GATE', ['ionic', 'ngCordova', 'ngFileUpload', 'ionic-datepicker'
         templateUrl: '../templates/ayuda.html',
         controller: 'ayudaController as ayuda'
       })
-      // Perfil va a contener {informacion del usuario a modificar y colocar la foto de perfil}
-      .state('inicio/perfil', {
-        url: '/perfil',
-        templateUrl: '../templates/perfil.html',
-        controller: 'perfilController as perfil'
-      })
-      // Configuracion va a contener {}
-      .state('inicio/configuracion', {
-        url: '/configuracion',
-        templateUrl: '../templates/configuracion.html',
-        controller: 'configuracionController as configuracion'
-      })
       // Esta ruta va a contener {inscribir una asignatura {alumno}, crear una seccion {profesor}}
       .state('inicio/asignatura/inscripcion', {
         url: '/inscripcion',
         templateUrl: '../templates/inscripcion.html',
-        controller: 'inscripcionController as inscripcion'
+        controller: 'inscripcionController as inscripcion',
+        resolve: {
+          "currentAuth": ["$q", "servicioGeneral", function ($q, servicioGeneral) {
+
+            if (!servicioGeneral.autorizado()) {
+
+              return $q.reject("AUTH_REQUIRED");
+
+            }
+
+          }]
+        }
       })
       // Esta ruta va a contener {posts de la seccion, miembros, informacion, asistencias}
       .state('inicio/seccion', {
         url: '/seccion:id_seccion',
         templateUrl: '../templates/seccion.html',
         controller: 'seccionController as seccion',
+        resolve: {
+          "currentAuth": ["$q", "servicioGeneral", function ($q, servicioGeneral) {
+
+            if (!servicioGeneral.autorizado()) {
+
+              return $q.reject("AUTH_REQUIRED");
+
+            }
+
+          }]
+        }
       })
       // Esta ruta va a contener {posts de la seccion, miembros, informacion, asistencias}
       .state('inicio/seccion/asistencias', {
@@ -87,6 +118,17 @@ angular.module('GATE', ['ionic', 'ngCordova', 'ngFileUpload', 'ionic-datepicker'
         controller: 'asistenciaController as asistencia',
         params: {
           datos: null
+        },
+        resolve: {
+          "currentAuth": ["$q", "servicioGeneral", function ($q, servicioGeneral) {
+
+            if (!servicioGeneral.autorizado()) {
+
+              return $q.reject("AUTH_REQUIRED");
+
+            }
+
+          }]
         }
       })
       // Esta ruta va a contener {nueva publicacion}
@@ -96,13 +138,70 @@ angular.module('GATE', ['ionic', 'ngCordova', 'ngFileUpload', 'ionic-datepicker'
         controller: 'publicacionController as publicacion',
         params: {
           datos: null
+        },
+        resolve: {
+          "currentAuth": ["$q", "servicioGeneral", function ($q, servicioGeneral) {
+
+            if (!servicioGeneral.autorizado()) {
+
+              return $q.reject("AUTH_REQUIRED");
+
+            }
+
+          }]
+        }
+      })
+      .state('inicio/seccion/configuracion', {
+        url: '/configuracion',
+        templateUrl: '../templates/configuracion.html',
+        controller: 'configuracionController as config',
+        params: {
+          datos: null
+        },
+        resolve: {
+          "currentAuth": ["$q", "servicioGeneral", function ($q, servicioGeneral) {
+
+            if (!servicioGeneral.autorizado()) {
+
+              return $q.reject("AUTH_REQUIRED");
+
+            }
+
+          }]
+        }
+      })
+      .state('inicio/seccion/miembro/perfil', {
+        url: '/miembro:id_usuario',
+        templateUrl: '../templates/perfil.html',
+        controller: 'perfilController as perfil',
+        resolve: {
+          "currentAuth": ["$q", "servicioGeneral", function ($q, servicioGeneral) {
+
+            if (!servicioGeneral.autorizado()) {
+
+              return $q.reject("AUTH_REQUIRED");
+
+            }
+
+          }]
         }
       })
       // Esta ruta va a contener {posts de la seccion, miembros, informacion, asistencias}
       .state('inicio/seccion/reportes', {
         url: '/reportes',
         templateUrl: '../templates/reportes.html',
-        controller: 'reportesController as reportes'
+        controller: 'reportesController as reportes',
+        resolve: {
+          "currentAuth": ["$q", "servicioGeneral", function ($q, servicioGeneral) {
+
+            if (!servicioGeneral.autorizado()) {
+
+              return $q.reject("AUTH_REQUIRED");
+
+            }
+
+          }]
+        }
       });
 
     $urlRouterProvider.otherwise('/');
@@ -118,7 +217,7 @@ angular.module('GATE', ['ionic', 'ngCordova', 'ngFileUpload', 'ionic-datepicker'
       if (error === "AUTH_REQUIRED") {
         $state.go("ingreso");
       } else if (error === "LOGOUT_REQUIRED") {
-        $state.go('dashboard');
+        $state.go('inicio');
       }
     });
   })

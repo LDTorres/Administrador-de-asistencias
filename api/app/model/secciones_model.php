@@ -135,21 +135,12 @@ class SeccionesModel {
 
     public function getPostsTimeline($params){
         //$offset = $params['offset'];
-        
-        $sth = $this->db->prepare("SELECT id_seccion FROM alumnos_has_secciones WHERE id_usuario = ?");
+        $sql = "SELECT * FROM publicaciones INNER JOIN secciones WHERE publicaciones.id_usuario = 1 AND publicaciones.id_seccion = secciones.id_seccion";
+        $sth = $this->db->prepare($sql);
 
         $sth->execute(array($params['id']));
 
-        $secciones = $sth->fetchAll();
-
-        $publicaciones = [];
-
-        foreach($secciones as $seccion):
-            $sth = $this->db->prepare("SELECT * FROM publicaciones WHERE id_seccion = ?");
-            $sth->execute(array($seccion['id_seccion']));
-            $publicacion = $sth->fetchAll();
-            array_push($publicaciones, $publicacion);
-        endforeach;
+        $publicaciones = $sth->fetchAll();
 
         return  $publicaciones;
     }
@@ -261,13 +252,17 @@ class SeccionesModel {
 
     public function getAsistences($params){
 
-        $sql = "SELECT * FROM $this->table4 INNER JOIN usuarios WHERE id_seccion = ? AND fecha = ? AND $this->table4.id_usuario = usuarios.id_usuario";
-
-        $sth = $this->db->prepare($sql);
-
-        $sth->execute(array($params['id_seccion'], $params['fecha']));
-
-        return $sth->fetchAll();
+        if(isset($params['id_usuario']) != NULL){
+            $sql = "SELECT * FROM $this->table4 INNER JOIN usuarios WHERE id_seccion = ? AND fecha = ? AND $this->table4.id_usuario = ?";
+            $sth = $this->db->prepare($sql);
+            $sth->execute(array($params['id_seccion'], $params['fecha'], $params['id_usuario']));
+            return $sth->fetch();
+        }else{
+            $sql = "SELECT * FROM $this->table4 INNER JOIN usuarios WHERE id_seccion = ? AND fecha = ? AND $this->table4.id_usuario = usuarios.id_usuario";
+            $sth = $this->db->prepare($sql);
+            $sth->execute(array($params['id_seccion'], $params['fecha']));
+            return $sth->fetchAll();
+        }
     }
 
     public function getReport($params){

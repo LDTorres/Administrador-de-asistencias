@@ -2,6 +2,32 @@ angular.module('GATE')
 
   .constant("ruta", "http://localhost:3454")
 
+  .constant("trimestresConstante", [{
+    id_trimestre: 1
+  }, {
+    id_trimestre: 2
+  }, {
+    id_trimestre: 3
+  }, {
+    id_trimestre: 4
+  }, {
+    id_trimestre: 5
+  }, {
+    id_trimestre: 6
+  }, {
+    id_trimestre: 7
+  }, {
+    id_trimestre: 8
+  }, {
+    id_trimestre: 9
+  }, {
+    id_trimestre: 10
+  }, {
+    id_trimestre: 11
+  }, {
+    id_trimestre: 12
+  }])
+
   .factory('LS', ['$window', '$rootScope', function ($window, $rootScope) {
     return {
       definir: function (llave, valor) {
@@ -159,29 +185,6 @@ angular.module('GATE')
       });
       return promise;
     };
-    // Espera un id de usuario y opcionalmente la accion
-    this.estado = function (datos) {
-      var defered = $q.defer();
-      var promise = defered.promise;
-
-      if (datos.accion) {
-        var rutaCompleta = '/status/' + id + '/' + accion;
-      }
-
-      var rutaCompleta = '/status/' + id;
-
-      $http.get(ruta + rutaCompleta).then(function (res) {
-
-
-        defered.resolve(res);
-
-      }).catch(function (res) {
-
-
-        defered.reject(res);
-      });
-      return promise;
-    };
 
     // Espera como parametro {id_usuario, contrasena, nombre_completo, telefono, cedula}
     this.update = function (datos) {
@@ -247,6 +250,23 @@ angular.module('GATE')
   /* ASIGNATURAS */
 
   .service("servicioAsignatura", ["$http", "$q", "ruta", function ($http, $q, ruta) {
+
+    this.getMalla = function (id) {
+
+      var defered = $q.defer();
+      var promise = defered.promise;
+
+      $http.get(ruta + '/pnf/get/' + id).then(function (res) {
+
+        defered.resolve(res);
+
+      }).catch(function (res) {
+
+
+        defered.reject(res);
+      });
+      return promise;
+    };
 
     /* Esperan el id de todas las asignaturas */
 

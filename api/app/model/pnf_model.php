@@ -29,12 +29,12 @@ class PnfModel {
         return $result;
     }
 
-    public function get($id){
-        $sql = "SELECT * FROM $this->table WHERE id_malla = ?";
+    public function get($a){
+        $sql = "SELECT nombre FROM $this->table WHERE id_malla = ?";
 
         $sth = $this->db->prepare($sql);
 
-        $sth->execute(array($id));
+        $sth->execute(array($a['id']));
 
         $result = $sth->fetch();
 

@@ -7,24 +7,25 @@
       <ion-tabs class="tabs-positive tabs-icon-top">
         <ion-tab title="Publicaciones" icon-on="ion-ios-filing" icon-off="ion-ios-filing-outline">
           <ion-content class="padding has-tabs">
-            <div class="card-list list">
-              <a ng-click="seccion.crearPublicacion()" class="item item-icon-right">
-                 Nueva Publicacion
-                <i class="icon ion-ios-plus-outline"></i>
-              </a>
-            </div>
+            <a ng-if="seccion.datos.tipo == 'Administrador' || seccion.datos.tipo == 'Profesor'" class="button button-block button-outline button-positive icon-right ion-ios-plus-outline"
+              ng-click="seccion.crearPublicacion()">
+              Nueva Publicacion
+            </a>
 
-            <div class="list card">
-              <div class="item item-divider">
-                <h4 class="text-center">Publicaciones</h4>
-              </div>
-            </div>
-            <div class="list card" ng-repeat="post in seccion.datos.posts">
-
-              <a ng-click="seccion.editarPublicacion($index)" class="item item-avatar">
+            <div class="card-list list" ng-repeat="post in seccion.datos.posts">
+              <a ng-if="seccion.datos.tipo == 'Administrador' || seccion.datos.tipo == 'Profesor'" ng-click="seccion.editarPublicacion($index)"
+                class="item item-avatar item-cabecera">
                 <img ng-src="../img/{{post.nombre_archivo}}">
-                <h2>{{post.titulo}}</h2>
-                <p>{{post.fecha_publicacion}}</p>
+                <h2 class="text-white">{{post.titulo}}</h2>
+                <h4 class="text-white">Asignatura: {{seccion.datos.seccion[0].nombre_asig}}</h4>
+                <h6 class="text-white">{{post.fecha_publicacion}}</h6>
+              </a>
+
+              <a ng-if="seccion.datos.tipo != 'Administrador' && seccion.datos.tipo != 'Profesor'" class="item item-avatar item-cabecera">
+                <img ng-src="../img/{{post.nombre_archivo}}">
+                <h2 class="text-white">{{post.titulo}}</h2>
+                <h4 class="text-white">Asignatura: {{seccion.datos.seccion.nombre_asig}}</h4>
+                <h6 class="text-white">{{post.fecha_publicacion}}</h6>
               </a>
 
               <div class="item item-body">
@@ -36,9 +37,9 @@
                 </p>
               </div>
               <a href="#" class="item item-icon-left">
-                    <i class="icon ion-code-download"></i>
-                    Descargar
-                  </a>
+                <i class="icon ion-code-download"></i>
+                Descargar
+              </a>
             </div>
           </ion-content>
         </ion-tab>
@@ -47,7 +48,7 @@
           <ion-content class="padding has-tabs">
             <h4 class="text-center">Miembros</h4>
             <div class="list card" ng-repeat="miembro in seccion.datos.miembros">
-              <a class="item item-avatar">
+              <a class="item item-avatar" ui-sref="inicio/seccion/miembro/perfil({id_usuario: miembro.id_usuario})">
                 <img ng-src="../img/{{miembro.foto_perfil}}">
                 <h2>{{miembro.nombre_completo}}</h2>
                 <p>{{miembro.telefono}}</p>
@@ -58,12 +59,10 @@
 
         <ion-tab title="Asistencia" icon-on="ion-ios-gear" icon-off="ion-ios-gear-outline">
           <ion-content class="padding">
-            <div class="card-list list">
-              <a class="item item-icon-right" ui-sref="inicio/seccion/asistencias({datos: seccion.datos})">
-                 Gestion de Asistencias
-                <i class="icon ion-ios-plus-outline"></i>
-              </a>
-            </div>
+            <a ng-if="seccion.datos.tipo == 'Administrador' || seccion.datos.tipo == 'Profesor'" class="button button-block button-outline button-positive icon-right ion-ios-plus-outline"
+              ui-sref="inicio/seccion/asistencias({datos: seccion.datos})">
+              Gestion de Asistencias
+            </a>
 
             <div class="list card">
               <div class="item item-divider">
@@ -84,7 +83,10 @@
               <div class="item" ng-repeat="asistencia in seccion.datos.asistencias">
                 <div class="row">
                   <span class="col col-50">{{asistencia.usuario}}</span>
-                  <span class="col col-50">{{asistencia.asistio}}</span>
+                  <span class="col col-50">
+                    <span ng-if="asistencia.asistio == 1">Asistente</span>
+                    <span ng-if="asistencia.asistio == 0">No asistio</span>
+                  </span>
                 </div>
               </div>
             </div>
@@ -94,7 +96,7 @@
         <ion-tab title="Informacion" icon-on="ion-ios-gear" icon-off="ion-ios-gear-outline">
           <ion-content class="padding">
             <div class="list card" ng-repeat="s in seccion.datos.seccion">
-              <h4 class="text-center">Informacion Seccion</h4>
+              <h4 class="item text-center text-white item-cabecera">Informacion Seccion</h4>
               <div class="item">
                 <b>Nombre Seccion: </b> {{s.nombre}}
               </div>
@@ -108,6 +110,8 @@
                 <b>Miembros:</b> {{seccion.datos.miembros.length}}
               </div>
             </div>
+            <button ng-if="seccion.datos.tipo == 'Administrador' || seccion.datos.tipo == 'Profesor'" ui-sref="inicio/seccion/configuracion"
+              class="button button-outline button-block button-positive">CONFIGURACION</button>
           </ion-content>
         </ion-tab>
 

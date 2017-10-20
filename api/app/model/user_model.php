@@ -45,6 +45,8 @@ class UserModel
             return array('msg' => 'No hay registros');
         endif;
 
+        $result->cedula = intval($result->cedula);
+
         return $result;
     }
 
@@ -103,7 +105,7 @@ class UserModel
 
     public function login($params){
 
-        $sql = "SELECT id_usuario, usuario, correo, contrasena, tipo, id_malla FROM $this->table WHERE usuario = :user OR correo = :user AND contrasena = :pass";
+        $sql = "SELECT id_usuario, usuario, correo, contrasena, tipo, id_malla FROM $this->table WHERE contrasena = :pass AND usuario = :user OR correo = :user";
         $sth = $this->db->prepare($sql);
         $sth->execute(array(':user' => $params['usuario'], ':pass' => $params['contrasena']));
 
@@ -129,7 +131,7 @@ class UserModel
             // $data = JWT::decode($jwt, self::$secret_key, array('HS256'));
 
             // var_dump($data);
-            return array("token" => $jwt);
+            return array("token" => $jwt, 'id' => $result['id_usuario'],'name' => $result['usuario'],'tipo' => $result['tipo'],'id_malla' => $result['id_malla']);
         else:
             return false;
         endif;

@@ -10,6 +10,18 @@
   text-align: center;
 }
 
+.text-white {
+  color: white !important;
+}
+
+.item-cabecera {
+  background: rgb(27, 74, 154);
+}
+
+.item-border {
+  border-bottom: 1px solid rgb(20, 143, 180);
+}
+
 .button-personalizado {
   display: flex;
   background: darkblue;
@@ -51,10 +63,13 @@
     font-size: 1.2em;
     color: white;
     
-} */
+}
 
-.tabs-striped .overflow-scroll>.scroll {
-  margin-top: 7em;
+*/
+
+ion-content {
+  top: 93px !important;
+  height: auto !important;
 }
 
 .list.list-inset.formlogin {
@@ -69,16 +84,16 @@
   flex-direction: column;
 }
 
-.logo_iuteb{
-    width: 45%;
-    margin-top: 4em;
-    opacity: .7;
+.logo_iuteb {
+  width: 45%;
+  margin-top: 4em;
+  opacity: .7;
 }
 
-.subtitulo{
-    font-size: 1.2em;
-    font-weight: bolder;
-    text-transform: uppercase;
-    opacity: .6;
-    text-align: center;
+.subtitulo {
+  font-size: 1.2em;
+  font-weight: bolder;
+  text-transform: uppercase;
+  opacity: .6;
+  text-align: center;
 }

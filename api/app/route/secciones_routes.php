@@ -172,7 +172,6 @@ $app->group('/seccion',function(){
     
     $this->post('/asistencia/get', function($req, $res){
         $params = $req->getParsedBody();
-
         return $this->response->withJson($GLOBALS['sm']->getAsistences($params), 200);
     });
 

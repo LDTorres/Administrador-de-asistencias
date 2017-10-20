@@ -1,63 +1,37 @@
 angular.module('GATE')
 
-  .controller('inscripcionController', ["$scope", "servicioGeneral", "$state", "servicioSecciones", "servicioAsignatura", function ($scope, servicioGeneral, $state, servicioSecciones, servicioAsignatura) {
+  .controller('inscripcionController', ["$scope", "servicioGeneral", "$state", "servicioSecciones", "servicioAsignatura", "trimestresConstante", "$rootScope", function ($scope, servicioGeneral, $state, servicioSecciones, servicioAsignatura, trimestresConstante, $rootScope) {
     var bz = this;
 
     bz.datos = {
-      listarAsignaturas: {
-        id_malla: 1
-      },
-      user: {
-        tipo: 'estudiante'
-      },
-      trimestres: [{
-        id_trimestre: 1
-      }, {
-        id_trimestre: 2
-      }, {
-        id_trimestre: 3
-      }, {
-        id_trimestre: 4
-      }, {
-        id_trimestre: 5
-      }, {
-        id_trimestre: 6
-      }, {
-        id_trimestre: 7
-      }, {
-        id_trimestre: 8
-      }, {
-        id_trimestre: 9
-      }, {
-        id_trimestre: 10
-      }, {
-        id_trimestre: 11
-      }, {
-        id_trimestre: 12
-      }],
+      listarAsignaturas: {},
+      trimestres: trimestresConstante,
       crearSeccion: {
-        id_usuario: 1,
         id_asignatura: 0,
         nombre: ''
       },
-      inscribirSeccion: {
-        id_usuario: 1
-      }
+      inscribirSeccion: {}
     }
 
+    bz.datos.objeto = $rootScope.objectoCliente;
+    bz.datos.listarAsignaturas.id_malla = $rootScope.objectoCliente.id_malla;
+
     bz.listarAsignaturas = function (datos) {
+      console.log(datos)
       servicioAsignatura.getAll(datos).then(function (res) {
         bz.datos.asignaturas = res.data;
       });
     }
 
     bz.crearSeccion = function (datos) {
+      datos.id_usuario = $rootScope.objectoCliente.id
       servicioSecciones.add(datos).then(function (res) {
         bz.seccionCreada = 'Seccion Creada';
       });
     }
 
     bz.inscribirSeccion = function (datos) {
+      datos.id_usuario = $rootScope.objectoCliente.id
       servicioSecciones.addMember(datos).then(function (res) {
         bz.m = res.data.msg;
       });

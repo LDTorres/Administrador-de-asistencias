@@ -1,40 +1,42 @@
 <ion-view view-title="Configuracion">
   <ion-pane>
-    <ion-nav-bar class="bar-assertive" align-title="center">
+    <ion-nav-bar class="bar-positive" align-title="center">
       <ion-nav-back-button></ion-nav-back-button>
     </ion-nav-bar>
-    <div class="tabs-striped tabs-background-assertive tabs-color-light">
+
+    <div class="tabs-striped tabs-background-positive tabs-color-light">
       <ion-tabs class="tabs-positive tabs-icon-top">
-
-        <ion-tab title="Home" icon-on="ion-ios-filing" icon-off="ion-ios-filing-outline">
+        <ion-tab title="Config" icon-on="ion-gear-b" icon-off="ion-gear-b">
           <ion-content class="padding">
-
-          </ion-content>
-        </ion-tab>
-
-        <ion-tab title="About" icon-on="ion-ios-clock" icon-off="ion-ios-clock-outline">
-          <ion-content class="padding">
-            <h4>Acerca de nosotros</h4>
-            <div class="list card">
-              <div class="item">
-                <a ui-sref="inicio/asignaturas">Asignaturas</a>
+            <form class="list" ng-submit="config.actualizarConfiguracion(config.config)">
+              <div class="item item-divider">
+                <h4 class="text-center">Numero De Entradas</h4>
               </div>
-            </div>
-          </ion-content>
-        </ion-tab>
-
-        <ion-tab title="Settings" icon-on="ion-ios-gear" icon-off="ion-ios-gear-outline">
-          <ion-content class="padding">
-            <h4>Publicaciones Recientes</h4>
-            <div class="list card">
-              <div class="item">
-                <h2>Hola 3</h2>
+              <div class="item range range-positive">
+                <i class="icon ion-document-text"></i>
+                <input ng-model="config.config.cantPosts" type="range" name="posts" min="1" max="15" ng-value="5">
+                <span>{{config.config.cantPosts}}</span>
               </div>
-            </div>
+              <!--
+                                    <li class="item item-toggle">
+                                      HTML5
+                                      <label class="toggle toggle-assertive">
+                                        <input type="checkbox">
+                                        <div class="track">
+                                          <div class="handle"></div>
+                                        </div>
+                                      </label>
+                                    </li>
+                                  -->
+              <input type="submit" class="button button-outline button-block button-positive" value="Guardar Preferencias">
+            </form>
           </ion-content>
         </ion-tab>
 
       </ion-tabs>
+
     </div>
+
   </ion-pane>
+
 </ion-view>

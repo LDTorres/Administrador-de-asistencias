@@ -12,9 +12,9 @@ $app->group('/pnf',function(){
         return $this->response->withJson($result);
     });
 
-    $this->get('/{id}',function($req, $res, $args){
+    $this->get('/get/{id}',function($req, $res, $args){
 
-        $result = $GLOBALS['pm']->get($args['id']);
+        $result = $GLOBALS['pm']->get($args);
         
         return $this->response->withJson($result);
     });
