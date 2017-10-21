@@ -48,7 +48,8 @@
           <ion-content class="padding has-tabs">
             <h4 class="text-center">Miembros</h4>
             <div class="list card" ng-repeat="miembro in seccion.datos.miembros">
-              <a class="item item-avatar" ui-sref="inicio/seccion/miembro/perfil({id_usuario: miembro.id_usuario})">
+              <a class="item item-avatar" on-swipe-left="seccion.eliminarMiembro()" ui-sref="inicio/seccion/miembro/perfil({id_usuario: miembro.id_usuario})">
+
                 <img ng-src="../img/{{miembro.foto_perfil}}">
                 <h2>{{miembro.nombre_completo}}</h2>
                 <p>{{miembro.telefono}}</p>

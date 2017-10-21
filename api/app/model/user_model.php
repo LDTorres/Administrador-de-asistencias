@@ -159,7 +159,7 @@ class UserModel
 
         $params['id_usuario'] = $this->db->lastInsertId();
 
-        $time = time();
+        $time = date();
 
             $token = array(
                 'iat' => $time,
@@ -194,8 +194,13 @@ class UserModel
             self::$secret_key,
             self::$encrypt
         );
-        // TODO: COMO SABER SI EL TOKEN EXPIRO
-        if($decode['iat']):
+
+        // Verificamos si expiro el token
+
+        $actual = time();
+        $expicacion = $decode->exp;
+
+        if($actual > $expicacion):
             return 'Token Expirado';
         endif;
         
@@ -204,6 +209,7 @@ class UserModel
             return "Aud Invalido";
         }
 
+        return "ok";
     }
     
     public static function GetData($token)

@@ -1,9 +1,10 @@
 angular.module('GATE')
 
-  .controller('inicioController', ["$scope", "servicioGeneral", "$state", "servicioSecciones", "servicioAsignatura", "servicioUsuario", '$rootScope', 'trimestresConstante', function ($scope, servicioGeneral, $state, servicioSecciones, servicioAsignatura, servicioUsuario, $rootScope, trimestresConstante) {
+  .controller('inicioController', ["$ionicSideMenuDelegate", "$scope", "servicioGeneral", "$state", "servicioSecciones", "servicioAsignatura", "servicioUsuario", '$rootScope', 'trimestresConstante', function ($ionicSideMenuDelegate, $scope, servicioGeneral, $state, servicioSecciones, servicioAsignatura, servicioUsuario, $rootScope, trimestresConstante) {
+
     var bz = this;
 
-    //console.log($rootScope.objectoCliente)
+    console.log($rootScope.objectoCliente.token)
 
     bz.datos = {
       posts: [],
@@ -12,6 +13,11 @@ angular.module('GATE')
       objectoCliente: $rootScope.objectoCliente,
       trimestres: trimestresConstante
     }
+
+    bz.toggleLeft = function () {
+      $ionicSideMenuDelegate.toggleLeft();
+    };
+
 
     bz.posts = function (id) {
       servicioGeneral.timeline(id).then(function (res) {

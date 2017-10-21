@@ -30,7 +30,7 @@ $app->post('/checkAuth', function ($req, $res) {
     return $this->response->withJson($GLOBALS['um']->check($params['token']));
 });
 
-$app->get('/getDataAuth', function ($req, $res) {
+$app->post('/decodeToken', function ($req, $res) {
     $params = $req->getParsedBody();
     return $this->response->withJson($GLOBALS['um']->getData($params['token']));
 });
