@@ -15,14 +15,14 @@
             <div class="card-list list" ng-repeat="post in seccion.datos.posts">
               <a ng-if="seccion.datos.tipo == 'Administrador' || seccion.datos.tipo == 'Profesor'" ng-click="seccion.editarPublicacion($index)"
                 class="item item-avatar item-cabecera">
-                <img ng-src="../img/{{post.nombre_archivo}}">
+                <img ng-src="img/{{post.nombre_archivo}}">
                 <h2 class="text-white">{{post.titulo}}</h2>
                 <h4 class="text-white">Asignatura: {{seccion.datos.seccion[0].nombre_asig}}</h4>
                 <h6 class="text-white">{{post.fecha_publicacion}}</h6>
               </a>
 
               <a ng-if="seccion.datos.tipo != 'Administrador' && seccion.datos.tipo != 'Profesor'" class="item item-avatar item-cabecera">
-                <img ng-src="../img/{{post.nombre_archivo}}">
+                <img ng-src="img/{{post.nombre_archivo}}">
                 <h2 class="text-white">{{post.titulo}}</h2>
                 <h4 class="text-white">Asignatura: {{seccion.datos.seccion.nombre_asig}}</h4>
                 <h6 class="text-white">{{post.fecha_publicacion}}</h6>
@@ -50,7 +50,7 @@
             <div class="list card" ng-repeat="miembro in seccion.datos.miembros">
               <a class="item item-avatar" on-swipe-left="seccion.eliminarMiembro()" ui-sref="inicio/seccion/miembro/perfil({id_usuario: miembro.id_usuario})">
 
-                <img ng-src="../img/{{miembro.foto_perfil}}">
+                <img ng-src="img/{{miembro.foto_perfil}}">
                 <h2>{{miembro.nombre_completo}}</h2>
                 <p>{{miembro.telefono}}</p>
               </a>

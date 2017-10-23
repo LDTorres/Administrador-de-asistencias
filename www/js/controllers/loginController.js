@@ -9,6 +9,12 @@ angular.module('GATE')
       mostrarForm: 1
     };
 
+    // ionic '../www/'
+    // PC '../'
+    var pathDev = {
+      img: '../img'
+    };
+
     bz.ingresar = function (datos) {
       servicioGeneral.ingresar(datos).then(function (res) {
         bz.good = 'Datos Correctos';

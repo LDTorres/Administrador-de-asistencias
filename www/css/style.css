@@ -67,7 +67,7 @@
 
 */
 
-ion-content {
+ion-content:not(.not-top-menu) {
   top: 93px !important;
   height: auto !important;
 }

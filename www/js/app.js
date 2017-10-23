@@ -16,6 +16,10 @@ angular.module('GATE', ['ionic', 'ngCordova', 'ngFileUpload', 'ionic-datepicker'
 
   .config(function ($stateProvider, $urlRouterProvider, $httpProvider, ionicDatePickerProvider) {
 
+    // ionic '../www/'
+    // PC '../'
+    var pathDev = 'js/views/';
+
     /* INTERCEPTADOR */
     $httpProvider.interceptors.push('AuthInterceptor');
 
@@ -33,7 +37,7 @@ angular.module('GATE', ['ionic', 'ngCordova', 'ngFileUpload', 'ionic-datepicker'
       showTodayButton: true,
       dateFormat: 'dd MMMM yyyy',
       closeOnSelect: false,
-      disableWeekdays: [0, 6],
+      disableWeekdays: [0, 6]
     };
 
     ionicDatePickerProvider.configDatePicker(datePickerObj);
@@ -41,7 +45,7 @@ angular.module('GATE', ['ionic', 'ngCordova', 'ngFileUpload', 'ionic-datepicker'
     $stateProvider
       .state('ingreso', {
         url: '/',
-        templateUrl: '../templates/login.html',
+        templateUrl: pathDev + 'login.html',
         controller: 'loginController as login',
         resolve: {
           "currentAuth": ["$q", "servicioGeneral", function ($q, servicioGeneral) {
@@ -57,7 +61,7 @@ angular.module('GATE', ['ionic', 'ngCordova', 'ngFileUpload', 'ionic-datepicker'
       // Inicio va a contener {timeline, todas las asignaturas y las secciones, perfil}
       .state('inicio', {
         url: '/inicio',
-        templateUrl: '../templates/inicio.html',
+        templateUrl: pathDev + 'inicio.html',
         controller: 'inicioController as inicio',
         resolve: {
           "currentAuth": ["$q", "servicioGeneral", function ($q, servicioGeneral) {
@@ -74,13 +78,13 @@ angular.module('GATE', ['ionic', 'ngCordova', 'ngFileUpload', 'ionic-datepicker'
       // Ayuda va a contener {informacion de la app, y el manual}
       .state('inicio/ayuda', {
         url: '/ayuda',
-        templateUrl: '../templates/ayuda.html',
+        templateUrl: pathDev + 'ayuda.html',
         controller: 'ayudaController as ayuda'
       })
       // Esta ruta va a contener {inscribir una asignatura {alumno}, crear una seccion {profesor}}
       .state('inicio/asignatura/inscripcion', {
         url: '/inscripcion',
-        templateUrl: '../templates/inscripcion.html',
+        templateUrl: pathDev + 'inscripcion.html',
         controller: 'inscripcionController as inscripcion',
         resolve: {
           "currentAuth": ["$q", "servicioGeneral", function ($q, servicioGeneral) {
@@ -97,7 +101,7 @@ angular.module('GATE', ['ionic', 'ngCordova', 'ngFileUpload', 'ionic-datepicker'
       // Esta ruta va a contener {posts de la seccion, miembros, informacion, asistencias}
       .state('inicio/seccion', {
         url: '/seccion:id_seccion',
-        templateUrl: '../templates/seccion.html',
+        templateUrl: pathDev + 'seccion.html',
         controller: 'seccionController as seccion',
         resolve: {
           "currentAuth": ["$q", "servicioGeneral", function ($q, servicioGeneral) {
@@ -114,7 +118,7 @@ angular.module('GATE', ['ionic', 'ngCordova', 'ngFileUpload', 'ionic-datepicker'
       // Esta ruta va a contener {posts de la seccion, miembros, informacion, asistencias}
       .state('inicio/seccion/asistencias', {
         url: '/asistencias',
-        templateUrl: '../templates/asistencia.html',
+        templateUrl: pathDev + 'asistencia.html',
         controller: 'asistenciaController as asistencia',
         params: {
           datos: null
@@ -134,7 +138,7 @@ angular.module('GATE', ['ionic', 'ngCordova', 'ngFileUpload', 'ionic-datepicker'
       // Esta ruta va a contener {nueva publicacion}
       .state('inicio/seccion/publicacion', {
         url: '/publicacion',
-        templateUrl: '../templates/publicacion.html',
+        templateUrl: pathDev + 'publicacion.html',
         controller: 'publicacionController as publicacion',
         params: {
           datos: null
@@ -153,7 +157,7 @@ angular.module('GATE', ['ionic', 'ngCordova', 'ngFileUpload', 'ionic-datepicker'
       })
       .state('inicio/seccion/configuracion', {
         url: '/configuracion',
-        templateUrl: '../templates/configuracion.html',
+        templateUrl: pathDev + 'configuracion.html',
         controller: 'configuracionController as config',
         params: {
           datos: null
@@ -172,7 +176,7 @@ angular.module('GATE', ['ionic', 'ngCordova', 'ngFileUpload', 'ionic-datepicker'
       })
       .state('inicio/seccion/miembro/perfil', {
         url: '/miembro:id_usuario',
-        templateUrl: '../templates/perfil.html',
+        templateUrl: pathDev + 'perfil.html',
         controller: 'perfilController as perfil',
         resolve: {
           "currentAuth": ["$q", "servicioGeneral", function ($q, servicioGeneral) {
@@ -189,7 +193,7 @@ angular.module('GATE', ['ionic', 'ngCordova', 'ngFileUpload', 'ionic-datepicker'
       // Esta ruta va a contener {posts de la seccion, miembros, informacion, asistencias}
       .state('inicio/seccion/reportes', {
         url: '/reportes',
-        templateUrl: '../templates/reportes.html',
+        templateUrl: pathDev + 'reportes.html',
         controller: 'reportesController as reportes',
         resolve: {
           "currentAuth": ["$q", "servicioGeneral", function ($q, servicioGeneral) {

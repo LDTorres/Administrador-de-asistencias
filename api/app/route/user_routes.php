@@ -1,5 +1,7 @@
 <?php
 
+require 'middleware.php';
+
 use App\Model\UserModel;
 
 // Se instancia el modelo
@@ -66,7 +68,7 @@ $app->group('/user', function () {
 
     });
 
-});
+})->add($mw);
 
 // ->add($mw);
 

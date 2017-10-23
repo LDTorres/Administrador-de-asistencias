@@ -4,7 +4,6 @@ namespace App\Model;
 
 use Firebase\JWT\JWT;
 use App\Lib\Database;
-
 use Exception;
 
 class UserModel
@@ -138,28 +137,22 @@ class UserModel
     }
 
     public function add($params){
-
-        if(isset($params['tipo']) != NULL && $params['tipo'] == 'Profesor'){
-            $tipo = $params['tipo'];
-        }else{
-            $tipo = 'Estudiante';
+        $tipo = 'Estudiante';
+        if(isset($params['tipo']) != NULL){ 
+            if($params['tipo'] == 'Profesor'){
+                $tipo = $params['tipo'];
+            }
         }
 
-        $sql = "INSERT INTO $this->table (usuario, contrasena, nombre_completo, cedula, correo, telefono, id_malla) VALUES (:usuario, :contrasena, :nombre_completo, :cedula, :correo, :telefono, :id_malla ) ";
+        $sql = "INSERT INTO $this->table (usuario, contrasena, nombre_completo, cedula, correo, telefono, id_malla, tipo) VALUES (?,?,?,?,?,?,?,?) ";
         $sth = $this->db->prepare($sql);
-        $sth->execute(array(
-            ':usuario' => $params['usuario'], 
-            ':contrasena' => $params['contrasena'], 
-            ':nombre_completo' => $params['nombre_completo'],
-            ':cedula' => $params['cedula'], 
-            ':correo' => $params['correo'],
-            ':telefono' => $params['telefono'],
-            ':id_malla' => $params['id_malla']
-        ));
+        $sth->execute(array($params['usuario'],$params['contrasena'], $params['nombre_completo'],$params['cedula'], $params['correo'],$params['telefono'],$params['id_malla'],$tipo));
 
         $params['id_usuario'] = $this->db->lastInsertId();
 
-        $time = date();
+
+        if($this->db->lastInsertId() != false):
+            $time = time();
 
             $token = array(
                 'iat' => $time,
@@ -178,8 +171,10 @@ class UserModel
             // $data = JWT::decode($jwt, self::$secret_key, array('HS256'));
 
             // var_dump($data);
-
-        return array('token' => $jwt, 'tipo' => $tipo);
+            return array("token" => $jwt, 'id' => $params['id_usuario'],'name' => $params['usuario'],'tipo' => $tipo,'id_malla' => $params['id_malla']);
+        else:
+            return false;
+        endif;
     }
     
     public static function Check($token)

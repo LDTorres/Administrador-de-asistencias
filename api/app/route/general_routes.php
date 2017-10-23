@@ -1,5 +1,7 @@
 <?php
 
+require 'middleware.php';
+
 use App\Model\UserModel;
 use App\Model\BDModel;
 
@@ -35,7 +37,7 @@ $app->post('/decodeToken', function ($req, $res) {
     return $this->response->withJson($GLOBALS['um']->getData($params['token']));
 });
 
-$app->get('/app', function ($req, $res, $args) {
+$app->get('/', function ($req, $res, $args) {
 
     $sql = 'SELECT * FROM app_config';
 
@@ -54,20 +56,17 @@ $app->group('/bd',function(){
     $this->post('/restore',function($req, $res){
         $params = $req->getParsedBody();
         $result = $GLOBALS['bdm']->restore($params['filename']);
-        $this->logger->info("Restauracion de Base de datos");
         return $this->response->withJson($result);
     });
 
     $this->get('/backup',function($req, $res, $args){
         $result = $GLOBALS['bdm']->backup();
-        $this->logger->info("Respaldo de Base de datos Ruta Archivo:".$result['filename']);
         return $this->response->withJson($result);
     });
 
     $this->post('/delete',function($req, $res){
         $params = $req->getParsedBody();
         $result = $GLOBALS['bdm']->delete($params['filename'], $params['id']);
-        $this->logger->info("Archivo Borrado: ".$result['archivo']);
 
         return $this->response->withJson($result);
     });
@@ -75,6 +74,6 @@ $app->group('/bd',function(){
     $this->get('/backups',function($req, $res, $args){        
         return $this->response->withJson($GLOBALS['bdm']->getBackups());
     });
-});
+})->add($mw);
 
 // ->add($mw);

@@ -4,6 +4,7 @@
     "description": "Administrador de asistencias",
     "dependencies": {
         "cordova-android": "^6.2.3",
+        "cordova-browser": "^4.1.0",
         "cordova-plugin-console": "^1.0.5",
         "cordova-plugin-device": "^1.1.4",
         "cordova-plugin-splashscreen": "^4.0.3",
@@ -34,7 +35,8 @@
             "ionic-plugin-keyboard": {}
         },
         "platforms": [
-            "android"
+            "android",
+            "browser"
         ]
     }
 }

@@ -1,5 +1,7 @@
 <?php
 
+require 'middleware.php';
+
 use App\Model\PnfModel;
 
 $pm = new PnfModel();
@@ -37,6 +39,6 @@ $app->group('/pnf',function(){
         return $this->response->withJson($result, 200);
     });
 
-});
+})->add($mw);
 
 // ->add($mw);

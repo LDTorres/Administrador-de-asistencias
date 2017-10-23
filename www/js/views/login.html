@@ -2,12 +2,12 @@
 
   <ion-pane ng-switch="login.datos.mostrarForm">
 
-    <ion-content ng-switch-when="1">
+    <ion-content ng-switch-when="1" class="not-top-menu">
       <ion-header-bar class="bar-positive" align-title="center">
         <h1 class="title subtitulo">Iniciar Sesión</h1>
       </ion-header-bar>
       <div class="header_membrete">
-        <img src="/img/logoIuteb.png" class="logo_iuteb">
+        <img src="img/logoIuteb.png" class="logo_iuteb">
         <h2 class="subtitulo">Ingreso de Usuarios</h2>
       </div>
       <form ng-submit="login.ingresar(login.datos.login)" class="list">
@@ -34,12 +34,12 @@
 
 
 
-    <ion-content ng-switch-when="2">
+    <ion-content ng-switch-when="2" class="not-top-menu">
       <ion-header-bar class="bar-positive" align-title="center">
         <h1 class="title subtitulo">Registrarse</h1>
       </ion-header-bar>
       <div class="header_membrete">
-        <img src="/img/logoIuteb.png" class="logo_iuteb">
+        <img src="img/logoIuteb.png" class="logo_iuteb">
         <h2 class="subtitulo">Registra tus datos</h2>
       </div>
       <form ng-submit="login.registrar(login.datos.registro)" class="list">

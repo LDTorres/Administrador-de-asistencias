@@ -1,5 +1,7 @@
 <?php
 
+require 'middleware.php';
+
 use App\Model\SeccionesModel;
 
 $sm = new SeccionesModel();
@@ -181,6 +183,6 @@ $app->group('/seccion',function(){
         return $this->response->withJson($GLOBALS['sm']->getReport($params), 200);
     });
 
-});
+})->add($mw);
 
 // ->add($mw);

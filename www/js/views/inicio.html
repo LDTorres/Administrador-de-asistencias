@@ -8,7 +8,7 @@
         <ion-content class="padding">
           <div class="list card" ng-repeat="post in inicio.datos.posts">
             <a ui-sref="inicio/seccion({id_seccion: post.id_seccion})" class="item item-avatar item-cabecera">
-              <img ng-src="../img/{{post.nombre_archivo}}">
+              <img ng-src="img/{{post.nombre_archivo}}">
               <h2 class="text-white">{{post.titulo}}</h2>
               <h4 class="text-white">Asignatura: {{post.nombre}}</h4>
               <h6 class="text-white">{{post.fecha_publicacion}}</h6>
@@ -84,7 +84,7 @@
           <div>
             <div class="list card item-border">
               <div class="item item-avatar">
-                <img ng-src="../img/{{inicio.datos.user.foto_perfil}}">
+                <img ng-src="img/{{inicio.datos.user.foto_perfil}}">
                 <h2>{{inicio.datos.user.usuario}}</h2>
                 <p>{{inicio.datos.user.malla}}</p>
               </div>
