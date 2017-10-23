@@ -8,9 +8,5 @@
   "watchPatterns": [
     "www/js/*",
     "!www/css/**/*"
-  ],
-  "proxies": [{
-    "path": "/v1",
-    "proxyUrl": "https://api.iutebgate.com/v1"
-  }]
+  ]
 }

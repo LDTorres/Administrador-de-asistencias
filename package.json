@@ -1,7 +1,7 @@
 {
     "name": "iuteb_gate",
     "version": "0.0.1",
-    "description": "An Ionic project",
+    "description": "Administrador de asistencias",
     "dependencies": {
         "cordova-android": "^6.2.3",
         "cordova-plugin-console": "^1.0.5",
