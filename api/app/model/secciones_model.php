@@ -134,11 +134,16 @@ class SeccionesModel {
     // Publicaciones
 
     public function getPostsTimeline($params){
-        //$offset = $params['offset'];
-        $sql = "SELECT * FROM publicaciones INNER JOIN secciones WHERE publicaciones.id_usuario = 1 AND publicaciones.id_seccion = secciones.id_seccion";
+        if(isset($params['offset']) == NULL){
+            $offset = 0;
+        }else{
+            $offset = $params['offset'];
+        }
+        
+        $sql = "SELECT * FROM publicaciones INNER JOIN secciones WHERE publicaciones.id_usuario = ? AND publicaciones.id_seccion = secciones.id_seccion LIMIT $offset,10";
         $sth = $this->db->prepare($sql);
 
-        $sth->execute(array($params['id']));
+        $sth->execute(array($params['id_usuario']));
 
         $publicaciones = $sth->fetchAll();
 
@@ -146,7 +151,11 @@ class SeccionesModel {
     }
 
     public function getPosts($params){
-        $offset = $params['offset'];
+        if(isset($params['offset']) == NULL){
+            $offset = 0;
+        }else{
+            $offset = $params['offset'];
+        }
 
         $sql = "SELECT * FROM $this->table3 WHERE id_seccion = ? LIMIT $offset,10";
 

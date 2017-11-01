@@ -14,8 +14,37 @@
   color: white !important;
 }
 
-.item-cabecera {
+.fondo-transparente {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+.fondo-splash {
+  background: url('../img/splash.png');
+}
+
+.item-cabecera.positive {
   background: rgb(27, 74, 154);
+}
+
+.item-cabecera.energized {
+  background: #d3ac1a;
+}
+
+.item-cabecera.royal {
+  background: #886aea;
+}
+
+.item-cabecera.dark {
+  background: #444444;
+}
+
+.item-cabecera.assertive {
+  background: #ef473a;
+}
+
+.item-cabecera.balanced {
+  background: #33cd5f;
 }
 
 .item-border {
@@ -67,9 +96,12 @@
 
 */
 
-ion-content:not(.not-top-menu) {
-  top: 93px !important;
-  height: auto !important;
+.has-header {
+  top: 44px !important;
+}
+
+.divider {
+  padding: 2px;
 }
 
 .list.list-inset.formlogin {
@@ -86,7 +118,7 @@ ion-content:not(.not-top-menu) {
 
 .logo_iuteb {
   width: 45%;
-  margin-top: 4em;
+  margin-top: 1em;
   opacity: .7;
 }
 
@@ -94,6 +126,5 @@ ion-content:not(.not-top-menu) {
   font-size: 1.2em;
   font-weight: bolder;
   text-transform: uppercase;
-  opacity: .6;
   text-align: center;
 }

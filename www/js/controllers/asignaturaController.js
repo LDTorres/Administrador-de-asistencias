@@ -7,5 +7,7 @@ angular.module('GATE')
       user: [{
         tipo: 'estudiante'
       }]
-  }
-}])
+    }
+
+    bz.tema = $rootScope.objectoCliente.preferencias.color_ui;
+  }])

@@ -42,9 +42,6 @@ class PnfModel {
     }
 
     public function add($params){
-        if($_SESSION['tipo'] !== 'Administrador'):
-            return array('msg'=>'acceso negado');
-        endif;
 
         $sql = "INSERT INTO $this->table (nombre) VALUES (?)";
 
@@ -58,15 +55,12 @@ class PnfModel {
     }
 
     public function update($params){
-        if($_SESSION['tipo'] !== 'Administrador'):
-            return array('msg'=>'acceso negado');
-        endif;
 
         $sql = "UPDATE $this->table SET nombre = ? WHERE id_malla = ?";
 
         $sth = $this->db->prepare($sql);
 
-        $sth->execute(array($params['nombre'], $params['id_malla']));
+        $sth->execute(array($params['nombre'], $params['id']));
 
         return $params;
     }

@@ -1,13 +1,16 @@
-<ion-view view-title="Inicio">
-  <ion-nav-bar class="bar-positive has-tabs-top" align-title="center">
-    <ion-nav-back-button></ion-nav-back-button>
+<ion-view view-title="Publicaciones">
+  <ion-nav-bar class="bar-{{inicio.tema}}" align-title="center">
   </ion-nav-bar>
-  <div class="tabs-striped tabs-background-positive tabs-color-light">
-    <ion-tabs class="tabs-positive tabs-icon-top">
+  <div class="tabs-striped tabs-background-{{inicio.tema}} tabs-color-light">
+    <ion-tabs class="tabs-icon-top tab-{{inicio.tema}}">
       <ion-tab title="Publicaciones" icon-on="ion-compose" icon-off="ion-compose">
         <ion-content class="padding">
+          <button class="button button-block button-outline button-{{inicio.tema}}" ng-click="inicio.posts(inicio.datos.objetoCliente.id, true)">Refrescar</button>
+          <div class="text-center">
+            <ion-spinner ng-if="!inicio.datos.posts.length > 1" icon="android"></ion-spinner>
+          </div>
           <div class="list card" ng-repeat="post in inicio.datos.posts">
-            <a ui-sref="inicio/seccion({id_seccion: post.id_seccion})" class="item item-avatar item-cabecera">
+            <a ui-sref="inicio/seccion({id_seccion: post.id_seccion})" class="item item-avatar item-cabecera {{inicio.tema}}">
               <img ng-src="img/{{post.nombre_archivo}}">
               <h2 class="text-white">{{post.titulo}}</h2>
               <h4 class="text-white">Asignatura: {{post.nombre}}</h4>
@@ -18,22 +21,19 @@
               <span>
                 {{post.descripcion}}
               </span>
-              <br>
-              <span>
-                <a class="subdued">{{post.nombre_archivo}}</a>
-              </span>
             </div>
-            <a href="#" class="item item-icon-left">
-              <i class="icon ion-code-download"></i>
-              Descargar
-            </a>
+            <div class="divider">
+              <button class="button">
+                <i class="icon ion-document"></i>
+              </button>
+            </div>
           </div>
         </ion-content>
       </ion-tab>
 
       <ion-tab title="Asignaturas" icon-on="ion-clipboard" icon-off="ion-clipboard">
         <ion-content class="padding">
-          <a class="button button-block button-outline button-positive icon-right ion-android-arrow-dropright" ui-sref="inicio/asignatura/inscripcion">
+          <a class="button button-block button-outline button-{{inicio.tema}} icon-right ion-android-arrow-dropright" ui-sref="inicio/asignatura/inscripcion">
             Inscripción
           </a>
           <div class="card-list list">
@@ -71,7 +71,7 @@
                       <option ng-repeat="seccion in inicio.datos.secciones" ng-value="seccion.id_seccion">{{seccion.nombre}}</option>
                     </select>
                 </label>
-                <input type="submit" ng-if="inicio.datos.seccionSeleccionada" value="IR" class="button button-outline button-block button-positive">
+                <input type="submit" ng-if="inicio.datos.seccionSeleccionada" value="IR" class="button button-outline button-block button-{{inicio.tema}}">
 
                 </form>
             </div>
@@ -90,55 +90,63 @@
               </div>
             </div>
 
-            <form class="input-inset list" ng-submit="inicio.actualizarUsuario(inicio.datos.user)">
-              <h4 class="text-center item-cabecera item text-white">Datos</h4>
+            <form class="input-inset list" ng-submit="inicio.actualizarUsuario(inicio.datos.user, datosPersonales.$valid)" name="datosPersonales" novalidate>
+              <h4 class="text-center item-cabecera {{inicio.tema}} item text-white">Datos</h4>
               <label class="item item-input">
-                <input type="text" placeholder="Nombre Completo" ng-model="inicio.datos.user.nombre_completo">
+                <input type="text" placeholder="Nombre Completo" ng-model="inicio.datos.user.nombre_completo" name="nombreCompleto" required>
               </label>
+              <div class="item" ng-messages="datosPersonales.nombreCompleto.$error" style="color:maroon" role="alert" ng-show="datosPersonales.nombreCompleto.$error.required">
+                <div ng-message="required">Este campo es requerido.</div>
+              </div>
+              <label class="item item-input" >
+                <input type="number" placeholder="Cedula" ng-model="inicio.datos.user.cedula" name="cedula" required>
+              </label>
+              <div class="item" ng-messages="datosPersonales.cedula.$error" style="color:maroon" role="alert" ng-show="datosPersonales.cedula.$error.required">
+                <div ng-message="required">Este campo es requerido.</div>
+              </div>
               <label class="item item-input">
-                <input type="number" placeholder="Cedula" ng-model="inicio.datos.user.cedula">
+                <input type="tel" placeholder="Telefono" ng-model="inicio.datos.user.telefono" name="telefono" required>
               </label>
+              <div class="item" ng-messages="datosPersonales.telefono.$error" style="color:maroon" role="alert" ng-show="datosPersonales.telefono.$error.required">
+                <div ng-message="required">Este campo es requerido.</div>
+              </div>
               <label class="item item-input">
-                <input type="tel" placeholder="Telefono" ng-model="inicio.datos.user.telefono">
+                <input type="password" placeholder="Contraseña" ng-model="inicio.datos.user.contrasena" name="contrasena" required>
               </label>
-              <label class="item item-input">
-                <input type="password" placeholder="Contraseña" ng-model="inicio.datos.user.contrasena">
-              </label>
-              <input type="submit" value="Guardar" class="button button-outline button-block button-positive">
-
+              <div class="item" ng-messages="datosPersonales.contrasena.$error" style="color:maroon" role="alert" ng-show="datosPersonales.contrasena.$error.required">
+                <div ng-message="required">Este campo es requerido.</div>
+              </div>
+              <input type="submit" value="Guardar" class="button button-outline button-block button-{{inicio.tema}}">
+              <h4 class="text-center">{{inicio.actualizado}}</h4>
             </form>
-            <h4 class="text-center">{{inicio.actualizado}}</h4>
+            
+            <button class="button button-outline button-block button-assertive" ng-click="inicio.cerrarSesion()">Cerrar Sesion</button>
           </div>
         </ion-content>
       </ion-tab>
 
       <ion-tab title="Config" icon-on="ion-gear-b" icon-off="ion-gear-b">
         <ion-content class="padding">
-          <form class="list" ng-submit="inicio.actualizarConfiguracion(inicio.config)">
-            <div class="item item-divider">
-              <h4 class="text-center">Numero De Entradas</h4>
-            </div>
-            <div class="item range range-positive">
-              <i class="icon ion-document-text"></i>
-              <input ng-model="inicio.config.cantPosts" type="range" name="posts" min="1" max="15" ng-value="5">
-              <span>{{inicio.config.cantPosts}}</span>
-            </div>
-            <!--
-              <li class="item item-toggle">
-                HTML5
-                <label class="toggle toggle-assertive">
-                  <input type="checkbox">
-                  <div class="track">
-                    <div class="handle"></div>
-                  </div>
-                </label>
-              </li>
-            -->
-            <input type="submit" class="button button-outline button-block button-positive" value="Guardar Preferencias">
+          <form class="list" ng-submit="inicio.preferenciasAct(inicio.datos.preferencias)">
+            <li class="item item-toggle">
+              Recibir Notificaciones
+              <label class="toggle toggle-assertive">
+                <input type="checkbox" ng-model="inicio.datos.preferencias.recibir_notificaciones">
+                <div class="track">
+                  <div class="handle"></div>
+                </div>
+              </label>
+            </li>
+            <label class="item item-input item-select">
+              <div class="input-label">
+                Color de Tema
+              </div>
+              <select ng-model="inicio.datos.preferencias.color_ui">
+                <option ng-repeat="color in inicio.datos.colores" ng-value="color">{{color}}</option>
+              </select>
+            </label>
+            <input type="submit" class="button button-outline button-block button-{{inicio.tema}}" value="Guardar Preferencias">
           </form>
-          <div class="bar bar-footer">
-            <button class="button button-outline button-block button-positive" ng-click="inicio.cerrarSesion()">Cerrar Sesion</button>
-          </div>
         </ion-content>
       </ion-tab>
 

@@ -1,11 +1,13 @@
 angular.module('GATE')
 
-  .controller('asistenciaController', function ($scope, $stateParams, ionicDatePicker, servicioSecciones) {
+  .controller('asistenciaController', function ($scope, $stateParams, ionicDatePicker, servicioSecciones, $rootScope) {
+
     var bz = this;
 
     bz.datos = $stateParams.datos;
 
     bz.datos.fechaSeleccionada = '';
+    bz.tema = $rootScope.objectoCliente.preferencias.color_ui;
 
     // FUNCION PARA LLAMAR AL DATE PICKER
     var ipObj1 = {

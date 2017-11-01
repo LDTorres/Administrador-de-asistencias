@@ -104,7 +104,7 @@ class UserModel
 
     public function login($params){
 
-        $sql = "SELECT id_usuario, usuario, correo, contrasena, tipo, id_malla FROM $this->table WHERE contrasena = :pass AND usuario = :user OR correo = :user";
+        $sql = "SELECT * FROM $this->table AS u INNER JOIN user_has_preferencias WHERE contrasena = :pass AND usuario = :user OR correo = :user";
         $sth = $this->db->prepare($sql);
         $sth->execute(array(':user' => $params['usuario'], ':pass' => $params['contrasena']));
 
@@ -130,7 +130,7 @@ class UserModel
             // $data = JWT::decode($jwt, self::$secret_key, array('HS256'));
 
             // var_dump($data);
-            return array("token" => $jwt, 'id' => $result['id_usuario'],'name' => $result['usuario'],'tipo' => $result['tipo'],'id_malla' => $result['id_malla']);
+            return array("token" => $jwt, 'id' => $result['id_usuario'],'name' => $result['usuario'],'tipo' => $result['tipo'],'id_malla' => $result['id_malla'], 'preferencias' => array('color_ui' => $result['color_ui'], 'recibir_notificaciones' => $result['recibir_notificaciones']));
         else:
             return false;
         endif;
@@ -150,8 +150,11 @@ class UserModel
 
         $params['id_usuario'] = $this->db->lastInsertId();
 
+        $sql = "INSERT INTO user_has_preferencias (id_usuario) VALUES (?) ";
+        $sth = $this->db->prepare($sql);
+        $sth->execute(array($this->db->lastInsertId()));
 
-        if($this->db->lastInsertId() != false):
+        if($params['id_usuario'] != false && $this->db->lastInsertId() != false):
             $time = time();
 
             $token = array(
@@ -171,10 +174,19 @@ class UserModel
             // $data = JWT::decode($jwt, self::$secret_key, array('HS256'));
 
             // var_dump($data);
-            return array("token" => $jwt, 'id' => $params['id_usuario'],'name' => $params['usuario'],'tipo' => $tipo,'id_malla' => $params['id_malla']);
+            return array("token" => $jwt, 'id' => $params['id_usuario'],'name' => $params['usuario'],'tipo' => $tipo,'id_malla' => $params['id_malla'], 'preferencias' => array('color_ui' => 'positive', 'recibir_notificaciones' => 1));
         else:
             return false;
         endif;
+    }
+
+    public function setPrefencias($params){
+
+        $sql = "UPDATE user_has_preferencias SET color_ui = ?, recibir_notificaciones = ? WHERE id_usuario = ?";
+        $sth = $this->db->prepare($sql);
+        $sth->execute(array($params['color_ui'], $params['recibir_notificaciones'], $params['id_usuario']));
+        return array('filas_afectadas' => $sth->rowCount());
+
     }
     
     public static function Check($token)

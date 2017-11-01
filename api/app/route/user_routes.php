@@ -30,7 +30,17 @@ $app->group('/user', function () {
 
     });
         
-    $this->post('/update', function ($req, $res) {
+    $this->post('/setPrefencias', function ($req, $res) {
+       
+        $params = $req->getParsedBody();
+
+        $result = $GLOBALS['um']->setPrefencias($params);
+
+        return $this->response->withJson($result);
+
+    });
+
+        $this->post('/update', function ($req, $res) {
        
         $params = $req->getParsedBody();
 

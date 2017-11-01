@@ -1,6 +1,6 @@
 angular.module('GATE')
 
-  .controller('publicacionController', function ($scope, $stateParams, servicioSecciones) {
+  .controller('publicacionController', function ($scope, $stateParams, servicioSecciones, $rootScope) {
 
     var bz = this;
 
@@ -8,6 +8,8 @@ angular.module('GATE')
       nuevoPost: $stateParams.datos,
       modificarPost: $stateParams.datos
     };
+
+    bz.tema = $rootScope.objectoCliente.preferencias.color_ui;
 
     bz.nuevoPost = function (datos) {
       console.log(datos)

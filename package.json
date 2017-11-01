@@ -7,6 +7,7 @@
         "cordova-browser": "^4.1.0",
         "cordova-plugin-console": "^1.0.5",
         "cordova-plugin-device": "^1.1.4",
+        "cordova-plugin-email-composer": "^0.8.11",
         "cordova-plugin-splashscreen": "^4.0.3",
         "cordova-plugin-statusbar": "^2.2.1",
         "cordova-plugin-whitelist": "^1.3.1",
@@ -22,7 +23,7 @@
     "devDependencies": {
         "bower": "^1.3.3",
         "gulp-util": "^2.2.14",
-        "ionic": "3.13.2",
+        "ionic": "3.15.2",
         "shelljs": "^0.3.0"
     },
     "cordova": {
@@ -32,7 +33,8 @@
             "cordova-plugin-splashscreen": {},
             "cordova-plugin-statusbar": {},
             "cordova-plugin-whitelist": {},
-            "ionic-plugin-keyboard": {}
+            "ionic-plugin-keyboard": {},
+            "cordova-plugin-email-composer": {}
         },
         "platforms": [
             "android",

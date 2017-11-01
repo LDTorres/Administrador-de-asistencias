@@ -13,6 +13,8 @@ angular.module('GATE')
       inscribirSeccion: {}
     }
 
+    bz.tema = $rootScope.objectoCliente.preferencias.color_ui;
+
     bz.datos.objeto = $rootScope.objectoCliente;
     bz.datos.listarAsignaturas.id_malla = $rootScope.objectoCliente.id_malla;
 

@@ -1,6 +1,10 @@
 angular.module('GATE')
 
+  // Para probarlo desde el movil http://192.168.1.{tu-puerto}/api/public  
+  // Desde windows http://localhost:3454
+
   .constant("ruta", "http://localhost:3454")
+
 
   .constant("trimestresConstante", [{
     id_trimestre: 1
@@ -133,13 +137,12 @@ angular.module('GATE')
 
     // Espera como parametro {id_usuario, offset}
 
-    this.timeline = function (id) {
+    this.timeline = function (datos) {
 
       var defered = $q.defer();
       var promise = defered.promise;
 
-      $http.get(ruta + '/seccion/posts/timeline/' + id).then(function (res) {
-
+      $http.post(ruta + '/seccion/posts/timeline', datos).then(function (res) {
 
         defered.resolve(res);
 
@@ -151,6 +154,23 @@ angular.module('GATE')
       });
       return promise;
     };
+
+    this.sendMail = function (datos) {
+      if (window.plugins && window.plugins.emailComposer) {
+        window.plugins.emailComposer.showEmailComposerWithCallback(function (result) {
+            return result;
+          },
+          datos.subject, // Subject
+          datos.body, // Body
+          datos.to, // To Can be an array
+          null, // CC
+          null, // BCC
+          true, // isHTML
+          null, // Attachments
+          null); // Attachment Data
+      }
+    }
+
   }])
 
   /* USUARIOS */
@@ -202,6 +222,25 @@ angular.module('GATE')
 
         defered.reject(res);
       });
+      return promise;
+    };
+
+    // Espera como parametro {id_usuario}
+    this.updatePreferences = function (datos) {
+
+      var defered = $q.defer();
+      var promise = defered.promise;
+
+      $http.post(ruta + '/user/setPrefencias', datos).then(function (res) {
+
+        defered.resolve(res);
+
+      }).catch(function (res) {
+
+
+        defered.reject(res);
+      });
+
       return promise;
     };
 

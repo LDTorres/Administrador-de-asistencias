@@ -1,10 +1,10 @@
 <ion-view view-title="Asistencias">
   <ion-pane>
-    <ion-nav-bar class="bar-positive" align-title="center">
+    <ion-nav-bar class="bar-{{asistencia.tema}}" align-title="center">
       <ion-nav-back-button></ion-nav-back-button>
     </ion-nav-bar>
-    <div class="tabs-striped tabs-background-positive tabs-color-light">
-      <ion-tabs class="tabs-positive tabs-icon-top">
+    <div class="tabs-striped tabs-background-{{asistencia.tema}} tabs-color-light">
+      <ion-tabs class="tabs-{{asistencia.tema}} tabs-icon-top">
 
         <ion-tab title="Nueva Asistencia" icon-on="ion-ios-filing" icon-off="ion-ios-filing-outline">
           <ion-content class="padding">
@@ -12,8 +12,8 @@
               <div class="item item-divider">
                 <h4 class="text-center">Colocar o Editar Asistencia</h4>
               </div>
-              <div class="item row">
-                <h4 class="col col-40" ng-click="asistencia.openDatePicker()">Seleccionar Fecha:</h4>
+              <div class="item row" ng-click="asistencia.openDatePicker()">
+                <h4 class="col col-40">Seleccionar Fecha:</h4>
                 <h4 class="col col-30 col-offset-10"> {{asistencia.datos.fechaSeleccionada}}</h4>
               </div>
             </div>
@@ -22,14 +22,14 @@
                 <li class="item item-toggle" ng-repeat="miembro in asistencia.datos.miembros">
                   {{miembro.nombre_completo}}
                   <label class="toggle toggle-assertive">
-                  <input type="checkbox" ng-model="miembro.asistio">
-                  <div class="track">
-                    <div class="handle"></div>
-                  </div>
-                </label>
+                    <input type="checkbox" ng-model="miembro.asistio">
+                    <div class="track">
+                      <div class="handle"></div>
+                    </div>
+                  </label>
                 </li>
               </ul>
-              <input type="submit" class="button button-positive button-block" value="Guardar">
+              <input type="submit" class="button button-{{asistencia.tema}} button-block" value="Guardar">
             </form>
           </ion-content>
         </ion-tab>
