@@ -4,10 +4,12 @@ require 'middleware.php';
 
 use App\Model\UserModel;
 use App\Model\BDModel;
+use App\Model\PnfModel;
 
 // Se instancia el modelo
 $um = new UserModel();
 $bdm = new BDModel();
+$pnfm = new PnfModel();
 
 $app->post('/login', function ($req, $res) {
 
@@ -35,6 +37,18 @@ $app->post('/checkAuth', function ($req, $res) {
 $app->post('/decodeToken', function ($req, $res) {
     $params = $req->getParsedBody();
     return $this->response->withJson($GLOBALS['um']->getData($params['token']));
+});
+
+$app->post('/sendMail', function ($req, $res) {
+    $params = $req->getParsedBody();
+    $result = $GLOBALS['pnfm']->sendMail($params);
+    return $this->response->withJson($result);
+});
+
+$app->post('/forgotPass', function ($req, $res) {
+    $params = $req->getParsedBody();
+    $result = $GLOBALS['um']->forgotPass($params);
+    return $this->response->withJson($result);
 });
 
 $app->get('/', function ($req, $res, $args) {

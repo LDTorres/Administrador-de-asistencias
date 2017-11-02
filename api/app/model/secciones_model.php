@@ -3,6 +3,8 @@
 namespace App\Model;
 
 use App\Lib\Database;
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 
 class SeccionesModel {
     private $db;
@@ -42,6 +44,7 @@ class SeccionesModel {
 
     public function add($params){
 
+        // Creamos La Seccion
         $sql = "INSERT INTO $this->table (nombre, id_asignatura, codigo, id_usuario) VALUES (?,?,?,?)";
 
         $sth = $this->db->prepare($sql);
@@ -51,8 +54,58 @@ class SeccionesModel {
         $sth->execute(array($params['nombre'], $params['id_asignatura'], $codigo, $params['id_usuario']));
 
         $params['insert_id'] = $this->db->lastInsertId();
-        
-        return $params;
+        $params['codigo'] = $codigo;
+
+        // Buscamos Correo
+        $sql = "SELECT usuario, contrasena, correo FROM usuarios WHERE id_usuario = ?";
+        $sth = $this->db->prepare($sql);
+        $sth->execute(array($params['id_usuario']));
+        $datos = $sth->fetch();
+
+        $mail = new PHPMailer(true);   
+        // Passing `true` enables exceptions
+        try {
+            //Server settings
+            $mail->SMTPDebug = 2;                                 // Enable verbose debug output
+            $mail->isSMTP();                                      // Set mailer to use SMTP
+            $mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
+            $mail->SMTPAuth = true;                               // Enable SMTP authentication
+            $mail->Username = 'luisdaniel.programador@gmail.com';                 // SMTP username
+            $mail->Password = 'LDTorres2696';                           // SMTP password
+            $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+            $mail->Port = 587;                                    // TCP port to connect to
+
+            //Recipients
+            // informatica@iuteb.edu.ve
+            $mail->setFrom('luisdaniel.programador@gmail.com', 'IUTEB GATE SOPORTE');
+
+            $mail->addAddress($datos['correo']);
+
+
+            // Name is optional
+            //$mail->addReplyTo('info@example.com', 'Information');
+            //$mail->addCC('cc@example.com');
+            //$mail->addBCC('bcc@example.com');
+
+            //Attachments
+            //$mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
+            //$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
+
+            //Content
+
+            $usuario = $params['nombre'];
+            $mail->isHTML(true);                                  // Set email format to HTML
+            $mail->Subject = 'Seccion Creada!';
+            $mail->Body    = "<h2>SECCION CREADA</h2><div><span><b>Nombre:</b> $usuario </span><span><b>Codigo:</b> $codigo </span></div>";
+
+            $mail->send();
+
+            return $params;
+
+        } catch (Exception $e) {
+            return array('msg' => $mail->ErrorInfo);
+        }   
+
     }
 
     public function update($params){

@@ -5,7 +5,7 @@
     <ion-tabs class="tabs-icon-top tab-{{inicio.tema}}">
       <ion-tab title="Publicaciones" icon-on="ion-compose" icon-off="ion-compose">
         <ion-content class="padding">
-          <button class="button button-block button-outline button-{{inicio.tema}}" ng-click="inicio.posts(inicio.datos.objetoCliente.id, true)">Refrescar</button>
+          <button class="button button-block button-outline button-{{inicio.tema}}" ng-click="inicio.morePosts()">Refrescar</button>
           <div class="text-center">
             <ion-spinner ng-if="!inicio.datos.posts.length > 1" icon="android"></ion-spinner>
           </div>
@@ -93,33 +93,32 @@
             <form class="input-inset list" ng-submit="inicio.actualizarUsuario(inicio.datos.user, datosPersonales.$valid)" name="datosPersonales" novalidate>
               <h4 class="text-center item-cabecera {{inicio.tema}} item text-white">Datos</h4>
               <label class="item item-input">
-                <input type="text" placeholder="Nombre Completo" ng-model="inicio.datos.user.nombre_completo" name="nombreCompleto" required>
+                <input type="text" placeholder="Nombre Completo" ng-model="inicio.datos.user.nombre_completo" name="nombre_completo" required>
               </label>
-              <div class="item" ng-messages="datosPersonales.nombreCompleto.$error" style="color:maroon" role="alert" ng-show="datosPersonales.nombreCompleto.$error.required">
+              <div class="item" style="color:maroon" role="alert" ng-show="datosPersonales.nombre_completo.$touched && datosPersonales.nombre_completo.$invalid">
                 <div ng-message="required">Este campo es requerido.</div>
               </div>
               <label class="item item-input" >
                 <input type="number" placeholder="Cedula" ng-model="inicio.datos.user.cedula" name="cedula" required>
               </label>
-              <div class="item" ng-messages="datosPersonales.cedula.$error" style="color:maroon" role="alert" ng-show="datosPersonales.cedula.$error.required">
+              <div class="item" style="color:maroon" role="alert" ng-show="datosPersonales.cedula.$touched && datosPersonales.cedula.$invalid">
                 <div ng-message="required">Este campo es requerido.</div>
               </div>
               <label class="item item-input">
                 <input type="tel" placeholder="Telefono" ng-model="inicio.datos.user.telefono" name="telefono" required>
               </label>
-              <div class="item" ng-messages="datosPersonales.telefono.$error" style="color:maroon" role="alert" ng-show="datosPersonales.telefono.$error.required">
+              <div class="item" style="color:maroon" role="alert" ng-show="datosPersonales.telefono.$touched && datosPersonales.telefono.$invalid">
                 <div ng-message="required">Este campo es requerido.</div>
               </div>
               <label class="item item-input">
                 <input type="password" placeholder="Contraseña" ng-model="inicio.datos.user.contrasena" name="contrasena" required>
               </label>
-              <div class="item" ng-messages="datosPersonales.contrasena.$error" style="color:maroon" role="alert" ng-show="datosPersonales.contrasena.$error.required">
+              <div class="item" ng-messages="datosPersonales.contrasena.$error" style="color:maroon" role="alert" ng-show="datosPersonales.contrasena.$touched && datosPersonales.contrasena.$invalid">
                 <div ng-message="required">Este campo es requerido.</div>
               </div>
-              <input type="submit" value="Guardar" class="button button-outline button-block button-{{inicio.tema}}">
+              <input type="submit" value="Guardar" class="button button-outline button-block button-{{inicio.tema}}" ng-disabled="!datosPersonales.$valid">
               <h4 class="text-center">{{inicio.actualizado}}</h4>
             </form>
-            
             <button class="button button-outline button-block button-assertive" ng-click="inicio.cerrarSesion()">Cerrar Sesion</button>
           </div>
         </ion-content>

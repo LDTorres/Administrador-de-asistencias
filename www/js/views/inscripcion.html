@@ -38,6 +38,20 @@
               </form>
             </div>
           </div>
+          <div class="list list-card" ng-if="inscripcion.datos.objeto.tipo == 'estudiante'">
+            <h4 class="subtitulo">Inscribir Sección</h4>
+            <div class="list">
+              <div class="item item-input-inset padding">
+                <label class="item-input-wrapper">
+                  <input type="text" placeholder="Código de la Sección" ng-model="inscripcion.datos.inscribirSeccion.codigo">
+                </label>
+                <button class="button button-small" ng-click="inscripcion.inscribirSeccion(inscripcion.datos.inscribirSeccion)">Inscribir</button>
+              </div>
+              <div class="item item-divider" ng-if="inscripcion.m">
+                <h4 class="text-center">{{inscripcion.m}}</h4>
+              </div>
+            </div>
+          </div>
           <div ng-if="inscripcion.datos.objeto.tipo == 'Administrador'">
             <div class="list list-card">
               <h4 class="subtitulo">Añadir Sección</h4>

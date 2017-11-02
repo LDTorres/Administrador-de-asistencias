@@ -16,26 +16,26 @@ angular.module('GATE')
 
     bz.tema = $rootScope.objectoCliente.preferencias.color_ui;
 
-    // TODO: ARREGLANDO
-
-    bz.posts = function (datos, refrescar) {
-      if (refrescar == true) {
-        console.log('Refrescando')
-        datos.offset = bz.datos.posts.length;
-      }
+    bz.posts = function (datos) {  
       servicioGeneral.timeline(datos).then(function (res) {
-        if (refrescar == true) {
-          console.log('Obteniendo mas Posts')
-          bz.datos.posts.push(res) = res.data;
-        } else {
-          bz.datos.posts = res.data;
-        }
+          bz.datos.posts = res.data;   
       }).catch(function (res) {
         console.log(res)
       });
     }
 
-
+    bz.morePosts = function () {
+      datos = {id_usuario: bz.datos.user.id_usuario,offset: bz.datos.posts.length}
+      servicioGeneral.timeline(datos).then(function (res) {
+          if(res.data.length > 0){
+            res.data.forEach(function(element) {
+              bz.datos.posts.push(element)
+            }, this);
+          }
+      }).catch(function (res) {
+        console.log(res)
+      });
+    }
 
     bz.listarAsignaturas = function (datos) {
       servicioAsignatura.getAll(datos).then(function (res) {

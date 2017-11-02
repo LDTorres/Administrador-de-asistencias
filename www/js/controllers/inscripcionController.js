@@ -19,7 +19,6 @@ angular.module('GATE')
     bz.datos.listarAsignaturas.id_malla = $rootScope.objectoCliente.id_malla;
 
     bz.listarAsignaturas = function (datos) {
-      console.log(datos)
       servicioAsignatura.getAll(datos).then(function (res) {
         bz.datos.asignaturas = res.data;
       });
@@ -27,8 +26,10 @@ angular.module('GATE')
 
     bz.crearSeccion = function (datos) {
       datos.id_usuario = $rootScope.objectoCliente.id
+      console.log(datos)
       servicioSecciones.add(datos).then(function (res) {
-        bz.seccionCreada = 'Seccion Creada';
+        console.log(res)
+        bz.seccionCreada;
       });
     }
 

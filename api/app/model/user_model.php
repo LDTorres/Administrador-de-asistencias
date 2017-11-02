@@ -4,6 +4,7 @@ namespace App\Model;
 
 use Firebase\JWT\JWT;
 use App\Lib\Database;
+use PHPMailer\PHPMailer\PHPMailer;
 use Exception;
 
 class UserModel
@@ -173,11 +174,107 @@ class UserModel
 
             // $data = JWT::decode($jwt, self::$secret_key, array('HS256'));
 
+            // TODO: CORREO
+
+            $mail = new PHPMailer(true);   
+            // Passing `true` enables exceptions
+            try {
+                //Server settings
+                $mail->SMTPDebug = 2;                                 // Enable verbose debug output
+                $mail->isSMTP();                                      // Set mailer to use SMTP
+                $mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
+                $mail->SMTPAuth = true;                               // Enable SMTP authentication
+                $mail->Username = 'luisdaniel.programador@gmail.com';                 // SMTP username
+                $mail->Password = 'LDTorres2696';                           // SMTP password
+                $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+                $mail->Port = 587;                                    // TCP port to connect to
+
+                //Recipients
+                // informatica@iuteb.edu.ve
+                $mail->setFrom('luisdaniel.programador@gmail.com', 'IUTEB GATE');
+
+                $mail->addAddress($params['correo']);
+
+
+                // Name is optional
+                //$mail->addReplyTo('info@example.com', 'Information');
+                //$mail->addCC('cc@example.com');
+                //$mail->addBCC('bcc@example.com');
+
+                //Attachments
+                //$mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
+                //$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
+
+                //Content
+
+                $usuario = $params['usuario'];
+                $contrasena = $params['contrasena'];
+                $mail->isHTML(true);                                  // Set email format to HTML
+                $mail->Subject = 'Registro Exitoso!';
+                $mail->Body    = "<h2>Gracias por registrarte en nuestra app</h2><div><span><b>Usuario:</b> $usuario </span><span><b>Contraseña:</b> $contrasena </span></div>";
+
+                $mail->send();
+            } catch (Exception $e) {
+                return array('msg' => $mail->ErrorInfo);
+            }     
+
             // var_dump($data);
             return array("token" => $jwt, 'id' => $params['id_usuario'],'name' => $params['usuario'],'tipo' => $tipo,'id_malla' => $params['id_malla'], 'preferencias' => array('color_ui' => 'positive', 'recibir_notificaciones' => 1));
         else:
             return false;
         endif;
+    }
+
+    public function forgotPass($params){
+
+        $sql = "SELECT usuario, contrasena, correo FROM $this->table WHERE correo = ?";
+        $sth = $this->db->prepare($sql);
+        $sth->execute(array($params['correo']));
+        $datos = $sth->fetch();
+
+        $mail = new PHPMailer(true);   
+        // Passing `true` enables exceptions
+        try {
+            //Server settings
+            $mail->SMTPDebug = 2;                                 // Enable verbose debug output
+            $mail->isSMTP();                                      // Set mailer to use SMTP
+            $mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
+            $mail->SMTPAuth = true;                               // Enable SMTP authentication
+            $mail->Username = 'luisdaniel.programador@gmail.com';                 // SMTP username
+            $mail->Password = 'LDTorres2696';                           // SMTP password
+            $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+            $mail->Port = 587;                                    // TCP port to connect to
+
+            //Recipients
+            // informatica@iuteb.edu.ve
+            $mail->setFrom('luisdaniel.programador@gmail.com', 'IUTEB GATE SOPORTE');
+
+            $mail->addAddress($datos['correo']);
+
+
+            // Name is optional
+            //$mail->addReplyTo('info@example.com', 'Information');
+            //$mail->addCC('cc@example.com');
+            //$mail->addBCC('bcc@example.com');
+
+            //Attachments
+            //$mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
+            //$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
+
+            //Content
+
+            $usuario = $datos['usuario'];
+            $contrasena = $datos['contrasena'];
+            $mail->isHTML(true);                                  // Set email format to HTML
+            $mail->Subject = 'Recuperacion de contrasena!';
+            $mail->Body    = "<h2>Gracias por registrarte en nuestra app</h2><div><span><b>Usuario:</b> $usuario </span><span><b>Contraseña:</b> $contrasena </span></div>";
+
+            $mail->send();
+
+            return array('msg' => 'Correo enviado');
+        } catch (Exception $e) {
+            return array('msg' => $mail->ErrorInfo);
+        }     
     }
 
     public function setPrefencias($params){

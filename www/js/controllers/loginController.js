@@ -15,8 +15,10 @@ angular.module('GATE')
     bz.cambiar = function (vista) {
       if (vista == 1) {
         bz.switch = 'Iniciar Sesion';
-      } else {
+      } else if(2) {
         bz.switch = 'Registrarse';
+      }else{
+        bz.switch = 'Olvido Contraseña';
       }
       bz.datos.mostrarForm = vista;
     }
@@ -55,6 +57,15 @@ angular.module('GATE')
           console.log(res)
         });
       }
+    }
+
+    bz.forgotPass = function(datos){
+        servicioGeneral.forgotPass(datos).then(function (res) {
+          bz.vo = true;
+          console.log(res)
+        }).catch(function (res) {
+          console.log(res)
+        });
     }
 
     bz.salir = function (datos) {
