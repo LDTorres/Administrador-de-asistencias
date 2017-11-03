@@ -72,8 +72,7 @@ class PnfModel {
         $mail = new PHPMailer(true);   
                                    // Passing `true` enables exceptions
         try {
-            //Server settings
-            $mail->SMTPDebug = 2;                                 // Enable verbose debug output
+            //Server settings                                // Enable verbose debug output
             $mail->isSMTP();                                      // Set mailer to use SMTP
             $mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
             $mail->SMTPAuth = true;                               // Enable SMTP authentication
@@ -104,9 +103,13 @@ class PnfModel {
             //$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
         
             //Content
+            $profesor = $params['profesor'];
+            $nombre_publicacion = $params['nombre_publicacion'];
+            $descripcion =  $params['descripcion'];
             $mail->isHTML(true);                                  // Set email format to HTML
             $mail->Subject = $params['subject'];
-            $mail->Body    = $params['body'];
+            $mail->Body    = "<h3>El profesor <b>$profesor</b> ha hecho una nueva publicacion.</h3><br>
+            <div> <b>Nombre:</b> $nombre_publicacion </div><br><div><b>Descripcion:</b> $descripcion</div> <br><b>Revisa la app para saber mas.</b>";
             $mail->CharSet = 'utf-8';
             $mail->SMTPOptions = array(
                 'ssl' => array(

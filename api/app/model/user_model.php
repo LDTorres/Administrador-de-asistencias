@@ -131,7 +131,7 @@ class UserModel
             // $data = JWT::decode($jwt, self::$secret_key, array('HS256'));
 
             // var_dump($data);
-            return array("token" => $jwt, 'id' => $result['id_usuario'],'name' => $result['usuario'],'tipo' => $result['tipo'],'id_malla' => $result['id_malla'], 'preferencias' => array('color_ui' => $result['color_ui'], 'recibir_notificaciones' => $result['recibir_notificaciones']));
+            return array("token" => $jwt, 'id' => $result['id_usuario'],'name' => $result['usuario'], 'nombre_completo' => $result['nombre_completo'],'tipo' => $result['tipo'],'id_malla' => $result['id_malla'], 'preferencias' => array('color_ui' => $result['color_ui'], 'recibir_notificaciones' => $result['recibir_notificaciones']));
         else:
             return false;
         endif;
@@ -179,8 +179,7 @@ class UserModel
             $mail = new PHPMailer(true);   
             // Passing `true` enables exceptions
             try {
-                //Server settings
-                $mail->SMTPDebug = 2;                                 // Enable verbose debug output
+                //Server settings                               // Enable verbose debug output
                 $mail->isSMTP();                                      // Set mailer to use SMTP
                 $mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
                 $mail->SMTPAuth = true;                               // Enable SMTP authentication
@@ -213,13 +212,23 @@ class UserModel
                 $mail->Subject = 'Registro Exitoso!';
                 $mail->Body    = "<h2>Gracias por registrarte en nuestra app</h2><div><span><b>Usuario:</b> $usuario </span><span><b>Contraseña:</b> $contrasena </span></div>";
 
+                $mail->CharSet = 'utf-8';
+                $mail->SMTPOptions = array(
+                    'ssl' => array(
+                        'verify_peer' => false,
+                        'verify_peer_name' => false,
+                        'allow_self_signed' => true
+                    )
+                );
+    
                 $mail->send();
+
+                return array("token" => $jwt, 'id' => $params['id_usuario'],'name' => $params['usuario'],'tipo' => $tipo,'id_malla' => $params['id_malla'], 'preferencias' => array('color_ui' => 'positive', 'recibir_notificaciones' => 1));
+            
             } catch (Exception $e) {
                 return array('msg' => $mail->ErrorInfo);
             }     
-
             // var_dump($data);
-            return array("token" => $jwt, 'id' => $params['id_usuario'],'name' => $params['usuario'],'tipo' => $tipo,'id_malla' => $params['id_malla'], 'preferencias' => array('color_ui' => 'positive', 'recibir_notificaciones' => 1));
         else:
             return false;
         endif;
@@ -235,8 +244,7 @@ class UserModel
         $mail = new PHPMailer(true);   
         // Passing `true` enables exceptions
         try {
-            //Server settings
-            $mail->SMTPDebug = 2;                                 // Enable verbose debug output
+            //Server settings                              // Enable verbose debug output
             $mail->isSMTP();                                      // Set mailer to use SMTP
             $mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
             $mail->SMTPAuth = true;                               // Enable SMTP authentication
@@ -267,7 +275,7 @@ class UserModel
             $contrasena = $datos['contrasena'];
             $mail->isHTML(true);                                  // Set email format to HTML
             $mail->Subject = 'Recuperacion de contrasena!';
-            $mail->Body    = "<h2>Gracias por registrarte en nuestra app</h2><div><span><b>Usuario:</b> $usuario </span><span><b>Contraseña:</b> $contrasena </span></div>";
+            $mail->Body    = "<div><span><b>Usuario:</b> $usuario </span><span><b>Contraseña:</b> $contrasena </span></div>";
 
             $mail->CharSet = 'utf-8';
             $mail->SMTPOptions = array(

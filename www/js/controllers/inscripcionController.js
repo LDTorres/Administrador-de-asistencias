@@ -27,9 +27,8 @@ angular.module('GATE')
     bz.crearSeccion = function () {
       bz.datos.crearSeccion.id_usuario = parseInt($rootScope.objectoCliente.id);
       servicioSecciones.add(bz.datos.crearSeccion).then(function (res) {
-        console.log(res)
-        //ionicToast.show(res.data.msg, 'top', false, 2500);
-        //bz.codigo = res.data.params.codigo;
+        ionicToast.show(res.data.msg, 'top', false, 2500);
+        bz.codigo = res.data.params.codigo;
       }).catch(function (res) {
         console.log(res)
       });

@@ -18,9 +18,9 @@ $app->group('/seccion',function(){
 
     });
 
-    $this->get('/all/{id_asignatura}',function($req, $res, $args){
-
-        $result = $GLOBALS['sm']->getAll($args['id_asignatura']);
+    $this->post('/all',function($req, $res){
+        $params = $req->getParsedBody();
+        $result = $GLOBALS['sm']->getAll($params);
         return $this->response->withJson($result);
     });
 

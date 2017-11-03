@@ -1,6 +1,6 @@
 angular.module('GATE')
 
-  .controller('seccionController', ['$scope', '$stateParams', 'servicioSecciones', 'ionicDatePicker', '$state', '$rootScope', function ($scope, $stateParams, servicioSecciones, ionicDatePicker, $state, $rootScope) {
+  .controller('seccionController', ['$scope', '$stateParams', 'servicioSecciones', 'ionicDatePicker', '$state', '$rootScope', 'ionicToast', function ($scope, $stateParams, servicioSecciones, ionicDatePicker, $state, $rootScope, ionicToast) {
     var bz = this;
 
     bz.tema = $rootScope.objectoCliente.preferencias.color_ui;
@@ -21,21 +21,21 @@ angular.module('GATE')
     bz.datos.tipo = $rootScope.objectoCliente.tipo;
     bz.eliminarOpcion = $rootScope.objectoCliente.tipo == 'Administrador' || $rootScope.objectoCliente.tipo == 'Profesor' ? true : false;
 
-
     bz.crearPublicacion = function () {
       $state.go('inicio/seccion/publicacion', {
         datos: {
           id_seccion: $stateParams.id_seccion,
           id_usuario: 1,
-          accion: 'new'
+          accion: 'new',
+          miembros: bz.datos.miembros
         }
       });
     }
 
-    bz.editarPublicacion = function (index) {
-      bz.datos.posts[index].accion = 'edit';
+    bz.editarPublicacion = function (post) {
+      post.accion = 'edit';
       $state.go('inicio/seccion/publicacion', {
-        datos: bz.datos.posts[index]
+        datos: post
       });
     }
 
@@ -65,11 +65,10 @@ angular.module('GATE')
           res.data.forEach(function (element) {
             bz.datos.posts.push(element)
           }, this);
+        }else{
+          ionicToast.show('No hay publicaciones nuevas', 'top', false, 2500);
         }
-      }).finally(function () {
-        $scope.$broadcast('scroll.refreshComplete');
-      });
-
+      })
     }
 
     bz.miembros = function (datos) {
@@ -120,6 +119,11 @@ angular.module('GATE')
     bz.eliminarMiembro = function(i, datos, a){
       datos.accion = a;
       servicioSecciones.deleteMember(datos).then(function (res) {
+        if(a == 0){
+          ionicToast.show('Desactivado', 'top', false, 2500);
+        }else{
+          ionicToast.show('Activado', 'top', false, 2500);
+        }
         bz.datos.miembros[i].estado = a; 
       })
     }

@@ -1,6 +1,6 @@
 angular.module('GATE')
 
-  .controller('loginController', ['$scope', 'servicioGeneral', 'ionicDatePicker', '$state', '$rootScope', function ($scope, servicioGeneral, ionicDatePicker, $state, $rootScope) {
+  .controller('loginController', ['$scope', 'servicioGeneral', 'ionicDatePicker', '$state', '$rootScope', 'ionicToast', function ($scope, servicioGeneral, ionicDatePicker, $state, $rootScope, ionicToast) {
     var bz = this;
 
     bz.datos = {
@@ -23,10 +23,9 @@ angular.module('GATE')
       bz.datos.mostrarForm = vista;
     }
 
-    bz.ingresar = function (datos, v) {
-      if (v == true) {
+    bz.ingresar = function (datos) {
         servicioGeneral.ingresar(datos).then(function (res) {
-          bz.good = 'Datos Correctos';
+          ionicToast.show('Datos Correctos', 'top', false, 2500);
           bz.validacion = 0;
 
           setTimeout(function () {
@@ -35,45 +34,28 @@ angular.module('GATE')
 
           //console.log($rootScope.objectoCliente);
         }).catch(function (res) {
-          bz.good = 0;
-          bz.validacion = 'Datos Invalidos';
+          ionicToast.show('Datos Invalidos', 'top', false, 2500);
         });
-      }
     }
 
-    bz.registrar = function (datos, v) {
-      if (v == true) {
+    bz.registrar = function (datos) {
+        datos.id_malla = 1;
         servicioGeneral.registrar(datos).then(function (res) {
-          console.log(res)
-          datos = {
-            subject: 'Registro Exitoso!',
-            body: 'Gracias por registrarte en GATE APP!',
-            to: datos.correo
-          }
-          console.log(datos);
-          envioEmail = servicioGeneral.sendMail(datos);
-          console.log(envioEmail);
+          ionicToast.show('Resgistro Exitoso!', 'top', false, 2500);
+          setTimeout(function () {
+            $state.go('inicio');
+          }, 2000);
         }).catch(function (res) {
           console.log(res)
         });
-      }
     }
 
     bz.forgotPass = function(datos){
         servicioGeneral.forgotPass(datos).then(function (res) {
-          bz.vo = true;
-          console.log(res)
+          ionicToast.show('Revisa tu correo', 'top', false, 2500);
         }).catch(function (res) {
           console.log(res)
         });
-    }
-
-    bz.salir = function (datos) {
-      servicioGeneral.salir(datos).then(function (res) {
-        console.log(res)
-      }).catch(function (res) {
-        console.log(res)
-      });
     }
 
   }])

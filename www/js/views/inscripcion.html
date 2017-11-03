@@ -77,7 +77,7 @@
               <input type="text" placeholder="Nombre" ng-model="inscripcion.datos.crearSeccion.nombre" required>
             </label>
             <input type="submit" value="Crear" class="button button-block button-{{inscripcion.tema}}" ng-disabled="!crear.$valid">
-            <h3 ng-if="inscripcion.codigo">{{inscripcion.codigo}}</h3>
+            <h3 ng-if="inscripcion.codigo" class="text-center">Codigo: {{inscripcion.codigo}}</h3>
           </form>
         </div>
       </div>

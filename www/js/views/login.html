@@ -21,8 +21,6 @@
           </div>
 
           <input type="submit" value="Entrar" class="button button-block button-positive" ng-disabled="!ingresar.$valid"></input>
-          <h4 class="text-center padding" ng-if="login.good">{{login.good}}</h4>
-          <h4 style="color:red;" class="text-center padding text-white" ng-if="login.validacion">{{login.validacion}}</h4>
         </div>
         <a class="button  button-block button-positive " ng-click="login.cambiar(2)">Registrarse</a>
 
@@ -107,7 +105,6 @@
           </div>
           <input type="submit" value="Recuperar Contraseña" class="button button-block button-positive " ng-disabled="!olvido.$valid"></input>
         </div>
-        <div ng-if="login.vo" class="text-center text-white"><h3>Revisa tu correo.</h3></div>
         <a class="button  button-block button-positive " ng-click="login.cambiar(1)">Ingresar</a>
         <a class="button  button-block button-positive " ng-click="login.cambiar(2)">Registrarse</a>
       </form>

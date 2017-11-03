@@ -1,6 +1,6 @@
 angular.module('GATE')
 
-  .controller('inicioController', ["$ionicSideMenuDelegate", "$scope", "servicioGeneral", "$state", "servicioSecciones", "servicioAsignatura", "servicioUsuario", '$rootScope', 'trimestresConstante', '$ionicLoading', '$ionicActionSheet', '$timeout', '$ionicPopup', '$window', function ($ionicSideMenuDelegate, $scope, servicioGeneral, $state, servicioSecciones, servicioAsignatura, servicioUsuario, $rootScope, trimestresConstante, $ionicLoading, $ionicActionSheet, $timeout, $ionicPopup, $window) {
+  .controller('inicioController', ["$ionicSideMenuDelegate", "$scope", "servicioGeneral", "$state", "servicioSecciones", "servicioAsignatura", "servicioUsuario", '$rootScope', 'trimestresConstante', '$ionicLoading', '$ionicActionSheet', '$timeout', '$ionicPopup', '$window', 'ionicToast', function ($ionicSideMenuDelegate, $scope, servicioGeneral, $state, servicioSecciones, servicioAsignatura, servicioUsuario, $rootScope, trimestresConstante, $ionicLoading, $ionicActionSheet, $timeout, $ionicPopup, $window, ionicToast) {
 
     var bz = this;
 
@@ -32,10 +32,10 @@ angular.module('GATE')
           res.data.forEach(function (element) {
             bz.datos.posts.push(element)
           }, this);
+        }else{
+          ionicToast.show('No hay publicaciones nuevas', 'top', false, 2500);
         }
-      }).finally(function () {
-        $scope.$broadcast('scroll.refreshComplete');
-      });
+      })
     }
 
     bz.listarAsignaturas = function (datos) {
@@ -45,7 +45,11 @@ angular.module('GATE')
     }
 
     bz.buscarSecciones = function (id) {
-      servicioSecciones.getAll(id).then(function (res) {
+      datos = {
+        id_asignatura: id,
+        id_usuario: $rootScope.objectoCliente.id
+      }
+      servicioSecciones.getAll(datos).then(function (res) {
         bz.datos.secciones = res.data;
       });
     }
@@ -83,7 +87,7 @@ angular.module('GATE')
     bz.actualizarUsuario = function (datos) {
       servicioUsuario.update(datos).then(function (res) {
         bz.datos.user = res.data;
-        bz.actualizado = 'Tus datos han sido actualizados';
+        ionicToast.show('Datos Actualizados', 'top', false, 2500);
       })
     }
 

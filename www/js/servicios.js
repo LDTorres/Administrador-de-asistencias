@@ -168,6 +168,19 @@ angular.module('GATE')
       return promise;
     };
 
+    this.sendMail = function (datos) {
+
+      var defered = $q.defer();
+      var promise = defered.promise;
+
+      $http.post(ruta + '/sendMail', datos).then(function (res) {
+        defered.resolve(res);
+      }).catch(function (res) {
+        defered.reject(res);
+      });
+      return promise;
+    };
+
   }])
 
   /* USUARIOS */
@@ -409,20 +422,19 @@ angular.module('GATE')
     };
 
     // Espera como parametro {id_asignatura}
-    this.getAll = function (id) {
+    this.getAll = function (datos) {
 
       var defered = $q.defer();
       var promise = defered.promise;
 
-      $http.get(ruta + '/seccion/all/' + id).then(function (res) {
-
+      $http.post(ruta + '/seccion/all',datos).then(function (res) {
 
         defered.resolve(res);
 
       }).catch(function (res) {
 
-
         defered.reject(res);
+
       });
       return promise;
     };

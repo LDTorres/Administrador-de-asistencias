@@ -16,7 +16,6 @@
               <h4 class="text-white">Asignatura: {{post.nombre}}</h4>
               <h6 class="text-white">{{post.fecha_publicacion}}</h6>
             </a>
-
             <div class="item item-body">
               <span>
                 {{post.descripcion}}
@@ -117,7 +116,6 @@
                 <div ng-message="required">Este campo es requerido.</div>
               </div>
               <input type="submit" value="Guardar" class="button button-outline button-block button-{{inicio.tema}}" ng-disabled="!datosPersonales.$valid">
-              <h4 class="text-center">{{inicio.actualizado}}</h4>
             </form>
             <button class="button button-outline button-block button-assertive" ng-click="inicio.cerrarSesion()">Cerrar Sesion</button>
           </div>

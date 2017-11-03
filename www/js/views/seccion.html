@@ -13,7 +13,7 @@
               Nueva Publicacion
             </a>
             <div class="list card" ng-repeat="post in seccion.datos.posts | orderBy: post.fecha_publicacion:true">
-              <a ng-if="seccion.datos.tipo == 'Administrador' || seccion.datos.tipo == 'Profesor'" ng-click="seccion.editarPublicacion($index)"
+              <a ng-if="seccion.datos.tipo == 'Administrador' || seccion.datos.tipo == 'Profesor'" ng-click="seccion.editarPublicacion(post)"
                 class="item item-avatar item-cabecera {{seccion.tema}}">
                 <img ng-src="img/{{post.nombre_archivo}}">
                 <h2 class="text-white">{{post.titulo}}</h2>

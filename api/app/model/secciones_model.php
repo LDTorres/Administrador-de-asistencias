@@ -18,15 +18,18 @@ class SeccionesModel {
     }
 
     // Secciones
-    public function getAll($id){
-        $sql = "SELECT * FROM $this->table WHERE id_asignatura = ?";
+    public function getAll($params){
+
+        $sql = "SELECT * FROM secciones WHERE id_asignatura = ?";
 
         $sth = $this->db->prepare($sql);
 
-        $sth->execute(array($id));
+        $sth->execute(array($params['id_asignatura']));
 
         $result = $sth->fetchAll();
+
         return $result;
+
     }
 
     public function get($id, $idP){
@@ -65,8 +68,7 @@ class SeccionesModel {
         $mail = new PHPMailer(true);   
         // Passing `true` enables exceptions
         try {
-            //Server settings
-            $mail->SMTPDebug = 2;                                 // Enable verbose debug output
+            //Server settings                                // Enable verbose debug output
             $mail->isSMTP();                                      // Set mailer to use SMTP
             $mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
             $mail->SMTPAuth = true;                               // Enable SMTP authentication
@@ -256,7 +258,7 @@ class SeccionesModel {
         $result['filas_afectadas'] = $sth->rowCount();
         $result['nombre_archivo'] = $filename;
 
-        return $result;
+        return array('msg' => 'Publicacion Actualizada');
     }
 
     public function addPost($params, $filename){
@@ -268,6 +270,7 @@ class SeccionesModel {
         $sth->execute(array($params['titulo'],$params['descripcion'], $params['id_seccion'], $params['id_usuario'], $filename));
 
         return  array("msg" => 'Publicacion Subida', "InsertId" => $this->db->lastInsertId());
+        
     }
 
     public function deletePost($params){
@@ -278,7 +281,7 @@ class SeccionesModel {
         
         $sth->execute(array($params['id_publicacion']));
         
-        return  array('deleted_id' => $params['id_publicacion']);
+        return  array('msg' => 'Publicacion Eliminada','deleted_id' => $params['id_publicacion']);
     }
 
     // Asistencias 
