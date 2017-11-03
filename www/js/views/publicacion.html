@@ -3,50 +3,52 @@
     <ion-nav-bar class="bar-{{publicacion.tema}}" align-title="center">
       <ion-nav-back-button></ion-nav-back-button>
     </ion-nav-bar>
-    <div class="tabs-striped tabs-background-{{publicacion.tema}} tabs-color-light">
-      <ion-tabs class="tabs-{{publicacion.tema}} tabs-icon-top">
-        <ion-tab icon-on="ion-ios-filing" icon-off="ion-ios-filing-outline">
-          <ion-content class="padding has-tabs">
-            <div ng-if="publicacion.datos.nuevoPost.accion == 'new'">
-              <form class="input-inset list" ng-submit="publicacion.nuevoPost(publicacion.datos.nuevoPost)">
-                <div class="item item-cabecera {{publicacion.tema}}">
-                  <h4 class="text-center text-white">Nueva Publicacion</h4>
-                </div>
-                <label class="item item-input">
-                  <input type="text" placeholder="Titulo" ng-model="publicacion.datos.nuevoPost.titulo">
-                </label>
-                <label class="item item-input">
-                  <textarea placeholder="Descripcion" ng-model="publicacion.datos.nuevoPost.descripcion"></textarea>
-                </label>
-                <div class="item item-input inputArchivo" ngf-select ng-model="iconos.datos.nuevoPost.archivo" name="archivo" ngf-max-size="20MB"
-                  required>
-                  <div class="text-center">SELECCIONA UN ARCHIVO</div>
-                </div>
-                <input type="submit" value="Crear" class="button button-block button-outline button-{{publicacion.tema}}">
-              </form>
+      <ion-content class="padding has-tabs">
+        <div ng-if="publicacion.datos.nuevoPost.accion == 'new'">
+          <form class="input-inset list" ng-submit="publicacion.nuevoPost(publicacion.datos.nuevoPost)"  name="nuevoPost" novalidate>
+            <div class="item item-cabecera {{publicacion.tema}}">
+              <h4 class="text-center text-white">Nueva Publicacion</h4>
             </div>
+            <label class="item item-input">
+              <input type="text" placeholder="Titulo" ng-model="publicacion.datos.nuevoPost.titulo" name="titulo" required>
+            </label>
+            <div class="item" style="color:maroon" role="alert" ng-show="nuevoPost.titulo.$touched && nuevoPost.titulo.$invalid">
+                <div ng-message="required">Este campo es requerido.</div>
+              </div>
+            <label class="item item-input">
+              <textarea placeholder="Descripcion" ng-model="publicacion.datos.nuevoPost.descripcion" name="descripcion" required></textarea>
+            </label>
+            <div class="item" style="color:maroon" role="alert" ng-show="nuevoPost.descripcion.$touched && nuevoPost.descripcion.$invalid">
+                <div ng-message="required">Este campo es requerido.</div>
+              </div>
+            <input type="submit" value="Crear" class="button button-block button-outline button-{{publicacion.tema}}" ng-disabled="!nuevoPost.$valid">
+            <h5 ng-if="publicacion.postAccion == 1" class="text-center">Publicacion Creada</h5>
+          </form>
+        </div>
 
-            <div ng-if="publicacion.datos.modificarPost.accion == 'edit'">
-              <form class="input-inset list" ng-submit="publicacion.modificarPost(publicacion.datos.modificarPost)">
-                <div class="item item-cabecera {{publicacion.tema}}">
-                  <h4 class="text-center text-white">Modificar Publicacion</h4>
-                </div>
-                <label class="item item-input">
-                  <input type="text" placeholder="Titulo" ng-model="publicacion.datos.modificarPost.titulo">
-                </label>
-                <label class="item item-input">
-                  <textarea placeholder="Descripcion" ng-model="publicacion.datos.modificarPost.descripcion"></textarea>
-                </label>
-                <div class="item item-input inputArchivo" ngf-select ng-model="iconos.datos.modificarPost.archivo" name="archivo" ngf-max-size="20MB"
-                  required>
-                  <div class="text-center">SELECCIONA UN ARCHIVO</div>
-                </div>
-                <input type="submit" value="Modificar" class="button button-block button-outline button-{{publicacion.tema}}">
-              </form>
+        <div ng-if="publicacion.datos.modificarPost.accion == 'edit'">
+          <form class="input-inset list" ng-submit="publicacion.modificarPost(publicacion.datos.modificarPost)" name="post" novalidate>
+            <div class="item item-cabecera {{publicacion.tema}}">
+              <h4 class="text-center text-white">Modificar Publicacion</h4>
             </div>
-          </ion-content>
-        </ion-tab>
-      </ion-tabs>
+            <label class="item item-input">
+              <input type="text" placeholder="Titulo" ng-model="publicacion.datos.modificarPost.titulo" name="titulo" required>
+            </label>
+            <div class="item" style="color:maroon" role="alert" ng-show="post.titulo.$touched && post.titulo.$invalid">
+                <div ng-message="required">Este campo es requerido.</div>
+            </div>
+            <label class="item item-input">
+              <textarea placeholder="Descripcion" ng-model="publicacion.datos.modificarPost.descripcion" name="descripcion" required></textarea>
+            </label>
+            <div class="item" style="color:maroon" role="alert" ng-show="post.descripcion.$touched && post.descripcion.$invalid">
+                <div ng-message="required">Este campo es requerido.</div>
+            </div>
+            <input type="submit" value="Modificar" class="button button-block button-outline button-{{publicacion.tema}}" ng-disabled="!post.$valid">
+            <h5 ng-if="publicacion.postAccion == 2" class="text-center">Publicacion Actualizada</h5> 
+          </form>
+          <button class="button button-block button-outline button-assertive" ng-click="publicacion.eliminarPost()">Eliminar</button>
+        </div>
+      </ion-content>
     </div>
   </ion-pane>
 </ion-view>

@@ -77,14 +77,14 @@ class PnfModel {
             $mail->isSMTP();                                      // Set mailer to use SMTP
             $mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
             $mail->SMTPAuth = true;                               // Enable SMTP authentication
-            $mail->Username = 'luisdaniel.programador@gmail.com';                 // SMTP username
-            $mail->Password = 'LDTorres2696';                           // SMTP password
+            $mail->Username = 'iutebgate@gmail.com';                 // SMTP username
+            $mail->Password = 'SoporteGATE';                           // SMTP password
             $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
             $mail->Port = 587;                                    // TCP port to connect to
         
             //Recipients
             // informatica@iuteb.edu.ve
-            $mail->setFrom($params['correo_profesor'], $params['nombre_profesor']);
+            $mail->setFrom('iutebgate@gmail.com', 'IUTEB GATE');
 
             if(is_array($params['miembros_correos']) == TRUE){
                 foreach($params['miembros_correos'] as $correo):
@@ -107,9 +107,17 @@ class PnfModel {
             $mail->isHTML(true);                                  // Set email format to HTML
             $mail->Subject = $params['subject'];
             $mail->Body    = $params['body'];
-        
+            $mail->CharSet = 'utf-8';
+            $mail->SMTPOptions = array(
+                'ssl' => array(
+                    'verify_peer' => false,
+                    'verify_peer_name' => false,
+                    'allow_self_signed' => true
+                )
+            );
+
             $mail->send();
-            return array('msg' => 'El correo ha sido enviado.');
+            return array('msg' => 'Mensaje Enviado');
         } catch (Exception $e) {
             return array('msg' => $mail->ErrorInfo);
         }     

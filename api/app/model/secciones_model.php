@@ -70,14 +70,14 @@ class SeccionesModel {
             $mail->isSMTP();                                      // Set mailer to use SMTP
             $mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
             $mail->SMTPAuth = true;                               // Enable SMTP authentication
-            $mail->Username = 'luisdaniel.programador@gmail.com';                 // SMTP username
-            $mail->Password = 'LDTorres2696';                           // SMTP password
+            $mail->Username = 'iutebgate@gmail.com';                 // SMTP username
+            $mail->Password = 'SoporteGATE';                           // SMTP password
             $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
             $mail->Port = 587;                                    // TCP port to connect to
 
             //Recipients
             // informatica@iuteb.edu.ve
-            $mail->setFrom('luisdaniel.programador@gmail.com', 'IUTEB GATE SOPORTE');
+            $mail->setFrom('iutebgate@gmail.com', 'IUTEB GATE SOPORTE');
 
             $mail->addAddress($datos['correo']);
 
@@ -98,9 +98,18 @@ class SeccionesModel {
             $mail->Subject = 'Seccion Creada!';
             $mail->Body    = "<h2>SECCION CREADA</h2><div><span><b>Nombre:</b> $usuario </span><span><b>Codigo:</b> $codigo </span></div>";
 
+            $mail->CharSet = 'utf-8';
+            $mail->SMTPOptions = array(
+                'ssl' => array(
+                    'verify_peer' => false,
+                    'verify_peer_name' => false,
+                    'allow_self_signed' => true
+                )
+            );
+
             $mail->send();
 
-            return $params;
+            return array('msg' => 'Seccion Creada', 'params' => $params);
 
         } catch (Exception $e) {
             return array('msg' => $mail->ErrorInfo);
@@ -146,7 +155,7 @@ class SeccionesModel {
         return $result;
     }
 
-    public function statusMember($accion, $id){
+    public function statusMember($params){
         
         $sql = "UPDATE $this->table2 SET estado = ? WHERE id_usuario = ? and id_seccion = ?";
 
@@ -154,7 +163,8 @@ class SeccionesModel {
 
         $sth->execute(array($params['accion'],$params['id_usuario'], $params['id_seccion']));
         
-        return $params;
+        $v = $sth->rowCount();
+        return array('filasAfectadas' => $v);
     }
 
     public function addMember($params){
@@ -262,11 +272,11 @@ class SeccionesModel {
 
     public function deletePost($params){
         
-        $sql = "DELETE FROM $this->table3 WHERE id_publicacion = ? AND id_usuario = ? AND id_seccion = ?";
+        $sql = "DELETE FROM $this->table3 WHERE id_publicacion = ?";
                 
         $sth = $this->db->prepare($sql);
         
-        $sth->execute(array($params['id_publicacion'], $params['id_usuario'], $params['id_seccion']));
+        $sth->execute(array($params['id_publicacion']));
         
         return  array('deleted_id' => $params['id_publicacion']);
     }

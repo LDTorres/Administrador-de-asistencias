@@ -2,107 +2,100 @@
   <ion-nav-bar class="bar-{{inscripcion.tema}}" align-title="center">
     <ion-nav-back-button></ion-nav-back-button>
   </ion-nav-bar>
-  <div class="tabs-striped tabs-background-{{inscripcion.tema}} tabs-color-light">
-    <ion-tabs class="tabs-{{inscripcion.tema}} tabs-icon-top">
-      <ion-tab icon-on="ion-android-create" icon-off="ion-android-create">
-        <ion-content class="padding">
-          <div ng-if="inscripcion.datos.objeto.tipo == 'profesor'">
-            <h4 class="subtitulo">Añadir Sección</h4>
-            <div class="card-list list">
+  <ion-content class="padding">
+    <div ng-if="inscripcion.datos.objeto.tipo == 'profesor'">
+      <h4 class="subtitulo">Añadir Sección</h4>
+      <div class="card-list list">
 
-              <label class="item item-input item-select">
-                <div class="input-label">
-                  Trimestre
-                </div>
-                <select ng-model="inscripcion.datos.listarAsignaturas.id_trimestre" ng-change="inscripcion.listarAsignaturas(inscripcion.datos.listarAsignaturas)">
-                  <option ng-repeat="trimestre in inscripcion.datos.trimestres" ng-value="trimestre.id_trimestre">trimestre {{trimestre.id_trimestre}}</option>
-                </select>
-              </label>
-              <label class="item item-input item-select" ng-if="inscripcion.datos.asignaturas">
-                <div class="input-label">
-                  Asignaturas
-                </div>
-                <select ng-model="inscripcion.datos.crearSeccion.id_asignatura">
-                  <option ng-repeat="asignatura in inscripcion.datos.asignaturas" ng-value="asignatura.id_asignatura">{{asignatura.nombre_asig}}</option>
-                </select>
-              </label>
-              <form class="input-inset list" ng-if="inscripcion.datos.asignaturas" ng-submit="inscripcion.crearSeccion(inscripcion.datos.crearSeccion)">
-                <label class="item item-input">
-                  <span class="input-label">Nombre</span>
-                  <input type="text" placeholder="Nombre" ng-model="inscripcion.datos.crearSeccion.nombre">
-                </label>
-                <input type="submit" value="Crear" class="button button-block button-{{inscripcion.tema}}">
-                <div class="item item-divider" ng-if="inscripcion.seccionCreada">
-                  <h4 class="text-center">{{inscripcion.seccionCreada}}</h4>
-                </div>
-              </form>
-            </div>
+        <label class="item item-input item-select">
+          <div class="input-label">
+            Trimestre
           </div>
-          <div class="list list-card" ng-if="inscripcion.datos.objeto.tipo == 'estudiante'">
-            <h4 class="subtitulo">Inscribir Sección</h4>
-            <div class="list">
-              <div class="item item-input-inset padding">
-                <label class="item-input-wrapper">
-                  <input type="text" placeholder="Código de la Sección" ng-model="inscripcion.datos.inscribirSeccion.codigo">
-                </label>
-                <button class="button button-small" ng-click="inscripcion.inscribirSeccion(inscripcion.datos.inscribirSeccion)">Inscribir</button>
-              </div>
-              <div class="item item-divider" ng-if="inscripcion.m">
-                <h4 class="text-center">{{inscripcion.m}}</h4>
-              </div>
-            </div>
+          <select ng-model="inscripcion.datos.listarAsignaturas.id_trimestre" ng-change="inscripcion.listarAsignaturas(inscripcion.datos.listarAsignaturas)">
+            <option ng-repeat="trimestre in inscripcion.datos.trimestres" ng-value="trimestre.id_trimestre">trimestre {{trimestre.id_trimestre}}</option>
+          </select>
+        </label>
+        <label class="item item-input item-select" ng-if="inscripcion.datos.asignaturas">
+          <div class="input-label">
+            Asignaturas
           </div>
-          <div ng-if="inscripcion.datos.objeto.tipo == 'Administrador'">
-            <div class="list list-card">
-              <h4 class="subtitulo">Añadir Sección</h4>
-              <div class="card-list list">
-
-                <label class="item item-input item-select">
-                  <div class="input-label">
-                    Trimestre
-                  </div>
-                  <select ng-model="inscripcion.datos.listarAsignaturas.id_trimestre" ng-change="inscripcion.listarAsignaturas(inscripcion.datos.listarAsignaturas)">
-                    <option ng-repeat="trimestre in inscripcion.datos.trimestres" ng-value="trimestre.id_trimestre">trimestre {{trimestre.id_trimestre}}</option>
-                  </select>
-                </label>
-                <label class="item item-input item-select" ng-if="inscripcion.datos.asignaturas">
-                  <div class="input-label">
-                    Asignaturas
-                  </div>
-                  <select ng-model="inscripcion.datos.crearSeccion.id_asignatura">
-                    <option ng-repeat="asignatura in inscripcion.datos.asignaturas" ng-value="asignatura.id_asignatura">{{asignatura.nombre_asig}}</option>
-                  </select>
-                </label>
-                <form class="input-inset list" ng-if="inscripcion.datos.asignaturas" ng-submit="inscripcion.crearSeccion(inscripcion.datos.crearSeccion)">
-                  <label class="item item-input">
-                    <span class="input-label">Nombre</span>
-                    <input type="text" placeholder="Nombre" ng-model="inscripcion.datos.crearSeccion.nombre">
-                  </label>
-                  <input type="submit" value="Crear" class="button button-block button-{{inscripcion.tema}}">
-                  <div class="item item-divider" ng-if="inscripcion.seccionCreada">
-                    <h4 class="text-center">{{inscripcion.seccionCreada}}</h4>
-                  </div>
-                </form>
-              </div>
-            </div>
-            <div class="list list-card">
-              <h4 class="subtitulo">Inscribir Sección</h4>
-              <div class="list">
-                <div class="item item-input-inset padding">
-                  <label class="item-input-wrapper">
-                    <input type="text" placeholder="Código de la Sección" ng-model="inscripcion.datos.inscribirSeccion.codigo">
-                  </label>
-                  <button class="button button-small" ng-click="inscripcion.inscribirSeccion(inscripcion.datos.inscribirSeccion)">Inscribir</button>
-                </div>
-                <div class="item item-divider" ng-if="inscripcion.m">
-                  <h4 class="text-center">{{inscripcion.m}}</h4>
-                </div>
-              </div>
-            </div>
+          <select ng-model="inscripcion.datos.crearSeccion.id_asignatura">
+            <option ng-repeat="asignatura in inscripcion.datos.asignaturas" ng-value="asignatura.id_asignatura">{{asignatura.nombre_asig}}</option>
+          </select>
+        </label>
+        <form class="input-inset list" ng-if="inscripcion.datos.asignaturas" ng-submit="inscripcion.crearSeccion(inscripcion.datos.crearSeccion)">
+          <label class="item item-input">
+            <span class="input-label">Nombre</span>
+            <input type="text" placeholder="Nombre" ng-model="inscripcion.datos.crearSeccion.nombre">
+          </label>
+          <input type="submit" value="Crear" class="button button-block button-{{inscripcion.tema}}">
+          <div class="item item-divider" ng-if="inscripcion.seccionCreada">
+            <h4 class="text-center">{{inscripcion.seccionCreada}}</h4>
           </div>
-        </ion-content>
-
-      </ion-tab>
-    </ion-tabs>
+        </form>
+      </div>
+    </div>
+    <div class="list list-card" ng-if="inscripcion.datos.objeto.tipo == 'estudiante'">
+      <h4 class="subtitulo">Inscribir Sección</h4>
+      <div class="list">
+        <div class="item item-input-inset padding">
+          <form ng-submit="inscripcion.inscribirSeccion(inscripcion.datos.inscribirSeccion)" name="inscribir" novalidate>
+            <label class="item-input-wrapper">
+              <input type="text" placeholder="Código de la Sección" ng-model="inscripcion.datos.inscribirSeccion.codigo" required>
+            </label>
+            <input type="submit" value="Inscribir" class="button button-small button-balanced" ng-disabled="!inscribir.$valid">
+          </form>
+        </div>
+        <div class="item item-divider" ng-if="inscripcion.m">
+          <h4 class="text-center">{{inscripcion.m}}</h4>
+        </div>
+      </div>
+    </div>
+    <div ng-if="inscripcion.datos.objeto.tipo == 'Administrador'">
+      <div class="list list-card">
+        <h4 class="subtitulo">Añadir Sección</h4>
+        <div class="card-list list">
+          <label class="item item-input item-select">
+            <div class="input-label">
+              Trimestre
+            </div>
+            <select ng-model="inscripcion.datos.listarAsignaturas.id_trimestre" ng-change="inscripcion.listarAsignaturas(inscripcion.datos.listarAsignaturas)">
+              <option ng-repeat="trimestre in inscripcion.datos.trimestres" ng-value="trimestre.id_trimestre">trimestre {{trimestre.id_trimestre}}</option>
+            </select>
+          </label>
+          <label class="item item-input item-select" ng-if="inscripcion.datos.asignaturas">
+            <div class="input-label">
+              Asignaturas
+            </div>
+            <select ng-model="inscripcion.datos.crearSeccion.id_asignatura">
+              <option ng-repeat="asignatura in inscripcion.datos.asignaturas" ng-value="asignatura.id_asignatura">{{asignatura.nombre_asig}}</option>
+            </select>
+          </label>
+          <form class="input-inset list" ng-if="inscripcion.datos.asignaturas" ng-submit="inscripcion.crearSeccion()" name="crear" novalidate>
+            <label class="item item-input">
+              <span class="input-label">Nombre</span>
+              <input type="text" placeholder="Nombre" ng-model="inscripcion.datos.crearSeccion.nombre" required>
+            </label>
+            <input type="submit" value="Crear" class="button button-block button-{{inscripcion.tema}}" ng-disabled="!crear.$valid">
+            <h3 ng-if="inscripcion.codigo">{{inscripcion.codigo}}</h3>
+          </form>
+        </div>
+      </div>
+      <div class="list list-card">
+        <h4 class="subtitulo">Inscribir Sección</h4>
+        <div class="list">
+          <form ng-submit="inscripcion.inscribirSeccion(inscripcion.datos.inscribirSeccion)" name="inscribir" novalidate class="item item-input-inset padding">
+            <label class="item-input-wrapper">
+              <input type="text" placeholder="Código de la Sección" ng-model="inscripcion.datos.inscribirSeccion.codigo" required>
+            </label>
+            <input type="submit" value="Inscribir" class="button button-small button-balanced" ng-disabled="!inscribir.$valid">
+          </form>
+          <div class="item item-divider" ng-if="inscripcion.m">
+            <h4 class="text-center">{{inscripcion.m}}</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ion-content>
   </div>
 </ion-view>

@@ -141,9 +141,7 @@ angular.module('GATE')
 
       var defered = $q.defer();
       var promise = defered.promise;
-      
-      console.log(datos)
-      
+
       $http.post(ruta + '/seccion/posts/timeline', datos).then(function (res) {
 
         defered.resolve(res);
@@ -158,7 +156,7 @@ angular.module('GATE')
     };
 
     this.forgotPass = function (datos) {
-      
+
       var defered = $q.defer();
       var promise = defered.promise;
 
@@ -437,13 +435,12 @@ angular.module('GATE')
 
       $http.get(ruta + '/seccion/' + datos.id + '/' + datos.idProfesor).then(function (res) {
 
-
         defered.resolve(res);
 
       }).catch(function (res) {
 
-
         defered.reject(res);
+
       });
       return promise;
     };
@@ -456,14 +453,14 @@ angular.module('GATE')
 
       $http.post(ruta + '/seccion/add', datos).then(function (res) {
 
-
         defered.resolve(res);
 
       }).catch(function (res) {
 
-
         defered.reject(res);
+
       });
+
       return promise;
     };
 
@@ -530,13 +527,12 @@ angular.module('GATE')
 
     // Espera como parametro {id_usuario}
 
-    this.deleteMember = function (id) {
+    this.deleteMember = function (datos) {
 
       var defered = $q.defer();
       var promise = defered.promise;
 
-      $http.get(ruta + '/seccion/member/delete/' + id).then(function (res) {
-
+      $http.post(ruta + '/seccion/member/status', datos).then(function (res) {
 
         defered.resolve(res);
 
@@ -698,13 +694,12 @@ angular.module('GATE')
 
       $http.post(ruta + '/seccion/post/delete', datos).then(function (res) {
 
-
         defered.resolve(res);
 
       }).catch(function (res) {
 
-
         defered.reject(res);
+
       });
       return promise;
     };

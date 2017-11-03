@@ -7,12 +7,12 @@
       <ion-tabs class="tabs-{{seccion.tema}} tabs-icon-top">
         <ion-tab title="Publicaciones" icon-on="ion-ios-filing" icon-off="ion-ios-filing-outline">
           <ion-content class="padding has-tabs">
-            <a ng-if="seccion.datos.tipo == 'Administrador' || seccion.datos.tipo == 'Profesor'" class="button button-block button-outline button-{{seccion.tema}} icon-right ion-ios-plus-outline"
+              <button class="button button-block button-outline button-{{seccion.tema}}" ng-click="seccion.morePosts()">Refrescar</button>
+            <a ng-if="seccion.datos.tipo == 'Administrador' || seccion.datos.tipo == 'Profesor'" class="button button-block button-outline button-{{seccion.tema}}"
               ng-click="seccion.crearPublicacion()">
               Nueva Publicacion
             </a>
-
-            <div class="list card" ng-repeat="post in seccion.datos.posts">
+            <div class="list card" ng-repeat="post in seccion.datos.posts | orderBy: post.fecha_publicacion:true">
               <a ng-if="seccion.datos.tipo == 'Administrador' || seccion.datos.tipo == 'Profesor'" ng-click="seccion.editarPublicacion($index)"
                 class="item item-avatar item-cabecera {{seccion.tema}}">
                 <img ng-src="img/{{post.nombre_archivo}}">
@@ -44,14 +44,19 @@
         <ion-tab title="Miembros" icon-on="ion-ios-clock" icon-off="ion-ios-clock-outline">
           <ion-content class="padding has-tabs">
             <h4 class="text-center">Miembros</h4>
-            <div class="list card" ng-repeat="miembro in seccion.datos.miembros">
-              <a class="item item-avatar" on-swipe-left="seccion.eliminarMiembro()" ui-sref="inicio/seccion/miembro/perfil({id_usuario: miembro.id_usuario})">
-
+            <ion-list show-delete="false" show-reorder="false" can-swipe="seccion.eliminarOpcion">
+              <ion-item ng-repeat="miembro in seccion.datos.miembros" class="item-avatar-left">
                 <img ng-src="img/{{miembro.foto_perfil}}">
-                <h2>{{miembro.nombre_completo}}</h2>
+                <h2 ui-sref="inicio/seccion/miembro/perfil({id_usuario: miembro.id_usuario})">{{miembro.nombre_completo}}</h2>
                 <p>{{miembro.telefono}}</p>
-              </a>
-            </div>
+                <ion-option-button class="button-assertive" ng-if="miembro.estado" ng-click="seccion.eliminarMiembro($index, miembro, 0)">
+                  Desactivar
+                </ion-option-button>
+                <ion-option-button class="button-positive" ng-if="!miembro.estado" ng-click="seccion.eliminarMiembro($index, miembro, 1)">
+                    Activar
+                </ion-option-button>
+              </ion-item>
+            </ion-list>
           </ion-content>
         </ion-tab>
 

@@ -163,8 +163,9 @@ $app->group('/seccion',function(){
     $this->post('/post/delete', function($req, $res){
 
         $params = $req->getParsedBody();
-
-        return $this->response->withJson($GLOBALS['sm']->deletePost($params), 200);
+        $result = $GLOBALS['sm']->deletePost($params);
+        return $this->response->withJson($result);
+        
     });
 
     $this->post('/asistencia', function($req, $res){

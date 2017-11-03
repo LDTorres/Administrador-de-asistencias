@@ -2,7 +2,6 @@ angular.module('GATE')
 
   .controller('seccionController', ['$scope', '$stateParams', 'servicioSecciones', 'ionicDatePicker', '$state', '$rootScope', function ($scope, $stateParams, servicioSecciones, ionicDatePicker, $state, $rootScope) {
     var bz = this;
-    //console.log($rootScope.objectoCliente);
 
     bz.tema = $rootScope.objectoCliente.preferencias.color_ui;
 
@@ -20,6 +19,8 @@ angular.module('GATE')
     }
 
     bz.datos.tipo = $rootScope.objectoCliente.tipo;
+    bz.eliminarOpcion = $rootScope.objectoCliente.tipo == 'Administrador' || $rootScope.objectoCliente.tipo == 'Profesor' ? true : false;
+
 
     bz.crearPublicacion = function () {
       $state.go('inicio/seccion/publicacion', {
@@ -46,17 +47,30 @@ angular.module('GATE')
       });
     }
 
-    bz.getInfo();
-
     bz.posts = function (datos) {
       servicioSecciones.getPosts(datos).then(function (res) {
         bz.datos.posts = res.data;
+        bz.getInfo();
       }).catch(function (res) {
         console.log(res)
       });
     }
 
     bz.posts(bz.datos.datosSeccion);
+
+    bz.morePosts = function () {
+      bz.datos.datosSeccion.offset = bz.datos.posts.length;
+      servicioSecciones.getPosts(bz.datos.datosSeccion).then(function (res) {
+        if (res.data.length > 0) {
+          res.data.forEach(function (element) {
+            bz.datos.posts.push(element)
+          }, this);
+        }
+      }).finally(function () {
+        $scope.$broadcast('scroll.refreshComplete');
+      });
+
+    }
 
     bz.miembros = function (datos) {
       servicioSecciones.getMembers(datos).then(function (res) {
@@ -88,9 +102,7 @@ angular.module('GATE')
       }
       servicioSecciones.getAsistence(datos).then(function (res) {
         bz.datos.asistencias = res.data;
-      }).catch(function (res) {
-        console.log(res)
-      });
+      })
     }
 
     function formatDate(date) {
@@ -103,6 +115,13 @@ angular.module('GATE')
       if (day.length < 2) day = '0' + day;
 
       return [year, month, day].join('-');
+    }
+
+    bz.eliminarMiembro = function(i, datos, a){
+      datos.accion = a;
+      servicioSecciones.deleteMember(datos).then(function (res) {
+        bz.datos.miembros[i].estado = a; 
+      })
     }
 
   }])

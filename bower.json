@@ -6,6 +6,7 @@
   },
   "dependencies": {
     "ionic-datepicker": "^1.2.1",
-    "ionic-material": "^0.4.2"
+    "ionic-material": "^0.4.2",
+    "ionic-toast": "^0.4.1"
   }
 }

@@ -5,11 +5,11 @@
     <ion-tabs class="tabs-icon-top tab-{{inicio.tema}}">
       <ion-tab title="Publicaciones" icon-on="ion-compose" icon-off="ion-compose">
         <ion-content class="padding">
-          <button class="button button-block button-outline button-{{inicio.tema}}" ng-click="inicio.morePosts()">Refrescar</button>
+            <button class="button button-block button-outline button-{{inicio.tema}}" ng-click="inicio.morePosts()">Refrescar</button>
           <div class="text-center">
-            <ion-spinner ng-if="!inicio.datos.posts.length > 1" icon="android"></ion-spinner>
+            <h5 ng-if="inicio.datos.posts.length < 1">NO TIENE TAREAS ASIGNADAS</h5>
           </div>
-          <div class="list card" ng-repeat="post in inicio.datos.posts">
+          <div class="list card" ng-repeat="post in inicio.datos.posts | orderBy: post.fecha_publicacion:true">
             <a ui-sref="inicio/seccion({id_seccion: post.id_seccion})" class="item item-avatar item-cabecera {{inicio.tema}}">
               <img ng-src="img/{{post.nombre_archivo}}">
               <h2 class="text-white">{{post.titulo}}</h2>
@@ -90,7 +90,7 @@
               </div>
             </div>
 
-            <form class="input-inset list" ng-submit="inicio.actualizarUsuario(inicio.datos.user, datosPersonales.$valid)" name="datosPersonales" novalidate>
+            <form class="input-inset list" ng-submit="inicio.actualizarUsuario(inicio.datos.user)" name="datosPersonales" novalidate>
               <h4 class="text-center item-cabecera {{inicio.tema}} item text-white">Datos</h4>
               <label class="item item-input">
                 <input type="text" placeholder="Nombre Completo" ng-model="inicio.datos.user.nombre_completo" name="nombre_completo" required>

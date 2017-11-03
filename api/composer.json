@@ -13,6 +13,6 @@
     "monolog/monolog": "^1.17",
     "oscarotero/psr7-middlewares": "^3.21",
     "firebase/php-jwt": "^5.0",
-    "phpmailer/phpmailer": "~6.0"
+    "phpmailer/phpmailer": "^6.0"
   }
 }

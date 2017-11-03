@@ -16,24 +16,25 @@ angular.module('GATE')
 
     bz.tema = $rootScope.objectoCliente.preferencias.color_ui;
 
-    bz.posts = function (datos) {  
+    bz.posts = function (datos) {
       servicioGeneral.timeline(datos).then(function (res) {
-          bz.datos.posts = res.data;   
-      }).catch(function (res) {
-        console.log(res)
-      });
+        bz.datos.posts = res.data;
+      })
     }
 
     bz.morePosts = function () {
-      datos = {id_usuario: bz.datos.user.id_usuario,offset: bz.datos.posts.length}
+      datos = {
+        id_usuario: bz.datos.user.id_usuario,
+        offset: bz.datos.posts.length
+      }
       servicioGeneral.timeline(datos).then(function (res) {
-          if(res.data.length > 0){
-            res.data.forEach(function(element) {
-              bz.datos.posts.push(element)
-            }, this);
-          }
-      }).catch(function (res) {
-        console.log(res)
+        if (res.data.length > 0) {
+          res.data.forEach(function (element) {
+            bz.datos.posts.push(element)
+          }, this);
+        }
+      }).finally(function () {
+        $scope.$broadcast('scroll.refreshComplete');
       });
     }
 
@@ -72,28 +73,18 @@ angular.module('GATE')
           bz.datos.user.malla = res.data.nombre;
         });
 
-      }).catch(function (res) {
-        console.log(res)
-      });
+      })
     }
 
     bz.datosUsuario();
 
     // Actualizar Usuario
-    bz.actualizarUsuario = function (datos, v) {
-      if (v == true) {
-        bz.v = false;
-        servicioUsuario.update(datos).then(function (res) {
-          bz.datos.user = res.data;
-          bz.actualizado = 'Tus datos han sido actualizados';
-          setTimeout(function () {
-            bz.actualizado = '';
-          }, 2000);
-        }).catch(function (res) {
-          console.log(res)
 
-        });
-      }
+    bz.actualizarUsuario = function (datos) {
+      servicioUsuario.update(datos).then(function (res) {
+        bz.datos.user = res.data;
+        bz.actualizado = 'Tus datos han sido actualizados';
+      })
     }
 
     // Actualizar Preferencias
@@ -118,9 +109,7 @@ angular.module('GATE')
           } else {}
         });
 
-      }).catch(function (res) {
-        console.log(res)
-      });
+      })
     }
 
     // Cierra Sesion

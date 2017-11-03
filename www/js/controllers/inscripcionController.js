@@ -1,6 +1,6 @@
 angular.module('GATE')
 
-  .controller('inscripcionController', ["$scope", "servicioGeneral", "$state", "servicioSecciones", "servicioAsignatura", "trimestresConstante", "$rootScope", function ($scope, servicioGeneral, $state, servicioSecciones, servicioAsignatura, trimestresConstante, $rootScope) {
+  .controller('inscripcionController', ["$scope", "servicioGeneral", "$state", "servicioSecciones", "servicioAsignatura", "trimestresConstante", "$rootScope", "ionicToast", function ($scope, servicioGeneral, $state, servicioSecciones, servicioAsignatura, trimestresConstante, $rootScope, ionicToast) {
     var bz = this;
 
     bz.datos = {
@@ -24,20 +24,26 @@ angular.module('GATE')
       });
     }
 
-    bz.crearSeccion = function (datos) {
-      datos.id_usuario = $rootScope.objectoCliente.id
-      console.log(datos)
-      servicioSecciones.add(datos).then(function (res) {
+    bz.crearSeccion = function () {
+      bz.datos.crearSeccion.id_usuario = parseInt($rootScope.objectoCliente.id);
+      servicioSecciones.add(bz.datos.crearSeccion).then(function (res) {
         console.log(res)
-        bz.seccionCreada;
+        //ionicToast.show(res.data.msg, 'top', false, 2500);
+        //bz.codigo = res.data.params.codigo;
+      }).catch(function (res) {
+        console.log(res)
       });
     }
 
     bz.inscribirSeccion = function (datos) {
       datos.id_usuario = $rootScope.objectoCliente.id
       servicioSecciones.addMember(datos).then(function (res) {
-        bz.m = res.data.msg;
+        ionicToast.show(res.data.msg, 'top', false, 2500);
       });
     }
+
+    bz.hideToast = function(){
+      ionicToast.hide();
+    };
 
   }])
