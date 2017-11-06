@@ -1,5 +1,5 @@
 angular.module('GATE')
 
-  .controller('reportesController', function ($scope) {
+  .controller('reportesController', function ($scope, $rootScope) {
 
   })

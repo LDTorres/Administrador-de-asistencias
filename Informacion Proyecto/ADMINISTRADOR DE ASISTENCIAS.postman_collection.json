@@ -12,8 +12,7 @@
 				"ab956e4e-e8e5-ffd1-8dac-28f1969110f4",
 				"66e69161-7400-e514-f0e1-cb3711503cf5",
 				"ae38676b-7beb-9722-e872-026d6bfb8aea",
-				"2c897d28-2a72-8845-bb28-259c55426e9f",
-				"29620a16-f2b7-31e9-3672-4c0b5b797fd4"
+				"2c897d28-2a72-8845-bb28-259c55426e9f"
 			],
 			"owner": "2084589",
 			"folders_order": [],
@@ -53,6 +52,8 @@
 			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
 			"order": [
 				"c823361b-aa14-9ee4-ea20-d5ac31d388b8",
+				"1e728926-9298-ad5c-630b-4d36b769d7f9",
+				"9a883273-d8c9-9430-9957-a207f36037d0",
 				"bb6707c9-5f0f-0337-20e8-3933d5a2d430",
 				"46b97391-0b9c-b06e-3107-b76bc3589554",
 				"7a5cd8e6-5554-58da-160c-1f321663f58e",
@@ -211,55 +212,75 @@
 			"responses": []
 		},
 		{
-			"folder": "1456b303-d0bb-4ac9-077b-6dccb0a81b12",
-			"id": "29620a16-f2b7-31e9-3672-4c0b5b797fd4",
-			"name": "{{url}}/asignatura/update",
-			"dataMode": "urlencoded",
-			"data": [
-				{
-					"key": "nombre",
-					"value": "",
-					"description": "",
-					"type": "text",
-					"enabled": true
-				},
-				{
-					"key": "id_malla",
-					"value": "",
-					"description": "",
-					"type": "text",
-					"enabled": true
-				},
-				{
-					"key": "trimestre",
-					"value": "",
-					"description": "",
-					"type": "text",
-					"enabled": true
-				}
-			],
-			"rawModeData": null,
-			"descriptionFormat": "html",
-			"description": "Ruta para modificar una materia curricular",
-			"headers": "Content-Type: application/x-www-form-urlencoded\n",
-			"method": "POST",
-			"pathVariables": {},
-			"url": "{{url}}/asignatura/update",
-			"preRequestScript": null,
-			"tests": null,
-			"currentHelper": "normal",
-			"helperAttributes": {},
-			"queryParams": [],
+			"id": "1e728926-9298-ad5c-630b-4d36b769d7f9",
+			"headers": "Content-Type: application/x-www-form-urlencoded\nauth: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MDk3MTY0MzMsImV4cCI6MTUwOTkzMjQzMywiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIxIiwibmFtZSI6IkFkbWluIiwidGlwbyI6IkFkbWluaXN0cmFkb3IiLCJpZF9tYWxsYSI6IjEifX0.LV3h3FFtS2Cw37SoXxIGKuyThgDI-nCHXGRtrZzdyzE\n",
 			"headerData": [
 				{
 					"key": "Content-Type",
 					"value": "application/x-www-form-urlencoded",
 					"description": "",
 					"enabled": true
+				},
+				{
+					"key": "auth",
+					"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MDk3MTY0MzMsImV4cCI6MTUwOTkzMjQzMywiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIxIiwibmFtZSI6IkFkbWluIiwidGlwbyI6IkFkbWluaXN0cmFkb3IiLCJpZF9tYWxsYSI6IjEifX0.LV3h3FFtS2Cw37SoXxIGKuyThgDI-nCHXGRtrZzdyzE",
+					"description": "",
+					"enabled": true
 				}
 			],
+			"url": "{{url}}/sendMail",
+			"folder": "f32508d4-730e-12e8-2acc-776205cef0e8",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
 			"pathVariableData": [],
-			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0"
+			"method": "POST",
+			"data": [
+				{
+					"key": "miembros_correos",
+					"value": "luisdaniel.programador@gmail.com",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "subject",
+					"value": "hola jaja",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "profesor",
+					"value": "Richard",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "nombre_publicacion",
+					"value": "Raspar a todos",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "descripcion",
+					"value": "jajajaja",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1509728051892,
+			"name": "{{url}}/enviarCorreo",
+			"description": "Enviar correo",
+			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
+			"responses": []
 		},
 		{
 			"id": "2a42b3d1-5fec-c6d6-6582-7b0a20a6415c",
@@ -294,16 +315,22 @@
 		},
 		{
 			"id": "2c897d28-2a72-8845-bb28-259c55426e9f",
-			"headers": "Content-Type: application/x-www-form-urlencoded\n",
+			"headers": "Content-Type: application/x-www-form-urlencoded\nauth: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MDg5Njc0NDMsImV4cCI6MTUwOTE4MzQ0MywiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIyIiwibmFtZSI6IkFkbWluIiwidGlwbyI6IkFkbWluaXN0cmFkb3IiLCJpZF9tYWxsYSI6IjEifX0.yAYnQrJF46pPSNeax_DBrgueTE49SgSDPOhjGkllYu8\n",
 			"headerData": [
 				{
 					"key": "Content-Type",
 					"value": "application/x-www-form-urlencoded",
 					"description": "",
 					"enabled": true
+				},
+				{
+					"key": "auth",
+					"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MDg5Njc0NDMsImV4cCI6MTUwOTE4MzQ0MywiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIyIiwibmFtZSI6IkFkbWluIiwidGlwbyI6IkFkbWluaXN0cmFkb3IiLCJpZF9tYWxsYSI6IjEifX0.yAYnQrJF46pPSNeax_DBrgueTE49SgSDPOhjGkllYu8",
+					"description": "",
+					"enabled": true
 				}
 			],
-			"url": "{{url}}/asignatura/add",
+			"url": "{{url}}/asignatura/update",
 			"folder": "1456b303-d0bb-4ac9-077b-6dccb0a81b12",
 			"queryParams": [],
 			"preRequestScript": null,
@@ -313,21 +340,28 @@
 			"data": [
 				{
 					"key": "nombre_asig",
-					"value": "",
+					"value": "Matemáticas",
 					"description": "",
 					"type": "text",
 					"enabled": true
 				},
 				{
 					"key": "trimestre",
-					"value": "",
+					"value": "1",
 					"description": "",
 					"type": "text",
 					"enabled": true
 				},
 				{
 					"key": "id_malla",
-					"value": "",
+					"value": "1",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "id_asignatura",
+					"value": "2",
 					"description": "",
 					"type": "text",
 					"enabled": true
@@ -337,7 +371,7 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1506531407947,
+			"time": 1508967932881,
 			"name": "{{url}}/asignatura/update",
 			"description": "Modificamos",
 			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
@@ -345,8 +379,15 @@
 		},
 		{
 			"id": "30be491a-143c-0c11-206c-346dc186c09c",
-			"headers": "",
-			"headerData": [],
+			"headers": "auth: \n",
+			"headerData": [
+				{
+					"key": "auth",
+					"value": "",
+					"description": "",
+					"enabled": true
+				}
+			],
 			"url": "{{url}}/seccion/post/add",
 			"folder": "6cf692b2-b2fb-b982-2010-c98c2c38de39",
 			"queryParams": [],
@@ -395,7 +436,7 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1506649424377,
+			"time": 1509639050255,
 			"name": "{{url}}/seccion/post/add",
 			"description": "Creamos un nuevo Post",
 			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
@@ -403,8 +444,15 @@
 		},
 		{
 			"id": "316bc884-d3d3-4a97-74ca-2d397520c158",
-			"headers": "",
-			"headerData": [],
+			"headers": "auth: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MDg5NjgzMDksImV4cCI6MTUwOTE4NDMwOSwiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIyIiwibmFtZSI6IkFkbWluIiwidGlwbyI6IkFkbWluaXN0cmFkb3IiLCJpZF9tYWxsYSI6IjEifX0.a0uFiy7YBuehvtAOsaP31nekXbv-j7NJRl5sWIJag0I\n",
+			"headerData": [
+				{
+					"key": "auth",
+					"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MDg5NjgzMDksImV4cCI6MTUwOTE4NDMwOSwiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIyIiwibmFtZSI6IkFkbWluIiwidGlwbyI6IkFkbWluaXN0cmFkb3IiLCJpZF9tYWxsYSI6IjEifX0.a0uFiy7YBuehvtAOsaP31nekXbv-j7NJRl5sWIJag0I",
+					"description": "",
+					"enabled": true
+				}
+			],
 			"url": "{{url}}/bd/backups",
 			"folder": "8805482e-d8b8-da8e-16d9-4ddd5b9d58a0",
 			"queryParams": [],
@@ -417,7 +465,7 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1505320148679,
+			"time": 1508968371376,
 			"name": "{{url}}/bd/backups",
 			"description": "Obtenemos todos los respaldos",
 			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
@@ -529,11 +577,11 @@
 		},
 		{
 			"id": "3ef918cd-956e-ed4e-6477-609642b63b65",
-			"headers": "auth: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MDg3ODQ5NDcsImV4cCI6MTUwOTAwMDk0NywiYXVkIjoiMzAxZTMxNjQwNTMzYzMyNTEyODVmYTlkMTE4ZjJiODYwZTk1MDdlMiIsImRhdGEiOnsiaWQiOiIxIiwibmFtZSI6IkFkbWluIiwidGlwbyI6IkFkbWluaXN0cmFkb3IiLCJpZF9tYWxsYSI6IjIifX0.i4Q44SSbmOflpt6MXFZNqn4QArbh2394zBnVjpVW1bA\n",
+			"headers": "auth: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MDg5NjgzMDksImV4cCI6MTUwOTE4NDMwOSwiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIyIiwibmFtZSI6IkFkbWluIiwidGlwbyI6IkFkbWluaXN0cmFkb3IiLCJpZF9tYWxsYSI6IjEifX0.a0uFiy7YBuehvtAOsaP31nekXbv-j7NJRl5sWIJag0I\n",
 			"headerData": [
 				{
 					"key": "auth",
-					"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MDg3ODQ5NDcsImV4cCI6MTUwOTAwMDk0NywiYXVkIjoiMzAxZTMxNjQwNTMzYzMyNTEyODVmYTlkMTE4ZjJiODYwZTk1MDdlMiIsImRhdGEiOnsiaWQiOiIxIiwibmFtZSI6IkFkbWluIiwidGlwbyI6IkFkbWluaXN0cmFkb3IiLCJpZF9tYWxsYSI6IjIifX0.i4Q44SSbmOflpt6MXFZNqn4QArbh2394zBnVjpVW1bA",
+					"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MDg5NjgzMDksImV4cCI6MTUwOTE4NDMwOSwiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIyIiwibmFtZSI6IkFkbWluIiwidGlwbyI6IkFkbWluaXN0cmFkb3IiLCJpZF9tYWxsYSI6IjEifX0.a0uFiy7YBuehvtAOsaP31nekXbv-j7NJRl5sWIJag0I",
 					"description": "",
 					"enabled": true
 				}
@@ -551,7 +599,7 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1508854726777,
+			"time": 1508968373600,
 			"name": "{{url}}/bd/backup",
 			"description": "Ruta para Hacer una copia de la base de datos",
 			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
@@ -559,30 +607,23 @@
 		},
 		{
 			"id": "41e26950-2433-8bd5-502a-0e75081eed9d",
-			"headers": "auth: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MDg4NTQ4MTYsImV4cCI6MTUwOTA3MDgxNiwiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIzMiIsIm5hbWUiOiJNaWNoZWwgTWFyaXNjbyIsInRpcG8iOiJFc3R1ZGlhbnRlIiwiaWRfbWFsbGEiOiIyIn19.vmOwr-d5mPCC8zco0fPMPfVqBXh1vkfFj3RgvrfHA08\n",
+			"headers": "auth: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MDk1MDA3MDksImV4cCI6MTUwOTcxNjcwOSwiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIxIiwibmFtZSI6IkFkbWluIiwidGlwbyI6IkFkbWluaXN0cmFkb3IiLCJpZF9tYWxsYSI6IjEifX0._SUb34xTlX8sZWmrhtxc2QoxYKCFL7iE7rGPX0Pz86s\n",
 			"headerData": [
 				{
 					"key": "auth",
-					"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MDg4NTQ4MTYsImV4cCI6MTUwOTA3MDgxNiwiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIzMiIsIm5hbWUiOiJNaWNoZWwgTWFyaXNjbyIsInRpcG8iOiJFc3R1ZGlhbnRlIiwiaWRfbWFsbGEiOiIyIn19.vmOwr-d5mPCC8zco0fPMPfVqBXh1vkfFj3RgvrfHA08",
+					"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MDk1MDA3MDksImV4cCI6MTUwOTcxNjcwOSwiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIxIiwibmFtZSI6IkFkbWluIiwidGlwbyI6IkFkbWluaXN0cmFkb3IiLCJpZF9tYWxsYSI6IjEifX0._SUb34xTlX8sZWmrhtxc2QoxYKCFL7iE7rGPX0Pz86s",
 					"description": "",
 					"enabled": true
 				}
 			],
 			"url": "{{url}}/user/setPrefencias",
+			"folder": "a2cacbd8-40d4-6e52-ad12-35783c7a6a91",
 			"queryParams": [],
+			"preRequestScript": null,
 			"pathVariables": {},
 			"pathVariableData": [],
-			"preRequestScript": null,
 			"method": "POST",
-			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
 			"data": [
-				{
-					"key": "cant_posts",
-					"value": "3",
-					"description": "",
-					"type": "text",
-					"enabled": true
-				},
 				{
 					"key": "color_ui",
 					"value": "assertive",
@@ -592,78 +633,75 @@
 				},
 				{
 					"key": "recibir_notificaciones",
-					"value": "0",
+					"value": "1",
 					"description": "",
 					"type": "text",
 					"enabled": true
 				},
 				{
 					"key": "id_usuario",
-					"value": "32",
+					"value": "1",
 					"description": "",
 					"type": "text",
 					"enabled": true
 				}
 			],
 			"dataMode": "params",
-			"name": "{{url}}/user/setPrefencias",
-			"description": "COlocar preferencias",
-			"descriptionFormat": "html",
-			"time": 1508857459599,
 			"version": 2,
-			"responses": [],
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"folder": "a2cacbd8-40d4-6e52-ad12-35783c7a6a91"
+			"time": 1509559645449,
+			"name": "{{url}}/user/setPrefencias",
+			"description": "COlocar preferencias",
+			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
+			"responses": []
 		},
 		{
 			"id": "45189f9f-dc2d-c55c-070d-bbc28762bad5",
 			"headers": "",
 			"headerData": [],
-			"url": "{{url}}/pnf/id",
+			"url": "{{url}}/pnf/get/",
+			"folder": "d59b253f-5eae-2b9e-bf61-cc53631735d6",
 			"queryParams": [],
+			"preRequestScript": null,
 			"pathVariables": {},
 			"pathVariableData": [],
-			"preRequestScript": null,
 			"method": "GET",
-			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
 			"data": null,
 			"dataMode": "params",
-			"name": "{{url}}/pnf/id",
-			"description": "Obtenemos una malla en especifico",
-			"descriptionFormat": "html",
-			"time": 1505265085945,
 			"version": 2,
-			"responses": [],
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"folder": "d59b253f-5eae-2b9e-bf61-cc53631735d6"
+			"time": 1508969228355,
+			"name": "{{url}}/pnf/get/id",
+			"description": "Obtenemos una malla en especifico",
+			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
+			"responses": []
 		},
 		{
 			"id": "46b97391-0b9c-b06e-3107-b76bc3589554",
 			"headers": "",
 			"headerData": [],
-			"url": "{{url}}/app",
+			"url": "{{url}}/",
+			"folder": "f32508d4-730e-12e8-2acc-776205cef0e8",
 			"queryParams": [],
+			"preRequestScript": null,
 			"pathVariables": {},
 			"pathVariableData": [],
-			"preRequestScript": null,
 			"method": "GET",
-			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
 			"data": null,
 			"dataMode": "params",
-			"name": "{{url}}/app",
-			"description": "Ruta para obetener los datos de la App",
-			"descriptionFormat": "html",
-			"time": 1505263208313,
 			"version": 2,
-			"responses": [],
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"folder": "f32508d4-730e-12e8-2acc-776205cef0e8"
+			"time": 1508967479382,
+			"name": "{{url}}/app",
+			"description": "Ruta para obetener los datos de la App",
+			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
+			"responses": []
 		},
 		{
 			"id": "47426d47-92cf-7857-f171-1e8dae9775be",
@@ -737,7 +775,7 @@
 			"data": [
 				{
 					"key": "token",
-					"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MDg1MTQ5NTMsImV4cCI6MTUwODczMDk1MywiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIxIiwibmFtZSI6IkFkbWluIiwidGlwbyI6IkFkbWluaXN0cmFkb3IiLCJpZF9tYWxsYSI6IjIifX0.yi5ThaYQ8N-FTPcpeAnSsgNIGSfofWwWJSXadqv0vNY",
+					"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MDg5Njc0NDMsImV4cCI6MTUwOTE4MzQ0MywiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIyIiwibmFtZSI6IkFkbWluIiwidGlwbyI6IkFkbWluaXN0cmFkb3IiLCJpZF9tYWxsYSI6IjEifX0.yAYnQrJF46pPSNeax_DBrgueTE49SgSDPOhjGkllYu8",
 					"description": "",
 					"type": "text",
 					"enabled": true
@@ -747,7 +785,7 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1508599736709,
+			"time": 1508967749776,
 			"name": "{{url}}/checkAuth",
 			"description": "Verificamos si un token esta vigente",
 			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
@@ -839,7 +877,7 @@
 			"data": [
 				{
 					"key": "token",
-					"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MDg1MTQ5NTMsImV4cCI6MTUwODczMDk1MywiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIxIiwibmFtZSI6IkFkbWluIiwidGlwbyI6IkFkbWluaXN0cmFkb3IiLCJpZF9tYWxsYSI6IjIifX0.yi5ThaYQ8N-FTPcpeAnSsgNIGSfofWwWJSXadqv0vNY",
+					"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MDg5Njc0NDMsImV4cCI6MTUwOTE4MzQ0MywiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIyIiwibmFtZSI6IkFkbWluIiwidGlwbyI6IkFkbWluaXN0cmFkb3IiLCJpZF9tYWxsYSI6IjEifX0.yAYnQrJF46pPSNeax_DBrgueTE49SgSDPOhjGkllYu8",
 					"description": "",
 					"type": "text",
 					"enabled": true
@@ -849,7 +887,7 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1508596380110,
+			"time": 1508967751550,
 			"name": "{{url}}/pruebaToken",
 			"description": "Se le envia un token por parametro y este lo decodifica",
 			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
@@ -886,8 +924,15 @@
 		},
 		{
 			"id": "66e69161-7400-e514-f0e1-cb3711503cf5",
-			"headers": "",
-			"headerData": [],
+			"headers": "auth: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MDg5Njc5NDgsImV4cCI6MTUwOTE4Mzk0OCwiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIyIiwibmFtZSI6IkFkbWluIiwidGlwbyI6IkFkbWluaXN0cmFkb3IiLCJpZF9tYWxsYSI6IjEifX0.RYl7o3ODIdTYq-bnVJBBAJIiAzky7w8ApDEAUXrmw60\n",
+			"headerData": [
+				{
+					"key": "auth",
+					"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MDg5Njc5NDgsImV4cCI6MTUwOTE4Mzk0OCwiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIyIiwibmFtZSI6IkFkbWluIiwidGlwbyI6IkFkbWluaXN0cmFkb3IiLCJpZF9tYWxsYSI6IjEifX0.RYl7o3ODIdTYq-bnVJBBAJIiAzky7w8ApDEAUXrmw60",
+					"description": "",
+					"enabled": true
+				}
+			],
 			"url": "{{url}}/asignatura/1/1/1",
 			"folder": "1456b303-d0bb-4ac9-077b-6dccb0a81b12",
 			"queryParams": [],
@@ -901,7 +946,7 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1506530906986,
+			"time": 1508968268272,
 			"name": "{{url}}/asignatura/id/trimestre[/pnf]",
 			"description": "Obtenemos una materia en especifico",
 			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
@@ -909,11 +954,11 @@
 		},
 		{
 			"id": "671ce723-b74e-df44-cc47-0f68017a8837",
-			"headers": "auth: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MDg1MTQ5NTMsImV4cCI6MTUwODczMDk1MywiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIxIiwibmFtZSI6IkFkbWluIiwidGlwbyI6IkFkbWluaXN0cmFkb3IiLCJpZF9tYWxsYSI6IjIifX0.yi5ThaYQ8N-FTPcpeAnSsgNIGSfofWwWJSXadqv0vNY\n",
+			"headers": "auth: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MDk3MjczODksImV4cCI6MTUwOTk0MzM4OSwiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIxIiwibmFtZSI6IkFkbWluIiwidGlwbyI6IkFkbWluaXN0cmFkb3IiLCJpZF9tYWxsYSI6IjEifX0.t_MPXpdtfSPr1un7zCPa8HWq7wUsqeBVMJbgxH_CIJ8\n",
 			"headerData": [
 				{
 					"key": "auth",
-					"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MDg1MTQ5NTMsImV4cCI6MTUwODczMDk1MywiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIxIiwibmFtZSI6IkFkbWluIiwidGlwbyI6IkFkbWluaXN0cmFkb3IiLCJpZF9tYWxsYSI6IjIifX0.yi5ThaYQ8N-FTPcpeAnSsgNIGSfofWwWJSXadqv0vNY",
+					"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MDk3MjczODksImV4cCI6MTUwOTk0MzM4OSwiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIxIiwibmFtZSI6IkFkbWluIiwidGlwbyI6IkFkbWluaXN0cmFkb3IiLCJpZF9tYWxsYSI6IjEifX0.t_MPXpdtfSPr1un7zCPa8HWq7wUsqeBVMJbgxH_CIJ8",
 					"description": "",
 					"enabled": true
 				}
@@ -931,7 +976,7 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1508599741190,
+			"time": 1509728049677,
 			"name": "{{url}}/seccion/id",
 			"description": "Obtenemos los datos de una seccion",
 			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
@@ -939,11 +984,17 @@
 		},
 		{
 			"id": "68657109-ae02-586f-08f0-e805460e63bc",
-			"headers": "Content-Type: application/x-www-form-urlencoded\n",
+			"headers": "Content-Type: application/x-www-form-urlencoded\nauth: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MDk3MTY0MzMsImV4cCI6MTUwOTkzMjQzMywiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIxIiwibmFtZSI6IkFkbWluIiwidGlwbyI6IkFkbWluaXN0cmFkb3IiLCJpZF9tYWxsYSI6IjEifX0.LV3h3FFtS2Cw37SoXxIGKuyThgDI-nCHXGRtrZzdyzE\n",
 			"headerData": [
 				{
 					"key": "Content-Type",
 					"value": "application/x-www-form-urlencoded",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "auth",
+					"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MDk3MTY0MzMsImV4cCI6MTUwOTkzMjQzMywiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIxIiwibmFtZSI6IkFkbWluIiwidGlwbyI6IkFkbWluaXN0cmFkb3IiLCJpZF9tYWxsYSI6IjEifX0.LV3h3FFtS2Cw37SoXxIGKuyThgDI-nCHXGRtrZzdyzE",
 					"description": "",
 					"enabled": true
 				}
@@ -958,7 +1009,7 @@
 			"data": [
 				{
 					"key": "nombre",
-					"value": "4G-TF-VVh",
+					"value": "1m",
 					"description": "",
 					"type": "text",
 					"enabled": true
@@ -982,7 +1033,7 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1506623087423,
+			"time": 1509726075610,
 			"name": "{{url}}/seccion/add",
 			"description": "Agregamos una nueva seccion",
 			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
@@ -990,22 +1041,28 @@
 		},
 		{
 			"id": "7a5cd8e6-5554-58da-160c-1f321663f58e",
-			"headers": "Content-Type: application/x-www-form-urlencoded\n",
+			"headers": "Content-Type: application/x-www-form-urlencoded\nauth: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MDkzODY1MDQsImV4cCI6MTUwOTYwMjUwNCwiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIxIiwibmFtZSI6IkFkbWluIiwidGlwbyI6IkFkbWluaXN0cmFkb3IiLCJpZF9tYWxsYSI6IjEifX0.mwMdy6A4QY2B0WIuFC9t58USzj007d3Zj6fPbyXYH7w\n",
 			"headerData": [
 				{
 					"key": "Content-Type",
 					"value": "application/x-www-form-urlencoded",
-					"enabled": true,
-					"description": ""
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "auth",
+					"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MDkzODY1MDQsImV4cCI6MTUwOTYwMjUwNCwiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIxIiwibmFtZSI6IkFkbWluIiwidGlwbyI6IkFkbWluaXN0cmFkb3IiLCJpZF9tYWxsYSI6IjEifX0.mwMdy6A4QY2B0WIuFC9t58USzj007d3Zj6fPbyXYH7w",
+					"description": "",
+					"enabled": true
 				}
 			],
-			"url": "{{url}}/seccion/posts/timeline/1",
+			"url": "{{url}}/seccion/posts/timeline",
 			"folder": "f32508d4-730e-12e8-2acc-776205cef0e8",
 			"queryParams": [],
 			"preRequestScript": null,
 			"pathVariables": {},
 			"pathVariableData": [],
-			"method": "GET",
+			"method": "POST",
 			"data": [
 				{
 					"key": "id_usuario",
@@ -1016,7 +1073,7 @@
 				},
 				{
 					"key": "offset",
-					"value": "0",
+					"value": "1",
 					"description": "",
 					"type": "text",
 					"enabled": true
@@ -1025,23 +1082,28 @@
 			"dataMode": "urlencoded",
 			"tests": null,
 			"currentHelper": "normal",
-			"helperAttributes": "{}",
-			"time": 1506438090282,
+			"helperAttributes": {},
+			"time": 1509387712725,
 			"name": "{{url}}/seccion/posts/timeline/id",
 			"description": "Obtenemos las publicaciones de todas las secciones a las que pertenece el usuario",
 			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
-			"responses": [],
-			"timestamp": null
+			"responses": []
 		},
 		{
 			"id": "7c7e648b-30fd-70c4-e356-f506117961e1",
-			"headers": "Content-Type: application/x-www-form-urlencoded\n",
+			"headers": "Content-Type: application/x-www-form-urlencoded\nauth: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MDk1ODMzNjUsImV4cCI6MTUwOTc5OTM2NSwiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIxIiwibmFtZSI6IkFkbWluIiwidGlwbyI6IkFkbWluaXN0cmFkb3IiLCJpZF9tYWxsYSI6IjEifX0.NbmGd5EhunOBncprguR31n_JRJ3dqeP3o-2sbkO6dQY\n",
 			"headerData": [
 				{
 					"key": "Content-Type",
 					"value": "application/x-www-form-urlencoded",
-					"enabled": true,
-					"description": ""
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "auth",
+					"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MDk1ODMzNjUsImV4cCI6MTUwOTc5OTM2NSwiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIxIiwibmFtZSI6IkFkbWluIiwidGlwbyI6IkFkbWluaXN0cmFkb3IiLCJpZF9tYWxsYSI6IjEifX0.NbmGd5EhunOBncprguR31n_JRJ3dqeP3o-2sbkO6dQY",
+					"description": "",
+					"enabled": true
 				}
 			],
 			"url": "{{url}}/seccion/posts",
@@ -1061,7 +1123,7 @@
 				},
 				{
 					"key": "offset",
-					"value": "0",
+					"value": "1",
 					"description": "",
 					"type": "text",
 					"enabled": true
@@ -1070,13 +1132,12 @@
 			"dataMode": "urlencoded",
 			"tests": null,
 			"currentHelper": "normal",
-			"helperAttributes": "{}",
-			"time": 1506530915476,
+			"helperAttributes": {},
+			"time": 1509639044606,
 			"name": "{{url}}/seccion/posts",
 			"description": "Obtenemos los posts de una seccion \n",
 			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
-			"responses": [],
-			"timestamp": null
+			"responses": []
 		},
 		{
 			"id": "7ecde924-324f-37bb-6021-889a4c5fabb2",
@@ -1096,18 +1157,24 @@
 			"currentHelper": "normal",
 			"helperAttributes": {},
 			"time": 1506511003539,
-			"name": "{{url}}/seccion/all/id_asignatura",
+			"name": "{{url}}/seccion/all",
 			"description": "Obtenemos todas las secciones de una materia",
 			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
 			"responses": []
 		},
 		{
 			"id": "83988095-882d-73ad-a6e1-b562c41747a7",
-			"headers": "Content-Type: application/x-www-form-urlencoded\n",
+			"headers": "Content-Type: application/x-www-form-urlencoded\nauth: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MDg5Njc5NDgsImV4cCI6MTUwOTE4Mzk0OCwiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIyIiwibmFtZSI6IkFkbWluIiwidGlwbyI6IkFkbWluaXN0cmFkb3IiLCJpZF9tYWxsYSI6IjEifX0.RYl7o3ODIdTYq-bnVJBBAJIiAzky7w8ApDEAUXrmw60\n",
 			"headerData": [
 				{
 					"key": "Content-Type",
 					"value": "application/x-www-form-urlencoded",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "auth",
+					"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MDg5Njc5NDgsImV4cCI6MTUwOTE4Mzk0OCwiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIyIiwibmFtZSI6IkFkbWluIiwidGlwbyI6IkFkbWluaXN0cmFkb3IiLCJpZF9tYWxsYSI6IjEifX0.RYl7o3ODIdTYq-bnVJBBAJIiAzky7w8ApDEAUXrmw60",
 					"description": "",
 					"enabled": true
 				}
@@ -1122,14 +1189,14 @@
 			"data": [
 				{
 					"key": "nombre",
-					"value": "",
+					"value": "Informatica",
 					"description": "",
 					"type": "text",
 					"enabled": true
 				},
 				{
-					"key": "id_malla",
-					"value": "",
+					"key": "id",
+					"value": "1",
 					"description": "",
 					"type": "text",
 					"enabled": true
@@ -1140,7 +1207,7 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1505401465186,
+			"time": 1508968264848,
 			"name": "{{url}}/pnf/update",
 			"description": "Ruta para modificar una malla curricular",
 			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
@@ -1169,12 +1236,55 @@
 			"responses": []
 		},
 		{
-			"id": "9e6faba1-e9fc-ef7c-7b2b-25e042861cbe",
+			"id": "9a883273-d8c9-9430-9957-a207f36037d0",
 			"headers": "Content-Type: application/x-www-form-urlencoded\n",
 			"headerData": [
 				{
 					"key": "Content-Type",
 					"value": "application/x-www-form-urlencoded",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "{{url}}/forgotPass",
+			"folder": "f32508d4-730e-12e8-2acc-776205cef0e8",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [
+				{
+					"key": "correo",
+					"value": "luisdaniel.programador@gmail.com",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1509726078441,
+			"name": "Recuperar Contraseña",
+			"description": "Enviar correo",
+			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
+			"responses": []
+		},
+		{
+			"id": "9e6faba1-e9fc-ef7c-7b2b-25e042861cbe",
+			"headers": "Content-Type: application/x-www-form-urlencoded\nauth: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MDg5Njc5NDgsImV4cCI6MTUwOTE4Mzk0OCwiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIyIiwibmFtZSI6IkFkbWluIiwidGlwbyI6IkFkbWluaXN0cmFkb3IiLCJpZF9tYWxsYSI6IjEifX0.RYl7o3ODIdTYq-bnVJBBAJIiAzky7w8ApDEAUXrmw60\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/x-www-form-urlencoded",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "auth",
+					"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MDg5Njc5NDgsImV4cCI6MTUwOTE4Mzk0OCwiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIyIiwibmFtZSI6IkFkbWluIiwidGlwbyI6IkFkbWluaXN0cmFkb3IiLCJpZF9tYWxsYSI6IjEifX0.RYl7o3ODIdTYq-bnVJBBAJIiAzky7w8ApDEAUXrmw60",
 					"description": "",
 					"enabled": true
 				}
@@ -1189,7 +1299,7 @@
 			"data": [
 				{
 					"key": "nombre",
-					"value": "",
+					"value": "Geo Ciencias",
 					"description": "",
 					"type": "text",
 					"enabled": true
@@ -1199,13 +1309,11 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1505265553722,
+			"time": 1508968262850,
 			"name": "{{url}}/pnf/add",
 			"description": "Agregamos una nueva malla",
 			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
-			"responses": [],
-			"isFromCollection": true,
-			"collectionRequestId": "9e6faba1-e9fc-ef7c-7b2b-25e042861cbe"
+			"responses": []
 		},
 		{
 			"id": "a0cd72f6-a388-57bc-bea7-30cceb330eba",
@@ -1246,11 +1354,17 @@
 		},
 		{
 			"id": "a2bed97c-8396-e510-5a0c-e576197cded2",
-			"headers": "Content-Type: application/x-www-form-urlencoded\n",
+			"headers": "Content-Type: application/x-www-form-urlencoded\nauth: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MDk2MzEzMzYsImV4cCI6MTUwOTg0NzMzNiwiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIxIiwibmFtZSI6IkFkbWluIiwidGlwbyI6IkFkbWluaXN0cmFkb3IiLCJpZF9tYWxsYSI6IjEifX0.7tWoGiUT4DDyVT8yRJ_NZ90f6FPzMWU_AyArPGXqJ6Y\n",
 			"headerData": [
 				{
 					"key": "Content-Type",
 					"value": "application/x-www-form-urlencoded",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "auth",
+					"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MDk2MzEzMzYsImV4cCI6MTUwOTg0NzMzNiwiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIxIiwibmFtZSI6IkFkbWluIiwidGlwbyI6IkFkbWluaXN0cmFkb3IiLCJpZF9tYWxsYSI6IjEifX0.7tWoGiUT4DDyVT8yRJ_NZ90f6FPzMWU_AyArPGXqJ6Y",
 					"description": "",
 					"enabled": true
 				}
@@ -1265,21 +1379,7 @@
 			"data": [
 				{
 					"key": "id_publicacion",
-					"value": "1",
-					"description": "",
-					"type": "text",
-					"enabled": true
-				},
-				{
-					"key": "id_seccion",
-					"value": "1",
-					"description": "",
-					"type": "text",
-					"enabled": true
-				},
-				{
-					"key": "id_usuario",
-					"value": "1",
+					"value": "15",
 					"description": "",
 					"type": "text",
 					"enabled": true
@@ -1289,7 +1389,7 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1506301460108,
+			"time": 1509639055699,
 			"name": "{{url}}/seccion/post/delete",
 			"description": "Borrar un post de una seccion",
 			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
@@ -1309,12 +1409,26 @@
 			"data": [
 				{
 					"key": "usuario",
-					"value": "Michel Marisco",
+					"value": "Vanessa",
 					"description": "No puede ser repetido"
 				},
 				{
+					"key": "cedula",
+					"value": "25755686",
+					"description": "Unico",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "correo",
+					"value": "vanessa.programador@gmail.com",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
 					"key": "contrasena",
-					"value": "123456",
+					"value": "1",
 					"description": ""
 				},
 				{
@@ -1323,27 +1437,13 @@
 					"description": ""
 				},
 				{
-					"key": "cedula",
-					"value": "2345363",
-					"description": "Unico",
-					"type": "text",
-					"enabled": true
-				},
-				{
 					"key": "telefono",
-					"value": "345",
+					"value": "34553",
 					"description": ""
 				},
 				{
 					"key": "id_malla",
-					"value": "2",
-					"description": "",
-					"type": "text",
-					"enabled": true
-				},
-				{
-					"key": "correo",
-					"value": "prueba prefernecias",
+					"value": "1",
 					"description": "",
 					"type": "text",
 					"enabled": true
@@ -1353,7 +1453,7 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1508857445991,
+			"time": 1509726071658,
 			"name": "{{url}}/singup",
 			"description": "RUTA PARA AGREGAR UN NUEVO USUARIO\n\nDEVUELVE LOS DATOS EN FORMATO JSON",
 			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
@@ -1361,9 +1461,16 @@
 		},
 		{
 			"id": "ab956e4e-e8e5-ffd1-8dac-28f1969110f4",
-			"headers": "",
-			"headerData": [],
-			"url": "{{url}}/asignatura/all",
+			"headers": "auth: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MDg5Njc5NDgsImV4cCI6MTUwOTE4Mzk0OCwiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIyIiwibmFtZSI6IkFkbWluIiwidGlwbyI6IkFkbWluaXN0cmFkb3IiLCJpZF9tYWxsYSI6IjEifX0.RYl7o3ODIdTYq-bnVJBBAJIiAzky7w8ApDEAUXrmw60\n",
+			"headerData": [
+				{
+					"key": "auth",
+					"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MDg5Njc5NDgsImV4cCI6MTUwOTE4Mzk0OCwiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIyIiwibmFtZSI6IkFkbWluIiwidGlwbyI6IkFkbWluaXN0cmFkb3IiLCJpZF9tYWxsYSI6IjEifX0.RYl7o3ODIdTYq-bnVJBBAJIiAzky7w8ApDEAUXrmw60",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "{{url}}/asignatura/all/1/1",
 			"folder": "1456b303-d0bb-4ac9-077b-6dccb0a81b12",
 			"queryParams": [],
 			"preRequestScript": null,
@@ -1376,7 +1483,7 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1506509017225,
+			"time": 1508968266168,
 			"name": "{{url}}/asignatura/all/id_malla/id_trimestre",
 			"description": "Obtenemos todas las materias de una malla",
 			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
@@ -1436,11 +1543,17 @@
 		},
 		{
 			"id": "ae38676b-7beb-9722-e872-026d6bfb8aea",
-			"headers": "Content-Type: application/x-www-form-urlencoded\n",
+			"headers": "Content-Type: application/x-www-form-urlencoded\nauth: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MDg5Njc0NDMsImV4cCI6MTUwOTE4MzQ0MywiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIyIiwibmFtZSI6IkFkbWluIiwidGlwbyI6IkFkbWluaXN0cmFkb3IiLCJpZF9tYWxsYSI6IjEifX0.yAYnQrJF46pPSNeax_DBrgueTE49SgSDPOhjGkllYu8\n",
 			"headerData": [
 				{
 					"key": "Content-Type",
 					"value": "application/x-www-form-urlencoded",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "auth",
+					"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MDg5Njc0NDMsImV4cCI6MTUwOTE4MzQ0MywiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIyIiwibmFtZSI6IkFkbWluIiwidGlwbyI6IkFkbWluaXN0cmFkb3IiLCJpZF9tYWxsYSI6IjEifX0.yAYnQrJF46pPSNeax_DBrgueTE49SgSDPOhjGkllYu8",
 					"description": "",
 					"enabled": true
 				}
@@ -1455,21 +1568,21 @@
 			"data": [
 				{
 					"key": "nombre_asig",
-					"value": "",
+					"value": "Matematicas",
 					"description": "",
 					"type": "text",
 					"enabled": true
 				},
 				{
 					"key": "trimestre",
-					"value": "",
+					"value": "1",
 					"description": "",
 					"type": "text",
 					"enabled": true
 				},
 				{
 					"key": "id_malla",
-					"value": "",
+					"value": "1",
 					"description": "",
 					"type": "text",
 					"enabled": true
@@ -1479,7 +1592,7 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1506531348619,
+			"time": 1508967746542,
 			"name": "{{url}}/asignatura/add",
 			"description": "Agregamos una nueva materia",
 			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
@@ -1524,13 +1637,19 @@
 		},
 		{
 			"id": "b9f3c9f8-f6c0-1bb1-7f96-0821631bba35",
-			"headers": "Content-Type: application/x-www-form-urlencoded\n",
+			"headers": "Content-Type: application/x-www-form-urlencoded\nauth: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MDg5NjgzMDksImV4cCI6MTUwOTE4NDMwOSwiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIyIiwibmFtZSI6IkFkbWluIiwidGlwbyI6IkFkbWluaXN0cmFkb3IiLCJpZF9tYWxsYSI6IjEifX0.a0uFiy7YBuehvtAOsaP31nekXbv-j7NJRl5sWIJag0I\n",
 			"headerData": [
 				{
 					"key": "Content-Type",
 					"value": "application/x-www-form-urlencoded",
-					"enabled": true,
-					"description": ""
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "auth",
+					"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MDg5NjgzMDksImV4cCI6MTUwOTE4NDMwOSwiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIyIiwibmFtZSI6IkFkbWluIiwidGlwbyI6IkFkbWluaXN0cmFkb3IiLCJpZF9tYWxsYSI6IjEifX0.a0uFiy7YBuehvtAOsaP31nekXbv-j7NJRl5sWIJag0I",
+					"description": "",
+					"enabled": true
 				}
 			],
 			"url": "{{url}}/bd/delete",
@@ -1543,7 +1662,7 @@
 			"data": [
 				{
 					"key": "id",
-					"value": "",
+					"value": "1",
 					"description": "id de la base de datos",
 					"type": "text",
 					"enabled": true
@@ -1560,12 +1679,11 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1505569337151,
+			"time": 1508968369224,
 			"name": "{{url}}/bd/delete",
 			"description": "Borrar un archivo sql \n",
 			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
-			"responses": [],
-			"timestamp": null
+			"responses": []
 		},
 		{
 			"folder": "f1ba4e66-8b37-1bdc-72d0-6981ccb4fc37",
@@ -1680,14 +1798,14 @@
 			"data": [
 				{
 					"key": "usuario",
-					"value": "Michel Marisco",
+					"value": "Admin",
 					"description": "",
 					"type": "text",
 					"enabled": true
 				},
 				{
 					"key": "contrasena",
-					"value": "123456",
+					"value": "1",
 					"description": "",
 					"type": "text",
 					"enabled": true
@@ -1697,7 +1815,7 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1508857442058,
+			"time": 1508967756222,
 			"name": "{{url}}/login",
 			"description": "Iniciamos sesion y desbloqueamos las rutas",
 			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
@@ -1870,13 +1988,19 @@
 		},
 		{
 			"id": "eed56c47-ab9f-2690-9500-f7efbfaea38a",
-			"headers": "Content-Type: application/x-www-form-urlencoded\n",
+			"headers": "Content-Type: application/x-www-form-urlencoded\nauth: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MDk2NDYwNzAsImV4cCI6MTUwOTg2MjA3MCwiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIxIiwibmFtZSI6IkFkbWluIiwidGlwbyI6IkFkbWluaXN0cmFkb3IiLCJpZF9tYWxsYSI6IjEifX0.DTWkkEsQsVnmOijUWlfFLprj086JbRmyMprDV6I7puw\n",
 			"headerData": [
 				{
 					"key": "Content-Type",
 					"value": "application/x-www-form-urlencoded",
-					"enabled": true,
-					"description": ""
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "auth",
+					"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MDk2NDYwNzAsImV4cCI6MTUwOTg2MjA3MCwiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIxIiwibmFtZSI6IkFkbWluIiwidGlwbyI6IkFkbWluaXN0cmFkb3IiLCJpZF9tYWxsYSI6IjEifX0.DTWkkEsQsVnmOijUWlfFLprj086JbRmyMprDV6I7puw",
+					"description": "",
+					"enabled": true
 				}
 			],
 			"url": "{{url}}/seccion/member/status",
@@ -1889,21 +2013,21 @@
 			"data": [
 				{
 					"key": "id_usuario",
-					"value": "",
+					"value": "1",
 					"description": "",
 					"type": "text",
 					"enabled": true
 				},
 				{
 					"key": "id_seccion",
-					"value": "",
+					"value": "1",
 					"description": "",
 					"type": "text",
 					"enabled": true
 				},
 				{
 					"key": "accion",
-					"value": "",
+					"value": "0",
 					"description": "",
 					"type": "text",
 					"enabled": true
@@ -1913,13 +2037,12 @@
 			"version": 2,
 			"tests": null,
 			"currentHelper": "normal",
-			"helperAttributes": "{}",
-			"time": 1506294122383,
+			"helperAttributes": {},
+			"time": 1509720349650,
 			"name": "{{url}}/seccion/member/status",
 			"description": "Cambiamos el estado de un usuario en una seccion",
 			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
-			"responses": [],
-			"timestamp": null
+			"responses": []
 		},
 		{
 			"id": "f061db35-314d-aa58-705c-687721633b04",
