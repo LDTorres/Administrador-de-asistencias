@@ -3,6 +3,8 @@
 namespace App\Model;
 
 use App\Lib\Database;
+use Spipu\Html2Pdf\Html2Pdf;
+use Spipu\Html2Pdf\Exception\ExceptionFormatter;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
@@ -348,7 +350,26 @@ class SeccionesModel {
         
         $sth->execute(array($params['id_seccion'], $params['desde'], $params['hasta']));
 
-        return $sth->fetchAll();
+        $datos = $sth->fetchAll();
+
+        // Creamos el archivo PDF
+        $date = date("d-m-Y-H-i-s");
+        $nombreProfesor = $datos[0]['nombre_completo'];
+        $filename =  "$nombreProfesor-$date-reporte-asistencias.pdf";
+
+        try {
+            $html2pdf = new Html2Pdf('P', 'A4', 'fr');
+            $html2pdf->setDefaultFont('Arial');
+            $html2pdf->writeHTML('Hola');
+            $html2pdf->output("app/outputPDF/$filename", 'F');
+            
+            return array('msg' => 'pdf generado', 'nombre_pdf' => $filename);
+
+        } catch (Html2PdfException $e) {
+            $formatter = new ExceptionFormatter($e);
+            echo $formatter->getHtmlMessage();
+        }
+
     }
 
     public function getInfoSeccion($params){
