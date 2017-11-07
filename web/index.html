@@ -4,11 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" href="assets/img/icon.png">
+    <link rel="icon" href="assets/img/icon.png">
     <title>GATE</title>
 
     <link href="assets/css/estilos.css" rel="stylesheet">
     <!-- <link rel="stylesheet" href="assets/css/font-awesome.min.css" type="text/css"> -->
     <link rel="stylesheet" href="node_modules/angular-ui-bootstrap/dist/ui-bootstrap-csp.css" type="text/css">
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css">
 
     <!--Librerias core de angularJS -->
     <script src="node_modules/angular/angular.min.js"></script>
@@ -17,7 +21,7 @@
 
     <!--Librerias 3r party angularJS -->
     <script src="node_modules/angular-ui-router/release/angular-ui-router.min.js"></script>
-    <script src="node_modules/angular-ui-bootstrap/dist/ui-bootstrap.js"></script>
+    <script src="node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js"></script>
     <script src="node_modules/ng-file-upload/dist/ng-file-upload.min.js"></script>
 
     <!--Archivos App diseñador -->
@@ -26,8 +30,11 @@
 
     <!-- Controladores -->
     <script src="js/controllers/loginController.js"></script>
+    <script src="js/controllers/listadoController.js"></script>
+    <script src="js/controllers/headerController.js"></script>
 </head>
 <body ng-app="GATE">
+    <header ng-controller="headerController as header">{{header.nombre}}</header>
     <ui-view></ui-view>
 </body>
 </html>

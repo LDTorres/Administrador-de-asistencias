@@ -9,9 +9,15 @@ angular.module("GATE", ["ui.router", 'ngAnimate', 'ngTouch', 'ui.bootstrap'])
 
         $stateProvider.state({
                 name: 'login',
-                url: '/login',
+                url: '/',
                 templateUrl: 'js/views/login.html',
                 controller: 'loginController as login',
+            })
+            .state({
+                name: 'listado',
+                url: '/listado',
+                templateUrl: 'js/views/listado.html',
+                controller: 'listadoController as listado',
             })
 
         $urlRouterProvider.otherwise('/');
