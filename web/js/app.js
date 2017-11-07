@@ -9,7 +9,7 @@ angular.module("GATE", ["ui.router", 'ngAnimate', 'ngTouch', 'ui.bootstrap'])
 
         $stateProvider.state({
                 name: 'login',
-                url: '/',
+                url: '/login',
                 templateUrl: 'js/views/login.html',
                 controller: 'loginController as login',
             })
