@@ -63,12 +63,12 @@ angular.module('GATE')
       })
 
       return promise;
-    }
+    };
 
     this.salir = function () {
       $rootScope.objectoCliente = false;
       $window.localStorage.removeItem('token');
-    }
+    };
 
     // Espera por parametro {usuario, contrasena, nombre_completo, cedula, correo, telefono, id_malla}
     this.registrar = function (datos) {
@@ -111,7 +111,7 @@ angular.module('GATE')
 
       }
 
-    }
+    };
 
     // Devuelve la informacion de la aplicacion
     this.app = function () {
@@ -127,7 +127,7 @@ angular.module('GATE')
 
         defered.reject(res);
 
-      })
+      });
       return promise;
     };
 

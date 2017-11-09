@@ -10,10 +10,10 @@ return [
         ],
         // Database
         'db'=>[
-            'host' => 'localhost',
+            'host' => '127.0.0.1',
             'user' => 'root',
             'pass' => '',
-            'dbname' => 'iuteb_asignaturas'
+            'dbname' => 'Iuteb_asignaturas'
         ]
     ],
 ];
