@@ -1,0 +1,113 @@
+<ion-view view-title="{{login.switch}}">
+  <ion-pane ng-switch="login.datos.mostrarForm" >
+    <ion-content ng-switch-when="1" class="padding" style="background:url(img/2.jpg);">
+      <div class="header_membrete">
+        <img src="img/logoIuteb.png" class="logo_iuteb">
+        <h2 class="subtitulo text-white">Ingreso de Usuarios</h2>
+      </div>
+      <form ng-submit="login.ingresar(login.datos.login, ingresar.$valid)" name="ingresar" novalidate class="list" >
+        <div class="list list-inset formlogin fondo-transparente">
+          <label class="item item-input">
+            <input type="text" placeholder="Nombre de Usuario" ng-model="login.datos.login.usuario" name="usuario" required>
+          </label>
+          <div class="item" ng-messages="ingresar.usuario.$error" style="color:maroon" role="alert" ng-show="ingresar.usuario.$touched && ingresar.usuario.$invalid">
+            <span ng-show="ingresar.usuario.$error.required">Este campo es requerido.</span>
+          </div>
+          <label class="item item-input">
+            <input type="password" placeholder="Contraseña" ng-model="login.datos.login.contrasena" name="contrasena" required>
+          </label>
+          <div class="item" ng-messages="ingresar.contrasena.$error" style="color:maroon" role="alert" ng-show="ingresar.contrasena.$touched && ingresar.contrasena.$invalid">
+            <div ng-message="required">Este campo es requerido.</div>
+          </div>
+
+          <input type="submit" value="Entrar" class="button button-block button-positive" ng-disabled="!ingresar.$valid"></input>
+        </div>
+        <a class="button  button-block button-positive " ng-click="login.cambiar(2)">Registrarse</a>
+
+        <a class="button  button-block button-assertive " ng-click="login.cambiar(3)">Olvido de Contraseña</a>
+      </form>
+    </ion-content>
+    <ion-content ng-switch-when="2" class="padding" style="background:url(img/2.jpg);">
+      <div class="header_membrete">
+        <img src="img/logoIuteb.png" class="logo_iuteb">
+        <h2 class="subtitulo text-white">Registra tus datos</h2>
+      </div>
+      <form ng-submit="login.registrar(login.datos.registro, registro.$valid)" name="registro" novalidate class="list">
+        <div class="list list-inset formlogin fondo-transparente">
+          <label class="item item-input">
+            <input type="text" placeholder="Nombre de Usuario" ng-model="login.datos.registro.usuario" name="nombre" required>
+          </label>
+          <div class="item" ng-messages="registro.nombre.$error" style="color:maroon" role="alert" ng-show="registro.nombre.$touched && registro.nombre.$invalid">
+            <div ng-message="required">Este campo es requerido.</div>
+          </div>
+
+          <label class="item item-input">
+            <input type="password" placeholder="Contraseña" ng-model="login.datos.registro.contrasena" name="contrasena" required>
+          </label>
+
+          <div class="item" style="color:maroon" ng-show="registro.contrasena.$touched && registro.contrasena.$invalid">
+            <div ng-message="required">Este campo es requerido.</div>
+          </div>
+
+          <label class="item item-input">
+            <input type="text" placeholder="Nombre Completo" ng-model="login.datos.registro.nombre_completo" name="nombre_completo" required>
+          </label>
+
+          <div class="item" style="color:maroon" ng-show="registro.nombre_completo.$touched && registro.nombre_completo.$invalid">
+            <div ng-message="required">Este campo es requerido.</div>
+          </div>
+
+          <label class="item item-input">
+            <input type="text" placeholder="Cedula" ng-model="login.datos.registro.cedula" name="cedula" required>
+          </label>
+
+          <div class="item" style="color:maroon" ng-show="registro.cedula.$touched && registro.cedula.$invalid">
+            <div ng-message="required">Este campo es requerido.</div>
+            <div ng-message="number" ng-show="registro.cedula.$error.number">Deben ser numeros</div>
+          </div>
+
+          <label class="item item-input">
+            <input type="text" placeholder="Correo" ng-model="login.datos.registro.correo" name="correo" required>
+          </label>
+
+          <div class="item" style="color:maroon" ng-show="registro.correo.$touched && registro.correo.$invalid">
+            <div ng-message="required">Este campo es requerido.</div>
+            <div ng-message="email" ng-show="registro.correo.$error.email">Deben ser un correo valido</div>
+          </div>
+
+          <label class="item item-input">
+            <input type="text" placeholder="Telefono" ng-model="login.datos.registro.telefono" name="telefono" required>
+          </label>
+
+          <div class="item" style="color:maroon" ng-show="registro.telefono.$touched && registro.telefono.$invalid">
+            <div ng-message="required">Este campo es requerido, Deben ser numeros</div>
+          </div>
+
+          <input type="submit" value="Registrarse" class="button button-block button-positive " ng-disabled="!registro.$valid"></input>
+          <a class="button  button-block button-positive " ng-click="login.cambiar(1)">Ingresar</a>
+        </div>
+
+      </form>
+    </ion-content>
+    <ion-content ng-switch-when="3" class="padding" style="background:url(img/2.jpg);">
+      <div class="header_membrete">
+        <img src="img/logoIuteb.png" class="logo_iuteb">
+        <h2 class="subtitulo text-white">Olvido de Contraseña</h2>
+      </div>
+
+      <form ng-submit="login.forgotPass(login.datos.olvido)" name="olvido" novalidate class="list">
+        <div class="list list-inset formlogin fondo-transparente">
+          <label class="item item-input">
+            <input type="email" placeholder="Correo" ng-model="login.datos.olvido.correo" name="correo" required>
+          </label>
+          <div class="item" style="color:maroon" role="alert" ng-show="olvido.correo.$touched && olvido.correo.$invalid">
+            <div ng-message="required">Este campo es requerido.</div>
+          </div>
+          <input type="submit" value="Recuperar Contraseña" class="button button-block button-positive " ng-disabled="!olvido.$valid"></input>
+        </div>
+        <a class="button  button-block button-positive " ng-click="login.cambiar(1)">Ingresar</a>
+        <a class="button  button-block button-positive " ng-click="login.cambiar(2)">Registrarse</a>
+      </form>
+    </ion-content>
+  </ion-pane>
+</ion-view>

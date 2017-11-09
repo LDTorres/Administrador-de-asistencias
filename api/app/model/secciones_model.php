@@ -3,6 +3,10 @@
 namespace App\Model;
 
 use App\Lib\Database;
+use Spipu\Html2Pdf\Html2Pdf;
+use Spipu\Html2Pdf\Exception\ExceptionFormatter;
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 
 class SeccionesModel {
     private $db;
@@ -16,15 +20,18 @@ class SeccionesModel {
     }
 
     // Secciones
-    public function getAll($id){
-        $sql = "SELECT * FROM $this->table WHERE id_asignatura = ?";
+    public function getAll($params){
+
+        $sql = "SELECT * FROM secciones WHERE id_asignatura = ?";
 
         $sth = $this->db->prepare($sql);
 
-        $sth->execute(array($id));
+        $sth->execute(array($params['id_asignatura']));
 
         $result = $sth->fetchAll();
+
         return $result;
+
     }
 
     public function get($id, $idP){
@@ -42,6 +49,7 @@ class SeccionesModel {
 
     public function add($params){
 
+        // Creamos La Seccion
         $sql = "INSERT INTO $this->table (nombre, id_asignatura, codigo, id_usuario) VALUES (?,?,?,?)";
 
         $sth = $this->db->prepare($sql);
@@ -51,8 +59,66 @@ class SeccionesModel {
         $sth->execute(array($params['nombre'], $params['id_asignatura'], $codigo, $params['id_usuario']));
 
         $params['insert_id'] = $this->db->lastInsertId();
-        
-        return $params;
+        $params['codigo'] = $codigo;
+
+        // Buscamos Correo
+        $sql = "SELECT usuario, contrasena, correo FROM usuarios WHERE id_usuario = ?";
+        $sth = $this->db->prepare($sql);
+        $sth->execute(array($params['id_usuario']));
+        $datos = $sth->fetch();
+
+        $mail = new PHPMailer(true);   
+        // Passing `true` enables exceptions
+        try {
+            //Server settings                                // Enable verbose debug output
+            $mail->isSMTP();                                      // Set mailer to use SMTP
+            $mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
+            $mail->SMTPAuth = true;                               // Enable SMTP authentication
+            $mail->Username = 'iutebgate@gmail.com';                 // SMTP username
+            $mail->Password = 'SoporteGATE';                           // SMTP password
+            $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+            $mail->Port = 587;                                    // TCP port to connect to
+
+            //Recipients
+            // informatica@iuteb.edu.ve
+            $mail->setFrom('iutebgate@gmail.com', 'IUTEB GATE SOPORTE');
+
+            $mail->addAddress($datos['correo']);
+
+
+            // Name is optional
+            //$mail->addReplyTo('info@example.com', 'Information');
+            //$mail->addCC('cc@example.com');
+            //$mail->addBCC('bcc@example.com');
+
+            //Attachments
+            //$mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
+            //$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
+
+            //Content
+
+            $usuario = $params['nombre'];
+            $mail->isHTML(true);                                  // Set email format to HTML
+            $mail->Subject = 'Seccion Creada!';
+            $mail->Body    = "<h2>SECCION CREADA</h2><div><span><b>Nombre:</b> $usuario </span><span><b>Codigo:</b> $codigo </span></div>";
+
+            $mail->CharSet = 'utf-8';
+            $mail->SMTPOptions = array(
+                'ssl' => array(
+                    'verify_peer' => false,
+                    'verify_peer_name' => false,
+                    'allow_self_signed' => true
+                )
+            );
+
+            $mail->send();
+
+            return array('msg' => 'Seccion Creada', 'params' => $params);
+
+        } catch (Exception $e) {
+            return array('msg' => $mail->ErrorInfo);
+        }   
+
     }
 
     public function update($params){
@@ -93,7 +159,7 @@ class SeccionesModel {
         return $result;
     }
 
-    public function statusMember($accion, $id){
+    public function statusMember($params){
         
         $sql = "UPDATE $this->table2 SET estado = ? WHERE id_usuario = ? and id_seccion = ?";
 
@@ -101,7 +167,8 @@ class SeccionesModel {
 
         $sth->execute(array($params['accion'],$params['id_usuario'], $params['id_seccion']));
         
-        return $params;
+        $v = $sth->rowCount();
+        return array('filasAfectadas' => $v);
     }
 
     public function addMember($params){
@@ -134,11 +201,16 @@ class SeccionesModel {
     // Publicaciones
 
     public function getPostsTimeline($params){
-        //$offset = $params['offset'];
-        $sql = "SELECT * FROM publicaciones INNER JOIN secciones WHERE publicaciones.id_usuario = 1 AND publicaciones.id_seccion = secciones.id_seccion";
+        if(isset($params['offset']) == NULL){
+            $offset = 0;
+        }else{
+            $offset = $params['offset'];
+        }
+        
+        $sql = "SELECT * FROM publicaciones INNER JOIN secciones WHERE publicaciones.id_usuario = ? AND publicaciones.id_seccion = secciones.id_seccion LIMIT $offset,10";
         $sth = $this->db->prepare($sql);
 
-        $sth->execute(array($params['id']));
+        $sth->execute(array($params['id_usuario']));
 
         $publicaciones = $sth->fetchAll();
 
@@ -146,7 +218,11 @@ class SeccionesModel {
     }
 
     public function getPosts($params){
-        $offset = $params['offset'];
+        if(isset($params['offset']) == NULL){
+            $offset = 0;
+        }else{
+            $offset = $params['offset'];
+        }
 
         $sql = "SELECT * FROM $this->table3 WHERE id_seccion = ? LIMIT $offset,10";
 
@@ -184,7 +260,7 @@ class SeccionesModel {
         $result['filas_afectadas'] = $sth->rowCount();
         $result['nombre_archivo'] = $filename;
 
-        return $result;
+        return array('msg' => 'Publicacion Actualizada');
     }
 
     public function addPost($params, $filename){
@@ -196,17 +272,18 @@ class SeccionesModel {
         $sth->execute(array($params['titulo'],$params['descripcion'], $params['id_seccion'], $params['id_usuario'], $filename));
 
         return  array("msg" => 'Publicacion Subida', "InsertId" => $this->db->lastInsertId());
+        
     }
 
     public function deletePost($params){
         
-        $sql = "DELETE FROM $this->table3 WHERE id_publicacion = ? AND id_usuario = ? AND id_seccion = ?";
+        $sql = "DELETE FROM $this->table3 WHERE id_publicacion = ?";
                 
         $sth = $this->db->prepare($sql);
         
-        $sth->execute(array($params['id_publicacion'], $params['id_usuario'], $params['id_seccion']));
+        $sth->execute(array($params['id_publicacion']));
         
-        return  array('deleted_id' => $params['id_publicacion']);
+        return  array('msg' => 'Publicacion Eliminada','deleted_id' => $params['id_publicacion']);
     }
 
     // Asistencias 
@@ -273,7 +350,26 @@ class SeccionesModel {
         
         $sth->execute(array($params['id_seccion'], $params['desde'], $params['hasta']));
 
-        return $sth->fetchAll();
+        $datos = $sth->fetchAll();
+
+        // Creamos el archivo PDF
+        $date = date("d-m-Y-H-i-s");
+        $nombreProfesor = $datos[0]['nombre_completo'];
+        $filename =  "$nombreProfesor-$date-reporte-asistencias.pdf";
+
+        try {
+            $html2pdf = new Html2Pdf('P', 'A4', 'fr');
+            $html2pdf->setDefaultFont('Arial');
+            $html2pdf->writeHTML('Hola');
+            $html2pdf->output("app/outputPDF/$filename", 'F');
+            
+            return array('msg' => 'pdf generado', 'nombre_pdf' => $filename);
+
+        } catch (Html2PdfException $e) {
+            $formatter = new ExceptionFormatter($e);
+            echo $formatter->getHtmlMessage();
+        }
+
     }
 
     public function getInfoSeccion($params){

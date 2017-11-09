@@ -1,5 +1,7 @@
 <?php
 
+require 'middleware.php';
+
 use App\Model\UserModel;
 
 // Se instancia el modelo
@@ -28,7 +30,17 @@ $app->group('/user', function () {
 
     });
         
-    $this->post('/update', function ($req, $res) {
+    $this->post('/setPrefencias', function ($req, $res) {
+       
+        $params = $req->getParsedBody();
+
+        $result = $GLOBALS['um']->setPrefencias($params);
+
+        return $this->response->withJson($result);
+
+    });
+
+        $this->post('/update', function ($req, $res) {
        
         $params = $req->getParsedBody();
 
@@ -66,7 +78,7 @@ $app->group('/user', function () {
 
     });
 
-});
+})->add($mw);
 
 // ->add($mw);
 

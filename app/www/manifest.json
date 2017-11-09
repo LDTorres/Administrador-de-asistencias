@@ -1,0 +1,11 @@
+{
+  "name": "IUTEB GATE",
+  "short_name": "GATE",
+  "start_url": "index.html",
+  "display": "standalone",
+  "icons": [{
+    "src": "icon.png",
+    "sizes": "512x512",
+    "type": "image/png"
+  }]
+}

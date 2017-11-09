@@ -1,0 +1,6 @@
+Hay que lanzar el archivo desde el servidor
+
+Boostrap con angular
+
+https://scotch.io/tutorials/how-to-correctly-use-bootstrapjs-and-angularjs-together
+https://angular-ui.github.io/bootstrap/#!#getting_started

@@ -1,0 +1,122 @@
+<ion-view view-title="Seccion">
+  <ion-pane>
+    <ion-nav-bar class="bar-{{seccion.tema}}" align-title="center">
+      <ion-nav-back-button></ion-nav-back-button>
+    </ion-nav-bar>
+    <div class="tabs-striped tabs-background-{{seccion.tema}} tabs-color-light">
+      <ion-tabs class="tabs-{{seccion.tema}} tabs-icon-top">
+        <ion-tab title="Publicaciones" icon-on="ion-ios-filing" icon-off="ion-ios-filing-outline">
+          <ion-content class="padding has-tabs">
+              <button class="button button-block button-outline button-{{seccion.tema}}" ng-click="seccion.morePosts()">Refrescar</button>
+            <a ng-if="seccion.datos.tipo == 'Administrador' || seccion.datos.tipo == 'Profesor'" class="button button-block button-outline button-{{seccion.tema}}"
+              ng-click="seccion.crearPublicacion()">
+              Nueva Publicacion
+            </a>
+            <div class="list card" ng-repeat="post in seccion.datos.posts | orderBy: post.fecha_publicacion:true">
+              <a ng-if="seccion.datos.tipo == 'Administrador' || seccion.datos.tipo == 'Profesor'" ng-click="seccion.editarPublicacion(post)"
+                class="item item-avatar item-cabecera {{seccion.tema}}">
+                <img ng-src="img/{{post.nombre_archivo}}">
+                <h2 class="text-white">{{post.titulo}}</h2>
+                <h4 class="text-white">Asignatura: {{seccion.datos.seccion[0].nombre_asig}}</h4>
+                <h6 class="text-white">{{post.fecha_publicacion}}</h6>
+              </a>
+
+              <a ng-if="seccion.datos.tipo != 'Administrador' && seccion.datos.tipo != 'Profesor'" class="item item-avatar item-cabecera {{seccion.tema}}">
+                <img ng-src="img/{{post.nombre_archivo}}">
+                <h2 class="text-white">{{post.titulo}}</h2>
+                <h4 class="text-white">Asignatura: {{seccion.datos.seccion.nombre_asig}}</h4>
+                <h6 class="text-white">{{post.fecha_publicacion}}</h6>
+              </a>
+              <div class="item item-body">
+                <span>
+                  {{post.descripcion}}
+                </span>
+              </div>
+              <div class="divider">
+                <button class="button">
+                  <i class="icon ion-document"></i>
+                </button>
+              </div>
+            </div>
+          </ion-content>
+        </ion-tab>
+
+        <ion-tab title="Miembros" icon-on="ion-ios-clock" icon-off="ion-ios-clock-outline">
+          <ion-content class="padding has-tabs">
+            <h4 class="text-center">Miembros</h4>
+            <ion-list show-delete="false" show-reorder="false" can-swipe="seccion.eliminarOpcion">
+              <ion-item ng-repeat="miembro in seccion.datos.miembros" class="item-avatar-left">
+                <img ng-src="img/{{miembro.foto_perfil}}">
+                <h2 ui-sref="inicio/seccion/miembro/perfil({id_usuario: miembro.id_usuario})">{{miembro.nombre_completo}}</h2>
+                <p>{{miembro.telefono}}</p>
+                <ion-option-button class="button-assertive" ng-if="miembro.estado" ng-click="seccion.eliminarMiembro($index, miembro, 0)">
+                  Desactivar
+                </ion-option-button>
+                <ion-option-button class="button-positive" ng-if="!miembro.estado" ng-click="seccion.eliminarMiembro($index, miembro, 1)">
+                    Activar
+                </ion-option-button>
+              </ion-item>
+            </ion-list>
+          </ion-content>
+        </ion-tab>
+
+        <ion-tab title="Asistencia" icon-on="ion-ios-gear" icon-off="ion-ios-gear-outline">
+          <ion-content class="padding">
+            <a ng-if="seccion.datos.tipo == 'Administrador' || seccion.datos.tipo == 'Profesor'" class="button button-block button-outline button-{{seccion.tema}} icon-right ion-ios-plus-outline"
+              ui-sref="inicio/seccion/asistencias({datos: seccion.datos})">
+              Gestion de Asistencias
+            </a>
+
+            <div class="list card">
+              <div class="item item-divider">
+                <h4 class="text-center">Asistencias</h4>
+              </div>
+              <div class="item row" ng-click="seccion.openDatePicker()">
+                <h4 class="col col-40">Seleccionar Fecha:</h4>
+                <h4 class="col col-30 col-offset-10"> {{seccion.datos.fechaSeleccionada}}</h4>
+              </div>
+            </div>
+            <div class="list card" ng-if="seccion.datos.asistencias.length">
+              <div class="item item-divider">
+                <div class="row">
+                  <b class="col col-50">Nombre:</b>
+                  <b class="col col-50">Asistio:</b>
+                </div>
+              </div>
+              <div class="item" ng-repeat="asistencia in seccion.datos.asistencias">
+                <div class="row">
+                  <span class="col col-50">{{asistencia.usuario}}</span>
+                  <span class="col col-50">
+                    <span ng-if="asistencia.asistio == 1">Asistente</span>
+                    <span ng-if="asistencia.asistio == 0">No asistio</span>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </ion-content>
+        </ion-tab>
+
+        <ion-tab title="Informacion" icon-on="ion-ios-gear" icon-off="ion-ios-gear-outline">
+          <ion-content class="padding">
+            <div class="list card" ng-repeat="s in seccion.datos.seccion">
+              <h4 class="item text-center text-white item-cabecera {{seccion.tema}}">Informacion Seccion</h4>
+              <div class="item">
+                <b>Nombre Seccion: </b> {{s.nombre}}
+              </div>
+              <div class="item">
+                <b>Materia:</b> {{s.nombre_asig}}
+              </div>
+              <div class="item">
+                <b>Profesor:</b> {{s.nombre_completo}}
+              </div>
+              <div class="item">
+                <b>Miembros:</b> {{seccion.datos.miembros.length}}
+              </div>
+            </div>
+          </ion-content>
+        </ion-tab>
+
+      </ion-tabs>
+    </div>
+  </ion-pane>
+</ion-view>

@@ -1,5 +1,7 @@
 <?php
 
+require 'middleware.php';
+
 use App\Model\SeccionesModel;
 
 $sm = new SeccionesModel();
@@ -16,9 +18,9 @@ $app->group('/seccion',function(){
 
     });
 
-    $this->get('/all/{id_asignatura}',function($req, $res, $args){
-
-        $result = $GLOBALS['sm']->getAll($args['id_asignatura']);
+    $this->post('/all',function($req, $res){
+        $params = $req->getParsedBody();
+        $result = $GLOBALS['sm']->getAll($params);
         return $this->response->withJson($result);
     });
 
@@ -82,9 +84,10 @@ $app->group('/seccion',function(){
         return $this->response->withJson($result);
     });
 
-    $this->get('/posts/timeline/{id}', function($req, $res, $args){
+    $this->post('/posts/timeline', function($req, $res, $args){
 
-        $result = $GLOBALS['sm']->getPostsTimeline($args);
+        $params = $req->getParsedBody();
+        $result = $GLOBALS['sm']->getPostsTimeline($params);
 
         return $this->response->withJson($result, 200);
 
@@ -160,8 +163,9 @@ $app->group('/seccion',function(){
     $this->post('/post/delete', function($req, $res){
 
         $params = $req->getParsedBody();
-
-        return $this->response->withJson($GLOBALS['sm']->deletePost($params), 200);
+        $result = $GLOBALS['sm']->deletePost($params);
+        return $this->response->withJson($result);
+        
     });
 
     $this->post('/asistencia', function($req, $res){
@@ -181,6 +185,6 @@ $app->group('/seccion',function(){
         return $this->response->withJson($GLOBALS['sm']->getReport($params), 200);
     });
 
-});
+})->add($mw);
 
 // ->add($mw);

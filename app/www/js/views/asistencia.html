@@ -1,0 +1,32 @@
+<ion-view view-title="Asistencias">
+  <ion-pane>
+    <ion-nav-bar class="bar-{{asistencia.tema}}" align-title="center">
+      <ion-nav-back-button></ion-nav-back-button>
+    </ion-nav-bar>
+    <ion-content class="padding">
+      <div class="list card">
+        <div class="item item-divider">
+          <h4 class="text-center">Colocar o Editar Asistencia</h4>
+        </div>
+        <div class="item row" ng-click="asistencia.openDatePicker()">
+          <h4 class="col col-40">Seleccionar Fecha:</h4>
+          <h4 class="col col-30 col-offset-10"> {{asistencia.datos.fechaSeleccionada}}</h4>
+        </div>
+      </div>
+      <form ng-submit="asistencia.setAsistencia()">
+        <ul class="list">
+          <li class="item item-toggle" ng-repeat="miembro in asistencia.datos.miembros">
+            {{miembro.nombre_completo}}
+            <label class="toggle toggle-assertive">
+              <input type="checkbox" ng-model="miembro.asistio">
+              <div class="track">
+                <div class="handle"></div>
+              </div>
+            </label>
+          </li>
+        </ul>
+        <input type="submit" class="button button-{{asistencia.tema}} button-block" value="Guardar">
+      </form>
+    </ion-content>
+  </ion-pane>
+</ion-view>

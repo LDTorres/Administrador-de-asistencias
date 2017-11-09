@@ -49,15 +49,12 @@ class AsignaturasModel {
     }
 
     public function update($params){
-        if($_SESSION['tipo'] !== 'Administrador'):
-            return array('msg'=>'acceso negado');
-        endif;
         
-        $sql = "UPDATE $this->table SET nombre_asig = ? WHERE id_malla = ? AND trimestre = ?";
+        $sql = "UPDATE $this->table SET nombre_asig = ? WHERE id_malla = ? AND trimestre = ? AND id_asignatura = ?";
 
         $sth = $this->db->prepare($sql);
 
-        $sth->execute(array($params['nombre_asig'], $params['id_malla'], $params['trimestre']));
+        $sth->execute(array($params['nombre_asig'], $params['id_malla'], $params['trimestre'], $params['id_asignatura']));
 
         return $params;
     }

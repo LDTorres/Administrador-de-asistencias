@@ -2,6 +2,8 @@
 
 use App\Model\AsignaturasModel;
 
+require 'middleware.php';
+
 // Instanciamos el modelo
 $mm = new AsignaturasModel();
 
@@ -38,6 +40,6 @@ $app->group('/asignatura',function(){
         return $this->response->withJson($result, 200);
     });
 
-});
+})->add($mw);
 
 // ->add($mw);

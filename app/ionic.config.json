@@ -1,0 +1,12 @@
+{
+  "name": "iutebgate",
+  "app_id": "",
+  "type": "ionic1",
+  "integrations": {
+    "cordova": {}
+  },
+  "watchPatterns": [
+    "www/js/*",
+    "!www/css/**/*"
+  ]
+}

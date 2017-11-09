@@ -10,13 +10,13 @@ class BDModel {
     private $path = "app/lib/backups/";
     private $table;
     private $aplication = 'Administrador de Asistencias';
-    private $database = 'Iuteb_asignaturas';
+    private $database = 'iuteb_asignaturas';
     private $description = 'Base de datos para aplicacion de asistencias del IUTEB';
     
     public function __CONSTRUCT()
     {
         $this->table = 'basededatos';
-        $this->db = new mysqli('127.0.0.1', 'root', '', 'Iuteb_asignaturas');
+        $this->db = new mysqli('127.0.0.1', 'root', '', 'iuteb_asignaturas');
         
         // Check connection
         if ($this->db->connect_error) {
@@ -25,9 +25,6 @@ class BDModel {
     }
 
     public function backup(){
-        if($_SESSION['tipo'] !== 'Administrador'):
-            return array('msg'=>'acceso negado');
-        endif;
 
         $fechaNombre=date("d-m-Y-H-i-s");
 
@@ -96,9 +93,6 @@ class BDModel {
     }
 
     public function restore($filename){
-        if($_SESSION['tipo'] !== 'Administrador'):
-            return array('msg'=>'acceso negado');
-        endif;
 
         $texto = file_get_contents($this->path.$filename);
         $sentencia = explode(";", $texto);
@@ -124,9 +118,6 @@ class BDModel {
     }
 
     public function delete($filename, $id){
-        if($_SESSION['tipo'] !== 'Administrador'):
-            return array('msg'=>'acceso negado');
-        endif;
 
         if(unlink($this->path.$filename)):
             
@@ -146,12 +137,9 @@ class BDModel {
     }
 
     public function getBackups(){
-        if($_SESSION['tipo'] !== 'Administrador'):
-            return array('msg'=>'acceso negado');
-        endif;
         $backups = array();
 
-        $sql = "SELECT * FROM basededatos";
+        $sql = "SELECT id, filename, date  FROM basededatos";
         $result = $this->db->query($sql);
 
         if ($result->num_rows > 0):

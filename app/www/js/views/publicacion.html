@@ -1,0 +1,52 @@
+<ion-view view-title="Publicacion">
+  <ion-pane>
+    <ion-nav-bar class="bar-{{publicacion.tema}}" align-title="center">
+      <ion-nav-back-button></ion-nav-back-button>
+    </ion-nav-bar>
+      <ion-content class="padding has-tabs">
+        <div ng-if="publicacion.datos.nuevoPost.accion == 'new'">
+          <form class="input-inset list" ng-submit="publicacion.nuevoPost(publicacion.datos.nuevoPost)"  name="nuevoPost" novalidate>
+            <div class="item item-cabecera {{publicacion.tema}}">
+              <h4 class="text-center text-white">Nueva Publicacion</h4>
+            </div>
+            <label class="item item-input">
+              <input type="text" placeholder="Titulo" ng-model="publicacion.datos.nuevoPost.titulo" name="titulo" required>
+            </label>
+            <div class="item" style="color:maroon" role="alert" ng-show="nuevoPost.titulo.$touched && nuevoPost.titulo.$invalid">
+                <div ng-message="required">Este campo es requerido.</div>
+              </div>
+            <label class="item item-input">
+              <textarea placeholder="Descripcion" ng-model="publicacion.datos.nuevoPost.descripcion" name="descripcion" required></textarea>
+            </label>
+            <div class="item" style="color:maroon" role="alert" ng-show="nuevoPost.descripcion.$touched && nuevoPost.descripcion.$invalid">
+                <div ng-message="required">Este campo es requerido.</div>
+              </div>
+            <input type="submit" value="Crear" class="button button-block button-outline button-{{publicacion.tema}}" ng-disabled="!nuevoPost.$valid">
+          </form>
+        </div>
+
+        <div ng-if="publicacion.datos.modificarPost.accion == 'edit'">
+          <form class="input-inset list" ng-submit="publicacion.modificarPost(publicacion.datos.modificarPost)" name="post" novalidate>
+            <div class="item item-cabecera {{publicacion.tema}}">
+              <h4 class="text-center text-white">Modificar Publicacion</h4>
+            </div>
+            <label class="item item-input">
+              <input type="text" placeholder="Titulo" ng-model="publicacion.datos.modificarPost.titulo" name="titulo" required>
+            </label>
+            <div class="item" style="color:maroon" role="alert" ng-show="post.titulo.$touched && post.titulo.$invalid">
+                <div ng-message="required">Este campo es requerido.</div>
+            </div>
+            <label class="item item-input">
+              <textarea placeholder="Descripcion" ng-model="publicacion.datos.modificarPost.descripcion" name="descripcion" required></textarea>
+            </label>
+            <div class="item" style="color:maroon" role="alert" ng-show="post.descripcion.$touched && post.descripcion.$invalid">
+                <div ng-message="required">Este campo es requerido.</div>
+            </div>
+            <input type="submit" value="Modificar" class="button button-block button-outline button-{{publicacion.tema}}" ng-disabled="!post.$valid">
+          </form>
+          <button class="button button-block button-outline button-assertive" ng-click="publicacion.eliminarPost()">Eliminar</button>
+        </div>
+      </ion-content>
+    </div>
+  </ion-pane>
+</ion-view>

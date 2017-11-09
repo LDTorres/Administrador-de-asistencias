@@ -5,12 +5,27 @@
 	"order": [],
 	"folders": [
 		{
+			"name": "Asignaturas",
+			"description": "Rutas Para obetener datos de las Materias",
+			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
+			"order": [
+				"ab956e4e-e8e5-ffd1-8dac-28f1969110f4",
+				"66e69161-7400-e514-f0e1-cb3711503cf5",
+				"ae38676b-7beb-9722-e872-026d6bfb8aea",
+				"2c897d28-2a72-8845-bb28-259c55426e9f"
+			],
+			"owner": "2084589",
+			"folders_order": [],
+			"id": "1456b303-d0bb-4ac9-077b-6dccb0a81b12"
+		},
+		{
 			"name": "Asistencias",
 			"description": "",
 			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
 			"order": [
 				"364ec9af-c6ab-22fa-bc88-9aa8b298ac43",
-				"abfd641d-f8d6-f6c5-b4d2-494676ba0534"
+				"abfd641d-f8d6-f6c5-b4d2-494676ba0534",
+				"47426d47-92cf-7857-f171-1e8dae9775be"
 			],
 			"owner": "2084589",
 			"folder": "d0a4af9a-1e80-a376-a478-b2d7addd86b1",
@@ -37,27 +52,17 @@
 			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
 			"order": [
 				"c823361b-aa14-9ee4-ea20-d5ac31d388b8",
+				"1e728926-9298-ad5c-630b-4d36b769d7f9",
+				"9a883273-d8c9-9430-9957-a207f36037d0",
 				"bb6707c9-5f0f-0337-20e8-3933d5a2d430",
-				"cabc2b05-f45c-0bc7-2fe2-c8d1a51dbc39",
-				"46b97391-0b9c-b06e-3107-b76bc3589554"
+				"46b97391-0b9c-b06e-3107-b76bc3589554",
+				"7a5cd8e6-5554-58da-160c-1f321663f58e",
+				"60b62936-3a0d-83f3-4679-c6a7a31f79bf",
+				"4b6d7390-cb28-cc82-6985-c21fbbdfa92b"
 			],
 			"owner": "2084589",
 			"folders_order": [],
 			"id": "f32508d4-730e-12e8-2acc-776205cef0e8"
-		},
-		{
-			"name": "Materias",
-			"description": "Rutas Para obetener datos de las Materias",
-			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
-			"order": [
-				"ab956e4e-e8e5-ffd1-8dac-28f1969110f4",
-				"66e69161-7400-e514-f0e1-cb3711503cf5",
-				"ae38676b-7beb-9722-e872-026d6bfb8aea",
-				"29620a16-f2b7-31e9-3672-4c0b5b797fd4"
-			],
-			"owner": "2084589",
-			"folders_order": [],
-			"id": "1456b303-d0bb-4ac9-077b-6dccb0a81b12"
 		},
 		{
 			"name": "Members",
@@ -65,6 +70,7 @@
 			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
 			"order": [
 				"e433b67a-5ceb-b7e6-1ffd-6df8ae3844a4",
+				"fa886302-8b25-2ca2-d31e-4548964286cc",
 				"d225b82f-0ba3-0b28-767a-e2f53a639a10",
 				"bb53b499-7d6c-7799-7426-338f6e256738",
 				"eed56c47-ab9f-2690-9500-f7efbfaea38a"
@@ -96,7 +102,8 @@
 				"7c7e648b-30fd-70c4-e356-f506117961e1",
 				"f061db35-314d-aa58-705c-687721633b04",
 				"30be491a-143c-0c11-206c-346dc186c09c",
-				"a2bed97c-8396-e510-5a0c-e576197cded2"
+				"a2bed97c-8396-e510-5a0c-e576197cded2",
+				"d05edc4d-b22c-14a3-10d2-f41ca7022869"
 			],
 			"owner": "2084589",
 			"folder": "d0a4af9a-1e80-a376-a478-b2d7addd86b1",
@@ -110,6 +117,7 @@
 			"order": [
 				"7ecde924-324f-37bb-6021-889a4c5fabb2",
 				"671ce723-b74e-df44-cc47-0f68017a8837",
+				"ca593f2f-4a16-d295-d2d8-aca5e9e977f1",
 				"68657109-ae02-586f-08f0-e805460e63bc",
 				"3964e71a-6bc8-c3ca-c448-f9fd2ad0d60b",
 				"0408f49e-c3d2-95ef-aaca-b1c0bff11451"
@@ -132,7 +140,8 @@
 				"a323a87a-4940-b6d8-eda2-78aa62a62c28",
 				"5a632524-d9e3-2530-32d8-7a0516f5f754",
 				"a0cd72f6-a388-57bc-bea7-30cceb330eba",
-				"95355b1b-ac83-7f6e-32c1-de72264c5db9"
+				"95355b1b-ac83-7f6e-32c1-de72264c5db9",
+				"41e26950-2433-8bd5-502a-0e75081eed9d"
 			],
 			"owner": "2084589",
 			"folders_order": [],
@@ -203,86 +212,182 @@
 			"responses": []
 		},
 		{
-			"id": "29620a16-f2b7-31e9-3672-4c0b5b797fd4",
-			"headers": "Content-Type: application/x-www-form-urlencoded\n",
+			"id": "1e728926-9298-ad5c-630b-4d36b769d7f9",
+			"headers": "Content-Type: application/x-www-form-urlencoded\nauth: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MDk3MTY0MzMsImV4cCI6MTUwOTkzMjQzMywiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIxIiwibmFtZSI6IkFkbWluIiwidGlwbyI6IkFkbWluaXN0cmFkb3IiLCJpZF9tYWxsYSI6IjEifX0.LV3h3FFtS2Cw37SoXxIGKuyThgDI-nCHXGRtrZzdyzE\n",
 			"headerData": [
 				{
 					"key": "Content-Type",
 					"value": "application/x-www-form-urlencoded",
-					"enabled": true,
-					"description": ""
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "auth",
+					"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MDk3MTY0MzMsImV4cCI6MTUwOTkzMjQzMywiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIxIiwibmFtZSI6IkFkbWluIiwidGlwbyI6IkFkbWluaXN0cmFkb3IiLCJpZF9tYWxsYSI6IjEifX0.LV3h3FFtS2Cw37SoXxIGKuyThgDI-nCHXGRtrZzdyzE",
+					"description": "",
+					"enabled": true
 				}
 			],
-			"url": "{{url}}/materia/update",
-			"folder": "1456b303-d0bb-4ac9-077b-6dccb0a81b12",
+			"url": "{{url}}/sendMail",
+			"folder": "f32508d4-730e-12e8-2acc-776205cef0e8",
 			"queryParams": [],
 			"preRequestScript": null,
 			"pathVariables": {},
 			"pathVariableData": [],
-			"method": "PUT",
+			"method": "POST",
 			"data": [
 				{
-					"key": "nombre",
-					"value": "",
+					"key": "miembros_correos",
+					"value": "luisdaniel.programador@gmail.com",
 					"description": "",
 					"type": "text",
 					"enabled": true
 				},
 				{
-					"key": "id_malla",
-					"value": "",
+					"key": "subject",
+					"value": "hola jaja",
 					"description": "",
 					"type": "text",
 					"enabled": true
 				},
 				{
-					"key": "trimestre",
-					"value": "",
+					"key": "profesor",
+					"value": "Richard",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "nombre_publicacion",
+					"value": "Raspar a todos",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "descripcion",
+					"value": "jajajaja",
 					"description": "",
 					"type": "text",
 					"enabled": true
 				}
 			],
 			"dataMode": "urlencoded",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1509728051892,
+			"name": "{{url}}/enviarCorreo",
+			"description": "Enviar correo",
+			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
+			"responses": []
+		},
+		{
+			"id": "2a42b3d1-5fec-c6d6-6582-7b0a20a6415c",
+			"headers": "auth: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MDY4ODkwNDcsImV4cCI6MTUwNzEwNTA0NywiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIxIiwibmFtZSI6IkFkbWluIiwidGlwbyI6IkFkbWluaXN0cmFkb3IiLCJpZF9tYWxsYSI6IjEifX0.HckoUe3k4Dvkhyq_nkFYnH19pIYbZO6Mm7h3awUorUE\n",
+			"headerData": [
+				{
+					"key": "auth",
+					"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MDY4ODkwNDcsImV4cCI6MTUwNzEwNTA0NywiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIxIiwibmFtZSI6IkFkbWluIiwidGlwbyI6IkFkbWluaXN0cmFkb3IiLCJpZF9tYWxsYSI6IjEifX0.HckoUe3k4Dvkhyq_nkFYnH19pIYbZO6Mm7h3awUorUE",
+					"enabled": true,
+					"description": ""
+				}
+			],
+			"url": "{{url}}/user/1",
+			"folder": "a2cacbd8-40d4-6e52-ad12-35783c7a6a91",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
 			"version": 2,
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": "{}",
-			"time": 1505266395296,
-			"name": "{{url}}/materia/update",
-			"description": "Ruta para modificar una materia curricular",
+			"time": 1506890224522,
+			"name": "{{url}}/user/id",
+			"description": "Obetenemos los datos de un usuario por su id",
 			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
 			"responses": [],
 			"timestamp": null
 		},
 		{
-			"id": "2a42b3d1-5fec-c6d6-6582-7b0a20a6415c",
-			"headers": "",
-			"headerData": [],
-			"url": "{{url}}/user/id",
+			"id": "2c897d28-2a72-8845-bb28-259c55426e9f",
+			"headers": "Content-Type: application/x-www-form-urlencoded\nauth: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MDg5Njc0NDMsImV4cCI6MTUwOTE4MzQ0MywiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIyIiwibmFtZSI6IkFkbWluIiwidGlwbyI6IkFkbWluaXN0cmFkb3IiLCJpZF9tYWxsYSI6IjEifX0.yAYnQrJF46pPSNeax_DBrgueTE49SgSDPOhjGkllYu8\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/x-www-form-urlencoded",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "auth",
+					"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MDg5Njc0NDMsImV4cCI6MTUwOTE4MzQ0MywiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIyIiwibmFtZSI6IkFkbWluIiwidGlwbyI6IkFkbWluaXN0cmFkb3IiLCJpZF9tYWxsYSI6IjEifX0.yAYnQrJF46pPSNeax_DBrgueTE49SgSDPOhjGkllYu8",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "{{url}}/asignatura/update",
+			"folder": "1456b303-d0bb-4ac9-077b-6dccb0a81b12",
 			"queryParams": [],
+			"preRequestScript": null,
 			"pathVariables": {},
 			"pathVariableData": [],
-			"preRequestScript": null,
-			"method": "GET",
-			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
-			"data": null,
-			"dataMode": "params",
-			"name": "{{url}}/user/id",
-			"description": "Obetenemos los datos de un usuario por su id",
-			"descriptionFormat": "html",
-			"time": 1505251743148,
-			"version": 2,
-			"responses": [],
+			"method": "POST",
+			"data": [
+				{
+					"key": "nombre_asig",
+					"value": "Matemáticas",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "trimestre",
+					"value": "1",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "id_malla",
+					"value": "1",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "id_asignatura",
+					"value": "2",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"folder": "a2cacbd8-40d4-6e52-ad12-35783c7a6a91"
+			"time": 1508967932881,
+			"name": "{{url}}/asignatura/update",
+			"description": "Modificamos",
+			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
+			"responses": []
 		},
 		{
 			"id": "30be491a-143c-0c11-206c-346dc186c09c",
-			"headers": "",
-			"headerData": [],
+			"headers": "auth: \n",
+			"headerData": [
+				{
+					"key": "auth",
+					"value": "",
+					"description": "",
+					"enabled": true
+				}
+			],
 			"url": "{{url}}/seccion/post/add",
 			"folder": "6cf692b2-b2fb-b982-2010-c98c2c38de39",
 			"queryParams": [],
@@ -293,28 +398,28 @@
 			"data": [
 				{
 					"key": "titulo",
-					"value": "",
+					"value": "Publicacion de prueba 2",
 					"description": "",
 					"type": "text",
 					"enabled": true
 				},
 				{
 					"key": "descripcion",
-					"value": "",
+					"value": "Esta es una prueba",
 					"description": "",
 					"type": "text",
 					"enabled": true
 				},
 				{
 					"key": "id_seccion",
-					"value": "",
+					"value": "1",
 					"description": "",
 					"type": "text",
 					"enabled": true
 				},
 				{
 					"key": "id_usuario",
-					"value": "",
+					"value": "1",
 					"description": "",
 					"type": "text",
 					"enabled": true
@@ -331,7 +436,7 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1505274893534,
+			"time": 1509639050255,
 			"name": "{{url}}/seccion/post/add",
 			"description": "Creamos un nuevo Post",
 			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
@@ -339,8 +444,15 @@
 		},
 		{
 			"id": "316bc884-d3d3-4a97-74ca-2d397520c158",
-			"headers": "",
-			"headerData": [],
+			"headers": "auth: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MDg5NjgzMDksImV4cCI6MTUwOTE4NDMwOSwiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIyIiwibmFtZSI6IkFkbWluIiwidGlwbyI6IkFkbWluaXN0cmFkb3IiLCJpZF9tYWxsYSI6IjEifX0.a0uFiy7YBuehvtAOsaP31nekXbv-j7NJRl5sWIJag0I\n",
+			"headerData": [
+				{
+					"key": "auth",
+					"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MDg5NjgzMDksImV4cCI6MTUwOTE4NDMwOSwiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIyIiwibmFtZSI6IkFkbWluIiwidGlwbyI6IkFkbWluaXN0cmFkb3IiLCJpZF9tYWxsYSI6IjEifX0.a0uFiy7YBuehvtAOsaP31nekXbv-j7NJRl5sWIJag0I",
+					"description": "",
+					"enabled": true
+				}
+			],
 			"url": "{{url}}/bd/backups",
 			"folder": "8805482e-d8b8-da8e-16d9-4ddd5b9d58a0",
 			"queryParams": [],
@@ -353,7 +465,7 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1505320148679,
+			"time": 1508968371376,
 			"name": "{{url}}/bd/backups",
 			"description": "Obtenemos todos los respaldos",
 			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
@@ -371,12 +483,12 @@
 				}
 			],
 			"url": "{{url}}/seccion/asistencia",
+			"folder": "bb0bd518-8bee-2785-0c46-508c4eb322dc",
 			"queryParams": [],
+			"preRequestScript": null,
 			"pathVariables": {},
 			"pathVariableData": [],
-			"preRequestScript": null,
 			"method": "POST",
-			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
 			"data": [
 				{
 					"key": "id_usuario",
@@ -394,30 +506,29 @@
 				},
 				{
 					"key": "asistio",
-					"value": "1",
+					"value": "0",
 					"description": "",
 					"type": "text",
 					"enabled": true
 				},
 				{
 					"key": "fecha",
-					"value": "2017-08-25",
+					"value": "2017-09-09",
 					"description": "",
 					"type": "text",
 					"enabled": true
 				}
 			],
 			"dataMode": "urlencoded",
-			"name": "{{url}}/seccion/asistencia",
-			"description": "Colocar asistencia",
-			"descriptionFormat": "html",
-			"time": 1505826280254,
 			"version": 2,
-			"responses": [],
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"folder": "bb0bd518-8bee-2785-0c46-508c4eb322dc"
+			"time": 1506885754026,
+			"name": "{{url}}/seccion/asistencia",
+			"description": "Colocar asistencia",
+			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
+			"responses": []
 		},
 		{
 			"id": "3964e71a-6bc8-c3ca-c448-f9fd2ad0d60b",
@@ -466,8 +577,15 @@
 		},
 		{
 			"id": "3ef918cd-956e-ed4e-6477-609642b63b65",
-			"headers": "",
-			"headerData": [],
+			"headers": "auth: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MDg5NjgzMDksImV4cCI6MTUwOTE4NDMwOSwiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIyIiwibmFtZSI6IkFkbWluIiwidGlwbyI6IkFkbWluaXN0cmFkb3IiLCJpZF9tYWxsYSI6IjEifX0.a0uFiy7YBuehvtAOsaP31nekXbv-j7NJRl5sWIJag0I\n",
+			"headerData": [
+				{
+					"key": "auth",
+					"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MDg5NjgzMDksImV4cCI6MTUwOTE4NDMwOSwiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIyIiwibmFtZSI6IkFkbWluIiwidGlwbyI6IkFkbWluaXN0cmFkb3IiLCJpZF9tYWxsYSI6IjEifX0.a0uFiy7YBuehvtAOsaP31nekXbv-j7NJRl5sWIJag0I",
+					"description": "",
+					"enabled": true
+				}
+			],
 			"url": "{{url}}/bd/backup",
 			"folder": "8805482e-d8b8-da8e-16d9-4ddd5b9d58a0",
 			"queryParams": [],
@@ -481,9 +599,61 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1505315974784,
+			"time": 1508968373600,
 			"name": "{{url}}/bd/backup",
 			"description": "Ruta para Hacer una copia de la base de datos",
+			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
+			"responses": []
+		},
+		{
+			"id": "41e26950-2433-8bd5-502a-0e75081eed9d",
+			"headers": "auth: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MDk1MDA3MDksImV4cCI6MTUwOTcxNjcwOSwiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIxIiwibmFtZSI6IkFkbWluIiwidGlwbyI6IkFkbWluaXN0cmFkb3IiLCJpZF9tYWxsYSI6IjEifX0._SUb34xTlX8sZWmrhtxc2QoxYKCFL7iE7rGPX0Pz86s\n",
+			"headerData": [
+				{
+					"key": "auth",
+					"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MDk1MDA3MDksImV4cCI6MTUwOTcxNjcwOSwiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIxIiwibmFtZSI6IkFkbWluIiwidGlwbyI6IkFkbWluaXN0cmFkb3IiLCJpZF9tYWxsYSI6IjEifX0._SUb34xTlX8sZWmrhtxc2QoxYKCFL7iE7rGPX0Pz86s",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "{{url}}/user/setPrefencias",
+			"folder": "a2cacbd8-40d4-6e52-ad12-35783c7a6a91",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [
+				{
+					"key": "color_ui",
+					"value": "assertive",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "recibir_notificaciones",
+					"value": "1",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "id_usuario",
+					"value": "1",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1509559645449,
+			"name": "{{url}}/user/setPrefencias",
+			"description": "COlocar preferencias",
 			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
 			"responses": []
 		},
@@ -491,49 +661,135 @@
 			"id": "45189f9f-dc2d-c55c-070d-bbc28762bad5",
 			"headers": "",
 			"headerData": [],
-			"url": "{{url}}/pnf/id",
+			"url": "{{url}}/pnf/get/",
+			"folder": "d59b253f-5eae-2b9e-bf61-cc53631735d6",
 			"queryParams": [],
+			"preRequestScript": null,
 			"pathVariables": {},
 			"pathVariableData": [],
-			"preRequestScript": null,
 			"method": "GET",
-			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
 			"data": null,
 			"dataMode": "params",
-			"name": "{{url}}/pnf/id",
-			"description": "Obtenemos una malla en especifico",
-			"descriptionFormat": "html",
-			"time": 1505265085945,
 			"version": 2,
-			"responses": [],
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"folder": "d59b253f-5eae-2b9e-bf61-cc53631735d6"
+			"time": 1508969228355,
+			"name": "{{url}}/pnf/get/id",
+			"description": "Obtenemos una malla en especifico",
+			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
+			"responses": []
 		},
 		{
 			"id": "46b97391-0b9c-b06e-3107-b76bc3589554",
 			"headers": "",
 			"headerData": [],
-			"url": "{{url}}/app",
+			"url": "{{url}}/",
+			"folder": "f32508d4-730e-12e8-2acc-776205cef0e8",
 			"queryParams": [],
+			"preRequestScript": null,
 			"pathVariables": {},
 			"pathVariableData": [],
-			"preRequestScript": null,
 			"method": "GET",
-			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
 			"data": null,
 			"dataMode": "params",
-			"name": "{{url}}/app",
-			"description": "Ruta para obetener los datos de la App",
-			"descriptionFormat": "html",
-			"time": 1505263208313,
 			"version": 2,
-			"responses": [],
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"folder": "f32508d4-730e-12e8-2acc-776205cef0e8"
+			"time": 1508967479382,
+			"name": "{{url}}/app",
+			"description": "Ruta para obetener los datos de la App",
+			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
+			"responses": []
+		},
+		{
+			"id": "47426d47-92cf-7857-f171-1e8dae9775be",
+			"headers": "Content-Type: application/x-www-form-urlencoded\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/x-www-form-urlencoded",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "{{url}}/seccion/post/update",
+			"folder": "bb0bd518-8bee-2785-0c46-508c4eb322dc",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [
+				{
+					"key": "id_usuario",
+					"value": "1",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "fecha",
+					"value": "1",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "asistio",
+					"value": "1",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1506302164693,
+			"name": "{{url}}/seccion/asistencia/update",
+			"description": "Borrar un post de una seccion",
+			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
+			"responses": []
+		},
+		{
+			"id": "4b6d7390-cb28-cc82-6985-c21fbbdfa92b",
+			"headers": "Content-Type: application/x-www-form-urlencoded\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/x-www-form-urlencoded",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "{{url}}/checkAuth",
+			"folder": "f32508d4-730e-12e8-2acc-776205cef0e8",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [
+				{
+					"key": "token",
+					"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MDg5Njc0NDMsImV4cCI6MTUwOTE4MzQ0MywiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIyIiwibmFtZSI6IkFkbWluIiwidGlwbyI6IkFkbWluaXN0cmFkb3IiLCJpZF9tYWxsYSI6IjEifX0.yAYnQrJF46pPSNeax_DBrgueTE49SgSDPOhjGkllYu8",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1508967749776,
+			"name": "{{url}}/checkAuth",
+			"description": "Verificamos si un token esta vigente",
+			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
+			"responses": []
 		},
 		{
 			"id": "5a632524-d9e3-2530-32d8-7a0516f5f754",
@@ -546,7 +802,7 @@
 					"enabled": true
 				}
 			],
-			"url": "{{url}}/usuario/update",
+			"url": "{{url}}/user/update",
 			"folder": "a2cacbd8-40d4-6e52-ad12-35783c7a6a91",
 			"queryParams": [],
 			"preRequestScript": null,
@@ -556,21 +812,35 @@
 			"data": [
 				{
 					"key": "id_usuario",
-					"value": "",
+					"value": "1",
 					"description": "",
 					"type": "text",
 					"enabled": true
 				},
 				{
-					"key": "campo",
-					"value": "",
+					"key": "nombre_completo",
+					"value": "Luis Torres",
 					"description": "",
 					"type": "text",
 					"enabled": true
 				},
 				{
-					"key": "valor",
-					"value": "",
+					"key": "cedula",
+					"value": "25659843",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "telefono",
+					"value": "123456789",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "contrasena",
+					"value": "1234",
 					"description": "",
 					"type": "text",
 					"enabled": true
@@ -580,17 +850,61 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1506042903210,
+			"time": 1506623079553,
 			"name": "{{url}}/user/update",
 			"description": "RUTA PARA MODIFICAR UN USUARIO",
 			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
 			"responses": []
 		},
 		{
+			"id": "60b62936-3a0d-83f3-4679-c6a7a31f79bf",
+			"headers": "Content-Type: application/x-www-form-urlencoded\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/x-www-form-urlencoded",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "{{url}}/decodeToken",
+			"folder": "f32508d4-730e-12e8-2acc-776205cef0e8",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [
+				{
+					"key": "token",
+					"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MDg5Njc0NDMsImV4cCI6MTUwOTE4MzQ0MywiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIyIiwibmFtZSI6IkFkbWluIiwidGlwbyI6IkFkbWluaXN0cmFkb3IiLCJpZF9tYWxsYSI6IjEifX0.yAYnQrJF46pPSNeax_DBrgueTE49SgSDPOhjGkllYu8",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1508967751550,
+			"name": "{{url}}/pruebaToken",
+			"description": "Se le envia un token por parametro y este lo decodifica",
+			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
+			"responses": []
+		},
+		{
 			"id": "66dce75a-848a-3a42-ece3-8d679caebe92",
-			"headers": "",
-			"headerData": [],
-			"url": "{{url}}/user/all/tipo",
+			"headers": "auth: \n",
+			"headerData": [
+				{
+					"key": "auth",
+					"value": "",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "{{url}}/user/all",
 			"folder": "a2cacbd8-40d4-6e52-ad12-35783c7a6a91",
 			"queryParams": [],
 			"preRequestScript": null,
@@ -601,19 +915,25 @@
 			"dataMode": "params",
 			"tests": null,
 			"currentHelper": "normal",
-			"helperAttributes": "{}",
-			"time": 1505257260807,
+			"helperAttributes": {},
+			"time": 1508688737440,
 			"name": "{{url}}/user/all/tipo",
 			"description": "Trae todos los usuarios \nPor defecto trae los usuarios tipo Estudiante\nPara traer otro tipo enviar por parametro el tipo",
 			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
-			"responses": [],
-			"timestamp": null
+			"responses": []
 		},
 		{
 			"id": "66e69161-7400-e514-f0e1-cb3711503cf5",
-			"headers": "",
-			"headerData": [],
-			"url": "{{url}}/materia/id/trimestre",
+			"headers": "auth: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MDg5Njc5NDgsImV4cCI6MTUwOTE4Mzk0OCwiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIyIiwibmFtZSI6IkFkbWluIiwidGlwbyI6IkFkbWluaXN0cmFkb3IiLCJpZF9tYWxsYSI6IjEifX0.RYl7o3ODIdTYq-bnVJBBAJIiAzky7w8ApDEAUXrmw60\n",
+			"headerData": [
+				{
+					"key": "auth",
+					"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MDg5Njc5NDgsImV4cCI6MTUwOTE4Mzk0OCwiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIyIiwibmFtZSI6IkFkbWluIiwidGlwbyI6IkFkbWluaXN0cmFkb3IiLCJpZF9tYWxsYSI6IjEifX0.RYl7o3ODIdTYq-bnVJBBAJIiAzky7w8ApDEAUXrmw60",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "{{url}}/asignatura/1/1/1",
 			"folder": "1456b303-d0bb-4ac9-077b-6dccb0a81b12",
 			"queryParams": [],
 			"preRequestScript": null,
@@ -625,19 +945,25 @@
 			"version": 2,
 			"tests": null,
 			"currentHelper": "normal",
-			"helperAttributes": "{}",
-			"time": 1505576806882,
-			"name": "{{url}}/materia/id/trimestre[/pnf]",
+			"helperAttributes": {},
+			"time": 1508968268272,
+			"name": "{{url}}/asignatura/id/trimestre[/pnf]",
 			"description": "Obtenemos una materia en especifico",
 			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
-			"responses": [],
-			"timestamp": null
+			"responses": []
 		},
 		{
 			"id": "671ce723-b74e-df44-cc47-0f68017a8837",
-			"headers": "",
-			"headerData": [],
-			"url": "{{url}}/seccion/id",
+			"headers": "auth: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MDk3MjczODksImV4cCI6MTUwOTk0MzM4OSwiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIxIiwibmFtZSI6IkFkbWluIiwidGlwbyI6IkFkbWluaXN0cmFkb3IiLCJpZF9tYWxsYSI6IjEifX0.t_MPXpdtfSPr1un7zCPa8HWq7wUsqeBVMJbgxH_CIJ8\n",
+			"headerData": [
+				{
+					"key": "auth",
+					"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MDk3MjczODksImV4cCI6MTUwOTk0MzM4OSwiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIxIiwibmFtZSI6IkFkbWluIiwidGlwbyI6IkFkbWluaXN0cmFkb3IiLCJpZF9tYWxsYSI6IjEifX0.t_MPXpdtfSPr1un7zCPa8HWq7wUsqeBVMJbgxH_CIJ8",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "{{url}}/seccion/1/2",
 			"folder": "d0a4af9a-1e80-a376-a478-b2d7addd86b1",
 			"queryParams": [],
 			"preRequestScript": null,
@@ -649,23 +975,28 @@
 			"version": 2,
 			"tests": null,
 			"currentHelper": "normal",
-			"helperAttributes": "{}",
-			"time": 1505266489182,
+			"helperAttributes": {},
+			"time": 1509728049677,
 			"name": "{{url}}/seccion/id",
 			"description": "Obtenemos los datos de una seccion",
 			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
-			"responses": [],
-			"timestamp": null
+			"responses": []
 		},
 		{
 			"id": "68657109-ae02-586f-08f0-e805460e63bc",
-			"headers": "Content-Type: application/x-www-form-urlencoded\n",
+			"headers": "Content-Type: application/x-www-form-urlencoded\nauth: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MDk3MTY0MzMsImV4cCI6MTUwOTkzMjQzMywiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIxIiwibmFtZSI6IkFkbWluIiwidGlwbyI6IkFkbWluaXN0cmFkb3IiLCJpZF9tYWxsYSI6IjEifX0.LV3h3FFtS2Cw37SoXxIGKuyThgDI-nCHXGRtrZzdyzE\n",
 			"headerData": [
 				{
 					"key": "Content-Type",
 					"value": "application/x-www-form-urlencoded",
-					"enabled": true,
-					"description": ""
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "auth",
+					"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MDk3MTY0MzMsImV4cCI6MTUwOTkzMjQzMywiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIxIiwibmFtZSI6IkFkbWluIiwidGlwbyI6IkFkbWluaXN0cmFkb3IiLCJpZF9tYWxsYSI6IjEifX0.LV3h3FFtS2Cw37SoXxIGKuyThgDI-nCHXGRtrZzdyzE",
+					"description": "",
+					"enabled": true
 				}
 			],
 			"url": "{{url}}/seccion/add",
@@ -678,21 +1009,21 @@
 			"data": [
 				{
 					"key": "nombre",
-					"value": "",
+					"value": "1m",
 					"description": "",
 					"type": "text",
 					"enabled": true
 				},
 				{
-					"key": "id_materia",
-					"value": "",
+					"key": "id_asignatura",
+					"value": "1",
 					"description": "",
 					"type": "text",
 					"enabled": true
 				},
 				{
 					"key": "id_usuario",
-					"value": "",
+					"value": "1",
 					"description": "",
 					"type": "text",
 					"enabled": true
@@ -701,32 +1032,109 @@
 			"dataMode": "urlencoded",
 			"tests": null,
 			"currentHelper": "normal",
-			"helperAttributes": "{}",
-			"time": 1505267768157,
+			"helperAttributes": {},
+			"time": 1509726075610,
 			"name": "{{url}}/seccion/add",
 			"description": "Agregamos una nueva seccion",
 			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
-			"responses": [],
-			"timestamp": null
+			"responses": []
+		},
+		{
+			"id": "7a5cd8e6-5554-58da-160c-1f321663f58e",
+			"headers": "Content-Type: application/x-www-form-urlencoded\nauth: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MDkzODY1MDQsImV4cCI6MTUwOTYwMjUwNCwiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIxIiwibmFtZSI6IkFkbWluIiwidGlwbyI6IkFkbWluaXN0cmFkb3IiLCJpZF9tYWxsYSI6IjEifX0.mwMdy6A4QY2B0WIuFC9t58USzj007d3Zj6fPbyXYH7w\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/x-www-form-urlencoded",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "auth",
+					"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MDkzODY1MDQsImV4cCI6MTUwOTYwMjUwNCwiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIxIiwibmFtZSI6IkFkbWluIiwidGlwbyI6IkFkbWluaXN0cmFkb3IiLCJpZF9tYWxsYSI6IjEifX0.mwMdy6A4QY2B0WIuFC9t58USzj007d3Zj6fPbyXYH7w",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "{{url}}/seccion/posts/timeline",
+			"folder": "f32508d4-730e-12e8-2acc-776205cef0e8",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [
+				{
+					"key": "id_usuario",
+					"value": "1",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "offset",
+					"value": "1",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1509387712725,
+			"name": "{{url}}/seccion/posts/timeline/id",
+			"description": "Obtenemos las publicaciones de todas las secciones a las que pertenece el usuario",
+			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
+			"responses": []
 		},
 		{
 			"id": "7c7e648b-30fd-70c4-e356-f506117961e1",
-			"headers": "",
-			"headerData": [],
-			"url": "{{url}}/seccion/posts/id/offset",
+			"headers": "Content-Type: application/x-www-form-urlencoded\nauth: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MDk1ODMzNjUsImV4cCI6MTUwOTc5OTM2NSwiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIxIiwibmFtZSI6IkFkbWluIiwidGlwbyI6IkFkbWluaXN0cmFkb3IiLCJpZF9tYWxsYSI6IjEifX0.NbmGd5EhunOBncprguR31n_JRJ3dqeP3o-2sbkO6dQY\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/x-www-form-urlencoded",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "auth",
+					"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MDk1ODMzNjUsImV4cCI6MTUwOTc5OTM2NSwiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIxIiwibmFtZSI6IkFkbWluIiwidGlwbyI6IkFkbWluaXN0cmFkb3IiLCJpZF9tYWxsYSI6IjEifX0.NbmGd5EhunOBncprguR31n_JRJ3dqeP3o-2sbkO6dQY",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "{{url}}/seccion/posts",
 			"folder": "6cf692b2-b2fb-b982-2010-c98c2c38de39",
 			"queryParams": [],
 			"preRequestScript": null,
 			"pathVariables": {},
 			"pathVariableData": [],
-			"method": "GET",
-			"data": null,
-			"dataMode": "params",
+			"method": "POST",
+			"data": [
+				{
+					"key": "id_seccion",
+					"value": "1",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "offset",
+					"value": "1",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1505272896888,
-			"name": "{{url}}/seccion/posts/idSeccion/offSet",
+			"time": 1509639044606,
+			"name": "{{url}}/seccion/posts",
 			"description": "Obtenemos los posts de una seccion \n",
 			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
 			"responses": []
@@ -735,7 +1143,7 @@
 			"id": "7ecde924-324f-37bb-6021-889a4c5fabb2",
 			"headers": "",
 			"headerData": [],
-			"url": "{{url}}/seccion/all",
+			"url": "{{url}}/seccion/all/1",
 			"folder": "d0a4af9a-1e80-a376-a478-b2d7addd86b1",
 			"queryParams": [],
 			"preRequestScript": null,
@@ -747,21 +1155,26 @@
 			"version": 2,
 			"tests": null,
 			"currentHelper": "normal",
-			"helperAttributes": "{}",
-			"time": 1505266373816,
+			"helperAttributes": {},
+			"time": 1506511003539,
 			"name": "{{url}}/seccion/all",
 			"description": "Obtenemos todas las secciones de una materia",
 			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
-			"responses": [],
-			"timestamp": null
+			"responses": []
 		},
 		{
 			"id": "83988095-882d-73ad-a6e1-b562c41747a7",
-			"headers": "Content-Type: application/x-www-form-urlencoded\n",
+			"headers": "Content-Type: application/x-www-form-urlencoded\nauth: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MDg5Njc5NDgsImV4cCI6MTUwOTE4Mzk0OCwiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIyIiwibmFtZSI6IkFkbWluIiwidGlwbyI6IkFkbWluaXN0cmFkb3IiLCJpZF9tYWxsYSI6IjEifX0.RYl7o3ODIdTYq-bnVJBBAJIiAzky7w8ApDEAUXrmw60\n",
 			"headerData": [
 				{
 					"key": "Content-Type",
 					"value": "application/x-www-form-urlencoded",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "auth",
+					"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MDg5Njc5NDgsImV4cCI6MTUwOTE4Mzk0OCwiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIyIiwibmFtZSI6IkFkbWluIiwidGlwbyI6IkFkbWluaXN0cmFkb3IiLCJpZF9tYWxsYSI6IjEifX0.RYl7o3ODIdTYq-bnVJBBAJIiAzky7w8ApDEAUXrmw60",
 					"description": "",
 					"enabled": true
 				}
@@ -776,14 +1189,14 @@
 			"data": [
 				{
 					"key": "nombre",
-					"value": "",
+					"value": "Informatica",
 					"description": "",
 					"type": "text",
 					"enabled": true
 				},
 				{
-					"key": "id_malla",
-					"value": "",
+					"key": "id",
+					"value": "1",
 					"description": "",
 					"type": "text",
 					"enabled": true
@@ -794,7 +1207,7 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1505401465186,
+			"time": 1508968264848,
 			"name": "{{url}}/pnf/update",
 			"description": "Ruta para modificar una malla curricular",
 			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
@@ -823,12 +1236,55 @@
 			"responses": []
 		},
 		{
-			"id": "9e6faba1-e9fc-ef7c-7b2b-25e042861cbe",
+			"id": "9a883273-d8c9-9430-9957-a207f36037d0",
 			"headers": "Content-Type: application/x-www-form-urlencoded\n",
 			"headerData": [
 				{
 					"key": "Content-Type",
 					"value": "application/x-www-form-urlencoded",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "{{url}}/forgotPass",
+			"folder": "f32508d4-730e-12e8-2acc-776205cef0e8",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [
+				{
+					"key": "correo",
+					"value": "luisdaniel.programador@gmail.com",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1509726078441,
+			"name": "Recuperar Contraseña",
+			"description": "Enviar correo",
+			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
+			"responses": []
+		},
+		{
+			"id": "9e6faba1-e9fc-ef7c-7b2b-25e042861cbe",
+			"headers": "Content-Type: application/x-www-form-urlencoded\nauth: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MDg5Njc5NDgsImV4cCI6MTUwOTE4Mzk0OCwiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIyIiwibmFtZSI6IkFkbWluIiwidGlwbyI6IkFkbWluaXN0cmFkb3IiLCJpZF9tYWxsYSI6IjEifX0.RYl7o3ODIdTYq-bnVJBBAJIiAzky7w8ApDEAUXrmw60\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/x-www-form-urlencoded",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "auth",
+					"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MDg5Njc5NDgsImV4cCI6MTUwOTE4Mzk0OCwiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIyIiwibmFtZSI6IkFkbWluIiwidGlwbyI6IkFkbWluaXN0cmFkb3IiLCJpZF9tYWxsYSI6IjEifX0.RYl7o3ODIdTYq-bnVJBBAJIiAzky7w8ApDEAUXrmw60",
 					"description": "",
 					"enabled": true
 				}
@@ -843,7 +1299,7 @@
 			"data": [
 				{
 					"key": "nombre",
-					"value": "",
+					"value": "Geo Ciencias",
 					"description": "",
 					"type": "text",
 					"enabled": true
@@ -853,13 +1309,11 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1505265553722,
+			"time": 1508968262850,
 			"name": "{{url}}/pnf/add",
 			"description": "Agregamos una nueva malla",
 			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
-			"responses": [],
-			"isFromCollection": true,
-			"collectionRequestId": "9e6faba1-e9fc-ef7c-7b2b-25e042861cbe"
+			"responses": []
 		},
 		{
 			"id": "a0cd72f6-a388-57bc-bea7-30cceb330eba",
@@ -900,16 +1354,22 @@
 		},
 		{
 			"id": "a2bed97c-8396-e510-5a0c-e576197cded2",
-			"headers": "Content-Type: application/x-www-form-urlencoded\n",
+			"headers": "Content-Type: application/x-www-form-urlencoded\nauth: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MDk2MzEzMzYsImV4cCI6MTUwOTg0NzMzNiwiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIxIiwibmFtZSI6IkFkbWluIiwidGlwbyI6IkFkbWluaXN0cmFkb3IiLCJpZF9tYWxsYSI6IjEifX0.7tWoGiUT4DDyVT8yRJ_NZ90f6FPzMWU_AyArPGXqJ6Y\n",
 			"headerData": [
 				{
 					"key": "Content-Type",
 					"value": "application/x-www-form-urlencoded",
 					"description": "",
 					"enabled": true
+				},
+				{
+					"key": "auth",
+					"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MDk2MzEzMzYsImV4cCI6MTUwOTg0NzMzNiwiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIxIiwibmFtZSI6IkFkbWluIiwidGlwbyI6IkFkbWluaXN0cmFkb3IiLCJpZF9tYWxsYSI6IjEifX0.7tWoGiUT4DDyVT8yRJ_NZ90f6FPzMWU_AyArPGXqJ6Y",
+					"description": "",
+					"enabled": true
 				}
 			],
-			"url": "{{url}}/seccion/posts/delete",
+			"url": "{{url}}/seccion/post/delete",
 			"folder": "6cf692b2-b2fb-b982-2010-c98c2c38de39",
 			"queryParams": [],
 			"preRequestScript": null,
@@ -919,21 +1379,7 @@
 			"data": [
 				{
 					"key": "id_publicacion",
-					"value": "",
-					"description": "",
-					"type": "text",
-					"enabled": true
-				},
-				{
-					"key": "id_seccion",
-					"value": "",
-					"description": "",
-					"type": "text",
-					"enabled": true
-				},
-				{
-					"key": "id_usuario",
-					"value": "",
+					"value": "15",
 					"description": "",
 					"type": "text",
 					"enabled": true
@@ -943,7 +1389,7 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1505275403458,
+			"time": 1509639055699,
 			"name": "{{url}}/seccion/post/delete",
 			"description": "Borrar un post de una seccion",
 			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
@@ -951,15 +1397,8 @@
 		},
 		{
 			"id": "a323a87a-4940-b6d8-eda2-78aa62a62c28",
-			"headers": "Content-Type: application/x-www-form-urlencoded\n",
-			"headerData": [
-				{
-					"key": "Content-Type",
-					"value": "application/x-www-form-urlencoded",
-					"description": "",
-					"enabled": true
-				}
-			],
+			"headers": "",
+			"headerData": [],
 			"url": "{{url}}/singup",
 			"folder": "a2cacbd8-40d4-6e52-ad12-35783c7a6a91",
 			"queryParams": [],
@@ -970,34 +1409,36 @@
 			"data": [
 				{
 					"key": "usuario",
-					"value": "",
+					"value": "Vanessa",
 					"description": "No puede ser repetido"
 				},
 				{
-					"key": "contrasena",
-					"value": "",
-					"description": ""
-				},
-				{
-					"key": "nombre_completo",
-					"value": "",
-					"description": ""
-				},
-				{
 					"key": "cedula",
-					"value": "",
+					"value": "25755686",
 					"description": "Unico",
 					"type": "text",
 					"enabled": true
 				},
 				{
 					"key": "correo",
-					"value": "",
-					"description": "Unico"
+					"value": "vanessa.programador@gmail.com",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "contrasena",
+					"value": "1",
+					"description": ""
+				},
+				{
+					"key": "nombre_completo",
+					"value": "Prueba Usuario",
+					"description": ""
 				},
 				{
 					"key": "telefono",
-					"value": "",
+					"value": "34553",
 					"description": ""
 				},
 				{
@@ -1012,7 +1453,7 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1506041142396,
+			"time": 1509726071658,
 			"name": "{{url}}/singup",
 			"description": "RUTA PARA AGREGAR UN NUEVO USUARIO\n\nDEVUELVE LOS DATOS EN FORMATO JSON",
 			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
@@ -1020,9 +1461,16 @@
 		},
 		{
 			"id": "ab956e4e-e8e5-ffd1-8dac-28f1969110f4",
-			"headers": "",
-			"headerData": [],
-			"url": "{{url}}/materia/all/id",
+			"headers": "auth: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MDg5Njc5NDgsImV4cCI6MTUwOTE4Mzk0OCwiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIyIiwibmFtZSI6IkFkbWluIiwidGlwbyI6IkFkbWluaXN0cmFkb3IiLCJpZF9tYWxsYSI6IjEifX0.RYl7o3ODIdTYq-bnVJBBAJIiAzky7w8ApDEAUXrmw60\n",
+			"headerData": [
+				{
+					"key": "auth",
+					"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MDg5Njc5NDgsImV4cCI6MTUwOTE4Mzk0OCwiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIyIiwibmFtZSI6IkFkbWluIiwidGlwbyI6IkFkbWluaXN0cmFkb3IiLCJpZF9tYWxsYSI6IjEifX0.RYl7o3ODIdTYq-bnVJBBAJIiAzky7w8ApDEAUXrmw60",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "{{url}}/asignatura/all/1/1",
 			"folder": "1456b303-d0bb-4ac9-077b-6dccb0a81b12",
 			"queryParams": [],
 			"preRequestScript": null,
@@ -1035,8 +1483,8 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1505265950292,
-			"name": "{{url}}/materia/all/id",
+			"time": 1508968266168,
+			"name": "{{url}}/asignatura/all/id_malla/id_trimestre",
 			"description": "Obtenemos todas las materias de una malla",
 			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
 			"responses": []
@@ -1053,12 +1501,12 @@
 				}
 			],
 			"url": "{{url}}/seccion/asistencia/get",
+			"folder": "bb0bd518-8bee-2785-0c46-508c4eb322dc",
 			"queryParams": [],
+			"preRequestScript": null,
 			"pathVariables": {},
 			"pathVariableData": [],
-			"preRequestScript": null,
 			"method": "POST",
-			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
 			"data": [
 				{
 					"key": "id_seccion",
@@ -1069,36 +1517,48 @@
 				},
 				{
 					"key": "fecha",
-					"value": "2017-08-25",
+					"value": "2017-10-20",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "id_usuario",
+					"value": "1",
 					"description": "",
 					"type": "text",
 					"enabled": true
 				}
 			],
 			"dataMode": "urlencoded",
-			"name": "{{url}}/seccion/asistencia/get",
-			"description": "Obetnemos el listado de asistencia de la fecha pasada por parametro",
-			"descriptionFormat": "html",
-			"time": 1505938607682,
 			"version": 2,
-			"responses": [],
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"folder": "bb0bd518-8bee-2785-0c46-508c4eb322dc"
+			"time": 1508599744454,
+			"name": "{{url}}/seccion/asistencia/get",
+			"description": "Obetnemos el listado de asistencia de la fecha pasada por parametro  \nSi se pasa el parametro id_usuario, solo traera ese registro",
+			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
+			"responses": []
 		},
 		{
 			"id": "ae38676b-7beb-9722-e872-026d6bfb8aea",
-			"headers": "Content-Type: application/x-www-form-urlencoded\n",
+			"headers": "Content-Type: application/x-www-form-urlencoded\nauth: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MDg5Njc0NDMsImV4cCI6MTUwOTE4MzQ0MywiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIyIiwibmFtZSI6IkFkbWluIiwidGlwbyI6IkFkbWluaXN0cmFkb3IiLCJpZF9tYWxsYSI6IjEifX0.yAYnQrJF46pPSNeax_DBrgueTE49SgSDPOhjGkllYu8\n",
 			"headerData": [
 				{
 					"key": "Content-Type",
 					"value": "application/x-www-form-urlencoded",
 					"description": "",
 					"enabled": true
+				},
+				{
+					"key": "auth",
+					"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MDg5Njc0NDMsImV4cCI6MTUwOTE4MzQ0MywiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIyIiwibmFtZSI6IkFkbWluIiwidGlwbyI6IkFkbWluaXN0cmFkb3IiLCJpZF9tYWxsYSI6IjEifX0.yAYnQrJF46pPSNeax_DBrgueTE49SgSDPOhjGkllYu8",
+					"description": "",
+					"enabled": true
 				}
 			],
-			"url": "{{url}}/materia/add",
+			"url": "{{url}}/asignatura/add",
 			"folder": "1456b303-d0bb-4ac9-077b-6dccb0a81b12",
 			"queryParams": [],
 			"preRequestScript": null,
@@ -1107,22 +1567,22 @@
 			"method": "POST",
 			"data": [
 				{
-					"key": "nombre",
-					"value": "",
+					"key": "nombre_asig",
+					"value": "Matematicas",
 					"description": "",
 					"type": "text",
 					"enabled": true
 				},
 				{
 					"key": "trimestre",
-					"value": "",
+					"value": "1",
 					"description": "",
 					"type": "text",
 					"enabled": true
 				},
 				{
 					"key": "id_malla",
-					"value": "",
+					"value": "1",
 					"description": "",
 					"type": "text",
 					"enabled": true
@@ -1132,8 +1592,8 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1505266146250,
-			"name": "{{url}}/materia/add",
+			"time": 1508967746542,
+			"name": "{{url}}/asignatura/add",
 			"description": "Agregamos una nueva materia",
 			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
 			"responses": []
@@ -1177,13 +1637,19 @@
 		},
 		{
 			"id": "b9f3c9f8-f6c0-1bb1-7f96-0821631bba35",
-			"headers": "Content-Type: application/x-www-form-urlencoded\n",
+			"headers": "Content-Type: application/x-www-form-urlencoded\nauth: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MDg5NjgzMDksImV4cCI6MTUwOTE4NDMwOSwiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIyIiwibmFtZSI6IkFkbWluIiwidGlwbyI6IkFkbWluaXN0cmFkb3IiLCJpZF9tYWxsYSI6IjEifX0.a0uFiy7YBuehvtAOsaP31nekXbv-j7NJRl5sWIJag0I\n",
 			"headerData": [
 				{
 					"key": "Content-Type",
 					"value": "application/x-www-form-urlencoded",
-					"enabled": true,
-					"description": ""
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "auth",
+					"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MDg5NjgzMDksImV4cCI6MTUwOTE4NDMwOSwiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIyIiwibmFtZSI6IkFkbWluIiwidGlwbyI6IkFkbWluaXN0cmFkb3IiLCJpZF9tYWxsYSI6IjEifX0.a0uFiy7YBuehvtAOsaP31nekXbv-j7NJRl5sWIJag0I",
+					"description": "",
+					"enabled": true
 				}
 			],
 			"url": "{{url}}/bd/delete",
@@ -1196,7 +1662,7 @@
 			"data": [
 				{
 					"key": "id",
-					"value": "",
+					"value": "1",
 					"description": "id de la base de datos",
 					"type": "text",
 					"enabled": true
@@ -1213,16 +1679,45 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1505569337151,
+			"time": 1508968369224,
 			"name": "{{url}}/bd/delete",
 			"description": "Borrar un archivo sql \n",
 			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
-			"responses": [],
-			"timestamp": null
+			"responses": []
 		},
 		{
+			"folder": "f1ba4e66-8b37-1bdc-72d0-6981ccb4fc37",
 			"id": "bb53b499-7d6c-7799-7426-338f6e256738",
+			"name": "{{url}}/seccion/member/add",
+			"dataMode": "urlencoded",
+			"data": [
+				{
+					"key": "id_usuario",
+					"value": "1",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "codigo",
+					"value": "sddddd",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"rawModeData": null,
+			"descriptionFormat": null,
+			"description": "Agregamos un usuario a una seccion",
 			"headers": "Content-Type: application/x-www-form-urlencoded\n",
+			"method": "POST",
+			"pathVariables": {},
+			"url": "{{url}}/seccion/member/add/",
+			"preRequestScript": null,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"queryParams": [],
 			"headerData": [
 				{
 					"key": "Content-Type",
@@ -1231,45 +1726,8 @@
 					"enabled": true
 				}
 			],
-			"url": "{{url}}/seccion/member/add",
-			"folder": "f1ba4e66-8b37-1bdc-72d0-6981ccb4fc37",
-			"queryParams": [],
-			"preRequestScript": null,
-			"pathVariables": {},
 			"pathVariableData": [],
-			"method": "POST",
-			"data": [
-				{
-					"key": "id_usuario",
-					"value": "",
-					"description": "",
-					"type": "text",
-					"enabled": true
-				},
-				{
-					"key": "id_seccion",
-					"value": "",
-					"description": "",
-					"type": "text",
-					"enabled": true
-				},
-				{
-					"key": "codigo",
-					"value": "",
-					"description": "",
-					"type": "text",
-					"enabled": true
-				}
-			],
-			"dataMode": "urlencoded",
-			"tests": null,
-			"currentHelper": "normal",
-			"helperAttributes": {},
-			"time": 1505271499931,
-			"name": "{{url}}/seccion/member/add",
-			"description": "Agregamos un usuario a una seccion",
-			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
-			"responses": []
+			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0"
 		},
 		{
 			"id": "bb6707c9-5f0f-0337-20e8-3933d5a2d430",
@@ -1347,7 +1805,7 @@
 				},
 				{
 					"key": "contrasena",
-					"value": "1234",
+					"value": "1",
 					"description": "",
 					"type": "text",
 					"enabled": true
@@ -1357,194 +1815,16 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1506039587118,
+			"time": 1508967756222,
 			"name": "{{url}}/login",
 			"description": "Iniciamos sesion y desbloqueamos las rutas",
 			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
 			"responses": []
 		},
 		{
-			"id": "cabc2b05-f45c-0bc7-2fe2-c8d1a51dbc39",
-			"headers": "",
-			"headerData": [],
-			"url": "{{url}}/session",
-			"queryParams": [],
-			"pathVariables": {},
-			"pathVariableData": [],
-			"preRequestScript": null,
-			"method": "GET",
-			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
-			"data": null,
-			"dataMode": "params",
-			"name": "{{url}}/session",
-			"description": "Con esta ruta verificamos si existe la variable session",
-			"descriptionFormat": "html",
-			"time": 1505257298878,
-			"version": 2,
-			"responses": [
-				{
-					"status": "",
-					"responseCode": {
-						"code": 200,
-						"name": "OK",
-						"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
-					},
-					"time": 144,
-					"headers": [
-						{
-							"name": "Cache-Control",
-							"key": "Cache-Control",
-							"value": "no-store, no-cache, must-revalidate",
-							"description": "Tells all caching mechanisms from server to client whether they may cache this object. It is measured in seconds"
-						},
-						{
-							"name": "Connection",
-							"key": "Connection",
-							"value": "close",
-							"description": "Options that are desired for the connection"
-						},
-						{
-							"name": "Content-Type",
-							"key": "Content-Type",
-							"value": "application/json;charset=utf-8",
-							"description": "The mime type of this content"
-						},
-						{
-							"name": "Expires",
-							"key": "Expires",
-							"value": "Thu, 19 Nov 1981 08:52:00 GMT",
-							"description": "Gives the date/time after which the response is considered stale"
-						},
-						{
-							"name": "Host",
-							"key": "Host",
-							"value": "localhost:3454",
-							"description": "Custom header"
-						},
-						{
-							"name": "Pragma",
-							"key": "Pragma",
-							"value": "no-cache",
-							"description": "Implementation-specific headers that may have various effects anywhere along the request-response chain."
-						},
-						{
-							"name": "X-Powered-By",
-							"key": "X-Powered-By",
-							"value": "PHP/7.0.13",
-							"description": "Specifies the technology (ASP.NET, PHP, JBoss, e.g.) supporting the web application (version details are often in X-Runtime, X-Version, or X-AspNet-Version)"
-						}
-					],
-					"cookies": [],
-					"mime": "",
-					"text": "{\"usuario\":\"Luis\",\"tipo\":\"Administrador\"}",
-					"language": "json",
-					"rawDataType": "text",
-					"previewType": "text",
-					"searchResultScrolledTo": -1,
-					"forceNoPretty": false,
-					"write": true,
-					"empty": false,
-					"failed": false,
-					"name": "{{url}}/session",
-					"id": "6942aa77-e09e-04fb-92d4-f6f774dc283a",
-					"request": {
-						"url": "{{url}}/session",
-						"pathVariables": {},
-						"pathVariableData": [],
-						"queryParams": [],
-						"headerData": [],
-						"headers": "",
-						"data": null,
-						"method": "GET",
-						"dataMode": "params"
-					}
-				}
-			],
-			"tests": null,
-			"currentHelper": "normal",
-			"helperAttributes": {},
-			"folder": "f32508d4-730e-12e8-2acc-776205cef0e8"
-		},
-		{
-			"id": "d225b82f-0ba3-0b28-767a-e2f53a639a10",
-			"headers": "",
-			"headerData": [],
-			"url": "{{url}}/seccion/member/idUsuario",
-			"folder": "f1ba4e66-8b37-1bdc-72d0-6981ccb4fc37",
-			"queryParams": [],
-			"preRequestScript": null,
-			"pathVariables": {},
-			"pathVariableData": [],
-			"method": "GET",
-			"data": null,
-			"dataMode": "params",
-			"version": 2,
-			"tests": null,
-			"currentHelper": "normal",
-			"helperAttributes": {},
-			"time": 1505271090559,
-			"name": "{{url}}/seccion/member/idUusario",
-			"description": "Obtenemos un miembro de una seccion ",
-			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
-			"responses": []
-		},
-		{
-			"id": "e433b67a-5ceb-b7e6-1ffd-6df8ae3844a4",
-			"headers": "",
-			"headerData": [],
-			"url": "{{url}}/seccion/members/idSeccion",
-			"folder": "f1ba4e66-8b37-1bdc-72d0-6981ccb4fc37",
-			"queryParams": [],
-			"preRequestScript": null,
-			"pathVariables": {},
-			"pathVariableData": [],
-			"method": "GET",
-			"data": null,
-			"dataMode": "params",
-			"version": 2,
-			"tests": null,
-			"currentHelper": "normal",
-			"helperAttributes": {},
-			"time": 1505270983616,
-			"name": "{{url}}/seccion/members/idSeccion",
-			"description": "Obtenemos todos los miembros de una seccion",
-			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
-			"responses": []
-		},
-		{
-			"id": "eed56c47-ab9f-2690-9500-f7efbfaea38a",
-			"headers": "",
-			"headerData": [],
-			"url": "{{url}}/seccion/member/delete/id",
-			"queryParams": [],
-			"pathVariables": {},
-			"pathVariableData": [],
-			"preRequestScript": null,
-			"method": "GET",
-			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
-			"data": null,
-			"dataMode": "params",
-			"name": "{{url}}/seccion/member/delete/id",
-			"description": "Cambiamos el estado de un usuario en una seccion",
-			"descriptionFormat": "html",
-			"time": 1505271275013,
-			"version": 2,
-			"responses": [],
-			"tests": null,
-			"currentHelper": "normal",
-			"helperAttributes": {},
-			"folder": "f1ba4e66-8b37-1bdc-72d0-6981ccb4fc37"
-		},
-		{
-			"id": "f061db35-314d-aa58-705c-687721633b04",
-			"headers": "id: 1\nContent-Type: application/x-www-form-urlencoded\n",
+			"id": "ca593f2f-4a16-d295-d2d8-aca5e9e977f1",
+			"headers": "Content-Type: application/x-www-form-urlencoded\n",
 			"headerData": [
-				{
-					"key": "id",
-					"value": "1",
-					"description": "",
-					"enabled": true
-				},
 				{
 					"key": "Content-Type",
 					"value": "application/x-www-form-urlencoded",
@@ -1552,7 +1832,38 @@
 					"enabled": true
 				}
 			],
-			"url": "{{url}}/seccion/posts/get",
+			"url": "{{url}}/seccion/getInfo",
+			"folder": "d0a4af9a-1e80-a376-a478-b2d7addd86b1",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [
+				{
+					"key": "id_seccion",
+					"value": "1",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1506530899743,
+			"name": "{{url}}/seccion/getInfo",
+			"description": "Obtenemos los datos de una seccion",
+			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
+			"responses": []
+		},
+		{
+			"id": "d05edc4d-b22c-14a3-10d2-f41ca7022869",
+			"headers": "",
+			"headerData": [],
+			"url": "{{url}}/seccion/post/update",
 			"folder": "6cf692b2-b2fb-b982-2010-c98c2c38de39",
 			"queryParams": [],
 			"preRequestScript": null,
@@ -1561,8 +1872,214 @@
 			"method": "POST",
 			"data": [
 				{
-					"key": "id_post",
+					"key": "titulo",
+					"value": "Mami",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "descripcion",
+					"value": "Hola",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "id_publicacion",
+					"value": "2",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "id_seccion",
+					"value": "1",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "id_usuario",
+					"value": "1",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "archivo",
 					"value": "",
+					"description": "",
+					"type": "file",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": "{}",
+			"time": 1506303872527,
+			"name": "{{url}}/seccion/post/update",
+			"description": "Borrar un post de una seccion",
+			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
+			"responses": [],
+			"timestamp": null
+		},
+		{
+			"id": "d225b82f-0ba3-0b28-767a-e2f53a639a10",
+			"headers": "",
+			"headerData": [],
+			"url": "{{url}}/seccion/member/1",
+			"folder": "f1ba4e66-8b37-1bdc-72d0-6981ccb4fc37",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1506530920295,
+			"name": "{{url}}/seccion/member/idUusario",
+			"description": "Obtenemos un miembro de una seccion ",
+			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
+			"responses": []
+		},
+		{
+			"id": "e433b67a-5ceb-b7e6-1ffd-6df8ae3844a4",
+			"headers": "Content-Type: application/x-www-form-urlencoded\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/x-www-form-urlencoded",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "{{url}}/seccion/members",
+			"folder": "f1ba4e66-8b37-1bdc-72d0-6981ccb4fc37",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [
+				{
+					"key": "id_seccion",
+					"value": "1",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1506530918111,
+			"name": "{{url}}/seccion/members/idSeccion",
+			"description": "Obtenemos todos los miembros de una seccion",
+			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
+			"responses": []
+		},
+		{
+			"id": "eed56c47-ab9f-2690-9500-f7efbfaea38a",
+			"headers": "Content-Type: application/x-www-form-urlencoded\nauth: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MDk2NDYwNzAsImV4cCI6MTUwOTg2MjA3MCwiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIxIiwibmFtZSI6IkFkbWluIiwidGlwbyI6IkFkbWluaXN0cmFkb3IiLCJpZF9tYWxsYSI6IjEifX0.DTWkkEsQsVnmOijUWlfFLprj086JbRmyMprDV6I7puw\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/x-www-form-urlencoded",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "auth",
+					"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MDk2NDYwNzAsImV4cCI6MTUwOTg2MjA3MCwiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIxIiwibmFtZSI6IkFkbWluIiwidGlwbyI6IkFkbWluaXN0cmFkb3IiLCJpZF9tYWxsYSI6IjEifX0.DTWkkEsQsVnmOijUWlfFLprj086JbRmyMprDV6I7puw",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "{{url}}/seccion/member/status",
+			"folder": "f1ba4e66-8b37-1bdc-72d0-6981ccb4fc37",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [
+				{
+					"key": "id_usuario",
+					"value": "1",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "id_seccion",
+					"value": "1",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "accion",
+					"value": "0",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1509720349650,
+			"name": "{{url}}/seccion/member/status",
+			"description": "Cambiamos el estado de un usuario en una seccion",
+			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
+			"responses": []
+		},
+		{
+			"id": "f061db35-314d-aa58-705c-687721633b04",
+			"headers": "Content-Type: application/x-www-form-urlencoded\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/x-www-form-urlencoded",
+					"enabled": true,
+					"description": ""
+				}
+			],
+			"url": "{{url}}/seccion/post/get",
+			"folder": "6cf692b2-b2fb-b982-2010-c98c2c38de39",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [
+				{
+					"key": "id_publicacion",
+					"value": "2",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "id_usuario",
+					"value": "1",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "id_seccion",
+					"value": "1",
 					"description": "",
 					"type": "text",
 					"enabled": true
@@ -1571,10 +2088,49 @@
 			"dataMode": "urlencoded",
 			"tests": null,
 			"currentHelper": "normal",
-			"helperAttributes": {},
-			"time": 1505274288341,
-			"name": "{{url}}/seccion/posts/get",
+			"helperAttributes": "{}",
+			"time": 1506303921349,
+			"name": "{{url}}/seccion/post/get",
 			"description": "Obtener los datos de un post",
+			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
+			"responses": [],
+			"timestamp": null
+		},
+		{
+			"id": "fa886302-8b25-2ca2-d31e-4548964286cc",
+			"headers": "Content-Type: application/x-www-form-urlencoded\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/x-www-form-urlencoded",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "{{url}}/seccion/members",
+			"folder": "f1ba4e66-8b37-1bdc-72d0-6981ccb4fc37",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [
+				{
+					"key": "id_seccion",
+					"value": "1",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1506530918111,
+			"name": "{{url}}/seccion/members/idSeccion copy",
+			"description": "Obtenemos todos los miembros de una seccion",
 			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
 			"responses": []
 		}

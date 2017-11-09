@@ -1,0 +1,135 @@
+/* Empty. Add your own CSS if you like */
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-white {
+  color: white !important;
+}
+
+.fondo-transparente {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+.fondo-splash {
+  background: url('../img/splash.png');
+}
+
+.item-cabecera.positive {
+  background: rgb(27, 74, 154);
+}
+
+.item-cabecera.energized {
+  background: #d3ac1a;
+}
+
+.item-cabecera.royal {
+  background: #886aea;
+}
+
+.item-cabecera.dark {
+  background: #444444;
+}
+
+.item-cabecera.assertive {
+  background: #ef473a;
+}
+
+.item-cabecera.balanced {
+  background: #33cd5f;
+}
+
+.item-border {
+  border-bottom: 1px solid rgb(20, 143, 180);
+}
+
+.button-personalizado {
+  display: flex;
+  background: darkblue;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  border-radius: 50%;
+}
+
+
+/* .main__form{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    line-height: .5em;
+}
+.main__form__item{
+    display: block;
+    font-size: 1.3em;
+    width: 100%;
+    margin: 0 auto;
+    padding: 3px 5px;
+}
+
+.main__menu{
+    display: flex;
+    flex-direction: column;
+    letter-spacing: 5px;
+}
+.main__menu__item{
+    background: rgb(51, 121, 224);
+    color: white;
+    font-weight: bold;
+    padding-left: 15%;
+    padding-right: 15%;
+    line-height: 3;
+    
+}
+.main__menu__item:hover{
+    background: rgb(110, 151, 210);
+    font-size: 1.2em;
+    color: white;
+    
+}
+
+*/
+
+/*ion-content {
+  background-color: #fafafa !important;
+}
+*/
+
+.has-header {
+  top: 44px !important;
+}
+
+.divider {
+  padding: 2px;
+}
+
+.list.list-inset.formlogin {
+  margin-top: 1em;
+}
+
+.header_membrete {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+.logo_iuteb {
+  width: 45%;
+  margin-top: 1em;
+  opacity: .7;
+}
+
+.subtitulo {
+  font-size: 1.2em;
+  font-weight: bolder;
+  text-transform: uppercase;
+  text-align: center;
+}

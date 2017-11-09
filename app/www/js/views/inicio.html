@@ -1,0 +1,152 @@
+<ion-view view-title="Publicaciones">
+  <ion-nav-bar class="bar-{{inicio.tema}}" align-title="center">
+  </ion-nav-bar>
+  <div class="tabs-striped tabs-background-{{inicio.tema}} tabs-color-light">
+    <ion-tabs class="tabs-icon-top tab-{{inicio.tema}}">
+      <ion-tab title="Publicaciones" icon-on="ion-compose" icon-off="ion-compose">
+        <ion-content class="padding">
+            <button class="button button-block button-outline button-{{inicio.tema}}" ng-click="inicio.morePosts()">Refrescar</button>
+          <div class="text-center">
+            <h5 ng-if="inicio.datos.posts.length < 1">NO TIENE TAREAS ASIGNADAS</h5>
+          </div>
+          <div class="list card" ng-repeat="post in inicio.datos.posts | orderBy: post.fecha_publicacion:true">
+            <a ui-sref="inicio/seccion({id_seccion: post.id_seccion})" class="item item-avatar item-cabecera {{inicio.tema}}">
+              <img ng-src="img/{{post.nombre_archivo}}">
+              <h2 class="text-white">{{post.titulo}}</h2>
+              <h4 class="text-white">Asignatura: {{post.nombre}}</h4>
+              <h6 class="text-white">{{post.fecha_publicacion}}</h6>
+            </a>
+            <div class="item item-body">
+              <span>
+                {{post.descripcion}}
+              </span>
+            </div>
+            <div class="divider">
+              <button class="button">
+                <i class="icon ion-document"></i>
+              </button>
+            </div>
+          </div>
+        </ion-content>
+      </ion-tab>
+
+      <ion-tab title="Asignaturas" icon-on="ion-clipboard" icon-off="ion-clipboard">
+        <ion-content class="padding">
+          <a class="button button-block button-outline button-{{inicio.tema}} icon-right ion-android-arrow-dropright" ui-sref="inicio/asignatura/inscripcion">
+            Inscripción
+          </a>
+          <div class="card-list list">
+            <div class="item item-divider">
+              <h4 class="text-center">Buscar seccion</h4>
+            </div>
+            <label class="item item-input item-select">
+
+              <div class="input-label">
+                Trimestre
+              </div>
+              <select ng-model="inicio.datos.listarAsignaturas.id_trimestre" ng-change="inicio.listarAsignaturas(inicio.datos.listarAsignaturas)">
+                <option ng-repeat="trimestre in inicio.datos.trimestres" ng-value="trimestre.id_trimestre">trimestre {{trimestre.id_trimestre}}</option>
+              </select>
+            </label>
+
+            <label class="item item-input item-select" ng-if="inicio.datos.asignaturas">
+
+              <div class="input-label">
+                Asignaturas
+              </div>
+              <select ng-model="inicio.datos.asignaturaSeleccionada" ng-change="inicio.buscarSecciones(inicio.datos.asignaturaSeleccionada)">
+                <option ng-repeat="asignatura in inicio.datos.asignaturas" ng-value="asignatura.id_asignatura">{{asignatura.nombre_asig}}</option>
+              </select>
+            </label>
+
+            <div class="list" ng-if="inicio.datos.secciones">
+              <form ng-submit="inicio.irSeccion(inicio.datos.seccionSeleccionada)">
+                <label class="item item-input item-select">
+                  <form ng-submit="inicio.irSeccion(inicio.datos.seccionSeleccionada)" ng-if="inicio.datos.secciones">
+                    <div class="input-label">
+                      Secciones
+                    </div>
+                    <select ng-model="inicio.datos.seccionSeleccionada">
+                      <option ng-repeat="seccion in inicio.datos.secciones" ng-value="seccion.id_seccion">{{seccion.nombre}}</option>
+                    </select>
+                </label>
+                <input type="submit" ng-if="inicio.datos.seccionSeleccionada" value="IR" class="button button-outline button-block button-{{inicio.tema}}">
+
+                </form>
+            </div>
+          </div>
+        </ion-content>
+      </ion-tab>
+
+      <ion-tab title="Perfil" icon-on="ion-person" icon-off="ion-person">
+        <ion-content class="padding">
+          <div>
+            <div class="list card item-border">
+              <div class="item item-avatar">
+                <img ng-src="img/{{inicio.datos.user.foto_perfil}}">
+                <h2>{{inicio.datos.user.usuario}}</h2>
+                <p>{{inicio.datos.user.malla}}</p>
+              </div>
+            </div>
+
+            <form class="input-inset list" ng-submit="inicio.actualizarUsuario(inicio.datos.user)" name="datosPersonales" novalidate>
+              <h4 class="text-center item-cabecera {{inicio.tema}} item text-white">Datos</h4>
+              <label class="item item-input">
+                <input type="text" placeholder="Nombre Completo" ng-model="inicio.datos.user.nombre_completo" name="nombre_completo" required>
+              </label>
+              <div class="item" style="color:maroon" role="alert" ng-show="datosPersonales.nombre_completo.$touched && datosPersonales.nombre_completo.$invalid">
+                <div ng-message="required">Este campo es requerido.</div>
+              </div>
+              <label class="item item-input" >
+                <input type="number" placeholder="Cedula" ng-model="inicio.datos.user.cedula" name="cedula" required>
+              </label>
+              <div class="item" style="color:maroon" role="alert" ng-show="datosPersonales.cedula.$touched && datosPersonales.cedula.$invalid">
+                <div ng-message="required">Este campo es requerido.</div>
+              </div>
+              <label class="item item-input">
+                <input type="tel" placeholder="Telefono" ng-model="inicio.datos.user.telefono" name="telefono" required>
+              </label>
+              <div class="item" style="color:maroon" role="alert" ng-show="datosPersonales.telefono.$touched && datosPersonales.telefono.$invalid">
+                <div ng-message="required">Este campo es requerido.</div>
+              </div>
+              <label class="item item-input">
+                <input type="password" placeholder="Contraseña" ng-model="inicio.datos.user.contrasena" name="contrasena" required>
+              </label>
+              <div class="item" ng-messages="datosPersonales.contrasena.$error" style="color:maroon" role="alert" ng-show="datosPersonales.contrasena.$touched && datosPersonales.contrasena.$invalid">
+                <div ng-message="required">Este campo es requerido.</div>
+              </div>
+              <input type="submit" value="Guardar" class="button button-outline button-block button-{{inicio.tema}}" ng-disabled="!datosPersonales.$valid">
+            </form>
+            <button class="button button-outline button-block button-assertive" ng-click="inicio.cerrarSesion()">Cerrar Sesion</button>
+          </div>
+        </ion-content>
+      </ion-tab>
+
+      <ion-tab title="Config" icon-on="ion-gear-b" icon-off="ion-gear-b">
+        <ion-content class="padding">
+          <form class="list" ng-submit="inicio.preferenciasAct(inicio.datos.preferencias)">
+            <li class="item item-toggle">
+              Recibir Notificaciones
+              <label class="toggle toggle-assertive">
+                <input type="checkbox" ng-model="inicio.datos.preferencias.recibir_notificaciones">
+                <div class="track">
+                  <div class="handle"></div>
+                </div>
+              </label>
+            </li>
+            <label class="item item-input item-select">
+              <div class="input-label">
+                Color de Tema
+              </div>
+              <select ng-model="inicio.datos.preferencias.color_ui">
+                <option ng-repeat="color in inicio.datos.colores" ng-value="color">{{color}}</option>
+              </select>
+            </label>
+            <input type="submit" class="button button-outline button-block button-{{inicio.tema}}" value="Guardar Preferencias">
+          </form>
+        </ion-content>
+      </ion-tab>
+
+    </ion-tabs>
+  </div>
+</ion-view>

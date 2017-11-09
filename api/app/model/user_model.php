@@ -4,7 +4,7 @@ namespace App\Model;
 
 use Firebase\JWT\JWT;
 use App\Lib\Database;
-
+use PHPMailer\PHPMailer\PHPMailer;
 use Exception;
 
 class UserModel
@@ -105,7 +105,7 @@ class UserModel
 
     public function login($params){
 
-        $sql = "SELECT id_usuario, usuario, correo, contrasena, tipo, id_malla FROM $this->table WHERE contrasena = :pass AND usuario = :user OR correo = :user";
+        $sql = "SELECT * FROM $this->table AS u INNER JOIN user_has_preferencias WHERE contrasena = :pass AND usuario = :user OR correo = :user";
         $sth = $this->db->prepare($sql);
         $sth->execute(array(':user' => $params['usuario'], ':pass' => $params['contrasena']));
 
@@ -131,35 +131,32 @@ class UserModel
             // $data = JWT::decode($jwt, self::$secret_key, array('HS256'));
 
             // var_dump($data);
-            return array("token" => $jwt, 'id' => $result['id_usuario'],'name' => $result['usuario'],'tipo' => $result['tipo'],'id_malla' => $result['id_malla']);
+            return array("token" => $jwt, 'id' => $result['id_usuario'],'name' => $result['usuario'], 'nombre_completo' => $result['nombre_completo'],'tipo' => $result['tipo'],'id_malla' => $result['id_malla'], 'preferencias' => array('color_ui' => $result['color_ui'], 'recibir_notificaciones' => $result['recibir_notificaciones']));
         else:
             return false;
         endif;
     }
 
     public function add($params){
-
-        if(isset($params['tipo']) != NULL && $params['tipo'] == 'Profesor'){
-            $tipo = $params['tipo'];
-        }else{
-            $tipo = 'Estudiante';
+        $tipo = 'Estudiante';
+        if(isset($params['tipo']) != NULL){ 
+            if($params['tipo'] == 'Profesor'){
+                $tipo = $params['tipo'];
+            }
         }
 
-        $sql = "INSERT INTO $this->table (usuario, contrasena, nombre_completo, cedula, correo, telefono, id_malla) VALUES (:usuario, :contrasena, :nombre_completo, :cedula, :correo, :telefono, :id_malla ) ";
+        $sql = "INSERT INTO $this->table (usuario, contrasena, nombre_completo, cedula, correo, telefono, id_malla, tipo) VALUES (?,?,?,?,?,?,?,?) ";
         $sth = $this->db->prepare($sql);
-        $sth->execute(array(
-            ':usuario' => $params['usuario'], 
-            ':contrasena' => $params['contrasena'], 
-            ':nombre_completo' => $params['nombre_completo'],
-            ':cedula' => $params['cedula'], 
-            ':correo' => $params['correo'],
-            ':telefono' => $params['telefono'],
-            ':id_malla' => $params['id_malla']
-        ));
+        $sth->execute(array($params['usuario'],$params['contrasena'], $params['nombre_completo'],$params['cedula'], $params['correo'],$params['telefono'],$params['id_malla'],$tipo));
 
         $params['id_usuario'] = $this->db->lastInsertId();
 
-        $time = time();
+        $sql = "INSERT INTO user_has_preferencias (id_usuario) VALUES (?) ";
+        $sth = $this->db->prepare($sql);
+        $sth->execute(array($this->db->lastInsertId()));
+
+        if($params['id_usuario'] != false && $this->db->lastInsertId() != false):
+            $time = time();
 
             $token = array(
                 'iat' => $time,
@@ -177,9 +174,133 @@ class UserModel
 
             // $data = JWT::decode($jwt, self::$secret_key, array('HS256'));
 
-            // var_dump($data);
+            // TODO: CORREO
 
-        return array('token' => $jwt, 'tipo' => $tipo);
+            $mail = new PHPMailer(true);   
+            // Passing `true` enables exceptions
+            try {
+                //Server settings                               // Enable verbose debug output
+                $mail->isSMTP();                                      // Set mailer to use SMTP
+                $mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
+                $mail->SMTPAuth = true;                               // Enable SMTP authentication
+                $mail->Username = 'iutebgate@gmail.com';                 // SMTP username
+                $mail->Password = 'SoporteGATE';                           // SMTP password
+                $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+                $mail->Port = 587;                                    // TCP port to connect to
+
+                //Recipients
+                // informatica@iuteb.edu.ve
+                $mail->setFrom('iutebgate@gmail.com', 'IUTEB GATE SOPORTE');
+
+                $mail->addAddress($params['correo']);
+
+
+                // Name is optional
+                //$mail->addReplyTo('info@example.com', 'Information');
+                //$mail->addCC('cc@example.com');
+                //$mail->addBCC('bcc@example.com');
+
+                //Attachments
+                //$mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
+                //$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
+
+                //Content
+
+                $usuario = $params['usuario'];
+                $contrasena = $params['contrasena'];
+                $mail->isHTML(true);                                  // Set email format to HTML
+                $mail->Subject = 'Registro Exitoso!';
+                $mail->Body    = "<h2>Gracias por registrarte en nuestra app</h2><div><span><b>Usuario:</b> $usuario </span><span><b>Contraseña:</b> $contrasena </span></div>";
+
+                $mail->CharSet = 'utf-8';
+                $mail->SMTPOptions = array(
+                    'ssl' => array(
+                        'verify_peer' => false,
+                        'verify_peer_name' => false,
+                        'allow_self_signed' => true
+                    )
+                );
+    
+                $mail->send();
+
+                return array("token" => $jwt, 'id' => $params['id_usuario'],'name' => $params['usuario'],'tipo' => $tipo,'id_malla' => $params['id_malla'], 'preferencias' => array('color_ui' => 'positive', 'recibir_notificaciones' => 1));
+            
+            } catch (Exception $e) {
+                return array('msg' => $mail->ErrorInfo);
+            }     
+            // var_dump($data);
+        else:
+            return false;
+        endif;
+    }
+
+    public function forgotPass($params){
+
+        $sql = "SELECT usuario, contrasena, correo FROM $this->table WHERE correo = ?";
+        $sth = $this->db->prepare($sql);
+        $sth->execute(array($params['correo']));
+        $datos = $sth->fetch();
+
+        $mail = new PHPMailer(true);   
+        // Passing `true` enables exceptions
+        try {
+            //Server settings                              // Enable verbose debug output
+            $mail->isSMTP();                                      // Set mailer to use SMTP
+            $mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
+            $mail->SMTPAuth = true;                               // Enable SMTP authentication
+            $mail->Username = 'iutebgate@gmail.com';                 // SMTP username
+            $mail->Password = 'SoporteGATE';                           // SMTP password
+            $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+            $mail->Port = 587;                                    // TCP port to connect to
+
+            //Recipients
+            // informatica@iuteb.edu.ve
+            $mail->setFrom('iutebgate@gmail.com', 'IUTEB GATE SOPORTE');
+
+            $mail->addAddress($datos['correo']);
+
+
+            // Name is optional
+            //$mail->addReplyTo('info@example.com', 'Information');
+            //$mail->addCC('cc@example.com');
+            //$mail->addBCC('bcc@example.com');
+
+            //Attachments
+            //$mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
+            //$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
+
+            //Content
+
+            $usuario = $datos['usuario'];
+            $contrasena = $datos['contrasena'];
+            $mail->isHTML(true);                                  // Set email format to HTML
+            $mail->Subject = 'Recuperacion de contrasena!';
+            $mail->Body    = "<div><span><b>Usuario:</b> $usuario </span><span><b>Contraseña:</b> $contrasena </span></div>";
+
+            $mail->CharSet = 'utf-8';
+            $mail->SMTPOptions = array(
+                'ssl' => array(
+                    'verify_peer' => false,
+                    'verify_peer_name' => false,
+                    'allow_self_signed' => true
+                )
+            );
+
+            $mail->send();
+
+            return array('msg' => 'Correo enviado');
+        } catch (Exception $e) {
+            return array('msg' => $mail->ErrorInfo);
+        }     
+    }
+
+    public function setPrefencias($params){
+
+        $sql = "UPDATE user_has_preferencias SET color_ui = ?, recibir_notificaciones = ? WHERE id_usuario = ?";
+        $sth = $this->db->prepare($sql);
+        $sth->execute(array($params['color_ui'], $params['recibir_notificaciones'], $params['id_usuario']));
+        return array('filas_afectadas' => $sth->rowCount());
+
     }
     
     public static function Check($token)
@@ -194,8 +315,13 @@ class UserModel
             self::$secret_key,
             self::$encrypt
         );
-        // TODO: COMO SABER SI EL TOKEN EXPIRO
-        if($decode['iat']):
+
+        // Verificamos si expiro el token
+
+        $actual = time();
+        $expicacion = $decode->exp;
+
+        if($actual > $expicacion):
             return 'Token Expirado';
         endif;
         
@@ -204,6 +330,7 @@ class UserModel
             return "Aud Invalido";
         }
 
+        return "ok";
     }
     
     public static function GetData($token)

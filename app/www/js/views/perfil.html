@@ -1,0 +1,30 @@
+<ion-view view-title="Perfil">
+  <ion-pane>
+    <ion-nav-bar class="bar-{{perfil.tema}}" align-title="center">
+      <ion-nav-back-button></ion-nav-back-button>
+    </ion-nav-bar>
+    <div class="tabs-striped tabs-background-{{perfil.tema}} tabs-color-light">
+      <ion-tabs class="tabs-{{perfil.tema}} tabs-icon-top">
+        <ion-tab title="Informacion" icon-on="ion-ios-person" icon-off="ion-ios-person-outline">
+          <ion-content class="padding">
+            <div class="list card">
+              <h4 class="text-center item-cabecera {{perfil.tema}} item text-white">DATOS</h4>
+              <div class="item">
+                <b>Nombre: </b> {{perfil.datos.nombre_completo}}
+              </div>
+              <div class="item">
+                <b>Cedula:</b> {{perfil.datos.cedula}}
+              </div>
+              <div class="item">
+                <b>Telefono:</b> {{perfil.datos.telefono}}
+              </div>
+              <div class="item">
+                <b>Correo:</b> {{perfil.datos.correo}}
+              </div>
+            </div>
+          </ion-content>
+        </ion-tab>
+      </ion-tabs>
+    </div>
+  </ion-pane>
+</ion-view>
