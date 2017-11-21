@@ -36,12 +36,11 @@ class UserModel
 
     public function get($id)
     {
-        $sth = $this->db->prepare("SELECT * FROM $this->table WHERE id_usuario=:id");
-        $sth->bindParam("id", $id);
-        $sth->execute();
+        $sth = $this->db->prepare("SELECT * FROM $this->table WHERE id_usuario = ?");
+        $sth->execute(array($id));
         $result = $sth->fetchObject();
 
-        if(count($result) == 0):
+        if($result == false):
             return array('msg' => 'No hay registros');
         endif;
 
@@ -105,7 +104,7 @@ class UserModel
 
     public function login($params){
 
-        $sql = "SELECT * FROM $this->table AS u INNER JOIN user_has_preferencias WHERE contrasena = :pass AND usuario = :user OR correo = :user";
+        $sql = "SELECT * FROM $this->table WHERE contrasena = :pass AND usuario = :user OR correo = :user ";
         $sth = $this->db->prepare($sql);
         $sth->execute(array(':user' => $params['usuario'], ':pass' => $params['contrasena']));
 
@@ -131,7 +130,7 @@ class UserModel
             // $data = JWT::decode($jwt, self::$secret_key, array('HS256'));
 
             // var_dump($data);
-            return array("token" => $jwt, 'id' => $result['id_usuario'],'name' => $result['usuario'], 'nombre_completo' => $result['nombre_completo'],'tipo' => $result['tipo'],'id_malla' => $result['id_malla'], 'preferencias' => array('color_ui' => $result['color_ui'], 'recibir_notificaciones' => $result['recibir_notificaciones']));
+            return array("token" => $jwt, 'id' => $result['id_usuario'],'name' => $result['usuario'], 'nombre_completo' => $result['nombre_completo'],'tipo' => $result['tipo'],'id_malla' => $result['id_malla'], 'preferencias' => array('color_ui' => $result['color_ui']));
         else:
             return false;
         endif;
@@ -145,15 +144,20 @@ class UserModel
             }
         }
 
+        $sql = "SELECT * FROM $this->table WHERE correo = ? OR usuario = ? OR cedula = ?";
+        $sth = $this->db->prepare($sql);
+        $sth->execute(array($params['correo'], $params['usuario'], $params['cedula']));
+        $correounico = $sth->fetch();
+        
+        if($correounico == true){
+            return array('msg' => 'La cedula, correo o usuario ya está en uso por favor utilice otro.');
+        }
+
         $sql = "INSERT INTO $this->table (usuario, contrasena, nombre_completo, cedula, correo, telefono, id_malla, tipo) VALUES (?,?,?,?,?,?,?,?) ";
         $sth = $this->db->prepare($sql);
         $sth->execute(array($params['usuario'],$params['contrasena'], $params['nombre_completo'],$params['cedula'], $params['correo'],$params['telefono'],$params['id_malla'],$tipo));
 
         $params['id_usuario'] = $this->db->lastInsertId();
-
-        $sql = "INSERT INTO user_has_preferencias (id_usuario) VALUES (?) ";
-        $sth = $this->db->prepare($sql);
-        $sth->execute(array($this->db->lastInsertId()));
 
         if($params['id_usuario'] != false && $this->db->lastInsertId() != false):
             $time = time();
@@ -172,12 +176,8 @@ class UserModel
 
             $jwt = JWT::encode($token, self::$secret_key);
 
-            // $data = JWT::decode($jwt, self::$secret_key, array('HS256'));
-
-            // TODO: CORREO
-
+            # Correo
             $mail = new PHPMailer(true);   
-            // Passing `true` enables exceptions
             try {
                 //Server settings                               // Enable verbose debug output
                 $mail->isSMTP();                                      // Set mailer to use SMTP
@@ -193,18 +193,6 @@ class UserModel
                 $mail->setFrom('iutebgate@gmail.com', 'IUTEB GATE SOPORTE');
 
                 $mail->addAddress($params['correo']);
-
-
-                // Name is optional
-                //$mail->addReplyTo('info@example.com', 'Information');
-                //$mail->addCC('cc@example.com');
-                //$mail->addBCC('bcc@example.com');
-
-                //Attachments
-                //$mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
-                //$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
-
-                //Content
 
                 $usuario = $params['usuario'];
                 $contrasena = $params['contrasena'];
@@ -223,7 +211,7 @@ class UserModel
     
                 $mail->send();
 
-                return array("token" => $jwt, 'id' => $params['id_usuario'],'name' => $params['usuario'],'tipo' => $tipo,'id_malla' => $params['id_malla'], 'preferencias' => array('color_ui' => 'positive', 'recibir_notificaciones' => 1));
+                return array('msg'=>'Registro Exitoso!', 'datos' => array("token" => $jwt, 'id' => $params['id_usuario'],'name' => $params['usuario'],'tipo' => $tipo,'id_malla' => $params['id_malla'], 'preferencias' => array('color_ui' => 'positive')));
             
             } catch (Exception $e) {
                 return array('msg' => $mail->ErrorInfo);
@@ -259,18 +247,6 @@ class UserModel
 
             $mail->addAddress($datos['correo']);
 
-
-            // Name is optional
-            //$mail->addReplyTo('info@example.com', 'Information');
-            //$mail->addCC('cc@example.com');
-            //$mail->addBCC('bcc@example.com');
-
-            //Attachments
-            //$mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
-            //$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
-
-            //Content
-
             $usuario = $datos['usuario'];
             $contrasena = $datos['contrasena'];
             $mail->isHTML(true);                                  // Set email format to HTML
@@ -296,9 +272,9 @@ class UserModel
 
     public function setPrefencias($params){
 
-        $sql = "UPDATE user_has_preferencias SET color_ui = ?, recibir_notificaciones = ? WHERE id_usuario = ?";
+        $sql = "UPDATE usuarios SET color_ui = ? WHERE id_usuario = ?";
         $sth = $this->db->prepare($sql);
-        $sth->execute(array($params['color_ui'], $params['recibir_notificaciones'], $params['id_usuario']));
+        $sth->execute(array($params['color_ui'], $params['id_usuario']));
         return array('filas_afectadas' => $sth->rowCount());
 
     }

@@ -1,16 +1,15 @@
 angular.module('GATE')
 
-  .controller('asistenciaController', function ($scope, $stateParams, ionicDatePicker, servicioSecciones, $rootScope) {
+  .controller('asistenciaController', function ($scope, $stateParams, ionicDatePicker, servicioSecciones, $rootScope, ionicToast) {
 
     var bz = this;
-
+    
     bz.datos = $stateParams.datos;
-
     bz.datos.fechaSeleccionada = '';
     bz.tema = $rootScope.objectoCliente.preferencias.color_ui;
 
     // FUNCION PARA LLAMAR AL DATE PICKER
-    var ipObj1 = {
+    var datepickeroption = {
       callback: function (val) {
         date = new Date(val);
         bz.datos.getAsistence.fecha = formatDate(date);
@@ -19,7 +18,7 @@ angular.module('GATE')
     }
 
     bz.openDatePicker = function () {
-      ionicDatePicker.openDatePicker(ipObj1);
+      ionicDatePicker.openDatePicker(datepickeroption);
     };
 
     function formatDate(date) {
@@ -46,7 +45,7 @@ angular.module('GATE')
       }
 
       servicioSecciones.setAsistence(datos).then(function (res) {
-        console.log(res);
+        ionicToast.show('Asistencias Colocadas', 'top', false, 2500);
       }).catch(function (res) {
         console.log(res)
       });

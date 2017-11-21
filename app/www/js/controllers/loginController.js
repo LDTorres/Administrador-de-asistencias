@@ -1,6 +1,6 @@
 angular.module('GATE')
 
-  .controller('loginController', ['$scope', 'servicioGeneral', 'ionicDatePicker', '$state', '$rootScope', 'ionicToast', function ($scope, servicioGeneral, ionicDatePicker, $state, $rootScope, ionicToast) {
+  .controller('loginController', ['$scope', 'servicioGeneral', 'ionicDatePicker', '$state', '$rootScope', 'ionicToast', "$ionicLoading", '$ionicHistory', function ($scope, servicioGeneral, ionicDatePicker, $state, $rootScope, ionicToast, $ionicLoading,  $ionicHistory) {
     var bz = this;
 
     bz.datos = {
@@ -10,6 +10,7 @@ angular.module('GATE')
       login: {},
       mostrarForm: 1
     };
+
     bz.switch = 'Iniciar Sesion';
 
     bz.cambiar = function (vista) {
@@ -26,25 +27,30 @@ angular.module('GATE')
     bz.ingresar = function (datos) {
         servicioGeneral.ingresar(datos).then(function (res) {
           ionicToast.show('Datos Correctos', 'top', false, 2500);
-          bz.validacion = 0;
-
-          setTimeout(function () {
-            $state.go('inicio');
-          }, 2000);
-
-          //console.log($rootScope.objectoCliente);
+            setTimeout(function () {
+              $state.go('inicio');
+            }, 2000);  
         }).catch(function (res) {
+          console.log(res)
           ionicToast.show('Datos Invalidos', 'top', false, 2500);
         });
     }
 
     bz.registrar = function (datos) {
         datos.id_malla = 1;
+
+        $ionicLoading.show({
+          template: 'Creando Cuenta...',
+        });
+
         servicioGeneral.registrar(datos).then(function (res) {
-          ionicToast.show('Resgistro Exitoso!', 'top', false, 2500);
-          setTimeout(function () {
-            $state.go('inicio');
-          }, 2000);
+          $ionicLoading.hide().then(function(){
+            ionicToast.show(res.data.msg, 'top', false, 2500);
+            setTimeout(function () {
+              $state.go('inicio');
+            }, 2000);
+          });
+          
         }).catch(function (res) {
           console.log(res)
         });

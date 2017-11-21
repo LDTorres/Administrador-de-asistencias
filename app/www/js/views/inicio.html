@@ -1,4 +1,4 @@
-<ion-view view-title="Publicaciones">
+<ion-view view-title="Inicio" cache-view="false">
   <ion-nav-bar class="bar-{{inicio.tema}}" align-title="center">
   </ion-nav-bar>
   <div class="tabs-striped tabs-background-{{inicio.tema}} tabs-color-light">
@@ -54,15 +54,15 @@
               <div class="input-label">
                 Asignaturas
               </div>
-              <select ng-model="inicio.datos.asignaturaSeleccionada" ng-change="inicio.buscarSecciones(inicio.datos.asignaturaSeleccionada)">
+              <select ng-model="inicio.datos.asignaturaSeleccionada" ng-change="inicio.buscarSecciones(inicio.datos)">
                 <option ng-repeat="asignatura in inicio.datos.asignaturas" ng-value="asignatura.id_asignatura">{{asignatura.nombre_asig}}</option>
               </select>
             </label>
 
             <div class="list" ng-if="inicio.datos.secciones">
-              <form ng-submit="inicio.irSeccion(inicio.datos.seccionSeleccionada)">
+              <form>
                 <label class="item item-input item-select">
-                  <form ng-submit="inicio.irSeccion(inicio.datos.seccionSeleccionada)" ng-if="inicio.datos.secciones">
+                  <form ng-if="inicio.datos.secciones">
                     <div class="input-label">
                       Secciones
                     </div>
@@ -70,8 +70,7 @@
                       <option ng-repeat="seccion in inicio.datos.secciones" ng-value="seccion.id_seccion">{{seccion.nombre}}</option>
                     </select>
                 </label>
-                <input type="submit" ng-if="inicio.datos.seccionSeleccionada" value="IR" class="button button-outline button-block button-{{inicio.tema}}">
-
+                <input ui-sref="inicio/seccion({id_seccion: inicio.datos.seccionSeleccionada})" type="submit" ng-if="inicio.datos.seccionSeleccionada" value="IR" class="button button-outline button-block button-{{inicio.tema}}">
                 </form>
             </div>
           </div>
@@ -86,6 +85,10 @@
                 <img ng-src="img/{{inicio.datos.user.foto_perfil}}">
                 <h2>{{inicio.datos.user.usuario}}</h2>
                 <p>{{inicio.datos.user.malla}}</p>
+              </div>
+              <div ng-if="false">
+                <cambiar-foto ng-click="inicio.subirFoto()">Subir Foto</cambiar-foto>
+                <cambiar-foto ng-click="inicio.descargarArchivo()">Descargar Archivo</cambiar-foto>
               </div>
             </div>
 
@@ -117,7 +120,6 @@
               </div>
               <input type="submit" value="Guardar" class="button button-outline button-block button-{{inicio.tema}}" ng-disabled="!datosPersonales.$valid">
             </form>
-            <button class="button button-outline button-block button-assertive" ng-click="inicio.cerrarSesion()">Cerrar Sesion</button>
           </div>
         </ion-content>
       </ion-tab>
@@ -125,15 +127,6 @@
       <ion-tab title="Config" icon-on="ion-gear-b" icon-off="ion-gear-b">
         <ion-content class="padding">
           <form class="list" ng-submit="inicio.preferenciasAct(inicio.datos.preferencias)">
-            <li class="item item-toggle">
-              Recibir Notificaciones
-              <label class="toggle toggle-assertive">
-                <input type="checkbox" ng-model="inicio.datos.preferencias.recibir_notificaciones">
-                <div class="track">
-                  <div class="handle"></div>
-                </div>
-              </label>
-            </li>
             <label class="item item-input item-select">
               <div class="input-label">
                 Color de Tema
@@ -144,9 +137,10 @@
             </label>
             <input type="submit" class="button button-outline button-block button-{{inicio.tema}}" value="Guardar Preferencias">
           </form>
+          <button class="button button-outline button-block button-assertive" ng-click="inicio.cerrarSesion()">Cerrar Sesion</button>
+          <button class="button button-outline button-block button-balanced" ui-sref="inicio/ayuda">Información</button>
         </ion-content>
       </ion-tab>
-
     </ion-tabs>
   </div>
 </ion-view>

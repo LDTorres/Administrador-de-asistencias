@@ -3,7 +3,7 @@ angular.module('GATE')
   // Para probarlo desde el movil http://192.168.1.{tu-puerto}/api/public  
   // Desde windows http://localhost:3454
 
-  .constant("ruta", "http://localhost:3454")
+  .constant("ruta", "http://192.168.1.7/api/public")
 
 
   .constant("trimestresConstante", [{
@@ -47,7 +47,7 @@ angular.module('GATE')
 
   /* INGRESAR */
 
-  .service("servicioGeneral", ["$http", "$q", "ruta", "$rootScope", "$window", function ($http, $q, ruta, $rootScope, $window) {
+  .service("servicioGeneral", ["$http", "$q", "ruta", "$rootScope", "$window", "$ionicHistory", function ($http, $q, ruta, $rootScope, $window, $ionicHistory) {
 
     // Espera por parametro {usuario | correo, contrasena}
     this.ingresar = function (datos) {
@@ -56,13 +56,14 @@ angular.module('GATE')
       var promise = defered.promise;
 
       $http.post(ruta + '/login', datos).then(function (res) {
-
-        $window.localStorage.setItem('token', JSON.stringify(res.data));
+        $window.localStorage.setItem('token', angular.toJson(res.data));
         $rootScope.objectoCliente = res.data;
+
         defered.resolve(res);
 
       }).catch(function (res) {
         $window.localStorage.removeItem('token');
+        delete $rootScope.objectoCliente;
         defered.reject(res);
       })
 
@@ -70,8 +71,8 @@ angular.module('GATE')
     };
 
     this.salir = function () {
-      $rootScope.objectoCliente = false;
       $window.localStorage.removeItem('token');
+      delete $rootScope.objectoCliente;
     };
 
     // Espera por parametro {usuario, contrasena, nombre_completo, cedula, correo, telefono, id_malla}
@@ -81,16 +82,17 @@ angular.module('GATE')
       var promise = defered.promise;
 
       $http.post(ruta + '/singup', datos).then(function (res) {
-
-        $window.localStorage.setItem('token', JSON.stringify(res.data));
-        $rootScope.objectoCliente = res.data;
+        if(res.data.datos){
+          $window.localStorage.setItem('token', angular.toJson(res.data.datos));
+          $rootScope.objectoCliente = res.data.datos;
+        }
         defered.resolve(res);
-
       }).catch(function (res) {
 
         defered.reject(res);
       });
       return promise;
+      
     };
 
     this.autorizado = function () {
@@ -103,7 +105,7 @@ angular.module('GATE')
 
         if ($window.localStorage.getItem('token')) {
 
-          $rootScope.objectoCliente = JSON.parse($window.localStorage.getItem('token'));
+          $rootScope.objectoCliente = angular.fromJson($window.localStorage.getItem('token'));
 
           return $rootScope.objectoCliente;
 
@@ -123,15 +125,9 @@ angular.module('GATE')
       var defered = $q.defer();
       var promise = defered.promise;
 
-      $http.get(ruta + '/app').then(function (res) {
-
-        defered.resolve(res);
-
-      }).catch(function (res) {
-
-        defered.reject(res);
-
-      });
+      $http.get(ruta + '/').then(function (res) {
+        defered.resolve(res.data);
+      })
       return promise;
     };
 
@@ -825,7 +821,7 @@ angular.module('GATE')
         if (autorizado()) {
           config.headers.auth = autorizado().token;
         }
-
+        config.headers.cors = {'Access-Control-Allow-Origin':'*', 'Access-Control-Allow-Headers': 'X-Requested-With, Content-Type, Accept, Origin, Authorization', 'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS'};
         return config || $q.when(config);
 
       },

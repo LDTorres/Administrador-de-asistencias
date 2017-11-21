@@ -12,7 +12,7 @@ $bdm = new BDModel();
 $pnfm = new PnfModel();
 
 $app->post('/login', function ($req, $res) {
-
+    
     $params = $req->getParsedBody();
 
     $result =  $GLOBALS['um']->login($params);
@@ -62,6 +62,20 @@ $app->get('/', function ($req, $res, $args) {
     return $this->response->withJson($sth->fetch());
 
 });
+
+$app->post('/update', function ($req, $res) {
+
+        $params = $req->getParsedBody();
+        
+        $sql = "UPDATE `app_config` SET `nombre`= ?,`versionApp`= ?,`fecha_creacion`= ?,`descripcion`= ? WHERE 1";
+    
+        $sth = $this->db->prepare($sql);
+    
+        $sth->execute(array($params['nombre'], $params['versionApp'], $params['fecha_creacion'], $params['descripcion']));
+        
+        return $this->response->withJson(array('filas_afectadas' => $sth->rowCount()));
+   
+})->add($mw);
 
 // ->add($mw);
 

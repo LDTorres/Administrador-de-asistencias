@@ -46,7 +46,7 @@
             <h4 class="text-center">Miembros</h4>
             <ion-list show-delete="false" show-reorder="false" can-swipe="seccion.eliminarOpcion">
               <ion-item ng-repeat="miembro in seccion.datos.miembros" class="item-avatar-left">
-                <img ng-src="img/{{miembro.foto_perfil}}">
+                <img ui-sref="inicio/seccion/miembro/perfil({id_usuario: miembro.id_usuario})" ng-src="img/{{miembro.foto_perfil}}">
                 <h2 ui-sref="inicio/seccion/miembro/perfil({id_usuario: miembro.id_usuario})">{{miembro.nombre_completo}}</h2>
                 <p>{{miembro.telefono}}</p>
                 <ion-option-button class="button-assertive" ng-if="miembro.estado" ng-click="seccion.eliminarMiembro($index, miembro, 0)">
@@ -76,7 +76,7 @@
                 <h4 class="col col-30 col-offset-10"> {{seccion.datos.fechaSeleccionada}}</h4>
               </div>
             </div>
-            <div class="list card" ng-if="seccion.datos.asistencias.length">
+            <div class="list card" ng-if="seccion.datos.asistencias.length > 0">
               <div class="item item-divider">
                 <div class="row">
                   <b class="col col-50">Nombre:</b>
@@ -111,6 +111,9 @@
               </div>
               <div class="item">
                 <b>Miembros:</b> {{seccion.datos.miembros.length}}
+              </div>
+              <div class="item" ng-if="seccion.datos.tipo == 'Administrador' || seccion.datos.tipo == 'Profesor'">
+                <b>Codigo:</b> {{s.codigo}}
               </div>
             </div>
           </ion-content>

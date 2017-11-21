@@ -113,22 +113,17 @@
   margin-top: 1em;
 }
 
-.header_membrete {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  flex-direction: column;
-}
-
 .logo_iuteb {
   width: 45%;
+  margin:1em auto 0 auto;
   margin-top: 1em;
   opacity: .7;
+  display: block;
 }
 
 .subtitulo {
   font-size: 1.2em;
+  display:block;
   font-weight: bolder;
   text-transform: uppercase;
   text-align: center;
