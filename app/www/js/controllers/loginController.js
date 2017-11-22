@@ -1,6 +1,6 @@
 angular.module('GATE')
 
-  .controller('loginController', ['$scope', 'servicioGeneral', 'ionicDatePicker', '$state', '$rootScope', 'ionicToast', "$ionicLoading", '$ionicHistory', function ($scope, servicioGeneral, ionicDatePicker, $state, $rootScope, ionicToast, $ionicLoading,  $ionicHistory) {
+  .controller('loginController', ['$scope', 'servicioGeneral', 'ionicDatePicker', '$state', '$rootScope', 'ionicToast', "$ionicLoading", function ($scope, servicioGeneral, ionicDatePicker, $state, $rootScope, ionicToast, $ionicLoading) {
     var bz = this;
 
     bz.datos = {

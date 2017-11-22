@@ -115,7 +115,7 @@ class UserModel
 
             $token = array(
                 'iat' => $time,
-                'exp' => $time + (60*60*60),
+                'exp' => $time + (60*60*60*60),
                 'aud' => self::Aud(),
                 'data' => [
                     'id' => $result['id_usuario'],
@@ -164,7 +164,7 @@ class UserModel
 
             $token = array(
                 'iat' => $time,
-                'exp' => $time + (60*60*60),
+                'exp' => $time + (60*60*60*60),
                 'aud' => self::Aud(),
                 'data' => [
                     'id' => $params['id_usuario'],

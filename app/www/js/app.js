@@ -72,8 +72,7 @@ angular.module('GATE', ['ionic', 'ngCordova', 'ngFileUpload', 'ionic-datepicker'
             }
 
           }]
-        },
-        cache:false
+        }
       })
       // Ayuda va a contener {informacion de la app, y el manual}
       .state('inicio/ayuda', {
@@ -216,4 +215,4 @@ angular.module('GATE', ['ionic', 'ngCordova', 'ngFileUpload', 'ionic-datepicker'
         $state.go('inicio');
       }
     });
-  })
+  });

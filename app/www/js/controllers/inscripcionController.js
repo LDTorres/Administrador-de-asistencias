@@ -38,22 +38,39 @@ angular.module('GATE')
       servicioSecciones.add(bz.datos.crearSeccion).then(function (res) {
         $ionicLoading.hide().then(function(){
             ionicToast.show(res.data.msg, 'top', false, 2500);
+            if(res.data.params){
 
-            var confirmPopup = $ionicPopup.confirm({
-              title: 'Se ha creado la seccion',
-              template: 'Desea ir hasta allí?'
-            });
+              bz.codigo = res.data.params.codigo;
+              
+              bz.copiarSeleccionado(bz.codigo);
 
-            confirmPopup.then(function (res) {
-              if (res) {
-                $state.go('inicio/seccion',{id_seccion: res.data.params.insert_id});
-              } else {}
-            });
-            bz.codigo = res.data.params.codigo;
+              var confirmPopup = $ionicPopup.confirm({
+                title: 'Se ha creado la seccion',
+                template: 'Desea ir hasta allí?'
+              });
+  
+              confirmPopup.then(function (res) {
+                if (res) {
+                  $state.go('inicio/seccion',{id_seccion: res.data.params.insert_id});
+                } else {
+                  ionicToast.show('El codigo de la seccion se ha copiado en portapapeles', 'top', false, 2500);
+                }
+              });
+
+            }
         });
       }).catch(function (res) {
         console.log(res)
       });
+    }
+
+    bz.copiarSeleccionado = function(texto){
+      var aux = document.createElement("input");
+      aux.setAttribute("value", texto);
+      document.body.appendChild(aux);
+      aux.select();
+      document.execCommand("copy");
+      document.body.removeChild(aux);
     }
 
     bz.inscribirSeccion = function (datos) {

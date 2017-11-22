@@ -14,15 +14,15 @@
             </a>
             <div class="list card" ng-repeat="post in seccion.datos.posts | orderBy: post.fecha_publicacion:true">
               <a ng-if="seccion.datos.tipo == 'Administrador' || seccion.datos.tipo == 'Profesor'" ng-click="seccion.editarPublicacion(post)"
-                class="item item-avatar item-cabecera {{seccion.tema}}">
-                <img ng-src="img/{{post.nombre_archivo}}">
+                class="item item-thumbnail-left item-cabecera {{seccion.tema}}">
+                <img ng-src="img/document.svg">
                 <h2 class="text-white">{{post.titulo}}</h2>
                 <h4 class="text-white">Asignatura: {{seccion.datos.seccion[0].nombre_asig}}</h4>
                 <h6 class="text-white">{{post.fecha_publicacion}}</h6>
               </a>
 
-              <a ng-if="seccion.datos.tipo != 'Administrador' && seccion.datos.tipo != 'Profesor'" class="item item-avatar item-cabecera {{seccion.tema}}">
-                <img ng-src="img/{{post.nombre_archivo}}">
+              <a ng-if="seccion.datos.tipo != 'Administrador' && seccion.datos.tipo != 'Profesor'" class="item item-thumbnail-left item-cabecera {{seccion.tema}}">
+                <img ng-src="img/document.svg">
                 <h2 class="text-white">{{post.titulo}}</h2>
                 <h4 class="text-white">Asignatura: {{seccion.datos.seccion.nombre_asig}}</h4>
                 <h6 class="text-white">{{post.fecha_publicacion}}</h6>
@@ -32,7 +32,7 @@
                   {{post.descripcion}}
                 </span>
               </div>
-              <div class="divider">
+              <div class="divider" ng-if="post.nombre_archivo != NULL">
                 <button class="button">
                   <i class="icon ion-document"></i>
                 </button>

@@ -1,6 +1,6 @@
 angular.module('GATE')
 
-  .controller('inicioController', ["$ionicSideMenuDelegate", "$scope", "servicioGeneral", "$state", "servicioSecciones", "servicioAsignatura", "servicioUsuario", '$rootScope', 'trimestresConstante', '$ionicLoading', '$ionicActionSheet', '$timeout', '$ionicPopup', '$window', 'ionicToast', '$cordovaFileTransfer', '$cordovaFile', '$ionicHistory', function ($ionicSideMenuDelegate, $scope, servicioGeneral, $state, servicioSecciones, servicioAsignatura, servicioUsuario, $rootScope, trimestresConstante, $ionicLoading, $ionicActionSheet, $timeout, $ionicPopup, $window, ionicToast, $cordovaFileTransfer, $cordovaFile, $ionicHistory) {
+  .controller('inicioController', ["$scope", "servicioGeneral", "$state", "servicioSecciones", "servicioAsignatura", "servicioUsuario", '$rootScope', 'trimestresConstante', '$ionicLoading', '$timeout', '$ionicPopup', '$window', 'ionicToast', '$cordovaFileTransfer', '$cordovaFile', '$ionicHistory', function ($scope, servicioGeneral, $state, servicioSecciones, servicioAsignatura, servicioUsuario, $rootScope, trimestresConstante, $ionicLoading, $timeout, $ionicPopup, $window, ionicToast, $cordovaFileTransfer, $cordovaFile, $ionicHistory) {
 
     var bz = this;
 
@@ -155,6 +155,7 @@ angular.module('GATE')
     }
 
     // Descargar Archivo
+
     bz.descargarArchivo = function(){
 
       var url = "http://192.168.1.7/api/assets/uploads/0642b3ed37608038.jpg";
@@ -187,6 +188,6 @@ angular.module('GATE')
       }, function (progress) {
         // constant progress updates
       });
-    }
+    } 
 
   }])

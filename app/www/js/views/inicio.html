@@ -1,4 +1,4 @@
-<ion-view view-title="Inicio" cache-view="false">
+<ion-view view-title="Inicio">
   <ion-nav-bar class="bar-{{inicio.tema}}" align-title="center">
   </ion-nav-bar>
   <div class="tabs-striped tabs-background-{{inicio.tema}} tabs-color-light">
@@ -10,18 +10,18 @@
             <h5 ng-if="inicio.datos.posts.length < 1">NO TIENE TAREAS ASIGNADAS</h5>
           </div>
           <div class="list card" ng-repeat="post in inicio.datos.posts | orderBy: post.fecha_publicacion:true">
-            <a ui-sref="inicio/seccion({id_seccion: post.id_seccion})" class="item item-avatar item-cabecera {{inicio.tema}}">
-              <img ng-src="img/{{post.nombre_archivo}}">
-              <h2 class="text-white">{{post.titulo}}</h2>
-              <h4 class="text-white">Asignatura: {{post.nombre}}</h4>
-              <h6 class="text-white">{{post.fecha_publicacion}}</h6>
+            <a ui-sref="inicio/seccion({id_seccion: post.id_seccion})" class="item item-thumbnail-left item-cabecera">
+              <img ng-src="img/document.svg">
+              <h2>{{post.titulo}}</h2>
+              <h4>Asignatura: {{post.nombre}}</h4>
+              <h6>{{post.fecha_publicacion}}</h6>
             </a>
             <div class="item item-body">
               <span>
                 {{post.descripcion}}
               </span>
             </div>
-            <div class="divider">
+            <div class="divider" ng-if="post.nombre_archivo != NULL">
               <button class="button">
                 <i class="icon ion-document"></i>
               </button>

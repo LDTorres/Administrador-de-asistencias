@@ -1,69 +1,50 @@
 <ion-view view-title="Información">
   <ion-nav-bar class="bar-{{ayuda.tema}}" align-title="center">
+      <ion-nav-back-button></ion-nav-back-button>
   </ion-nav-bar>
   <div class="tabs-striped tabs-background-{{ayuda.tema}} tabs-color-light">
     <ion-tabs class="tabs-icon-top tab-{{ayuda.tema}}">
       <ion-tab title="Ayuda" icon-on="ion-clipboard" icon-off="ion-clipboard">
         <ion-content class="padding">
-          <a class="button button-block button-outline button-{{ayuda.tema}} icon-right ion-android-arrow-dropright" ui-sref="inicio/asignatura/inscripcion">
-            Inscripción
+          <a class="button button-block button-outline button-{{ayuda.tema}} icon-right ion-android-arrow-dropright">
+            MANUAL DE USUARIOS
           </a>
-          <div class="card-list list">
-            <div class="item item-divider">
-              <h4 class="text-center">Buscar seccion</h4>
-            </div>
-            <label class="item item-input item-select">
+          <div class="list card">
+              <h4 class="item text-center text-white item-cabecera {{ayuda.tema}}">Guia</h4>
+              <div class="item">
+                <b>La vista inicio: </b>
+                <p>En la vista inicio puedes ver las publicaciones mas recientes que han hecho tus profesores.</p>
 
-              <div class="input-label">
-                Trimestre
               </div>
-              <select ng-model="inicio.datos.listarAsignaturas.id_trimestre" ng-change="inicio.listarAsignaturas(inicio.datos.listarAsignaturas)">
-                <option ng-repeat="trimestre in inicio.datos.trimestres" ng-value="trimestre.id_trimestre">trimestre {{trimestre.id_trimestre}}</option>
-              </select>
-            </label>
-
-            <label class="item item-input item-select" ng-if="inicio.datos.asignaturas">
-
-              <div class="input-label">
-                Asignaturas
+              <div class="item">
+                <b>Version:</b> {{ayuda.datos.app.versionApp}}
               </div>
-              <select ng-model="inicio.datos.asignaturaSeleccionada" ng-change="inicio.buscarSecciones(inicio.datos)">
-                <option ng-repeat="asignatura in inicio.datos.asignaturas" ng-value="asignatura.id_asignatura">{{asignatura.nombre_asig}}</option>
-              </select>
-            </label>
-
-            <div class="list" ng-if="inicio.datos.secciones">
-              <form>
-                <label class="item item-input item-select">
-                  <form ng-if="inicio.datos.secciones">
-                    <div class="input-label">
-                      Secciones
-                    </div>
-                    <select ng-model="inicio.datos.seccionSeleccionada">
-                      <option ng-repeat="seccion in inicio.datos.secciones" ng-value="seccion.id_seccion">{{seccion.nombre}}</option>
-                    </select>
-                </label>
-                <input ui-sref="inicio/seccion({id_seccion: inicio.datos.seccionSeleccionada})" type="submit" ng-if="inicio.datos.seccionSeleccionada" value="IR" class="button button-outline button-block button-{{ayuda.tema}}">
-                </form>
+              <div class="item">
+                <b>Fecha Version:</b> {{ayuda.datos.app.fecha_creacion}}
+              </div>
+              <div class="item">
+                <b>Descripción:</b> 
+                <p>{{ayuda.datos.app.descripcion}}</p>
+              </div>
             </div>
-          </div>
         </ion-content>
       </ion-tab>
 
       <ion-tab title="Desarrolladores" icon-on="ion-person" icon-off="ion-person">
         <ion-content class="padding">
+            <h4 class="subtitulo">Desarrolladores</h4>
             <div class="list card item-border" ng-repeat="d in ayuda.datos.desarrolladores">
               <div class="item item-avatar">
                 <img ng-src="img/{{d.imagen}}">
                 <h2>{{d.nombre}}</h2>
                 <p>{{d.malla}}</p>
-                <p><a href="mailto:{{d.correo}}">{{d.correo}}</p>
+                <p><a href="mailto:{{d.correo}}">{{d.correo}}</a></p>
               </div>
             </div>
         </ion-content>
       </ion-tab>
 
-      <ion-tab title="Informacion de la App" icon-on="ion-gear-b" icon-off="ion-gear-b">
+      <ion-tab title="Información de la App" icon-on="ion-gear-b" icon-off="ion-gear-b">
         <ion-content class="padding">
           <div class="list card">
             <h4 class="item text-center text-white item-cabecera {{ayuda.tema}}">Información Aplicación</h4>
@@ -77,7 +58,8 @@
               <b>Fecha Version:</b> {{ayuda.datos.app.fecha_creacion}}
             </div>
             <div class="item">
-              <b>Descripción:</b> {{ayuda.datos.app.descripcion}}
+              <b>Descripción:</b> 
+              <p>{{ayuda.datos.app.descripcion}}</p>
             </div>
           </div>
         </ion-content>

@@ -3,7 +3,7 @@ angular.module('GATE')
   // Para probarlo desde el movil http://192.168.1.{tu-puerto}/api/public  
   // Desde windows http://localhost:3454
 
-  .constant("ruta", "http://192.168.1.7/api/public")
+  .constant("ruta", "http://localhost:3454")
 
 
   .constant("trimestresConstante", [{
@@ -65,7 +65,7 @@ angular.module('GATE')
         $window.localStorage.removeItem('token');
         delete $rootScope.objectoCliente;
         defered.reject(res);
-      })
+      });
 
       return promise;
     };
@@ -127,7 +127,7 @@ angular.module('GATE')
 
       $http.get(ruta + '/').then(function (res) {
         defered.resolve(res.data);
-      })
+      });
       return promise;
     };
 
@@ -798,8 +798,9 @@ angular.module('GATE')
 
   .factory('AuthInterceptor', function ($window, $q, $rootScope) {
     function salir() {
-      $rootScope.objectoCliente = false;
-      $window.localStorage.removeItem('bzToken');
+      delete $rootScope.objectoCliente;
+      $window.localStorage.removeItem('token');
+      location.reload();
     }
 
     function autorizado() {
@@ -807,7 +808,7 @@ angular.module('GATE')
         return $rootScope.objectoCliente;
       } else {
         if ($window.localStorage.getItem('token')) {
-          $rootScope.objectoCliente = JSON.parse($window.localStorage.getItem('token'));
+          $rootScope.objectoCliente = angular.fromJson($window.localStorage.getItem('token'));
           return $rootScope.objectoCliente;
         } else {
           return false;
@@ -821,15 +822,21 @@ angular.module('GATE')
         if (autorizado()) {
           config.headers.auth = autorizado().token;
         }
-        config.headers.cors = {'Access-Control-Allow-Origin':'*', 'Access-Control-Allow-Headers': 'X-Requested-With, Content-Type, Accept, Origin, Authorization', 'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS'};
+        //config.headers.cors = {'Access-Control-Allow-Origin':'*', 'Access-Control-Allow-Headers': 'X-Requested-With, Content-Type, Accept, Origin, Authorization', 'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS'};
         return config || $q.when(config);
 
       },
       response: function (response) {
-        if (response.status === 401 || response.status === 403) {
-          salir();
-        }
         return response || $q.when(response);
+      },
+      responseError: function (response) {
+          if (response.status === 401 || response.status === 403 || response.status === 500) {
+            if(response.status === 500 && response.data.exception[0].message == "Expired token"){
+              salir();
+            }else{
+              return response || $q.when(response);
+            }
+          }
       }
     };
   });

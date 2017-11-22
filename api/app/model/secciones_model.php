@@ -400,7 +400,7 @@ class SeccionesModel {
         $filename =  "$nombreProfesor-$date-reporte-asistencias.pdf";
 
         try {
-            $html2pdf = new Html2Pdf('P', 'A4', 'fr');
+            $html2pdf = new Html2Pdf('P', 'A4', 'es');
             $html2pdf->setDefaultFont('Arial');
             $html2pdf->writeHTML('Hola');
             $html2pdf->output("app/outputPDF/$filename", 'F');
