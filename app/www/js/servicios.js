@@ -32,6 +32,35 @@ angular.module('GATE')
     id_trimestre: 12
   }])
 
+  .constant("constanteTutorial", [{
+    title: 'Gracias por usar nuestra aplicación!',
+    },{
+      description: 'Paso a paso te iremos mostrando el funcionamiento de la app'
+    },{
+      title: 'Inicio',
+      description: `Al momento que tu profesor te de el codigo de sección debes ir al apartado de aignaturas y presionar el boton de inscripción. 
+      Te llevará a un formulario donde colocaras el codigo y ya esta!.`
+    },{
+      title: 'Inicio',
+      description: `Puedes dejar que la app te lleve a tu sección o puedes buscarla luego desde el mismo apartado seleccionando trimestre, asignatura y por ultimo tu sección.`
+    },{
+      description: `Allí veras las publicaciones que tu profesor ha hecho, tambien podrás consultar tus asistencias de clases.`
+    },{
+      title: 'Tus datos y preferencias!',
+      description: ``
+    },{
+      title: 'Perfil',
+      description: `En el apartado de perfil, podrás ver tus datos, modificarlos y guardarlos persionando el botón guardar.`
+    },{
+      description: `En la pestaña de config, podras cambiarle el color a tu app, seleccionando el color y guardando.
+      Tambien podras cerrar sesion e ir al apartado de ayuda.`
+    },{
+      title: 'Esperamos que sigas utilizando la App para tus estudios!'
+    },{
+    title: 'Si aun no lo tienes!',
+    description: `En la seccion de ayuda esta el boton, manual de usuarios descargalo y listo.`
+  }])
+
   .factory('LS', ['$window', '$rootScope', function ($window, $rootScope) {
     return {
       definir: function (llave, valor) {

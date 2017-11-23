@@ -1,0 +1,11 @@
+<ion-view view-title="Tutorial">
+  <ion-content>
+    <ion-slide-box on-slide-changed="tutorial.salir($index)" does-continue="true">
+      <ion-slide ng-repeat="slide in tutorial.slides" class="max-slide" style="background:url(img/2.jpg);">
+        <h3 style="margin-bottom:0px;" class="text-white" ng-bind="slide.title"></h3>
+        <h4 class="slider-content text-white" ng-bind="slide.description"></h4>
+      </ion-slide>
+    </ion-slide-box>
+    <h6 class="omitir" ui-sref="inicio">Omitir tutorial</h6>
+  </ion-content>
+</ion-view>

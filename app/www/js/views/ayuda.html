@@ -9,24 +9,13 @@
           <a class="button button-block button-outline button-{{ayuda.tema}} icon-right ion-android-arrow-dropright">
             MANUAL DE USUARIOS
           </a>
-          <div class="list card">
-              <h4 class="item text-center text-white item-cabecera {{ayuda.tema}}">Guia</h4>
-              <div class="item">
-                <b>La vista inicio: </b>
-                <p>En la vista inicio puedes ver las publicaciones mas recientes que han hecho tus profesores.</p>
-
-              </div>
-              <div class="item">
-                <b>Version:</b> {{ayuda.datos.app.versionApp}}
-              </div>
-              <div class="item">
-                <b>Fecha Version:</b> {{ayuda.datos.app.fecha_creacion}}
-              </div>
-              <div class="item">
-                <b>Descripción:</b> 
-                <p>{{ayuda.datos.app.descripcion}}</p>
-              </div>
-            </div>
+          <ion-slide-box does-continue="true">
+            <ion-slide ng-repeat="slide in ayuda.slides" style="background:url(img/2.jpg);">
+              <h3 style="margin-bottom:0px;" class="text-white" ng-bind="slide.title"></h3>
+              <h4 class="slider-content text-white" ng-bind="slide.description"></h4>
+            </ion-slide>
+            
+          </ion-slide-box>
         </ion-content>
       </ion-tab>
 

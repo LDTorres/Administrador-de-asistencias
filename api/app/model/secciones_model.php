@@ -209,7 +209,7 @@ class SeccionesModel {
 
         $sth->execute(array($params['id_usuario'], $seccion['id_seccion']));
 
-        return array("msg" => "Registro Exitoso!","insertId" => $this->db->lastInsertId());
+        return array("msg" => "Registro Exitoso!","insertId" => $this->db->lastInsertId(), "id_seccion" => $seccion['id_seccion'], 'nombre' => $seccion['nombre']);
     }
 
     // Publicaciones

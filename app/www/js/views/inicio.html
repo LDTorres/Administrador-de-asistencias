@@ -5,7 +5,7 @@
     <ion-tabs class="tabs-icon-top tab-{{inicio.tema}}">
       <ion-tab title="Publicaciones" icon-on="ion-compose" icon-off="ion-compose">
         <ion-content class="padding">
-            <button class="button button-block button-outline button-{{inicio.tema}}" ng-click="inicio.morePosts()">Refrescar</button>
+          <button class="button button-block button-outline button-{{inicio.tema}}" ng-click="inicio.morePosts()">Refrescar</button>
           <div class="text-center">
             <h5 ng-if="inicio.datos.posts.length < 1">NO TIENE TAREAS ASIGNADAS</h5>
           </div>
@@ -70,7 +70,8 @@
                       <option ng-repeat="seccion in inicio.datos.secciones" ng-value="seccion.id_seccion">{{seccion.nombre}}</option>
                     </select>
                 </label>
-                <input ui-sref="inicio/seccion({id_seccion: inicio.datos.seccionSeleccionada})" type="submit" ng-if="inicio.datos.seccionSeleccionada" value="IR" class="button button-outline button-block button-{{inicio.tema}}">
+                <input ui-sref="inicio/seccion({id_seccion: inicio.datos.seccionSeleccionada})" type="submit" ng-if="inicio.datos.seccionSeleccionada"
+                  value="IR" class="button button-outline button-block button-{{inicio.tema}}">
                 </form>
             </div>
           </div>
@@ -100,7 +101,7 @@
               <div class="item" style="color:maroon" role="alert" ng-show="datosPersonales.nombre_completo.$touched && datosPersonales.nombre_completo.$invalid">
                 <div ng-message="required">Este campo es requerido.</div>
               </div>
-              <label class="item item-input" >
+              <label class="item item-input">
                 <input type="number" placeholder="Cedula" ng-model="inicio.datos.user.cedula" name="cedula" required>
               </label>
               <div class="item" style="color:maroon" role="alert" ng-show="datosPersonales.cedula.$touched && datosPersonales.cedula.$invalid">
