@@ -25,7 +25,7 @@ angular.module('GATE')
       })
     }
 
-    bz.morePosts = function (v) {
+    bz.morePosts = function () {
 
       var d = {
         id_usuario: bz.datos.user.id_usuario,

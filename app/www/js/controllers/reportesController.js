@@ -5,21 +5,26 @@ angular.module('GATE')
     bz.tema = $rootScope.objectoCliente.preferencias.color_ui;
 
     bz.datos = {
+      micorreo: true,
       reporte: {
         id_seccion: $stateParams.datos[0].id_seccion,
-        micorreo: true,
-        id_usuario: $stateParams.datos[0].id_usuario,
-        app: true
+        id_usuario: $stateParams.datos[0].id_usuario
       }
     }
 
-    bz.enviarReporte = function () {
+    bz.enviarReporte = function (datos) {
 
       $ionicLoading.show({
         template: 'Enviando Reporte...',
       });
-      servicioSecciones.reporte(bz.datos.reporte).then(function (res) {
 
+      if (bz.datos.micorreo == true) {
+        datos.app = 'Correo Propio';
+      } else {
+        datos.app = 'Correo Externo';
+      }
+
+      servicioSecciones.reporte(datos).then(function (res) {
         $ionicLoading.hide().then(function () {
           ionicToast.show(res.data.msg, 'top', false, 2500);
         });
