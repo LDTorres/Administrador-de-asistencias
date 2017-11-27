@@ -184,36 +184,7 @@ angular.module('GATE')
 
   /* USUARIOS */
 
-  .service("servicioUsuario", ["$http", "$q", "ruta", "Upload", function ($http, $q, ruta, Upload) {
-
-    // Colocamos la imagen de perfil
-    this.setPicture = function (datos) {
-
-      var defered = $q.defer();
-      var promise = defered.promise;
-
-      /* Ver si se envia el archivo 
-      console.log(datos)
-      */
-
-      Upload.upload({
-        url: ruta + '/user/picture',
-        method: 'POST',
-        file: {
-          archivo: datos.archivo
-        },
-        data: datos
-      }).then(function (res) {
-
-        defered.resolve(res);
-
-      }).catch(function (res) {
-
-        defered.reject(res);
-
-      });
-      return promise;
-    };
+  .service("servicioUsuario", ["$http", "$q", "ruta", function ($http, $q, ruta) {
 
     // Espera como parametro {id_usuario, contrasena, nombre_completo, telefono, cedula}
     this.update = function (datos) {
