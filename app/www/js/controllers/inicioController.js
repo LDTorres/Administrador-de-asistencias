@@ -1,6 +1,6 @@
 angular.module('GATE')
 
-  .controller('inicioController', ["$ionicSideMenuDelegate", "$scope", "servicioGeneral", "$state", "servicioSecciones", "servicioAsignatura", "servicioUsuario", '$rootScope', 'trimestresConstante', '$ionicLoading', '$ionicActionSheet', '$timeout', '$ionicPopup', '$window', 'ionicToast', function ($ionicSideMenuDelegate, $scope, servicioGeneral, $state, servicioSecciones, servicioAsignatura, servicioUsuario, $rootScope, trimestresConstante, $ionicLoading, $ionicActionSheet, $timeout, $ionicPopup, $window, ionicToast) {
+  .controller('inicioController', ["$scope", "servicioGeneral", "$state", "servicioSecciones", "servicioAsignatura", "servicioUsuario", '$rootScope', 'trimestresConstante', '$ionicLoading', '$timeout', '$ionicPopup', '$window', 'ionicToast', '$cordovaFileTransfer', '$cordovaFile', '$ionicHistory', function ($scope, servicioGeneral, $state, servicioSecciones, servicioAsignatura, servicioUsuario, $rootScope, trimestresConstante, $ionicLoading, $timeout, $ionicPopup, $window, ionicToast, $cordovaFileTransfer, $cordovaFile, $ionicHistory) {
 
     var bz = this;
 
@@ -17,16 +17,25 @@ angular.module('GATE')
     bz.tema = $rootScope.objectoCliente.preferencias.color_ui;
 
     bz.posts = function (datos) {
+      if($rootScope.objectoCliente.tipo != 'Estudiante'){
+        datos.tipo = $rootScope.objectoCliente.tipo;
+      }
       servicioGeneral.timeline(datos).then(function (res) {
         bz.datos.posts = res.data;
       })
     }
 
     bz.morePosts = function () {
+
       datos = {
         id_usuario: bz.datos.user.id_usuario,
         offset: bz.datos.posts.length
       }
+
+      if($rootScope.objectoCliente.tipo != 'Estudiante'){
+        datos.tipo = $rootScope.objectoCliente.tipo;
+      }
+      
       servicioGeneral.timeline(datos).then(function (res) {
         if (res.data.length > 0) {
           res.data.forEach(function (element) {
@@ -40,30 +49,39 @@ angular.module('GATE')
 
     bz.listarAsignaturas = function (datos) {
       servicioAsignatura.getAll(datos).then(function (res) {
-        bz.datos.asignaturas = res.data;
+        if(res.data.length == 0){
+          ionicToast.show('No hay ninguna asignatura para ese trimestre', 'top', false, 2500);
+        }else{
+          bz.datos.asignaturas = res.data;
+        }
       });
     }
 
-    bz.buscarSecciones = function (id) {
-      datos = {
-        id_asignatura: id,
+    bz.buscarSecciones = function (d) {
+
+      bz.da = {
+        id_asignatura: d.asignaturaSeleccionada,
         id_usuario: $rootScope.objectoCliente.id
       }
-      servicioSecciones.getAll(datos).then(function (res) {
-        bz.datos.secciones = res.data;
-      });
-    }
 
-    bz.irSeccion = function (id) {
-      $state.go('inicio/seccion', {
-        id_seccion: id
+      if(d.objectoCliente.tipo != 'Estudiante'){
+        bz.da.tipo = 'Profesor';
+      } 
+
+      servicioSecciones.getAll(bz.da).then(function (res) {
+        if(res.data.length == 0){
+          ionicToast.show('No esta inscrito a ninguna seccion de esa asignatura', 'top', false, 2500);
+        }else{
+          bz.datos.secciones = res.data;
+        }
       });
     }
 
     // Perdir los datos de un usuario
 
-    bz.datosUsuario = function () {
-      servicioUsuario.get(bz.datos.objectoCliente.id).then(function (res) {
+    bz.datosUsuario = function (id) {
+      servicioUsuario.get(id).then(function (res) {
+        
         bz.datos.user = res.data;
         bz.datos.listarAsignaturas.id_malla = res.data.id_malla;
 
@@ -80,7 +98,12 @@ angular.module('GATE')
       })
     }
 
-    bz.datosUsuario();
+    $scope.$on('$ionicView.beforeEnter', function(){
+      bz.tema = $rootScope.objectoCliente.preferencias.color_ui;
+      bz.datos.preferencias = $rootScope.objectoCliente.preferencias;
+      bz.datos.objectoCliente = $rootScope.objectoCliente;
+      bz.datosUsuario($rootScope.objectoCliente.id);
+    });
 
     // Actualizar Usuario
 
@@ -96,11 +119,11 @@ angular.module('GATE')
     bz.preferenciasAct = function (datos) {
 
       datos.id_usuario = $rootScope.objectoCliente.id;
-
       servicioUsuario.updatePreferences(datos).then(function (res) {
-
+        console.log(res)
+      
         $rootScope.objectoCliente.preferencias = datos;
-        $window.localStorage.setItem('token', JSON.stringify($rootScope.objectoCliente));
+        $window.localStorage.setItem('token', angular.toJson($rootScope.objectoCliente));
 
         var confirmPopup = $ionicPopup.confirm({
           title: 'Refrescar App',
@@ -130,4 +153,41 @@ angular.module('GATE')
         } else {}
       });
     }
+
+    // Descargar Archivo
+
+    bz.descargarArchivo = function(){
+
+      var url = "http://192.168.1.7/api/assets/uploads/0642b3ed37608038.jpg";
+      var targetPath = cordova.file.documentsDirectory + "imagen.png";
+      var trustHosts = true;
+      var options = {};
+  
+      $cordovaFileTransfer.download(url, targetPath, options, trustHosts)
+        .then(function(result) {
+          console.log('Exito')
+          console.log(result)
+        }, function(err) {
+          // Error
+        }, function (progress) {
+          $timeout(function () {
+            $scope.downloadProgress = (progress.loaded / progress.total) * 100;
+          });
+        });
+
+    }
+
+    // Descargar Archivo
+
+    bz.subirArchivo = function(){
+      $cordovaFileTransfer.upload(server, filePath, options)
+      .then(function(result) {
+        // Success!
+      }, function(err) {
+        // Error
+      }, function (progress) {
+        // constant progress updates
+      });
+    } 
+
   }])

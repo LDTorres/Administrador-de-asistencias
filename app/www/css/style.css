@@ -3,6 +3,7 @@
 *,
 *::after,
 *::before {
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
 
@@ -52,54 +53,78 @@
 }
 
 .button-personalizado {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   background: darkblue;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
   padding: 5px;
   border-radius: 50%;
 }
 
-
-/* .main__form{
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    line-height: .5em;
-}
-.main__form__item{
-    display: block;
-    font-size: 1.3em;
-    width: 100%;
-    margin: 0 auto;
-    padding: 3px 5px;
+h4.slider-content {
+  text-align: center;
+  padding: 15px 10px;
+  margin: 0;
 }
 
-.main__menu{
-    display: flex;
-    flex-direction: column;
-    letter-spacing: 5px;
-}
-.main__menu__item{
-    background: rgb(51, 121, 224);
-    color: white;
-    font-weight: bold;
-    padding-left: 15%;
-    padding-right: 15%;
-    line-height: 3;
-    
-}
-.main__menu__item:hover{
-    background: rgb(110, 151, 210);
-    font-size: 1.2em;
-    color: white;
-    
+.max-slide {
+  min-height: 100vh !important;
 }
 
-*/
-
-/*ion-content {
-  background-color: #fafafa !important;
+.omitir {
+  position: absolute;
+  z-index: 99999;
+  right: 10px;
+  top: 10px;
+  font-size: 18px;
+  color: white;
+  cursor: pointer;
 }
-*/
+
+.slider-slide {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  color: #000;
+  background-color: #fff;
+  text-align: center;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-weight: 300;
+  min-height: 50vh;
+}
+
+.slider-pager .slider-pager-page {
+  color: #000;
+}
+
+#list {
+  width: 170px;
+  margin: 30px auto;
+  font-size: 20px;
+}
+
+#list ol {
+  margin-top: 30px;
+}
+
+#list ol li {
+  text-align: left;
+  list-style: decimal;
+  margin: 10px 0px;
+}
 
 .has-header {
   top: 44px !important;
@@ -113,22 +138,17 @@
   margin-top: 1em;
 }
 
-.header_membrete {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  flex-direction: column;
-}
-
 .logo_iuteb {
   width: 45%;
+  margin: 1em auto 0 auto;
   margin-top: 1em;
   opacity: .7;
+  display: block;
 }
 
 .subtitulo {
   font-size: 1.2em;
+  display: block;
   font-weight: bolder;
   text-transform: uppercase;
   text-align: center;

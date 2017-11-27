@@ -22,7 +22,21 @@ class SeccionesModel {
     // Secciones
     public function getAll($params){
 
-        $sql = "SELECT * FROM secciones WHERE id_asignatura = ?";
+        if(isset($params['tipo']) != NULL){
+            $sth = $this->db->prepare('SELECT nombre, id_seccion FROM secciones WHERE id_usuario = ?');
+            $sth->execute(array($params['id_usuario']));
+            $result = $sth->fetchAll();
+            return $result;
+        }
+
+        if(isset($params['id_usuario']) != NULL ){
+            $sth = $this->db->prepare('SELECT s.nombre, s.id_seccion FROM secciones AS s INNER JOIN alumnos_has_secciones AS ahs WHERE ahs.id_usuario = ? AND s.id_seccion = ahs.id_seccion');
+            $sth->execute(array($params['id_usuario']));
+            $result = $sth->fetchAll();
+            return $result;
+        }
+
+        $sql = "SELECT nombre, id_seccion FROM secciones WHERE id_asignatura = ?";
 
         $sth = $this->db->prepare($sql);
 
@@ -195,7 +209,7 @@ class SeccionesModel {
 
         $sth->execute(array($params['id_usuario'], $seccion['id_seccion']));
 
-        return array("msg" => "Registro Exitoso!","insertId" => $this->db->lastInsertId());
+        return array("msg" => "Registro Exitoso!","insertId" => $this->db->lastInsertId(), "id_seccion" => $seccion['id_seccion'], 'nombre' => $seccion['nombre']);
     }
 
     // Publicaciones
@@ -206,11 +220,28 @@ class SeccionesModel {
         }else{
             $offset = $params['offset'];
         }
-        
-        $sql = "SELECT * FROM publicaciones INNER JOIN secciones WHERE publicaciones.id_usuario = ? AND publicaciones.id_seccion = secciones.id_seccion LIMIT $offset,10";
-        $sth = $this->db->prepare($sql);
 
+        if(isset($params['tipo']) != NULL){
+            if($params['tipo'] != 'Administrador' && $params['tipo'] != 'Profesor'){
+                return array('msg' => 'No tiene permitida esta accion');
+            }
+            $sql = "SELECT * FROM publicaciones WHERE id_usuario = ? LIMIT $offset,10";
+            $sth = $this->db->prepare($sql);
+            $sth->execute(array($params['id_usuario']));
+    
+            $publicaciones = $sth->fetchAll();
+    
+            return  $publicaciones;
+        }
+
+        $sth = $this->db->prepare("SELECT id_seccion FROM alumnos_has_secciones WHERE id_usuario = ?");
         $sth->execute(array($params['id_usuario']));
+        $seccion = $sth->fetch();
+        $seccion = $seccion['id_seccion'];
+
+        $sql = "SELECT * FROM publicaciones WHERE id_seccion = ? LIMIT $offset,10";
+        $sth = $this->db->prepare($sql);
+        $sth->execute(array($seccion));
 
         $publicaciones = $sth->fetchAll();
 
@@ -333,12 +364,23 @@ class SeccionesModel {
             $sql = "SELECT * FROM $this->table4 INNER JOIN usuarios WHERE id_seccion = ? AND fecha = ? AND $this->table4.id_usuario = ?";
             $sth = $this->db->prepare($sql);
             $sth->execute(array($params['id_seccion'], $params['fecha'], $params['id_usuario']));
-            return $sth->fetch();
+            $result = $sth->fetch();
+            if($result == true){
+                return array('msg' => 'Asistencias Cargadas', 'consulta' => $result);
+            }else{
+                return array('msg' => 'No hay registro de asistencias para esa fecha', 'consulta' => $sth->fetchAll());
+            }
         }else{
             $sql = "SELECT * FROM $this->table4 INNER JOIN usuarios WHERE id_seccion = ? AND fecha = ? AND $this->table4.id_usuario = usuarios.id_usuario";
             $sth = $this->db->prepare($sql);
             $sth->execute(array($params['id_seccion'], $params['fecha']));
-            return $sth->fetchAll();
+            $result = $sth->fetchAll();
+
+            if($result == true){
+                return array('msg' => 'Asistencias Cargadas', 'consulta' => $result);
+            }else{
+                return array('msg' => 'No hay registro de asistencias para esa fecha', 'consulta' => $sth->fetchAll());
+            }
         }
     }
 
@@ -358,7 +400,7 @@ class SeccionesModel {
         $filename =  "$nombreProfesor-$date-reporte-asistencias.pdf";
 
         try {
-            $html2pdf = new Html2Pdf('P', 'A4', 'fr');
+            $html2pdf = new Html2Pdf('P', 'A4', 'es');
             $html2pdf->setDefaultFont('Arial');
             $html2pdf->writeHTML('Hola');
             $html2pdf->output("app/outputPDF/$filename", 'F');

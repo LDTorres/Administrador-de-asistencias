@@ -1,40 +1,58 @@
-<ion-view view-title="Ayuda">
-  <ion-pane>
-    <ion-nav-bar class="bar-{{ayuda.tema}}" align-title="center">
+<ion-view view-title="Información">
+  <ion-nav-bar class="bar-{{ayuda.tema}}" align-title="center">
       <ion-nav-back-button></ion-nav-back-button>
-    </ion-nav-bar>
-    <div class="tabs-striped tabs-background-{{ayuda.tema}} tabs-color-light">
-      <ion-tabs class="tabs-positive tabs-icon-top">
+  </ion-nav-bar>
+  <div class="tabs-striped tabs-background-{{ayuda.tema}} tabs-color-light">
+    <ion-tabs class="tabs-icon-top tab-{{ayuda.tema}}">
+      <ion-tab title="Ayuda" icon-on="ion-clipboard" icon-off="ion-clipboard">
+        <ion-content class="padding">
+          <a class="button button-block button-outline button-{{ayuda.tema}} icon-right ion-android-arrow-dropright">
+            MANUAL DE USUARIOS
+          </a>
+          <ion-slide-box does-continue="true">
+            <ion-slide ng-repeat="slide in ayuda.slides" style="background:url(img/2.jpg);">
+              <h3 style="margin-bottom:0px;" class="text-white" ng-bind="slide.title"></h3>
+              <h4 class="slider-content text-white" ng-bind="slide.description"></h4>
+            </ion-slide>
+            
+          </ion-slide-box>
+        </ion-content>
+      </ion-tab>
 
-        <ion-tab title="Home" icon-on="ion-ios-filing" icon-off="ion-ios-filing-outline">
-          <ion-content class="padding">
-
-          </ion-content>
-        </ion-tab>
-
-        <ion-tab title="About" icon-on="ion-ios-clock" icon-off="ion-ios-clock-outline">
-          <ion-content class="padding">
-            <h4>Acerca de nosotros</h4>
-            <div class="list card">
-              <div class="item">
-                <a ui-sref="inicio/asignaturas">Asignaturas</a>
+      <ion-tab title="Desarrolladores" icon-on="ion-person" icon-off="ion-person">
+        <ion-content class="padding">
+            <h4 class="subtitulo">Desarrolladores</h4>
+            <div class="list card item-border" ng-repeat="d in ayuda.datos.desarrolladores">
+              <div class="item item-avatar">
+                <img ng-src="img/{{d.imagen}}">
+                <h2>{{d.nombre}}</h2>
+                <p>{{d.malla}}</p>
+                <p><a href="mailto:{{d.correo}}">{{d.correo}}</a></p>
               </div>
             </div>
-          </ion-content>
-        </ion-tab>
+        </ion-content>
+      </ion-tab>
 
-        <ion-tab title="Settings" icon-on="ion-ios-gear" icon-off="ion-ios-gear-outline">
-          <ion-content class="padding">
-            <h4>Publicaciones Recientes</h4>
-            <div class="list card">
-              <div class="item">
-                <h2>Hola 3</h2>
-              </div>
+      <ion-tab title="Información de la App" icon-on="ion-gear-b" icon-off="ion-gear-b">
+        <ion-content class="padding">
+          <div class="list card">
+            <h4 class="item text-center text-white item-cabecera {{ayuda.tema}}">Información Aplicación</h4>
+            <div class="item">
+              <b>Nombre: </b> {{ayuda.datos.app.nombre}}
             </div>
-          </ion-content>
-        </ion-tab>
-
-      </ion-tabs>
-    </div>
-  </ion-pane>
+            <div class="item">
+              <b>Version:</b> {{ayuda.datos.app.versionApp}}
+            </div>
+            <div class="item">
+              <b>Fecha Version:</b> {{ayuda.datos.app.fecha_creacion}}
+            </div>
+            <div class="item">
+              <b>Descripción:</b> 
+              <p>{{ayuda.datos.app.descripcion}}</p>
+            </div>
+          </div>
+        </ion-content>
+      </ion-tab>
+    </ion-tabs>
+  </div>
 </ion-view>

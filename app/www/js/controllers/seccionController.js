@@ -22,6 +22,7 @@ angular.module('GATE')
     bz.eliminarOpcion = $rootScope.objectoCliente.tipo == 'Administrador' || $rootScope.objectoCliente.tipo == 'Profesor' ? true : false;
 
     bz.crearPublicacion = function () {
+      
       $state.go('inicio/seccion/publicacion', {
         datos: {
           id_seccion: $stateParams.id_seccion,
@@ -100,7 +101,8 @@ angular.module('GATE')
         datos.id_usuario = $rootScope.objectoCliente.id_usuario;
       }
       servicioSecciones.getAsistence(datos).then(function (res) {
-        bz.datos.asistencias = res.data;
+        ionicToast.show(res.data.msg, 'top', false, 2500);
+        bz.datos.asistencias = res.data.consulta;
       })
     }
 

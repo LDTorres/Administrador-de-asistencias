@@ -57,6 +57,22 @@ angular.module('GATE', ['ionic', 'ngCordova', 'ngFileUpload', 'ionic-datepicker'
           }]
         }
       })
+      .state('tutorial', {
+        url: '/tutorial',
+        templateUrl: 'js/views/tutorial.html',
+        controller: 'tutorialController as tutorial',
+        resolve: {
+          "currentAuth": ["$q", "servicioGeneral", function ($q, servicioGeneral) {
+
+            if (!servicioGeneral.autorizado()) {
+
+              return $q.reject("AUTH_REQUIRED");
+
+            }
+
+          }]
+        }
+      })
       // Inicio va a contener {timeline, todas las asignaturas y las secciones, perfil}
       .state('inicio', {
         url: '/inicio',
@@ -215,4 +231,4 @@ angular.module('GATE', ['ionic', 'ngCordova', 'ngFileUpload', 'ionic-datepicker'
         $state.go('inicio');
       }
     });
-  })
+  });

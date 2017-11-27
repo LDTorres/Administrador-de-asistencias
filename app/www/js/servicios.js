@@ -32,6 +32,35 @@ angular.module('GATE')
     id_trimestre: 12
   }])
 
+  .constant("constanteTutorial", [{
+    title: 'Gracias por usar nuestra aplicación!',
+    },{
+      description: 'Paso a paso te iremos mostrando el funcionamiento de la app'
+    },{
+      title: 'Inicio',
+      description: `Al momento que tu profesor te de el codigo de sección debes ir al apartado de aignaturas y presionar el boton de inscripción. 
+      Te llevará a un formulario donde colocaras el codigo y ya esta!.`
+    },{
+      title: 'Inicio',
+      description: `Puedes dejar que la app te lleve a tu sección o puedes buscarla luego desde el mismo apartado seleccionando trimestre, asignatura y por ultimo tu sección.`
+    },{
+      description: `Allí veras las publicaciones que tu profesor ha hecho, tambien podrás consultar tus asistencias de clases.`
+    },{
+      title: 'Tus datos y preferencias!',
+      description: ``
+    },{
+      title: 'Perfil',
+      description: `En el apartado de perfil, podrás ver tus datos, modificarlos y guardarlos persionando el botón guardar.`
+    },{
+      description: `En la pestaña de config, podras cambiarle el color a tu app, seleccionando el color y guardando.
+      Tambien podras cerrar sesion e ir al apartado de ayuda.`
+    },{
+      title: 'Esperamos que sigas utilizando la App para tus estudios!'
+    },{
+    title: 'Si aun no lo tienes!',
+    description: `En la seccion de ayuda esta el boton, manual de usuarios descargalo y listo.`
+  }])
+
   .factory('LS', ['$window', '$rootScope', function ($window, $rootScope) {
     return {
       definir: function (llave, valor) {
@@ -47,7 +76,7 @@ angular.module('GATE')
 
   /* INGRESAR */
 
-  .service("servicioGeneral", ["$http", "$q", "ruta", "$rootScope", "$window", function ($http, $q, ruta, $rootScope, $window) {
+  .service("servicioGeneral", ["$http", "$q", "ruta", "$rootScope", "$window", "$ionicHistory", function ($http, $q, ruta, $rootScope, $window, $ionicHistory) {
 
     // Espera por parametro {usuario | correo, contrasena}
     this.ingresar = function (datos) {
@@ -56,23 +85,24 @@ angular.module('GATE')
       var promise = defered.promise;
 
       $http.post(ruta + '/login', datos).then(function (res) {
-
-        $window.localStorage.setItem('token', JSON.stringify(res.data));
+        $window.localStorage.setItem('token', angular.toJson(res.data));
         $rootScope.objectoCliente = res.data;
+
         defered.resolve(res);
 
       }).catch(function (res) {
         $window.localStorage.removeItem('token');
+        delete $rootScope.objectoCliente;
         defered.reject(res);
-      })
+      });
 
       return promise;
-    }
+    };
 
     this.salir = function () {
-      $rootScope.objectoCliente = false;
       $window.localStorage.removeItem('token');
-    }
+      delete $rootScope.objectoCliente;
+    };
 
     // Espera por parametro {usuario, contrasena, nombre_completo, cedula, correo, telefono, id_malla}
     this.registrar = function (datos) {
@@ -81,16 +111,17 @@ angular.module('GATE')
       var promise = defered.promise;
 
       $http.post(ruta + '/singup', datos).then(function (res) {
-
-        $window.localStorage.setItem('token', JSON.stringify(res.data));
-        $rootScope.objectoCliente = res.data;
+        if(res.data.datos){
+          $window.localStorage.setItem('token', angular.toJson(res.data.datos));
+          $rootScope.objectoCliente = res.data.datos;
+        }
         defered.resolve(res);
-
       }).catch(function (res) {
 
         defered.reject(res);
       });
       return promise;
+      
     };
 
     this.autorizado = function () {
@@ -103,7 +134,7 @@ angular.module('GATE')
 
         if ($window.localStorage.getItem('token')) {
 
-          $rootScope.objectoCliente = JSON.parse($window.localStorage.getItem('token'));
+          $rootScope.objectoCliente = angular.fromJson($window.localStorage.getItem('token'));
 
           return $rootScope.objectoCliente;
 
@@ -115,7 +146,7 @@ angular.module('GATE')
 
       }
 
-    }
+    };
 
     // Devuelve la informacion de la aplicacion
     this.app = function () {
@@ -123,15 +154,9 @@ angular.module('GATE')
       var defered = $q.defer();
       var promise = defered.promise;
 
-      $http.get(ruta + '/app').then(function (res) {
-
-        defered.resolve(res);
-
-      }).catch(function (res) {
-
-        defered.reject(res);
-
-      })
+      $http.get(ruta + '/').then(function (res) {
+        defered.resolve(res.data);
+      });
       return promise;
     };
 
@@ -802,8 +827,9 @@ angular.module('GATE')
 
   .factory('AuthInterceptor', function ($window, $q, $rootScope) {
     function salir() {
-      $rootScope.objectoCliente = false;
-      $window.localStorage.removeItem('bzToken');
+      delete $rootScope.objectoCliente;
+      $window.localStorage.removeItem('token');
+      location.reload();
     }
 
     function autorizado() {
@@ -811,7 +837,7 @@ angular.module('GATE')
         return $rootScope.objectoCliente;
       } else {
         if ($window.localStorage.getItem('token')) {
-          $rootScope.objectoCliente = JSON.parse($window.localStorage.getItem('token'));
+          $rootScope.objectoCliente = angular.fromJson($window.localStorage.getItem('token'));
           return $rootScope.objectoCliente;
         } else {
           return false;
@@ -825,15 +851,21 @@ angular.module('GATE')
         if (autorizado()) {
           config.headers.auth = autorizado().token;
         }
-
+        //config.headers.cors = {'Access-Control-Allow-Origin':'*', 'Access-Control-Allow-Headers': 'X-Requested-With, Content-Type, Accept, Origin, Authorization', 'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS'};
         return config || $q.when(config);
 
       },
       response: function (response) {
-        if (response.status === 401 || response.status === 403) {
-          salir();
-        }
         return response || $q.when(response);
+      },
+      responseError: function (response) {
+          if (response.status === 401 || response.status === 403 || response.status === 500) {
+            if(response.status === 500 && response.data.exception[0].message == "Expired token"){
+              salir();
+            }else{
+              return response || $q.when(response);
+            }
+          }
       }
     };
   });

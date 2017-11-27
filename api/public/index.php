@@ -27,6 +27,12 @@ require __DIR__ . '/../src/dependencies.php';
 // Register my App
 require __DIR__ . '/../app/app_loader.php';
 
-// Run app
+$app->add(function ($req, $res, $next) {
+    $response = $next($req, $res);
+    return $response
+            ->withHeader('Access-Control-Allow-Origin', '*')
+            ->withHeader('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Accept, Origin, Authorization, auth')
+            ->withHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+});
 
 $app->run();

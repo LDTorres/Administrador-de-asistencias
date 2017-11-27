@@ -1,4 +1,0 @@
-El framework que se va a usar es slim 3.0
-
-Documentation: https://www.slimframework.com/docs/
-

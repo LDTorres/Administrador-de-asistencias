@@ -1,44 +1,52 @@
 {
-    "name": "iuteb_gate",
-    "version": "0.0.1",
-    "description": "Administrador de asistencias",
-    "dependencies": {
-        "cordova-android": "^6.2.3",
-        "cordova-browser": "^4.1.0",
-        "cordova-plugin-console": "^1.0.5",
-        "cordova-plugin-device": "^1.1.4",
-        "cordova-plugin-email-composer": "^0.8.11",
-        "cordova-plugin-splashscreen": "^4.0.3",
-        "cordova-plugin-statusbar": "^2.2.1",
-        "cordova-plugin-whitelist": "^1.3.1",
-        "gulp": "^3.5.6",
-        "gulp-concat": "^2.2.0",
-        "gulp-minify-css": "^0.3.0",
-        "gulp-rename": "^1.2.0",
-        "gulp-sass": "^2.3.2",
-        "ionic-plugin-keyboard": "^2.2.1",
-        "ng-file-upload": "^12.2.13",
-        "shebang-command": "^1.2.0"
+  "name": "iuteb_gate",
+  "version": "0.0.1",
+  "description": "Administrador de asistencias",
+  "scripts": {
+    "construir": "ionic cordova build android --verbose",
+    "iniciar": "ionic cordova run android --verbose",
+    "serve": "ionic serve --local -l --no-open",
+    "correr": "npm run construir && npm run iniciar"
+  },
+  "dependencies": {
+    "cordova-android": "^6.2.3",
+    "cordova-plugin-console": "^1.0.5",
+    "cordova-plugin-device": "^1.1.4",
+    "cordova-plugin-email-composer": "^0.8.11",
+    "cordova-plugin-file": "^5.0.0",
+    "cordova-plugin-file-transfer": "^1.7.0",
+    "cordova-plugin-splashscreen": "^4.0.3",
+    "cordova-plugin-statusbar": "^2.2.1",
+    "cordova-plugin-whitelist": "^1.3.1",
+    "gulp": "^3.5.6",
+    "gulp-concat": "^2.2.0",
+    "gulp-minify-css": "^0.3.0",
+    "gulp-rename": "^1.2.0",
+    "gulp-sass": "^2.3.2",
+    "ionic-plugin-keyboard": "^2.2.1",
+    "ng-file-upload": "^12.2.13",
+    "shebang-command": "^1.2.0"
+  },
+  "devDependencies": {
+    "bower": "^1.3.3",
+    "gulp-util": "^2.2.14",
+    "ionic": "3.19.0",
+    "shelljs": "^0.3.0"
+  },
+  "cordova": {
+    "plugins": {
+      "cordova-plugin-console": {},
+      "cordova-plugin-device": {},
+      "cordova-plugin-splashscreen": {},
+      "cordova-plugin-statusbar": {},
+      "cordova-plugin-whitelist": {},
+      "ionic-plugin-keyboard": {},
+      "cordova-plugin-email-composer": {},
+      "cordova-plugin-file": {},
+      "cordova-plugin-file-transfer": {}
     },
-    "devDependencies": {
-        "bower": "^1.3.3",
-        "gulp-util": "^2.2.14",
-        "ionic": "3.16.0",
-        "shelljs": "^0.3.0"
-    },
-    "cordova": {
-        "plugins": {
-            "cordova-plugin-console": {},
-            "cordova-plugin-device": {},
-            "cordova-plugin-splashscreen": {},
-            "cordova-plugin-statusbar": {},
-            "cordova-plugin-whitelist": {},
-            "ionic-plugin-keyboard": {},
-            "cordova-plugin-email-composer": {}
-        },
-        "platforms": [
-            "android",
-            "browser"
-        ]
-    }
+    "platforms": [
+      "android"
+    ]
+  }
 }

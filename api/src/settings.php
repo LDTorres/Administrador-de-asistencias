@@ -13,7 +13,7 @@ return [
             'host' => 'localhost',
             'user' => 'root',
             'pass' => '',
-            'dbname' => 'iuteb_asignaturas'
+            'dbname' => 'Iuteb_asignaturas'
         ]
     ],
 ];
