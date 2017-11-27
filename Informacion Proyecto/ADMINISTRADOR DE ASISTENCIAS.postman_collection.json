@@ -227,20 +227,13 @@
 					"description": "",
 					"type": "text",
 					"enabled": true
-				},
-				{
-					"key": "micorreo",
-					"value": "null",
-					"description": "",
-					"type": "text",
-					"enabled": true
 				}
 			],
 			"dataMode": "urlencoded",
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1511749115830,
+			"time": 1511782262023,
 			"name": "Reporte",
 			"description": "Reporte de asistencias",
 			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
@@ -322,13 +315,13 @@
 		},
 		{
 			"id": "2a42b3d1-5fec-c6d6-6582-7b0a20a6415c",
-			"headers": "auth: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MDY4ODkwNDcsImV4cCI6MTUwNzEwNTA0NywiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIxIiwibmFtZSI6IkFkbWluIiwidGlwbyI6IkFkbWluaXN0cmFkb3IiLCJpZF9tYWxsYSI6IjEifX0.HckoUe3k4Dvkhyq_nkFYnH19pIYbZO6Mm7h3awUorUE\n",
+			"headers": "auth: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MTE3NTM2ODYsImV4cCI6MTUyNDcxMzY4NiwiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIxIiwibmFtZSI6IkFkbWluaXN0cmFkb3IiLCJ0aXBvIjoiQWRtaW5pc3RyYWRvciIsImlkX21hbGxhIjoiMSJ9fQ.IfPvFetXRrnWTLWMPEeEY2sc9TiMgWMiv6NXc6MPo8o\n",
 			"headerData": [
 				{
 					"key": "auth",
-					"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MDY4ODkwNDcsImV4cCI6MTUwNzEwNTA0NywiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIxIiwibmFtZSI6IkFkbWluIiwidGlwbyI6IkFkbWluaXN0cmFkb3IiLCJpZF9tYWxsYSI6IjEifX0.HckoUe3k4Dvkhyq_nkFYnH19pIYbZO6Mm7h3awUorUE",
-					"enabled": true,
-					"description": ""
+					"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MTE3NTM2ODYsImV4cCI6MTUyNDcxMzY4NiwiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIxIiwibmFtZSI6IkFkbWluaXN0cmFkb3IiLCJ0aXBvIjoiQWRtaW5pc3RyYWRvciIsImlkX21hbGxhIjoiMSJ9fQ.IfPvFetXRrnWTLWMPEeEY2sc9TiMgWMiv6NXc6MPo8o",
+					"description": "",
+					"enabled": true
 				}
 			],
 			"url": "{{url}}/user/1",
@@ -343,13 +336,12 @@
 			"version": 2,
 			"tests": null,
 			"currentHelper": "normal",
-			"helperAttributes": "{}",
-			"time": 1506890224522,
+			"helperAttributes": {},
+			"time": 1511753983939,
 			"name": "Traer usuario por id",
 			"description": "Obetenemos los datos de un usuario por su id",
 			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
-			"responses": [],
-			"timestamp": null
+			"responses": []
 		},
 		{
 			"id": "2c897d28-2a72-8845-bb28-259c55426e9f",
@@ -2150,8 +2142,8 @@
 				{
 					"key": "Content-Type",
 					"value": "application/x-www-form-urlencoded",
-					"enabled": true,
-					"description": ""
+					"description": "",
+					"enabled": true
 				}
 			],
 			"url": "{{url}}/login",
@@ -2171,7 +2163,7 @@
 				},
 				{
 					"key": "contrasena",
-					"value": "SoporteGATE",
+					"value": "1",
 					"description": "",
 					"type": "text",
 					"enabled": true
@@ -2180,13 +2172,12 @@
 			"dataMode": "urlencoded",
 			"tests": null,
 			"currentHelper": "normal",
-			"helperAttributes": "{}",
-			"time": 1511713512770,
+			"helperAttributes": {},
+			"time": 1511780577931,
 			"name": "Ingreso",
 			"description": "Iniciamos sesion y desbloqueamos las rutas",
 			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
-			"responses": [],
-			"timestamp": null
+			"responses": []
 		},
 		{
 			"id": "ca593f2f-4a16-d295-d2d8-aca5e9e977f1",

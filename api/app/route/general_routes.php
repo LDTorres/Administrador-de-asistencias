@@ -61,7 +61,7 @@ $app->get('/[{app}]', function ($req, $res, $args) {
 
     $sth->execute();
 
-    if($args['app'] == 'json'){
+    if(isset($args['app']) != NULL){
         return $this->response->withJson($sth->fetch());
     }
 

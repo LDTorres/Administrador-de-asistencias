@@ -410,12 +410,12 @@ class SeccionesModel {
             }
 
             if($ta > 0){
-                $datos['datos']['alumnos_seccion'][$llave]['porcentaje_asistencias'] = $ta * 100 / $encuentros;
+                $datos['datos']['alumnos_seccion'][$llave]['porcentaje_asistencias'] = round($ti * 100 / $encuentros, 0, PHP_ROUND_HALF_UP);
                 $datos['datos']['alumnos_seccion'][$llave]['porcentaje_inasistencias'] = 100 - $datos['datos']['alumnos_seccion'][$llave]['porcentaje_asistencias'];
             }
             
             if($ti > 0){
-                $datos['datos']['alumnos_seccion'][$llave]['porcentaje_inasistencias'] = $ti * 100 / $encuentros;
+                $datos['datos']['alumnos_seccion'][$llave]['porcentaje_inasistencias'] = round($ti * 100 / $encuentros, 0, PHP_ROUND_HALF_UP);
                 $datos['datos']['alumnos_seccion'][$llave]['porcentaje_asistencias'] = 100 - $datos['datos']['alumnos_seccion'][$llave]['porcentaje_inasistencias'];
             }
 
