@@ -5,8 +5,6 @@ angular.module('GATE')
 
   .constant("ruta", "http://localhost:3454")
 
-
-
   .constant("trimestresConstante", [{
     id_trimestre: 1
   }, {
@@ -920,12 +918,12 @@ angular.module('GATE')
         return response || $q.when(response);
       },
       responseError: function (response) {
-        if (response.status === 401 || response.status === 403 || response.status === 500) {
-          if (response.status === 500 && response.data.exception[0].message == "Expired token") {
-            salir();
-          } else {
-            return response || $q.when(response);
-          }
+        if (response.status === 401 || response.status === 403) {
+          salir();
+        } else if (response.status === 500 && response.data.exception[0].message == "Expired token") {
+          salir();
+        } else {
+          return response || $q.when(response);
         }
       }
     };

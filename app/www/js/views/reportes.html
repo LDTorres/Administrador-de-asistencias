@@ -5,10 +5,10 @@
     </ion-nav-bar>
     <ion-content class="padding">
       <form class="input-inset list" ng-submit="reportes.enviarReporte(reportes.datos.reporte)" name="reporte" novalidate>
-        <ion-toggle ng-model="reportes.datos.reporte.micorreo" ng-checked="true">
+        <ion-toggle ng-model="reportes.datos.micorreo" ng-checked="true">
           Enviar a tu correo
         </ion-toggle>
-        <label class="item item-input" ng-if="reportes.datos.reporte.micorreo == false">
+        <label class="item item-input" ng-if="reportes.datos.micorreo == false">
           <input type="text" placeholder="Correo:" ng-model="reportes.datos.reporte.correo" name="correo" required>
         </label>
         <div class="item" style="color:maroon" role="alert" ng-show="reporte.correo.$touched && reporte.correo.$invalid">

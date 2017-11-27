@@ -7,6 +7,7 @@
       <ion-tabs class="tabs-{{seccion.tema}} tabs-icon-top">
         <ion-tab title="Publicaciones" icon-on="ion-ios-filing" icon-off="ion-ios-filing-outline">
           <ion-content class="padding has-tabs">
+            <button class="button button-block button-outline button-{{seccion.tema}}" ng-click="seccion.morePosts()">Refrescar</button>
             <a ng-if="seccion.datos.tipo == 'Administrador' || seccion.datos.tipo == 'Profesor'" class="button button-block button-outline button-{{seccion.tema}}"
               ng-click="seccion.crearPublicacion()"> Nueva Publicación </a>
             <div class="list" ng-if="seccion.datos.posts.length >= 10">
@@ -76,13 +77,10 @@
               ui-sref="inicio/seccion/asistencias({datos: seccion.datos})">
               Gestion de Asistencias
             </a>
-
-            <div>
-              <a ng-if="seccion.datos.tipo == 'Administrador' || seccion.datos.tipo == 'Profesor'" class="button button-block button-outline button-balanced icon-right ion-ios-plus-outline"
-                ui-sref="inicio/seccion/reportes({datos: seccion.datos.seccion})">
-                Reporte
-              </a>
-            </div>
+            <a ng-if="seccion.datos.tipo == 'Administrador' || seccion.datos.tipo == 'Profesor'" class="button button-block button-outline button-balanced icon-right ion-ios-plus-outline"
+              ui-sref="inicio/seccion/reportes({datos: seccion.datos.seccion})">
+              Reporte
+            </a>
 
             <div class="list card">
               <div class="item item-divider">
@@ -113,7 +111,7 @@
           </ion-content>
         </ion-tab>
 
-        <ion-tab title="Informacion " icon-on="ion-ios-gear " icon-off="ion-ios-gear-outline ">
+        <ion-tab title="Información" icon-on="ion-ios-gear " icon-off="ion-ios-gear-outline ">
           <ion-content class="padding ">
             <div class="list card " ng-repeat="s in seccion.datos.seccion ">
               <h4 class="item text-center text-white item-cabecera {{seccion.tema}} ">Informacion Seccion</h4>
@@ -121,7 +119,7 @@
                 <b>Nombre Sección: </b> {{s.nombre}}
               </div>
               <div class="item ">
-                <b>Materia:</b> {{s.nombre_asig}}
+                <b>Asignatura:</b> {{s.nombre_asig}}
               </div>
               <div class="item ">
                 <b>Profesor:</b> {{s.nombre_completo}}

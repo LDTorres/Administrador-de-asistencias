@@ -659,61 +659,57 @@ class SeccionesModel {
         $pdf_gen = $dompdf->output();
         
         if(isset($params['app']) != NULL){
-
-            if($params['micorreo'] == 'false' || $params['micorreo'] == 'true' || $params['micorreo'] == false || $params['micorreo'] == true){
-                if(!file_put_contents('app/outputPDF/'.$filename, $pdf_gen)){
-                    return array('msg' => 'pdf no generado');
-                }
-
-                $adjunto = 'app/outputPDF/'.$filename;
-                $mail = new PHPMailer(true);   
-            
-                try {
-                    //Server settings                                // Enable verbose debug output
-                    $mail->isSMTP();                                      // Set mailer to use SMTP
-                    $mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
-                    $mail->SMTPAuth = true;                               // Enable SMTP authentication
-                    $mail->Username = 'iutebgate@gmail.com';                 // SMTP username
-                    $mail->Password = 'SoporteGATE';                           // SMTP password
-                    $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
-                    $mail->Port = 587;                                    // TCP port to connect to
-
-                    //Recipients
-                    $mail->setFrom('iutebgate@gmail.com', 'IUTEB GATE SOPORTE');
-
-                    if($params['micorreo'] == 'true' || $params['micorreo'] == true){
-                        $mail->addAddress($datos['datos']['seccion'][0]['correo']);
-                    }
-                    
-                    if($params['micorreo'] == 'false' || $params['micorreo'] == false){
-                        $mail->addAddress($params['correo']);
-                    }
-
-                    $mail->addAttachment($adjunto);    // Optional name
-
-                    $mail->isHTML(true);                                  // Set email format to HTML
-                    $mail->Subject = 'Reporte de Asistencias!';
-                    $mail->Body    = "<h2>Reporte adjunto en el correo</h2>";
-
-                    $mail->CharSet = 'utf-8';
-                    $mail->SMTPOptions = array(
-                        'ssl' => array(
-                            'verify_peer' => false,
-                            'verify_peer_name' => false,
-                            'allow_self_signed' => true
-                        )
-                    );
-
-                    $mail->send();
-
-                    return array('datos' => $datos['datos'], 'msg' => 'pdf generado y Correo Enviado!', 'nombre_pdf' => $filename);
-
-                } catch (Exception $e) {
-
-                    return array('msg' => $mail->ErrorInfo);
-
-                }
+            if(!file_put_contents('app/outputPDF/'.$filename, $pdf_gen)){
+                return array('msg' => 'pdf no generado');
             }
+
+            $adjunto = 'app/outputPDF/'.$filename;
+            $mail = new PHPMailer(true);   
+        
+            try {
+                //Server settings                                // Enable verbose debug output
+                $mail->isSMTP();                                      // Set mailer to use SMTP
+                $mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
+                $mail->SMTPAuth = true;                               // Enable SMTP authentication
+                $mail->Username = 'iutebgate@gmail.com';                 // SMTP username
+                $mail->Password = 'SoporteGATE';                           // SMTP password
+                $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+                $mail->Port = 587;                                    // TCP port to connect to
+
+                //Recipients
+                $mail->setFrom('iutebgate@gmail.com', 'IUTEB GATE SOPORTE');
+
+                if($params['app'] == 'Correo Propio'){
+                    $mail->addAddress($datos['datos']['seccion'][0]['correo']);
+                }else{
+                    $mail->addAddress($params['correo']);
+                }
+
+                $mail->addAttachment($adjunto);    // Optional name
+
+                $mail->isHTML(true);                                  // Set email format to HTML
+                $mail->Subject = 'Reporte de Asistencias!';
+                $mail->Body    = "<h2>Reporte adjunto en el correo</h2>";
+
+                $mail->CharSet = 'utf-8';
+                $mail->SMTPOptions = array(
+                    'ssl' => array(
+                        'verify_peer' => false,
+                        'verify_peer_name' => false,
+                        'allow_self_signed' => true
+                    )
+                );
+
+                $mail->send();
+
+                return array('datos' => $datos['datos'], 'msg' => 'pdf generado y Correo Enviado!', 'nombre_pdf' => $filename);
+
+            } catch (Exception $e) {
+
+                return array('msg' => $mail->ErrorInfo);
+
+            }
+            
         }
 
         if(!file_put_contents('app/outputPDF/'.$filename, $pdf_gen)){
