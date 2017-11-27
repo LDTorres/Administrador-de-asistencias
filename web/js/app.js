@@ -24,74 +24,68 @@ angular.module("GATE", ["ui.router", 'ngAnimate', 'ngTouch', 'ui.bootstrap'])
         }
       })
       .state({
-        name: 'listado',
-        url: '/listado',
-        templateUrl: 'js/views/listado.html',
-        controller: 'listadoController as listado',
+        name: 'malla',
+        url: '/malla',
+        templateUrl: 'js/views/malla.html',
+        controller: 'mallaController as malla',
         resolve: {
           "currentAuth": ["$q", "servicioGeneral", function ($q, servicioGeneral) {
-            /*
-                        if (!servicioGeneral.autorizado()) {
+            if (!servicioGeneral.autorizado()) {
 
-                          return $q.reject("AUTH_REQUIRED");
+              return $q.reject("AUTH_REQUIRED");
 
-                        }
-            */
+            }
           }]
         }
       })
       .state({
-        name: 'trimestre',
-        url: '/trimestre',
-        templateUrl: 'js/views/trimestre.html',
-        controller: 'trimestreController as trimestre',
+        name: 'profesores',
+        url: '/profesores',
+        templateUrl: 'js/views/profesores.html',
+        controller: 'profesoresController as profesores',
         resolve: {
           "currentAuth": ["$q", "servicioGeneral", function ($q, servicioGeneral) {
-            /*
-                                    if (!servicioGeneral.autorizado()) {
 
-                                      return $q.reject("AUTH_REQUIRED");
+            if (!servicioGeneral.autorizado()) {
 
-                                    }
-                        */
+              return $q.reject("AUTH_REQUIRED");
+
+            }
 
           }]
         }
       })
 
       .state({
-        name: 'inscripcion',
-        url: '/inscripcion',
-        templateUrl: 'js/views/inscripcion.html',
-        controller: 'inscripcionController as inscripcion',
+        name: 'asistencia',
+        url: '/asistencia',
+        templateUrl: 'js/views/asistencia.html',
+        controller: 'asistenciaController as asistencia',
         resolve: {
           "currentAuth": ["$q", "servicioGeneral", function ($q, servicioGeneral) {
-            /*
-                                    if (!servicioGeneral.autorizado()) {
 
-                                      return $q.reject("AUTH_REQUIRED");
+            if (!servicioGeneral.autorizado()) {
 
-                                    }
-                        */
+              return $q.reject("AUTH_REQUIRED");
+
+            }
 
           }]
         }
       })
       .state({
-        name: 'perfil',
-        url: '/perfil',
-        templateUrl: 'js/views/perfil.html',
-        controller: 'perfilController as perfil',
+        name: 'ayuda',
+        url: '/ayuda',
+        templateUrl: 'js/views/ayuda.html',
+        controller: 'ayudaController as ayuda',
         resolve: {
           "currentAuth": ["$q", "servicioGeneral", function ($q, servicioGeneral) {
-            /*
-                                    if (!servicioGeneral.autorizado()) {
 
-                                      return $q.reject("AUTH_REQUIRED");
+            if (!servicioGeneral.autorizado()) {
 
-                                    }
-                        */
+              return $q.reject("AUTH_REQUIRED");
 
+            }
           }]
         }
       })
@@ -118,7 +112,7 @@ angular.module("GATE", ["ui.router", 'ngAnimate', 'ngTouch', 'ui.bootstrap'])
 
         $state.go("login");
       } else if (error === "LOGOUT_REQUIRED") {
-        $state.go('listado');
+        $state.go('malla');
       }
     });
   })

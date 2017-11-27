@@ -31,14 +31,13 @@
 
   <!-- Controladores -->
 
-  <script src="js/controllers/asignaturaController.js"></script>
   <script src="js/controllers/asistenciaController.js"></script>
+  <script src="js/controllers/ayudaController.js"></script>
   <script src="js/controllers/headerController.js"></script>
-  <script src="js/controllers/inscripcionController.js"></script>
-  <script src="js/controllers/listadoController.js"></script>
   <script src="js/controllers/loginController.js"></script>
-  <script src="js/controllers/perfilController.js"></script>
-  <script src="js/controllers/trimestreController.js"></script>
+  <script src="js/controllers/mallaController.js"></script>
+  <script src="js/controllers/profesoresController.js"></script>
+
 </head>
 
 <body ng-app="GATE">
@@ -52,16 +51,20 @@
         </div>
         <ul class="nav navbar-nav">
           <li class="active">
-            <a href="#">INICIO</a>
+
+            <a href="#!/asistencia">Asistencia</a>
           </li>
           <li>
-            <a href="#">MENU1</a>
+            <a href="#!/profesores">Profesores</a>
           </li>
           <li>
-            <a href="#">MENU2</a>
+            <a href="#!/malla">Malla</a>
           </li>
           <li>
-            <a href="#">MENU3</a>
+            <a href="#!/ayuda">Ayuda</a>
+          </li>
+          <li>
+            <a href="#" ng-click="header.cerrarSesion()">Salir</a>
           </li>
         </ul>
       </div>

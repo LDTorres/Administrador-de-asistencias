@@ -1,0 +1,29 @@
+login - listo
+
+malla
+{
+	listar malla curricular 
+	modificar
+        reporte pdf
+}
+
+profesores
+{
+ listar,
+ crear,
+ modificar
+}
+
+asistencias 
+{ 
+  listar asistencias
+  asignar asistencias
+}
+
+ayuda
+{
+  manual de usuarios
+  base de datos
+  
+}
+

@@ -1,3 +1,4 @@
-crud, login
-registrar malla curricular, asignaturas por trimestre
-respaldo, listado, restauracion base de datos
+login
+malla curricular(listar malla: {
+  asignaturas - trimestre - > secciones
+}, crear y modificar)

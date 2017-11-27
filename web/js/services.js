@@ -255,12 +255,14 @@ angular.module('GATE')
 
     /* Espera como parametro {tipo de ususario, por defecto es ESTUDIANTE} */
 
+    /* OBTENER TODOS LOS ESTUDIANTES */
+
     this.getAll = function (datos) {
 
       var defered = $q.defer();
       var promise = defered.promise;
 
-      $http.get(ruta + '/user/all/' + datos).then(function (res) {
+      $http.get(ruta + '/user/all' + datos).then(function (res) {
 
 
         defered.resolve(res);
@@ -272,6 +274,29 @@ angular.module('GATE')
       });
       return promise;
     };
+
+    /*OBTENER TODOS LOS PROFESORES*/
+
+
+    this.getAllTeacher = function (datos) {
+
+      var defered = $q.defer();
+      var promise = defered.promise;
+
+      $http.get(ruta + '/user/all/Profesor' + datos).then(function (res) {
+
+
+        defered.resolve(res);
+
+      }).catch(function (res) {
+
+
+        defered.reject(res);
+      });
+      return promise;
+    };
+
+
 
     /* Espera como parametro {id del usuario} */
 
@@ -835,4 +860,75 @@ angular.module('GATE')
         return response || $q.when(response);
       }
     };
-  });
+  })
+
+  .service("servicioDB", ["$http", "$q", "ruta", "$rootScope", "$window", function ($http, $q, ruta, $rootScope, $window) {
+
+    // Devuelve la informacion de la aplicacion
+    this.backup = function () {
+
+      var defered = $q.defer();
+      var promise = defered.promise;
+
+      $http.get(ruta + '/bd/backup').then(function (res) {
+
+        defered.resolve(res);
+
+      }).catch(function (res) {
+
+        defered.reject(res);
+
+      })
+      return promise;
+    };
+
+
+    this.backups = function () {
+
+      var defered = $q.defer();
+      var promise = defered.promise;
+
+      $http.get(ruta + '/bd/backups').then(function (res) {
+
+        defered.resolve(res);
+
+      }).catch(function (res) {
+
+        defered.reject(res);
+
+      })
+      return promise;
+    };
+
+
+
+
+    this.restore = function (datos) {
+
+      var defered = $q.defer();
+      var promise = defered.promise;
+
+      $http.post(ruta + '/bd/restore', datos).then(function (res) {
+        defered.resolve(res);
+      }).catch(function (res) {
+        defered.reject(res);
+      });
+      return promise;
+    };
+
+
+    this.delete = function (datos) {
+
+      var defered = $q.defer();
+      var promise = defered.promise;
+      console.log(datos)
+      $http.post(ruta + '/bd/delete', datos).then(function (res) {
+        defered.resolve(res);
+      }).catch(function (res) {
+        defered.reject(res);
+      });
+      return promise;
+    };
+
+
+  }])

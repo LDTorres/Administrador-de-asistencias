@@ -129,7 +129,7 @@ class BDModel {
                 return array('msg'=>'No existe el registro');
             endif;
 
-            return array('archivo' => $this->path.$filename, 'Consulta' => $result);
+            return array('archivo' => $filename, 'Consulta' => $result);
         else:
             return array('msg'=>'No existe el archivo');
         endif;

@@ -1,4 +1,1 @@
-Abrir CMD y colocar comando
-Abrir XAMP
-
 php -S localhost:3454 -t public public/index.php

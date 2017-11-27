@@ -1,0 +1,12 @@
+<div class="respaldos">
+  <h1>Respaldos</h1>
+
+
+  <form method="post" ng-submit="" clas="col-5">
+    <li ng-repeat="respaldo in ayuda.datos.respaldos" value="{{respaldo.id}}">{{respaldo.filename}}</option>
+      <button ng-click="ayuda.eliminar($index)">eliminar</button>
+      <button ng-click="ayuda.restaurar(respaldo.filename)">restaurar</button>
+    </li>
+    <button type="submit" class="btn btn-primary btn-block col-2">Entrar</button>
+  </form>
+</div>
