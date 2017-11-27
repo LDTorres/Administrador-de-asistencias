@@ -17,7 +17,7 @@ angular.module('GATE')
     bz.tema = $rootScope.objectoCliente.preferencias.color_ui;
 
     bz.posts = function (datos) {
-      if($rootScope.objectoCliente.tipo != 'Estudiante'){
+      if ($rootScope.objectoCliente.tipo != 'Estudiante') {
         datos.tipo = $rootScope.objectoCliente.tipo;
       }
       servicioGeneral.timeline(datos).then(function (res) {
@@ -25,33 +25,33 @@ angular.module('GATE')
       })
     }
 
-    bz.morePosts = function () {
+    bz.morePosts = function (v) {
 
-      datos = {
+      var d = {
         id_usuario: bz.datos.user.id_usuario,
         offset: bz.datos.posts.length
       }
 
-      if($rootScope.objectoCliente.tipo != 'Estudiante'){
+      if ($rootScope.objectoCliente.tipo != 'Estudiante') {
         datos.tipo = $rootScope.objectoCliente.tipo;
       }
-      
-      servicioGeneral.timeline(datos).then(function (res) {
+
+      servicioGeneral.timeline(d).then(function (res) {
         if (res.data.length > 0) {
           res.data.forEach(function (element) {
             bz.datos.posts.push(element)
           }, this);
-        }else{
-          ionicToast.show('No hay publicaciones nuevas', 'top', false, 2500);
+        } else {
+          ionicToast.show('No hay mas publicaciones', 'top', false, 2500);
         }
       })
     }
 
     bz.listarAsignaturas = function (datos) {
       servicioAsignatura.getAll(datos).then(function (res) {
-        if(res.data.length == 0){
+        if (res.data.length == 0) {
           ionicToast.show('No hay ninguna asignatura para ese trimestre', 'top', false, 2500);
-        }else{
+        } else {
           bz.datos.asignaturas = res.data;
         }
       });
@@ -64,14 +64,14 @@ angular.module('GATE')
         id_usuario: $rootScope.objectoCliente.id
       }
 
-      if(d.objectoCliente.tipo != 'Estudiante'){
+      if (d.objectoCliente.tipo != 'Estudiante') {
         bz.da.tipo = 'Profesor';
-      } 
+      }
 
       servicioSecciones.getAll(bz.da).then(function (res) {
-        if(res.data.length == 0){
+        if (res.data.length == 0) {
           ionicToast.show('No esta inscrito a ninguna seccion de esa asignatura', 'top', false, 2500);
-        }else{
+        } else {
           bz.datos.secciones = res.data;
         }
       });
@@ -81,7 +81,7 @@ angular.module('GATE')
 
     bz.datosUsuario = function (id) {
       servicioUsuario.get(id).then(function (res) {
-        
+
         bz.datos.user = res.data;
         bz.datos.listarAsignaturas.id_malla = res.data.id_malla;
 
@@ -98,7 +98,7 @@ angular.module('GATE')
       })
     }
 
-    $scope.$on('$ionicView.beforeEnter', function(){
+    $scope.$on('$ionicView.beforeEnter', function () {
       bz.tema = $rootScope.objectoCliente.preferencias.color_ui;
       bz.datos.preferencias = $rootScope.objectoCliente.preferencias;
       bz.datos.objectoCliente = $rootScope.objectoCliente;
@@ -120,8 +120,7 @@ angular.module('GATE')
 
       datos.id_usuario = $rootScope.objectoCliente.id;
       servicioUsuario.updatePreferences(datos).then(function (res) {
-        console.log(res)
-      
+
         $rootScope.objectoCliente.preferencias = datos;
         $window.localStorage.setItem('token', angular.toJson($rootScope.objectoCliente));
 
@@ -153,41 +152,5 @@ angular.module('GATE')
         } else {}
       });
     }
-
-    // Descargar Archivo
-
-    bz.descargarArchivo = function(){
-
-      var url = "http://192.168.1.7/api/assets/uploads/0642b3ed37608038.jpg";
-      var targetPath = cordova.file.documentsDirectory + "imagen.png";
-      var trustHosts = true;
-      var options = {};
-  
-      $cordovaFileTransfer.download(url, targetPath, options, trustHosts)
-        .then(function(result) {
-          console.log('Exito')
-          console.log(result)
-        }, function(err) {
-          // Error
-        }, function (progress) {
-          $timeout(function () {
-            $scope.downloadProgress = (progress.loaded / progress.total) * 100;
-          });
-        });
-
-    }
-
-    // Descargar Archivo
-
-    bz.subirArchivo = function(){
-      $cordovaFileTransfer.upload(server, filePath, options)
-      .then(function(result) {
-        // Success!
-      }, function(err) {
-        // Error
-      }, function (progress) {
-        // constant progress updates
-      });
-    } 
 
   }])

@@ -179,12 +179,11 @@ $app->group('/seccion',function(){
         return $this->response->withJson($GLOBALS['sm']->getAsistences($params), 200);
     });
 
-    $this->post('/reporte', function($req, $res){
+    $this->post('/reporte', function($req, $res, $args){
         $params = $req->getParsedBody();
-
         return $this->response->withJson($GLOBALS['sm']->getReport($params), 200);
     });
 
 })->add($mw);
 
-// ->add($mw);
+// ->add($mw);;

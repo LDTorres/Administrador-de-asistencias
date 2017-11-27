@@ -6,7 +6,7 @@
     "construir": "ionic cordova build android --verbose",
     "iniciar": "ionic cordova run android --verbose",
     "serve": "ionic serve --local -l --no-open",
-    "correr": "npm run construir && npm run iniciar"
+    "both": "npm run construir && npm run iniciar"
   },
   "dependencies": {
     "cordova-android": "^6.2.3",

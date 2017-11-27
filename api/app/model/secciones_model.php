@@ -7,6 +7,7 @@ use Spipu\Html2Pdf\Html2Pdf;
 use Spipu\Html2Pdf\Exception\ExceptionFormatter;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
+use Dompdf\Dompdf;
 
 class SeccionesModel {
     private $db;
@@ -76,62 +77,15 @@ class SeccionesModel {
         $params['codigo'] = $codigo;
 
         // Buscamos Correo
-        $sql = "SELECT usuario, contrasena, correo FROM usuarios WHERE id_usuario = ?";
+        $sql = "SELECT usuario, nombre_completo,contrasena, correo FROM usuarios WHERE id_usuario = ?";
         $sth = $this->db->prepare($sql);
         $sth->execute(array($params['id_usuario']));
         $datos = $sth->fetch();
 
-        $mail = new PHPMailer(true);   
-        // Passing `true` enables exceptions
-        try {
-            //Server settings                                // Enable verbose debug output
-            $mail->isSMTP();                                      // Set mailer to use SMTP
-            $mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
-            $mail->SMTPAuth = true;                               // Enable SMTP authentication
-            $mail->Username = 'iutebgate@gmail.com';                 // SMTP username
-            $mail->Password = 'SoporteGATE';                           // SMTP password
-            $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
-            $mail->Port = 587;                                    // TCP port to connect to
+        $params['correo'] = $datos['correo'];
+        $params['nombre'] = $datos['nombre_completo'];
 
-            //Recipients
-            // informatica@iuteb.edu.ve
-            $mail->setFrom('iutebgate@gmail.com', 'IUTEB GATE SOPORTE');
-
-            $mail->addAddress($datos['correo']);
-
-
-            // Name is optional
-            //$mail->addReplyTo('info@example.com', 'Information');
-            //$mail->addCC('cc@example.com');
-            //$mail->addBCC('bcc@example.com');
-
-            //Attachments
-            //$mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
-            //$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
-
-            //Content
-
-            $usuario = $params['nombre'];
-            $mail->isHTML(true);                                  // Set email format to HTML
-            $mail->Subject = 'Seccion Creada!';
-            $mail->Body    = "<h2>SECCION CREADA</h2><div><span><b>Nombre:</b> $usuario </span><span><b>Codigo:</b> $codigo </span></div>";
-
-            $mail->CharSet = 'utf-8';
-            $mail->SMTPOptions = array(
-                'ssl' => array(
-                    'verify_peer' => false,
-                    'verify_peer_name' => false,
-                    'allow_self_signed' => true
-                )
-            );
-
-            $mail->send();
-
-            return array('msg' => 'Seccion Creada', 'params' => $params);
-
-        } catch (Exception $e) {
-            return array('msg' => $mail->ErrorInfo);
-        }   
+        return array('msg' => 'Seccion Creada', 'params' => $params);
 
     }
 
@@ -225,7 +179,9 @@ class SeccionesModel {
             if($params['tipo'] != 'Administrador' && $params['tipo'] != 'Profesor'){
                 return array('msg' => 'No tiene permitida esta accion');
             }
-            $sql = "SELECT * FROM publicaciones WHERE id_usuario = ? LIMIT $offset,10";
+
+            $sql = "SELECT p.titulo,  p.id_publicacion, p.id_usuario, p.descripcion, p.id_seccion, p.fecha_publicacion, s.nombre, a.nombre_asig FROM publicaciones AS p INNER JOIN secciones AS s INNER JOIN asignaturas AS a WHERE p.id_usuario = ? AND p.id_seccion = s.id_seccion AND s.id_asignatura = a.id_asignatura ORDER BY p.fecha_publicacion DESC LIMIT $offset,20";
+            
             $sth = $this->db->prepare($sql);
             $sth->execute(array($params['id_usuario']));
     
@@ -236,14 +192,19 @@ class SeccionesModel {
 
         $sth = $this->db->prepare("SELECT id_seccion FROM alumnos_has_secciones WHERE id_usuario = ?");
         $sth->execute(array($params['id_usuario']));
-        $seccion = $sth->fetch();
-        $seccion = $seccion['id_seccion'];
+        $secciones = $sth->fetchAll();
 
-        $sql = "SELECT * FROM publicaciones WHERE id_seccion = ? LIMIT $offset,10";
-        $sth = $this->db->prepare($sql);
-        $sth->execute(array($seccion));
+        $publicaciones = [];
 
-        $publicaciones = $sth->fetchAll();
+        foreach($secciones as $key => $value):
+            $sql = "SELECT p.titulo,  p.id_publicacion, p.id_usuario, p.descripcion, p.id_seccion, p.fecha_publicacion, s.nombre, a.nombre_asig FROM publicaciones AS p INNER JOIN secciones AS s INNER JOIN asignaturas AS a WHERE p.id_seccion = ? AND p.id_seccion = s.id_seccion AND s.id_asignatura = a.id_asignatura ORDER BY p.fecha_publicacion DESC LIMIT $offset,10";
+            $sth = $this->db->prepare($sql);
+            $sth->execute(array($value['id_seccion']));
+            $datos = $sth->fetchAll();
+            foreach ($datos as $key => $value) {
+               $publicaciones[] = $value;
+            }
+        endforeach;
 
         return  $publicaciones;
     }
@@ -255,7 +216,7 @@ class SeccionesModel {
             $offset = $params['offset'];
         }
 
-        $sql = "SELECT * FROM $this->table3 WHERE id_seccion = ? LIMIT $offset,10";
+        $sql = "SELECT p.titulo, p.id_publicacion, p.id_usuario, p.descripcion, p.id_seccion, p.fecha_publicacion, s.nombre, a.nombre_asig FROM publicaciones AS p INNER JOIN secciones AS s INNER JOIN asignaturas AS a WHERE p.id_seccion = ? AND p.id_seccion = s.id_seccion AND s.id_asignatura = a.id_asignatura ORDER BY p.fecha_publicacion DESC LIMIT $offset,20";
 
         $sth = $this->db->prepare($sql);
 
@@ -296,11 +257,11 @@ class SeccionesModel {
 
     public function addPost($params, $filename){
 
-        $sql = "INSERT INTO $this->table3 (titulo, descripcion, id_seccion, id_usuario, nombre_archivo) VALUES (?,?,?,?,?)";
+        $sql = "INSERT INTO $this->table3 (titulo, descripcion, id_seccion, id_usuario) VALUES (?,?,?,?)";
         
         $sth = $this->db->prepare($sql);
 
-        $sth->execute(array($params['titulo'],$params['descripcion'], $params['id_seccion'], $params['id_usuario'], $filename));
+        $sth->execute(array($params['titulo'],$params['descripcion'], $params['id_seccion'], $params['id_usuario']));
 
         return  array("msg" => 'Publicacion Subida', "InsertId" => $this->db->lastInsertId());
         
@@ -385,33 +346,381 @@ class SeccionesModel {
     }
 
     public function getReport($params){
-        
-        $sql = "SELECT * FROM $this->table4 INNER JOIN usuarios WHERE id_seccion = ? AND $this->table4.id_usuario = usuarios.id_usuario AND fecha >= ? AND fecha <= ? GROUP BY fecha";
 
-        $sth = $this->db->prepare($sql);
+        #datos profesor
+        $sth = $this->db->prepare("SELECT u.nombre_completo, u.correo, a.nombre_asig, a.trimestre, s.nombre AS nombreSeccion,m.nombre AS nombreMalla FROM usuarios AS u INNER JOIN secciones AS s INNER JOIN asignaturas AS a INNER JOIN malla_curricular AS m WHERE u.id_usuario = ? AND s.id_seccion = ? AND u.id_usuario = s.id_usuario AND s.id_asignatura = a.id_asignatura AND u.id_malla = m.id_malla");
+        $sth->execute(array($params['id_usuario'], $params['id_seccion']));
+        $datos['datos']['seccion'] = $sth->fetchAll();
         
+        #asistencias
+        $sth = $this->db->prepare("SELECT fecha, id_usuario, asistio FROM alumnos_has_asistencias WHERE id_seccion = ? AND fecha >= ? AND fecha <= ? ORDER BY fecha ASC");
         $sth->execute(array($params['id_seccion'], $params['desde'], $params['hasta']));
+        $datos['datos']['asistencias'] = $sth->fetchAll();
 
-        $datos = $sth->fetchAll();
+        #numero de encuentros
+        $sth = $this->db->prepare("SELECT fecha FROM alumnos_has_asistencias WHERE id_seccion = ? AND fecha >= ? AND fecha <= ? GROUP BY fecha ASC");
+        $sth->execute(array($params['id_seccion'], $params['desde'], $params['hasta']));
+        $a = $sth->fetchAll();
+        $datos['datos']['encuentros'] = $a;
+        $encuentros = count($a);
+        #datos alumnos 
+        $sql = "SELECT u.id_usuario, u.cedula, u.nombre_completo, ahs.id_seccion FROM alumnos_has_secciones AS ahs INNER JOIN usuarios AS u WHERE id_seccion = ? AND ahs.id_usuario = u.id_usuario GROUP BY cedula ORDER BY cedula ASC";
+        $sth = $this->db->prepare($sql);
+        $sth->execute(array($params['id_seccion']));
+
+        $datos['datos']['alumnos_seccion'] = $sth->fetchAll();
+        
+        foreach($datos['datos']['alumnos_seccion'] as $llave => $usuario) {
+            foreach($datos['datos']['encuentros'] as $llave2 => $enc){
+                foreach ($datos['datos']['asistencias'] as $llave3 => $asis) {
+                    if($enc['fecha'] == $asis['fecha'] && $asis['id_usuario'] == $usuario['id_usuario']){
+
+                        $datos['datos']['alumnos_seccion'][$llave]['asistencias'][$llave3] = $asis;
+
+                    }
+                }
+            }
+        }
+
+        foreach($datos['datos']['alumnos_seccion'] as $llave => $value) {
+            foreach ($datos['datos']['alumnos_seccion'][$llave]['asistencias'] as $llave2 => $value) {
+                if($value['asistio'] == 1){
+
+                    $datos['datos']['alumnos_seccion'][$llave]['ap'][] = $value['asistio'];
+
+                }else {
+
+                    $datos['datos']['alumnos_seccion'][$llave]['an'][] = $value['asistio'];
+                    
+                }
+            }
+
+            # Asistencias Positivas
+            if(isset($datos['datos']['alumnos_seccion'][$llave]['ap']) != NULL){
+              $ta = count($datos['datos']['alumnos_seccion'][$llave]['ap']);
+            }else{
+                $ta = 0;
+            }
+            
+            # Asistencias Negativas
+            if (isset($datos['datos']['alumnos_seccion'][$llave]['an']) != NULL) {
+                $ti = count($datos['datos']['alumnos_seccion'][$llave]['an']);
+            }else{
+                $ti = 0;
+            }
+
+            if($ta > 0){
+                $datos['datos']['alumnos_seccion'][$llave]['porcentaje_asistencias'] = $ta * 100 / $encuentros;
+                $datos['datos']['alumnos_seccion'][$llave]['porcentaje_inasistencias'] = 100 - $datos['datos']['alumnos_seccion'][$llave]['porcentaje_asistencias'];
+            }
+            
+            if($ti > 0){
+                $datos['datos']['alumnos_seccion'][$llave]['porcentaje_inasistencias'] = $ti * 100 / $encuentros;
+                $datos['datos']['alumnos_seccion'][$llave]['porcentaje_asistencias'] = 100 - $datos['datos']['alumnos_seccion'][$llave]['porcentaje_inasistencias'];
+            }
+
+        }
 
         // Creamos el archivo PDF
         $date = date("d-m-Y-H-i-s");
-        $nombreProfesor = $datos[0]['nombre_completo'];
+        $nombreProfesor = $datos['datos']['seccion'][0]['nombre_completo'];
         $filename =  "$nombreProfesor-$date-reporte-asistencias.pdf";
 
-        try {
-            $html2pdf = new Html2Pdf('P', 'A4', 'es');
-            $html2pdf->setDefaultFont('Arial');
-            $html2pdf->writeHTML('Hola');
-            $html2pdf->output("app/outputPDF/$filename", 'F');
-            
-            return array('msg' => 'pdf generado', 'nombre_pdf' => $filename);
+        $content = "
+        <!DOCTYPE html>
+        <html lang='en'>
+        <head>
+        <meta charset='UTF-8'>
+        <meta http-equiv='Content-Type' content='text/html; charset=utf-8'/>
+        <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+        <meta http-equiv='X-UA-Compatible' content='ie=edge'>
+        <title>Reporte</title>
+  <style>
+    *{
+        font-family:monospace;
+    }
+    .elemento {
+        margin-right: 30px;
+        display: inline-block;
+        margin-bottom: 5px;
+    }
+    .cuerpo {
+        margin: 20px 0;
+    }
 
-        } catch (Html2PdfException $e) {
-            $formatter = new ExceptionFormatter($e);
-            echo $formatter->getHtmlMessage();
+    .text-center {
+      text-align: center;
+    }
+
+    .membrete {
+      width:100%;
+      height:50px;
+    }
+
+    .no-borde{border:none !important;}
+
+    .text-rotado {
+    display: block;
+    word-break: break-word;
+    text-align:center;
+        width: 70px !important;
+    max-width: 70px !important;
+    }
+
+    span.campo_subrayado {
+      width: auto;
+      padding: 0 8px;
+      border-bottom: 1px solid black;
+      min-width: 80px;
+      display: inline-block;
+    }
+
+    span.elementoFirma {
+      border-top: 1px solid black;
+      padding: 0 8px;
+    }
+
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      font-size: 10px;
+       margin: auto;
+
+    }
+
+    th,
+    td {
+      border: 1px solid black;
+      padding: 4px 2px;
+      text-align: center !important;
+    }
+
+    .pivote th {
+        height: 30px;
+        width: 30px;
+    }
+
+    .cuerpo {
+        margin-bottom:80px;
+    }
+
+  </style>
+
+        </head>
+<body>
+        <div>
+            <div>
+                <img class='membrete' src='app/outputPDF/banner.png'>
+            </div>
+            
+            <div class='datos'>
+            <H4 class='text-center' style='margin-top:20px;'>PROGRAMA NACIONAL DE FORMACIÓN EN  <span style='text-transform:UPPERCASE;'>".$datos['datos']['seccion'][0]['nombreMalla']."</span> (PNFI) CONTROL DE PLANIFICACIÓN Y ASISTENCIA</H4>
+                <div class='datos1'>
+                    <span class='elemento'>
+                        <span>Docente:</span>
+                        <span class='campo_subrayado'>
+                            ".$datos['datos']['seccion'][0]['nombre_completo']."
+                        </span>
+                    </span>
+
+                    <span class='elemento'>
+                        <span>Unidad Curricular:</span>
+                        <span class='campo_subrayado'>
+                            ".$datos['datos']['seccion'][0]['nombre_asig']."
+                        </span>
+                    </span>
+                    <span class='elemento'>
+                        <span>Sección:</span>
+                        <span class='campo_subrayado'>
+                            ".$datos['datos']['seccion'][0]['nombreSeccion']."
+                        </span>
+                    </span>
+                </div>
+                <div class='datos2'>
+                    <span class='elemento'>
+                        <span>PNF:</span>
+                        <span class='campo_subrayado'>
+                            ".$datos['datos']['seccion'][0]['nombreMalla']."
+                        </span>
+                    </span>
+                    <span class='elemento'>
+                        <span>Año:</span>
+                        <span class='campo_subrayado'>
+                            ".date('Y')."
+                        </span>
+                    </span>
+                    <span class='elemento'>
+                        <span>Período Académico:</span>
+                        <span class='campo_subrayado'>
+                            ".$datos['datos']['seccion'][0]['trimestre']." Trimestre
+                        </span>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class='cuerpo'>
+            <table>
+            <thead>
+                <tr class='pivote'>
+                <th colspan='4' style='border:none;'></th>";
+                    foreach($datos['datos']['encuentros'] as $key => $v):
+                        $content .= "<th></th>";
+                    endforeach;
+                $content .= "
+                <th rowspan='3' >Total <br>Asistencia</th>
+                <th rowspan='3' >Porcentaje <br>Asistencias</th>
+                <th rowspan='3' >Porcentaje <br>Inasistencias</th>
+                </tr>
+                <tr>
+                <th colspan='4' style='border:none; text-align:right !important;'>OBJETIVOS FACILITADOS O EVALUADOS</th>";
+                    foreach($datos['datos']['encuentros'] as $key => $v):
+                        $n = $key + 1;
+                        $content .= "<th>C".$n.":</th>";
+                    endforeach;
+                $content .= "
+                </tr>
+                <tr>
+                <th colspan='4' style='border:none; text-align:right !important;'>FECHA</th>";
+                    foreach($datos['datos']['encuentros'] as $key => $v):
+                        $fecha = date_create_from_format('Y-m-d', $v['fecha']);
+                        $fecha = date_format($fecha, 'm-d');
+                        $content .= "<th>".$fecha."</th>";
+                    endforeach;
+                $content .= "
+                </tr>
+                <tr>
+                    <th>Nº</th>
+                    <th>CEDULA</th>
+                    <th>APELLIDOS Y NOMBRES</th>
+                    <th>EDE</th>";
+                        foreach($datos['datos']['encuentros'] as $key => $v):
+                            $content .= "<th></th>";
+                        endforeach;
+                    $content .= "
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+            ";
+                foreach ($datos['datos']['alumnos_seccion'] as $key => $value) {
+                    $n = $key + 1;
+                    $content .= "
+                    <tr>
+                    <td>".$n."</td>
+                    <td>".$value['cedula']."</td>
+                    <td>".$value['nombre_completo']."</td>
+                    <td>CMA</td>";
+
+                    foreach ($datos['datos']['alumnos_seccion'][$key]['asistencias'] as $llave => $value) {
+                        $content .= "<td>".$value['asistio']."</td>";
+                    }
+                    
+                    $content .= "
+                    <td>".$encuentros."</td>
+                    <td>".$datos['datos']['alumnos_seccion'][$key]['porcentaje_asistencias']."%</td>
+                    <td>".$datos['datos']['alumnos_seccion'][$key]['porcentaje_inasistencias']."%</td>
+                    </tr>";
+                }
+            $content .= "
+                <tr>
+                <th colspan='3' style='border:none;'></th>
+                <td style='border:none;'>Firma Vocero</td>";
+
+                foreach($datos['datos']['encuentros'] as $key => $v):
+                    $content .= "<td></td>";
+                endforeach;
+                
+
+            $content .= "
+                <td class='no-borde'></td>
+                <td class='no-borde'></td>
+                <td class='no-borde'></td>
+                </tr>
+            </tbody>
+            </table>
+        </div>
+        <div style='text-align:center;'>
+            <div style='display:inline-block; width:35%; text-align:center;'>
+                <span class='elementoFirma' >Firma del Docente</span>
+            </div>
+            <div style='display:inline-block; width:60%; text-align:center;'>
+                <span class='elementoFirma'>Firma y Sello de la Coordinación que administra la Sección</span>
+            </div>
+        </div>
+</body>
+</html>";
+
+        $dompdf = new Dompdf();
+        $dompdf->setPaper('A4', 'landscape');
+        $dompdf->loadHtml($content);
+        $dompdf->render();
+        $pdf_gen = $dompdf->output();
+        
+        if(isset($params['app']) != NULL){
+
+            if($params['micorreo'] == 'false' || $params['micorreo'] == 'true' || $params['micorreo'] == false || $params['micorreo'] == true){
+                if(!file_put_contents('app/outputPDF/'.$filename, $pdf_gen)){
+                    return array('msg' => 'pdf no generado');
+                }
+
+                $adjunto = 'app/outputPDF/'.$filename;
+                $mail = new PHPMailer(true);   
+            
+                try {
+                    //Server settings                                // Enable verbose debug output
+                    $mail->isSMTP();                                      // Set mailer to use SMTP
+                    $mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
+                    $mail->SMTPAuth = true;                               // Enable SMTP authentication
+                    $mail->Username = 'iutebgate@gmail.com';                 // SMTP username
+                    $mail->Password = 'SoporteGATE';                           // SMTP password
+                    $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+                    $mail->Port = 587;                                    // TCP port to connect to
+
+                    //Recipients
+                    $mail->setFrom('iutebgate@gmail.com', 'IUTEB GATE SOPORTE');
+
+                    if($params['micorreo'] == 'true' || $params['micorreo'] == true){
+                        $mail->addAddress($datos['datos']['seccion'][0]['correo']);
+                    }
+                    
+                    if($params['micorreo'] == 'false' || $params['micorreo'] == false){
+                        $mail->addAddress($params['correo']);
+                    }
+
+                    $mail->addAttachment($adjunto);    // Optional name
+
+                    $mail->isHTML(true);                                  // Set email format to HTML
+                    $mail->Subject = 'Reporte de Asistencias!';
+                    $mail->Body    = "<h2>Reporte adjunto en el correo</h2>";
+
+                    $mail->CharSet = 'utf-8';
+                    $mail->SMTPOptions = array(
+                        'ssl' => array(
+                            'verify_peer' => false,
+                            'verify_peer_name' => false,
+                            'allow_self_signed' => true
+                        )
+                    );
+
+                    $mail->send();
+
+                    return array('datos' => $datos['datos'], 'msg' => 'pdf generado y Correo Enviado!', 'nombre_pdf' => $filename);
+
+                } catch (Exception $e) {
+
+                    return array('msg' => $mail->ErrorInfo);
+
+                }
+            }
         }
 
+        if(!file_put_contents('app/outputPDF/'.$filename, $pdf_gen)){
+            return array('msg' => 'pdf no generado');
+        }else{
+            return array('datos' => $datos['datos'], 'msg' => 'pdf generado', 'nombre_pdf' => $filename);
+        }
     }
 
     public function getInfoSeccion($params){
@@ -423,7 +732,5 @@ class SeccionesModel {
 
         return $sth->fetchAll();
     }
-
-
 
 }

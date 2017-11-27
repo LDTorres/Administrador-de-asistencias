@@ -177,47 +177,8 @@ class UserModel
 
             $jwt = JWT::encode($token, self::$secret_key);
 
-            # Correo
-            $mail = new PHPMailer(true);   
-            try {
-                //Server settings                               // Enable verbose debug output
-                $mail->isSMTP();                                      // Set mailer to use SMTP
-                $mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
-                $mail->SMTPAuth = true;                               // Enable SMTP authentication
-                $mail->Username = 'iutebgate@gmail.com';                 // SMTP username
-                $mail->Password = 'SoporteGATE';                           // SMTP password
-                $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
-                $mail->Port = 587;                                    // TCP port to connect to
-
-                //Recipients
-                // informatica@iuteb.edu.ve
-                $mail->setFrom('iutebgate@gmail.com', 'IUTEB GATE SOPORTE');
-
-                $mail->addAddress($params['correo']);
-
-                $usuario = $params['usuario'];
-                $contrasena = $params['contrasena'];
-                $mail->isHTML(true);                                  // Set email format to HTML
-                $mail->Subject = 'Registro Exitoso!';
-                $mail->Body    = "<h2>Gracias por registrarte en nuestra app</h2><div><span><b>Usuario:</b> $usuario </span><span><b>Contraseña:</b> $contrasena </span></div>";
-
-                $mail->CharSet = 'utf-8';
-                $mail->SMTPOptions = array(
-                    'ssl' => array(
-                        'verify_peer' => false,
-                        'verify_peer_name' => false,
-                        'allow_self_signed' => true
-                    )
-                );
-    
-                $mail->send();
-
-                return array('msg'=>'Registro Exitoso!', 'datos' => array("token" => $jwt, 'id' => $params['id_usuario'],'name' => $params['usuario'],'tipo' => $tipo,'id_malla' => $params['id_malla'], 'preferencias' => array('color_ui' => 'positive')));
+            return array('msg'=>'Registro Exitoso!', 'datos' => array("token" => $jwt, 'id' => $params['id_usuario'],'name' => $params['usuario'],'tipo' => $tipo,'id_malla' => $params['id_malla'], 'preferencias' => array('color_ui' => 'positive')));
             
-            } catch (Exception $e) {
-                return array('msg' => $mail->ErrorInfo);
-            }     
-            // var_dump($data);
         else:
             return false;
         endif;

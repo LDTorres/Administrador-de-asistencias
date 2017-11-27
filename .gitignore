@@ -5,7 +5,7 @@ node_modules/
 platforms/
 plugins/
 
-
+api/app/outputPDF/
 *www/lib
 *api/assets
 *api/app/lib/backups

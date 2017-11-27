@@ -6,6 +6,7 @@ angular.module('GATE')
   .constant("ruta", "http://localhost:3454")
 
 
+
   .constant("trimestresConstante", [{
     id_trimestre: 1
   }, {
@@ -34,31 +35,29 @@ angular.module('GATE')
 
   .constant("constanteTutorial", [{
     title: 'Gracias por usar nuestra aplicación!',
-    },{
-      description: 'Paso a paso te iremos mostrando el funcionamiento de la app'
-    },{
-      title: 'Inicio',
-      description: `Al momento que tu profesor te de el codigo de sección debes ir al apartado de aignaturas y presionar el boton de inscripción. 
-      Te llevará a un formulario donde colocaras el codigo y ya esta!.`
-    },{
-      title: 'Inicio',
-      description: `Puedes dejar que la app te lleve a tu sección o puedes buscarla luego desde el mismo apartado seleccionando trimestre, asignatura y por ultimo tu sección.`
-    },{
-      description: `Allí veras las publicaciones que tu profesor ha hecho, tambien podrás consultar tus asistencias de clases.`
-    },{
-      title: 'Tus datos y preferencias!',
-      description: ``
-    },{
-      title: 'Perfil',
-      description: `En el apartado de perfil, podrás ver tus datos, modificarlos y guardarlos persionando el botón guardar.`
-    },{
-      description: `En la pestaña de config, podras cambiarle el color a tu app, seleccionando el color y guardando.
-      Tambien podras cerrar sesion e ir al apartado de ayuda.`
-    },{
-      title: 'Esperamos que sigas utilizando la App para tus estudios!'
-    },{
+  }, {
+    description: 'Paso a paso te iremos mostrando el funcionamiento de la app'
+  }, {
+    title: 'Inicio',
+    description: 'Al momento que tu profesor te de el codigo de sección debes ir al apartado de aignaturas y presionar el boton de inscripción. Te llevará a un formulario donde colocaras el codigo y ya esta!.'
+  }, {
+    title: 'Inicio',
+    description: 'Puedes dejar que la app te lleve a tu sección o puedes buscarla luego desde el mismo apartado seleccionando trimestre, asignatura y por ultimo tu sección.'
+  }, {
+    description: 'Allí veras las publicaciones que tu profesor ha hecho, tambien podrás consultar tus asistencias de clases.'
+  }, {
+    title: 'Tus datos y preferencias!',
+    description: ''
+  }, {
+    title: 'Perfil',
+    description: 'En el apartado de perfil, podrás ver tus datos, modificarlos y guardarlos persionando el botón guardar.'
+  }, {
+    description: 'En la pestaña de config, podras cambiarle el color a tu app, seleccionando el color y guardando. Tambien podras cerrar sesion e ir al apartado de ayuda.'
+  }, {
+    title: 'Esperamos que sigas utilizando la App para tus estudios!'
+  }, {
     title: 'Si aun no lo tienes!',
-    description: `En la seccion de ayuda esta el boton, manual de usuarios descargalo y listo.`
+    description: 'En la seccion de ayuda esta el boton, manual de usuarios descargalo y listo.'
   }])
 
   .factory('LS', ['$window', '$rootScope', function ($window, $rootScope) {
@@ -85,9 +84,9 @@ angular.module('GATE')
       var promise = defered.promise;
 
       $http.post(ruta + '/login', datos).then(function (res) {
+
         $window.localStorage.setItem('token', angular.toJson(res.data));
         $rootScope.objectoCliente = res.data;
-
         defered.resolve(res);
 
       }).catch(function (res) {
@@ -111,7 +110,7 @@ angular.module('GATE')
       var promise = defered.promise;
 
       $http.post(ruta + '/singup', datos).then(function (res) {
-        if(res.data.datos){
+        if (res.data.datos) {
           $window.localStorage.setItem('token', angular.toJson(res.data.datos));
           $rootScope.objectoCliente = res.data.datos;
         }
@@ -121,7 +120,7 @@ angular.module('GATE')
         defered.reject(res);
       });
       return promise;
-      
+
     };
 
     this.autorizado = function () {
@@ -154,7 +153,7 @@ angular.module('GATE')
       var defered = $q.defer();
       var promise = defered.promise;
 
-      $http.get(ruta + '/').then(function (res) {
+      $http.get(ruta + '/json').then(function (res) {
         defered.resolve(res.data);
       });
       return promise;
@@ -193,15 +192,23 @@ angular.module('GATE')
       return promise;
     };
 
-    this.sendMail = function (datos) {
+    // Espera como parametro {id_usuario, offset}
+
+    this.newUserMail = function (datos) {
 
       var defered = $q.defer();
       var promise = defered.promise;
 
-      $http.post(ruta + '/sendMail', datos).then(function (res) {
+      $http.post(ruta + '/mail/newUser', datos).then(function (res) {
+
+
         defered.resolve(res);
+
       }).catch(function (res) {
+
+
         defered.reject(res);
+
       });
       return promise;
     };
@@ -452,7 +459,7 @@ angular.module('GATE')
       var defered = $q.defer();
       var promise = defered.promise;
 
-      $http.post(ruta + '/seccion/all',datos).then(function (res) {
+      $http.post(ruta + '/seccion/all', datos).then(function (res) {
 
         defered.resolve(res);
 
@@ -498,6 +505,47 @@ angular.module('GATE')
 
       });
 
+      return promise;
+    };
+
+    // Espera como parametro {id_usuario, offset}
+
+    this.newSeccionMail = function (datos) {
+
+      var defered = $q.defer();
+      var promise = defered.promise;
+
+      $http.post(ruta + '/mail/newSeccion', datos).then(function (res) {
+
+
+        defered.resolve(res);
+
+      }).catch(function (res) {
+
+
+        defered.reject(res);
+
+      });
+      return promise;
+    };
+
+
+    this.reporte = function (datos) {
+
+      var defered = $q.defer();
+      var promise = defered.promise;
+
+      $http.post(ruta + '/seccion/reporte', datos).then(function (res) {
+
+
+        defered.resolve(res);
+
+      }).catch(function (res) {
+
+
+        defered.reject(res);
+
+      });
       return promise;
     };
 
@@ -666,32 +714,45 @@ angular.module('GATE')
     // Espera como parametro {titulo, descripcion, id_seccion, id_usuario, nombre_archivo}
 
     this.addPost = function (datos) {
+
       var defered = $q.defer();
       var promise = defered.promise;
 
-      /* Ver si se envia el archivo 
-      console.log(datos)
-      */
-
-      Upload.upload({
-        url: ruta + '/seccion/post/add',
-        method: 'POST',
-        file: {
-          archivo: datos.archivo
-        },
-        data: datos
-      }).then(function (res) {
+      $http.post(ruta + '/seccion/post/add', datos).then(function (res) {
 
         defered.resolve(res);
 
       }).catch(function (res) {
 
+
+        defered.reject(res);
+
+      });
+
+      return promise;
+    };
+
+    // Espera como parametro {id_usuario, offset}
+
+    this.newPostMail = function (datos) {
+
+      var defered = $q.defer();
+      var promise = defered.promise;
+
+      $http.post(ruta + '/mail/newPost', datos).then(function (res) {
+
+
+        defered.resolve(res);
+
+      }).catch(function (res) {
+
+
         defered.reject(res);
 
       });
       return promise;
-
     };
+
 
     // Espera como parametro {titulo, descripcion, nombre_archivo, id_publicacion, id_seccion, id_usuario}
 
@@ -859,13 +920,13 @@ angular.module('GATE')
         return response || $q.when(response);
       },
       responseError: function (response) {
-          if (response.status === 401 || response.status === 403 || response.status === 500) {
-            if(response.status === 500 && response.data.exception[0].message == "Expired token"){
-              salir();
-            }else{
-              return response || $q.when(response);
-            }
+        if (response.status === 401 || response.status === 403 || response.status === 500) {
+          if (response.status === 500 && response.data.exception[0].message == "Expired token") {
+            salir();
+          } else {
+            return response || $q.when(response);
           }
+        }
       }
     };
   });

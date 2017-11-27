@@ -1,6 +1,6 @@
 angular.module('GATE')
 
-  .controller('tutorialController', ["$scope", "$rootScope", "servicioGeneral", "constanteTutorial", "$ionicPopup", function ($scope, $rootScope, servicioGeneral, constanteTutorial, $ionicPopup) {
+  .controller('tutorialController', ["$scope", "$rootScope", "servicioGeneral", "constanteTutorial", "$ionicPopup", "$state", function ($scope, $rootScope, servicioGeneral, constanteTutorial, $ionicPopup, $state) {
     var bz = this;
 
     bz.slides = constanteTutorial;

@@ -5,11 +5,13 @@ require 'middleware.php';
 use App\Model\UserModel;
 use App\Model\BDModel;
 use App\Model\PnfModel;
+use App\Model\correosModel;
 
 // Se instancia el modelo
 $um = new UserModel();
 $bdm = new BDModel();
 $pnfm = new PnfModel();
+$cm = new correosModel();
 
 $app->post('/login', function ($req, $res) {
     
@@ -51,15 +53,19 @@ $app->post('/forgotPass', function ($req, $res) {
     return $this->response->withJson($result);
 });
 
-$app->get('/', function ($req, $res, $args) {
+$app->get('/[{app}]', function ($req, $res, $args) {
 
     $sql = 'SELECT * FROM app_config';
 
     $sth = $this->db->prepare($sql);
 
     $sth->execute();
-    
-    return $this->response->withJson($sth->fetch());
+
+    if($args['app'] == 'json'){
+        return $this->response->withJson($sth->fetch());
+    }
+
+    return $this->renderer->render($res, 'index.php', array('datos' => $sth->fetch()));
 
 });
 
@@ -102,6 +108,26 @@ $app->group('/bd',function(){
     $this->get('/backups',function($req, $res, $args){        
         return $this->response->withJson($GLOBALS['bdm']->getBackups());
     });
+})->add($mw);
+
+
+$app->group('/mail',function(){
+    
+    $this->post('/newPost',function($req, $res){
+        $params = $req->getParsedBody();
+        return $this->response->withJson($GLOBALS['cm']->newPost($params));
+    });
+
+    $this->post('/newSeccion',function($req, $res){
+        $params = $req->getParsedBody();
+        return $this->response->withJson($GLOBALS['cm']->newSeccion($params));
+    });
+
+    $this->post('/newUser',function($req, $res){
+        $params = $req->getParsedBody();
+        return $this->response->withJson($GLOBALS['cm']->newUser($params));
+    });
+
 })->add($mw);
 
 // ->add($mw);

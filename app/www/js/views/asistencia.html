@@ -13,17 +13,11 @@
           <h4 class="col col-30 col-offset-10"> {{asistencia.datos.fechaSeleccionada}}</h4>
         </div>
       </div>
-      <form ng-if="asistencia.datos.fechaSeleccionada.length > 0" ng-submit="asistencia.setAsistencia()">
+      <form ng-if="asistencia.mostrar" ng-submit="asistencia.setAsistencia()">
         <ul class="list">
-          <li class="item item-toggle" ng-repeat="miembro in asistencia.datos.miembros">
+          <ion-toggle ng-repeat="miembro in asistencia.datos.miembros" ng-model="miembro.asistio_check" ng-checked="miembro.asistio_check">
             {{miembro.nombre_completo}}
-            <label class="toggle toggle-assertive">
-              <input type="checkbox" ng-model="miembro.asistio">
-              <div class="track">
-                <div class="handle"></div>
-              </div>
-            </label>
-          </li>
+          </ion-toggle>
         </ul>
         <input type="submit" class="button button-{{asistencia.tema}} button-block" value="Guardar">
       </form>

@@ -31,7 +31,7 @@ angular.module('GATE', ['ionic', 'ngCordova', 'ngFileUpload', 'ionic-datepicker'
       weeksList: ["D", "L", "Ma", "Mi", "J", "V", "S"],
       monthsList: ["Jan", "Feb", "March", "April", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"],
       templateType: 'popup',
-      from: new Date(2017, 1, 1),
+      from: new Date(),
       to: new Date(2030, 12, 30),
       showTodayButton: true,
       dateFormat: 'dd MMMM yyyy',
@@ -202,6 +202,9 @@ angular.module('GATE', ['ionic', 'ngCordova', 'ngFileUpload', 'ionic-datepicker'
         url: '/reportes',
         templateUrl: 'js/views/reportes.html',
         controller: 'reportesController as reportes',
+        params: {
+          datos: null
+        },
         resolve: {
           "currentAuth": ["$q", "servicioGeneral", function ($q, servicioGeneral) {
 

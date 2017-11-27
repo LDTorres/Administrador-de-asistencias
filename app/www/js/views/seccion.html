@@ -1,4 +1,4 @@
-<ion-view view-title="Seccion">
+<ion-view view-title="Sección">
   <ion-pane>
     <ion-nav-bar class="bar-{{seccion.tema}}" align-title="center">
       <ion-nav-back-button></ion-nav-back-button>
@@ -7,12 +7,16 @@
       <ion-tabs class="tabs-{{seccion.tema}} tabs-icon-top">
         <ion-tab title="Publicaciones" icon-on="ion-ios-filing" icon-off="ion-ios-filing-outline">
           <ion-content class="padding has-tabs">
-              <button class="button button-block button-outline button-{{seccion.tema}}" ng-click="seccion.morePosts()">Refrescar</button>
             <a ng-if="seccion.datos.tipo == 'Administrador' || seccion.datos.tipo == 'Profesor'" class="button button-block button-outline button-{{seccion.tema}}"
-              ng-click="seccion.crearPublicacion()">
-              Nueva Publicacion
-            </a>
-            <div class="list card" ng-repeat="post in seccion.datos.posts | orderBy: post.fecha_publicacion:true">
+              ng-click="seccion.crearPublicacion()"> Nueva Publicación </a>
+            <div class="list" ng-if="seccion.datos.posts.length >= 10">
+              <div class="item item-input-inset">
+                <label class="item-input-wrapper">
+                  <input type="text" placeholder="Buscar" ng-model="seccion.$">
+                </label>
+              </div>
+            </div>
+            <div clas <div class="list card" ng-repeat="post in seccion.datos.posts | filter:seccion.$">
               <a ng-if="seccion.datos.tipo == 'Administrador' || seccion.datos.tipo == 'Profesor'" ng-click="seccion.editarPublicacion(post)"
                 class="item item-thumbnail-left item-cabecera {{seccion.tema}}">
                 <img ng-src="img/document.svg">
@@ -43,7 +47,13 @@
 
         <ion-tab title="Miembros" icon-on="ion-ios-clock" icon-off="ion-ios-clock-outline">
           <ion-content class="padding has-tabs">
-            <h4 class="text-center">Miembros</h4>
+            <div ng-if="seccion.datos.miembros.length == 0">
+              <h4>No hay miembros en esta sección</h4>
+              <h3 style="cursor:pointer;" class="text-center" ng-click="seccion.copiarSeleccionado(seccion.datos.seccion[0].codigo)">Código: {{seccion.datos.seccion[0].codigo}}</h3>
+            </div>
+
+            <h4 class="text-center" ng-if="seccion.datos.miembros.length > 0">Miembros</h4>
+
             <ion-list show-delete="false" show-reorder="false" can-swipe="seccion.eliminarOpcion">
               <ion-item ng-repeat="miembro in seccion.datos.miembros" class="item-avatar-left">
                 <img ui-sref="inicio/seccion/miembro/perfil({id_usuario: miembro.id_usuario})" ng-src="img/{{miembro.foto_perfil}}">
@@ -53,7 +63,7 @@
                   Desactivar
                 </ion-option-button>
                 <ion-option-button class="button-positive" ng-if="!miembro.estado" ng-click="seccion.eliminarMiembro($index, miembro, 1)">
-                    Activar
+                  Activar
                 </ion-option-button>
               </ion-item>
             </ion-list>
@@ -66,6 +76,13 @@
               ui-sref="inicio/seccion/asistencias({datos: seccion.datos})">
               Gestion de Asistencias
             </a>
+
+            <div>
+              <a ng-if="seccion.datos.tipo == 'Administrador' || seccion.datos.tipo == 'Profesor'" class="button button-block button-outline button-balanced icon-right ion-ios-plus-outline"
+                ui-sref="inicio/seccion/reportes({datos: seccion.datos.seccion})">
+                Reporte
+              </a>
+            </div>
 
             <div class="list card">
               <div class="item item-divider">
@@ -80,7 +97,7 @@
               <div class="item item-divider">
                 <div class="row">
                   <b class="col col-50">Nombre:</b>
-                  <b class="col col-50">Asistio:</b>
+                  <b class="col col-50">Asistió:</b>
                 </div>
               </div>
               <div class="item" ng-repeat="asistencia in seccion.datos.asistencias">
@@ -88,7 +105,7 @@
                   <span class="col col-50">{{asistencia.usuario}}</span>
                   <span class="col col-50">
                     <span ng-if="asistencia.asistio == 1">Asistente</span>
-                    <span ng-if="asistencia.asistio == 0">No asistio</span>
+                    <span ng-if="asistencia.asistio==0">No asistió</span>
                   </span>
                 </div>
               </div>
@@ -96,24 +113,25 @@
           </ion-content>
         </ion-tab>
 
-        <ion-tab title="Informacion" icon-on="ion-ios-gear" icon-off="ion-ios-gear-outline">
-          <ion-content class="padding">
-            <div class="list card" ng-repeat="s in seccion.datos.seccion">
-              <h4 class="item text-center text-white item-cabecera {{seccion.tema}}">Informacion Seccion</h4>
-              <div class="item">
-                <b>Nombre Seccion: </b> {{s.nombre}}
+        <ion-tab title="Informacion " icon-on="ion-ios-gear " icon-off="ion-ios-gear-outline ">
+          <ion-content class="padding ">
+            <div class="list card " ng-repeat="s in seccion.datos.seccion ">
+              <h4 class="item text-center text-white item-cabecera {{seccion.tema}} ">Informacion Seccion</h4>
+              <div class="item ">
+                <b>Nombre Sección: </b> {{s.nombre}}
               </div>
-              <div class="item">
+              <div class="item ">
                 <b>Materia:</b> {{s.nombre_asig}}
               </div>
-              <div class="item">
+              <div class="item ">
                 <b>Profesor:</b> {{s.nombre_completo}}
               </div>
-              <div class="item">
+              <div class="item ">
                 <b>Miembros:</b> {{seccion.datos.miembros.length}}
               </div>
-              <div class="item" ng-if="seccion.datos.tipo == 'Administrador' || seccion.datos.tipo == 'Profesor'">
-                <b>Codigo:</b> {{s.codigo}}
+              <div style="cursor:pointer; " ng-click="seccion.copiarSeleccionado(s.codigo) " class="item " ng-if="seccion.datos.tipo=='Administrador'
+                      || seccion.datos.tipo=='Profesor' ">
+                <b>Código:</b> {{s.codigo}}
               </div>
             </div>
           </ion-content>

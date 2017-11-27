@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8"/>
-        <title>Slim 3</title>
+        <title>Api Iuteb</title>
         <link href='//fonts.googleapis.com/css?family=Lato:300' rel='stylesheet' type='text/css'>
         <style>
             body {
@@ -25,14 +25,11 @@
             }
         </style>
     </head>
-    <body>
-        <h1>Slim</h1>
-        <div>a microframework for PHP</div>
-
-        <?php if (isset($name)) : ?>
-            <h2>Hello <?= htmlspecialchars($name); ?>!</h2>
-        <?php else: ?>
-            <p>Try <a href="http://www.slimframework.com">SlimFramework</a>
-        <?php endif; ?>
+    <body><h1><?php echo $datos['nombre']; ?></h1>
+        <div><h2><?php echo $datos['descripcion']; ?></h2></div>
+        <div class="version-api">
+            <h4><b>Version: </b><?php echo $datos['versionApp']; ?></h4>
+             <h4><b>Fecha: </b><?php echo $datos['fecha_creaccion']; ?></h4>
+        </div>
     </body>
 </html>

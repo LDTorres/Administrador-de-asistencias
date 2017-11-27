@@ -6,14 +6,23 @@
       <ion-tab title="Publicaciones" icon-on="ion-compose" icon-off="ion-compose">
         <ion-content class="padding">
           <button class="button button-block button-outline button-{{inicio.tema}}" ng-click="inicio.morePosts()">Refrescar</button>
-          <div class="text-center">
-            <h5 ng-if="inicio.datos.posts.length < 1">NO TIENE TAREAS ASIGNADAS</h5>
+          <div class="list" ng-if="inicio.datos.posts.length >= 10">
+            <div class="item item-input-inset">
+              <label class="item-input-wrapper">
+                <input type="text" placeholder="Buscar" ng-model="inicio.$">
+              </label>
+            </div>
           </div>
-          <div class="list card" ng-repeat="post in inicio.datos.posts | orderBy: post.fecha_publicacion:true">
+          <div class="text-center">
+            <h5 ng-if="inicio.datos.posts.length < 1">NO TIENE PUBLICACIONES</h5>
+          </div>
+          <div class="list card" ng-repeat="post in inicio.datos.posts | filter:inicio.$">
+
             <a ui-sref="inicio/seccion({id_seccion: post.id_seccion})" class="item item-thumbnail-left item-cabecera">
               <img ng-src="img/document.svg">
               <h2>{{post.titulo}}</h2>
-              <h4>Asignatura: {{post.nombre}}</h4>
+              <h4>Asignatura: {{post.nombre_asig}}</h4>
+              <h4>Sección: {{post.nombre}}</h4>
               <h6>{{post.fecha_publicacion}}</h6>
             </a>
             <div class="item item-body">
@@ -127,7 +136,7 @@
 
       <ion-tab title="Config" icon-on="ion-gear-b" icon-off="ion-gear-b">
         <ion-content class="padding">
-          <form class="list" ng-submit="inicio.preferenciasAct(inicio.datos.preferencias)">
+          <form style="margin-bottom:0px; padding-bottom:0px;" class="list" ng-submit="inicio.preferenciasAct(inicio.datos.preferencias)">
             <label class="item item-input item-select">
               <div class="input-label">
                 Color de Tema

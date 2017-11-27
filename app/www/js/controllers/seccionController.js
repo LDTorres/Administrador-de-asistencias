@@ -22,7 +22,7 @@ angular.module('GATE')
     bz.eliminarOpcion = $rootScope.objectoCliente.tipo == 'Administrador' || $rootScope.objectoCliente.tipo == 'Profesor' ? true : false;
 
     bz.crearPublicacion = function () {
-      
+
       $state.go('inicio/seccion/publicacion', {
         datos: {
           id_seccion: $stateParams.id_seccion,
@@ -42,7 +42,7 @@ angular.module('GATE')
 
     bz.getInfo = function () {
       servicioSecciones.getInfo(bz.datos.datosSeccion).then(function (res) {
-        bz.datos.seccion = res.data;
+        bz.datos.seccion = res.data
       }).catch(function (res) {
         console.log(res)
       });
@@ -57,8 +57,6 @@ angular.module('GATE')
       });
     }
 
-    bz.posts(bz.datos.datosSeccion);
-
     bz.morePosts = function () {
       bz.datos.datosSeccion.offset = bz.datos.posts.length;
       servicioSecciones.getPosts(bz.datos.datosSeccion).then(function (res) {
@@ -66,7 +64,7 @@ angular.module('GATE')
           res.data.forEach(function (element) {
             bz.datos.posts.push(element)
           }, this);
-        }else{
+        } else {
           ionicToast.show('No hay publicaciones nuevas', 'top', false, 2500);
         }
       })
@@ -80,20 +78,34 @@ angular.module('GATE')
       });
     }
 
-    bz.miembros(bz.datos.datosSeccion);
+    $scope.$on('$ionicView.beforeEnter', function () {
+      bz.posts(bz.datos.datosSeccion);
+      bz.miembros(bz.datos.datosSeccion);
+    });
 
     // FUNCION PARA LLAMAR AL DATE PICKER
-    var ipObj1 = {
+    var datePickerObj = {
+      inputDate: new Date(),
+      setLabel: 'Colocar',
+      todayLabel: 'Hoy',
+      closeLabel: 'Cerrar',
+      mondayFirst: true,
+      weeksList: ["D", "L", "Ma", "Mi", "J", "V", "S"],
+      monthsList: ["Jan", "Feb", "March", "April", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"],
+      templateType: 'popup',
+      from: new Date(2017, 1, 1),
+      to: new Date(),
+      showTodayButton: true,
       callback: function (val) {
         date = new Date(val);
         bz.datos.getAsistence.fecha = formatDate(date);
         bz.datos.fechaSeleccionada = formatDate(date);
         bz.getAsistencias(bz.datos.getAsistence);
       }
-    }
+    };
 
     bz.openDatePicker = function () {
-      ionicDatePicker.openDatePicker(ipObj1);
+      ionicDatePicker.openDatePicker(datePickerObj);
     };
 
     bz.getAsistencias = function (datos) {
@@ -118,16 +130,26 @@ angular.module('GATE')
       return [year, month, day].join('-');
     }
 
-    bz.eliminarMiembro = function(i, datos, a){
+    bz.eliminarMiembro = function (i, datos, a) {
       datos.accion = a;
       servicioSecciones.deleteMember(datos).then(function (res) {
-        if(a == 0){
+        if (a == 0) {
           ionicToast.show('Desactivado', 'top', false, 2500);
-        }else{
+        } else {
           ionicToast.show('Activado', 'top', false, 2500);
         }
-        bz.datos.miembros[i].estado = a; 
+        bz.datos.miembros[i].estado = a;
       })
+    }
+
+    bz.copiarSeleccionado = function (texto) {
+      var aux = document.createElement("input");
+      aux.setAttribute("value", texto);
+      document.body.appendChild(aux);
+      aux.select();
+      document.execCommand("copy");
+      document.body.removeChild(aux);
+      ionicToast.show('Codigo Copiado!', 'top', false, 2500);
     }
 
   }])
