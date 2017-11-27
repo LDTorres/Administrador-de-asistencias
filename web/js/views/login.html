@@ -1,1 +1,10 @@
-Hola
+<link rel="stylesheet" href="../../assets/css/login.css" type="text/css">
+
+<div class="login">
+  <h1>GATE</h1>
+  <form method="post" ng-submit="login.ingresar(login.datos.login)">
+    <input type="text" name="u" placeholder="Username" required="required" ng-model="login.datos.login.usuario" />
+    <input type="password" name="p" placeholder="Password" required="required" ng-model="login.datos.login.contrasena" />
+    <button type="submit" class="btn btn-primary btn-block btn-large">Entrar</button>
+  </form>
+</div>

@@ -138,6 +138,7 @@ class UserModel
     }
 
     public function add($params){
+        
         $tipo = 'Estudiante';
         if(isset($params['tipo']) != NULL){ 
             if($params['tipo'] == 'Profesor'){

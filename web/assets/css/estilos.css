@@ -1,1 +1,11 @@
-.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
+.nav,
+.pagination,
+.carousel,
+.panel-title a {
+  cursor: pointer;
+}
+
+#footer {
+  background: #0000004d;
+  text-align: center;
+}

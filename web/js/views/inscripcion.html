@@ -1,0 +1,3 @@
+<select ng-model="inscripcion.datos.listarAsignaturas.id_trimestre" ng-change="inscripcion.listarAsignaturas(inscripcion.datos.listarAsignaturas)">
+  <option ng-repeat="trimestre in inscripcion.datos.trimestres" ng-value="trimestre.id_trimestre">trimestre {{trimestre.id_trimestre}}</option>
+</select>
