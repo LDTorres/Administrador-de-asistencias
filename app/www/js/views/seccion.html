@@ -22,14 +22,14 @@
                 class="item item-thumbnail-left item-cabecera {{seccion.tema}}">
                 <img ng-src="img/document.svg">
                 <h2 class="text-white">{{post.titulo}}</h2>
-                <h4 class="text-white">Asignatura: {{seccion.datos.seccion[0].nombre_asig}}</h4>
+                <h4 class="text-white">Asignatura: {{post.nombre_asig}}</h4>
                 <h6 class="text-white">{{post.fecha_publicacion}}</h6>
               </a>
 
               <a ng-if="seccion.datos.tipo != 'Administrador' && seccion.datos.tipo != 'Profesor'" class="item item-thumbnail-left item-cabecera {{seccion.tema}}">
                 <img ng-src="img/document.svg">
                 <h2 class="text-white">{{post.titulo}}</h2>
-                <h4 class="text-white">Asignatura: {{seccion.datos.seccion.nombre_asig}}</h4>
+                <h4 class="text-white">Asignatura: {{post.nombre_asig}}</h4>
                 <h6 class="text-white">{{post.fecha_publicacion}}</h6>
               </a>
               <div class="item item-body">
@@ -57,9 +57,9 @@
 
             <ion-list show-delete="false" show-reorder="false" can-swipe="seccion.eliminarOpcion">
               <ion-item ng-repeat="miembro in seccion.datos.miembros" class="item-avatar-left">
-                <img ui-sref="inicio/seccion/miembro/perfil({id_usuario: miembro.id_usuario})" ng-src="img/{{miembro.foto_perfil}}">
+                <img ui-sref="inicio/seccion/miembro/perfil({id_usuario: miembro.id_usuario})" ng-src="img/{{miembro.gravatar}}.png">
                 <h2 ui-sref="inicio/seccion/miembro/perfil({id_usuario: miembro.id_usuario})">{{miembro.nombre_completo}}</h2>
-                <p>{{miembro.telefono}}</p>
+                <p>{{miembro.cedula}}</p>
                 <ion-option-button class="button-assertive" ng-if="miembro.estado" ng-click="seccion.eliminarMiembro($index, miembro, 0)">
                   Desactivar
                 </ion-option-button>

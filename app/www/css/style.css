@@ -21,7 +21,7 @@
 }
 
 .fondo-splash {
-  background: url('../img/splash.png');
+  background: url('../img/1.jpg');
 }
 
 .item-cabecera.positive {
@@ -46,6 +46,11 @@
 
 .item-cabecera.balanced {
   background: #33cd5f;
+}
+
+.fondo-app {
+  background: url('../img/1.jpg');
+  background-size: cover;
 }
 
 .item-border {
@@ -75,6 +80,16 @@ h4.slider-content {
 
 .max-slide {
   min-height: 100vh !important;
+}
+
+.gravatar-bello {
+  width: 90%;
+  border-radius: 50%;
+  border: 2px dashed silver;
+  cursor: pointer;
+  max-width: 120px;
+  margin: auto;
+  display: block;
 }
 
 .omitir {

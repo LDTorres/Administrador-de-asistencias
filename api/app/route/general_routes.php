@@ -20,7 +20,7 @@ $app->post('/login', function ($req, $res) {
     $result =  $GLOBALS['um']->login($params);
 
     if($result == false):
-        return $this->response->withJson(array("error"=>"Datos Invalidos"), 404);
+        return $this->response->withJson(array("error"=>"invalido"), 404);
     else:
         return $this->response->withJson($result, 200);
     endif;

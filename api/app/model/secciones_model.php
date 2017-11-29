@@ -23,6 +23,7 @@ class SeccionesModel {
     // Secciones
     public function getAll($params){
 
+        # Si el usuario es profesor
         if(isset($params['tipo']) != NULL){
             $sth = $this->db->prepare('SELECT nombre, id_seccion FROM secciones WHERE id_usuario = ?');
             $sth->execute(array($params['id_usuario']));
@@ -30,22 +31,13 @@ class SeccionesModel {
             return $result;
         }
 
+        # Si no es profesor
         if(isset($params['id_usuario']) != NULL ){
-            $sth = $this->db->prepare('SELECT s.nombre, s.id_seccion FROM secciones AS s INNER JOIN alumnos_has_secciones AS ahs WHERE ahs.id_usuario = ? AND s.id_seccion = ahs.id_seccion');
-            $sth->execute(array($params['id_usuario']));
+            $sth = $this->db->prepare('SELECT s.nombre, s.id_seccion FROM secciones AS s INNER JOIN alumnos_has_secciones AS ahs WHERE ahs.id_usuario = ? AND s.id_asignatura = ? AND s.id_seccion = ahs.id_seccion');
+            $sth->execute(array($params['id_usuario'], $params['id_asignatura']));
             $result = $sth->fetchAll();
             return $result;
         }
-
-        $sql = "SELECT nombre, id_seccion FROM secciones WHERE id_asignatura = ?";
-
-        $sth = $this->db->prepare($sql);
-
-        $sth->execute(array($params['id_asignatura']));
-
-        $result = $sth->fetchAll();
-
-        return $result;
 
     }
 

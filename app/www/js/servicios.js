@@ -3,7 +3,7 @@ angular.module('GATE')
   // Para probarlo desde el movil http://192.168.1.{tu-puerto}/api/public  
   // Desde windows http://localhost:3454
 
-  .constant("ruta", "http://localhost:3454")
+  .constant("ruta", "http://api.addev.com.ve/")
 
   .constant("trimestresConstante", [{
     id_trimestre: 1
