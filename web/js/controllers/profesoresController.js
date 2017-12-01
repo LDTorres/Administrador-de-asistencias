@@ -1,15 +1,25 @@
 angular.module('GATE')
 
-  .controller('profesoresController', ['$scope', '$rootScope', 'servicioUsuario', '$stateParams', function ($scope, $rootScope, servicioUsuario, $stateParams) {
+  .controller('profesoresController', ['$scope', '$rootScope', 'servicioUsuario', '$stateParams', 'servicioGeneral', function ($scope, $rootScope, servicioUsuario, $stateParams, servicioGeneral) {
     var bz = this;
 
     bz.datos = {
       modificarUsuario: {},
-
+      registroProfesor: {
+        id_malla: 1,
+        tipo: "Profesor"
+      }
     };
 
 
+    bz.crearProfesor = function (datos) {
+      console.log(datos)
+      servicioGeneral.registrar(bz.datos.registroProfesor).then(function (res) {
 
+      }).catch(function (res) {
+        console.log(res)
+      });
+    }
 
     bz.datosProfesores = function () {
       servicioUsuario.getAllTeacher().then(function (res) {

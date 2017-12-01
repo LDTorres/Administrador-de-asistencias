@@ -1,7 +1,7 @@
 <div class="container ">
 
-  <h2>Listado De asistencias</h2>
-  <p>Desde aqui puedes modificar la data de las asistencias</p>
+  <h2>Listado De asistencias.</h2>
+  <p>Desde aqui puedes modificar la data de las asistencias.</p>
 
   <div class="row col-md-12">
     <div class="col-md-2">
@@ -51,13 +51,13 @@
 
       <br>
       <br>
-      <button class="btn" ng-click="asistencia.getAsistencias()">Obtener
+      <button class="btn btn-primary" ng-click="asistencia.getAsistencias()">Obtener
       </button>
     </div>
     <table class="table table-striped" ng-if="asistencia.datos.miembros.length > 0">
       <br>
       <br>
-      <h2 ng-if="asistencia.datos.miembros.length > 0">Listado de asistencias</h2>
+      <h2 ng-if="asistencia.datos.miembros.length > 0">Listado de asistencias.</h2>
 
       <thead>
         <tr>
@@ -97,11 +97,20 @@
 
   </div>
 
-  <div class="row col-12">
+  <div class="row col-12" ng-if="asistencia.datos.miembros.length > 0">
 
-    <input type="date" class="col-md-2">
+    <h2>Generar reporte en PDF.</h2>
 
+    <h3>Elija un rango de fechas.</h3>
 
+    <input type="date" name="date1" class="col-md-2">
+
+    <input type="date" name="date2" class="col-md-2">
+
+    <button class="btn" ng-click="asistencia.datos.mostrar_btn=false">Correo propio</button>
+    <button class="btn" ng-click="asistencia.datos.mostrar_btn=true">Otro Correo</button>
+
+    <input ng-if="asistencia.datos.mostrar_btn==true" type="text" placeholder="ingrese Correo">
 
   </div>
 

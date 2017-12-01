@@ -1,4 +1,31 @@
 <div class="container">
+
+
+
+  <h2>Agregar Profesor</h2>
+  <div class="form-group col-2">
+
+
+
+    <form class="col-4" ng-submit="profesores.crearProfesor(profesores.datos.registroProfesor)">
+
+      <input type="text" placeholder="Usuario" ng-model="profesores.datos.registroProfesor.usuario">
+      <input type="text" placeholder="nombre completo" ng-model="profesores.datos.registroProfesor.nombre_completo">
+      <input type="text" placeholder="cedula" ng-model="profesores.datos.registroProfesor.cedula">
+      <input type="number" placeholder="telefono" ng-model="profesores.datos.registroProfesor.telefono">
+      <input type="text" placeholder="contraseña" ng-model="profesores.datos.registroProfesor.contrasena">
+      <input type="text" placeholder="correo" ng-model="profesores.datos.registroProfesor.correo">
+
+      <button type="submit" class="btn btn-primary">crear
+
+      </button>
+
+    </form>
+
+  </div>
+
+
+
   <h2>Listado De Profesores</h2>
   <p>Desde aqui puedes modificar informacion sobre los profesores</p>
   <table class="table table-striped">

@@ -15,14 +15,18 @@ angular.module('GATE')
         id_usuario: $rootScope.objectoCliente.id,
         tipo: $rootScope.objectoCliente.tipo
       },
-      obtener: {}
+      obtener: {},
+      reporteInfo: {
+        id_usuario: $rootScope.objectoCliente.id
+      },
+      mostrar_btn: false
     }
 
 
 
     bz.tipoUsuario = $rootScope.objectoCliente.tipo;
 
-
+    console.log($rootScope.objectoCliente);
     bz.tema = $rootScope.objectoCliente.preferencias.color_ui;
 
     bz.datos.objeto = $rootScope.objectoCliente;
@@ -119,6 +123,7 @@ angular.module('GATE')
 
       return [year, month, day].join('-');
     }
+
 
 
   })
