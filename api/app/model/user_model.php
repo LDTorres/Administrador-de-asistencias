@@ -58,17 +58,6 @@ class UserModel
         return $params;
     }
 
-    public function picture($params, $filename){
-        $sql = "UPDATE $this->table SET foto_perfil = :foto_perfil WHERE id_usuario=:id";
-        $sth = $this->db->prepare($sql);
-        $sth->execute(array(
-            ':id' => intval($params['id_usuario']),
-            ':foto_perfil' => $filename
-        ));
-
-        return array('message' => 'Registro Almacenado', 'filename' => $filename);
-    }
-
     public function status($params){
 
         if(isset($params['accion'])): 
@@ -103,6 +92,7 @@ class UserModel
     // AUTENTIFICACION
 
     public function login($params){
+        
 
         $sql = "SELECT * FROM $this->table WHERE contrasena = :pass AND usuario = :user OR correo = :user ";
         $sth = $this->db->prepare($sql);
@@ -111,6 +101,9 @@ class UserModel
         $result = $sth->fetch();
 
         if($result != false):
+
+            
+
             $time = time();
 
             $token = array(
@@ -130,7 +123,7 @@ class UserModel
             // $data = JWT::decode($jwt, self::$secret_key, array('HS256'));
 
             // var_dump($data);
-            return array("token" => $jwt, 'id' => $result['id_usuario'],'name' => $result['usuario'], 'nombre_completo' => $result['nombre_completo'],'tipo' => $result['tipo'],'id_malla' => $result['id_malla'], 'preferencias' => array('color_ui' => $result['color_ui']));
+            return array("token" => $jwt, 'id' => $result['id_usuario'],'name' => $result['usuario'], 'nombre_completo' => $result['nombre_completo'],'tipo' => $result['tipo'],'id_malla' => $result['id_malla'], 'preferencias' => array('color_ui' => $result['color_ui'], 'gravatar' => $result['gravatar']));
         else:
             return false;
         endif;
@@ -154,9 +147,9 @@ class UserModel
             return array('msg' => 'La cedula, correo o usuario ya está en uso por favor utilice otro.');
         }
 
-        $sql = "INSERT INTO $this->table (usuario, contrasena, nombre_completo, cedula, correo, telefono, id_malla, tipo) VALUES (?,?,?,?,?,?,?,?) ";
+        $sql = "INSERT INTO $this->table (usuario, contrasena, nombre_completo, cedula, correo, telefono, id_malla, tipo, gravatar) VALUES (?,?,?,?,?,?,?,?,?) ";
         $sth = $this->db->prepare($sql);
-        $sth->execute(array($params['usuario'],$params['contrasena'], $params['nombre_completo'],$params['cedula'], $params['correo'],$params['telefono'],$params['id_malla'],$tipo));
+        $sth->execute(array($params['usuario'],$params['contrasena'], $params['nombre_completo'],$params['cedula'], $params['correo'],$params['telefono'],$params['id_malla'],$tipo, $params['gravatar']));
 
         $params['id_usuario'] = $this->db->lastInsertId();
 

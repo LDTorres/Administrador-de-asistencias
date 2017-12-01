@@ -83,13 +83,13 @@ class BDModel {
             $return.="\n";
         endforeach;
 
-        $filename = $this->path."bd-$fechaNombre.sql";
+        $filename = $this->path."bd-iuteb-$fechaNombre.sql";
 
         $handle = fopen($filename,'w+');
         fwrite($handle,$return);
         fclose($handle);
 
-        return array('Ruta'=>$filename,'Consulta'=>$consulta);
+        return array('Nombre Archivo'=> "bd-iuteb-$fechaNombre.sql", "Consulta" =>$consulta);
     }
 
     public function restore($filename){
@@ -122,14 +122,14 @@ class BDModel {
         if(unlink($this->path.$filename)):
             
             /* Borrar Registros Base de datos */
-            $sql = "DELETE FROM $this->table WHERE $id";
+            $sql = "DELETE FROM $this->table WHERE id = $id";
             $result = $this->db->query($sql);
 
             if($result == false):
                 return array('msg'=>'No existe el registro');
             endif;
 
-            return array('archivo' => $filename, 'Consulta' => $result);
+            return array('archivo eliminado' => $this->path.$filename, 'Consulta' => $result);
         else:
             return array('msg'=>'No existe el archivo');
         endif;
@@ -137,15 +137,12 @@ class BDModel {
     }
 
     public function getBackups(){
-        $backups = array();
 
         $sql = "SELECT id, filename, date  FROM basededatos";
         $result = $this->db->query($sql);
 
         if ($result->num_rows > 0):
-            while($row = $result->fetch_array()):
-                array_push($backups, $row);
-            endwhile;
+            $backups = mysqli_fetch_all($result,MYSQLI_ASSOC);
         else:
             return array('msg'=>'No hay registros');
         endif;

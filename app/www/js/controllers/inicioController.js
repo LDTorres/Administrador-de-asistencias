@@ -71,6 +71,7 @@ angular.module('GATE')
       servicioSecciones.getAll(bz.da).then(function (res) {
         if (res.data.length == 0) {
           ionicToast.show('No esta inscrito a ninguna seccion de esa asignatura', 'top', false, 2500);
+          bz.datos.secciones = {};
         } else {
           bz.datos.secciones = res.data;
         }
@@ -108,8 +109,11 @@ angular.module('GATE')
     // Actualizar Usuario
 
     bz.actualizarUsuario = function (datos) {
+      console.log(datos)
       servicioUsuario.update(datos).then(function (res) {
         bz.datos.user = res.data;
+
+        console.log(res)
         ionicToast.show('Datos Actualizados', 'top', false, 2500);
       })
     }

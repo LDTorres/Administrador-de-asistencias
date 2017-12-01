@@ -1,11 +1,11 @@
 <ion-view view-title="{{login.switch}}">
-  <ion-pane ng-switch="login.datos.mostrarForm" >
-    <ion-content ng-switch-when="1" class="padding" style="background:url(img/2.jpg);">
+  <ion-pane ng-switch="login.datos.mostrarForm">
+    <ion-content ng-switch-when="1" class="padding fondo-app">
       <div class="header_membrete">
         <img src="img/logoIuteb.png" class="logo_iuteb">
         <h2 class="subtitulo text-white">Ingreso de Usuarios</h2>
       </div>
-      <form ng-submit="login.ingresar(login.datos.login, ingresar.$valid)" name="ingresar" novalidate class="list" >
+      <form ng-submit="login.ingresar(login.datos.login, ingresar.$valid)" name="ingresar" novalidate class="list">
         <div class="list list-inset formlogin fondo-transparente">
           <label class="item item-input">
             <input type="text" placeholder="Nombre de Usuario" ng-model="login.datos.login.usuario" name="usuario" required>
@@ -27,7 +27,7 @@
         <a class="button  button-block button-assertive " ng-click="login.cambiar(3)">Olvido de Contraseña</a>
       </form>
     </ion-content>
-    <ion-content ng-switch-when="2" class="padding" style="background:url(img/2.jpg);">
+    <ion-content ng-switch-when="2" class="padding fondo-app">
       <div class="header_membrete">
         <img src="img/logoIuteb.png" class="logo_iuteb">
         <h2 class="subtitulo text-white">Registra tus datos</h2>
@@ -52,7 +52,6 @@
           <label class="item item-input">
             <input type="text" placeholder="Nombre Completo" ng-model="login.datos.registro.nombre_completo" name="nombre_completo" required>
           </label>
-
           <div class="item" style="color:maroon" ng-show="registro.nombre_completo.$touched && registro.nombre_completo.$invalid">
             <div ng-message="required">Este campo es requerido.</div>
           </div>
@@ -82,6 +81,19 @@
           <div class="item" style="color:maroon" ng-show="registro.telefono.$touched && registro.telefono.$invalid">
             <div ng-message="required">Este campo es requerido, Deben ser numeros</div>
           </div>
+          <div class="item">
+            <h3 class="text-center" style="color:silver;">Genero</h3>
+            <div class="row">
+              <div class="col">
+                <img class="gravatar-bello" src="img/hombre.png" ng-click="login.datos.registro.gravatar = 'hombre'">
+                <h4 class="text-center" ng-if="login.datos.registro.gravatar == 'hombre'">Hombre</h4>
+              </div>
+              <div class="col">
+                <img class="gravatar-bello" src="img/mujer.png" ng-click="login.datos.registro.gravatar = 'mujer'">
+                <h4 class="text-center" ng-if="login.datos.registro.gravatar == 'mujer'">Mujer</h4>
+              </div>
+            </div>
+          </div>
 
           <input type="submit" value="Registrarse" class="button button-block button-positive " ng-disabled="!registro.$valid"></input>
           <a class="button  button-block button-positive " ng-click="login.cambiar(1)">Ingresar</a>
@@ -89,7 +101,7 @@
 
       </form>
     </ion-content>
-    <ion-content ng-switch-when="3" class="padding" style="background:url(img/2.jpg);">
+    <ion-content ng-switch-when="3" class="padding fondo-app">
       <div class="header_membrete">
         <img src="img/logoIuteb.png" class="logo_iuteb">
         <h2 class="subtitulo text-white">Olvido de Contraseña</h2>
