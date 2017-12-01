@@ -340,77 +340,137 @@ class SeccionesModel {
     public function getReport($params){
 
         #datos profesor
+
         $sth = $this->db->prepare("SELECT u.nombre_completo, u.correo, a.nombre_asig, a.trimestre, s.nombre AS nombreSeccion,m.nombre AS nombreMalla FROM usuarios AS u INNER JOIN secciones AS s INNER JOIN asignaturas AS a INNER JOIN malla_curricular AS m WHERE u.id_usuario = ? AND s.id_seccion = ? AND u.id_usuario = s.id_usuario AND s.id_asignatura = a.id_asignatura AND u.id_malla = m.id_malla");
+
         $sth->execute(array($params['id_usuario'], $params['id_seccion']));
+
         $datos['datos']['seccion'] = $sth->fetchAll();
-        
+
+        if(count($datos['datos']['seccion']) == 0){
+            return array('msg' => 'La sección no Existe.');
+        }
+
         #asistencias
+
         $sth = $this->db->prepare("SELECT fecha, id_usuario, asistio FROM alumnos_has_asistencias WHERE id_seccion = ? AND fecha >= ? AND fecha <= ? ORDER BY fecha ASC");
+
         $sth->execute(array($params['id_seccion'], $params['desde'], $params['hasta']));
+
         $datos['datos']['asistencias'] = $sth->fetchAll();
 
+        if(count($datos['datos']['asistencias']) == 0){
+             return array('msg' => 'No hay asistencias para la fecha dada.');
+        }
+
         #numero de encuentros
+
         $sth = $this->db->prepare("SELECT fecha FROM alumnos_has_asistencias WHERE id_seccion = ? AND fecha >= ? AND fecha <= ? GROUP BY fecha ASC");
+
         $sth->execute(array($params['id_seccion'], $params['desde'], $params['hasta']));
+
         $a = $sth->fetchAll();
+
         $datos['datos']['encuentros'] = $a;
+
         $encuentros = count($a);
+
+        if(count($datos['datos']['encuentros']) == 0){
+             return array('msg' => 'No hay asistencias para la fecha dada.');
+        }
+
         #datos alumnos 
+
         $sql = "SELECT u.id_usuario, u.cedula, u.nombre_completo, ahs.id_seccion FROM alumnos_has_secciones AS ahs INNER JOIN usuarios AS u WHERE id_seccion = ? AND ahs.id_usuario = u.id_usuario GROUP BY cedula ORDER BY cedula ASC";
+
         $sth = $this->db->prepare($sql);
+
         $sth->execute(array($params['id_seccion']));
 
         $datos['datos']['alumnos_seccion'] = $sth->fetchAll();
-        
+
         foreach($datos['datos']['alumnos_seccion'] as $llave => $usuario) {
+
             foreach($datos['datos']['encuentros'] as $llave2 => $enc){
+
                 foreach ($datos['datos']['asistencias'] as $llave3 => $asis) {
-                    if($enc['fecha'] == $asis['fecha'] && $asis['id_usuario'] == $usuario['id_usuario']){
 
-                        $datos['datos']['alumnos_seccion'][$llave]['asistencias'][$llave3] = $asis;
+                    if($enc['fecha'] == $asis['fecha']){
 
-                    }
+                        if($asis['id_usuario'] == $usuario['id_usuario']){
+
+                            $datos['datos']['alumnos_seccion'][$llave]['asistencias'][$llave3] = $asis;
+
+                        }else{
+
+                            $asis_n = array('fecha' => $enc['fecha'], 'id_usuario' => $datos['datos']['alumnos_seccion'][$llave]['id_usuario'] ,'asistio' => "0" );
+
+                            $datos['datos']['alumnos_seccion'][$llave]['asistencias'][$llave3] = $asis_n;
+
+                        }
+
+                    } 
                 }
+
             }
+
         }
 
         foreach($datos['datos']['alumnos_seccion'] as $llave => $value) {
+
             foreach ($datos['datos']['alumnos_seccion'][$llave]['asistencias'] as $llave2 => $value) {
+
                 if($value['asistio'] == 1){
 
                     $datos['datos']['alumnos_seccion'][$llave]['ap'][] = $value['asistio'];
 
                 }else {
 
-                    $datos['datos']['alumnos_seccion'][$llave]['an'][] = $value['asistio'];
-                    
+                    $datos['datos']['alumnos_seccion'][$llave]['an'][] = $value['asistio'];       
+
                 }
+
             }
 
             # Asistencias Positivas
+
             if(isset($datos['datos']['alumnos_seccion'][$llave]['ap']) != NULL){
+
               $ta = count($datos['datos']['alumnos_seccion'][$llave]['ap']);
+
             }else{
+
                 $ta = 0;
+
             }
-            
+
             # Asistencias Negativas
+
             if (isset($datos['datos']['alumnos_seccion'][$llave]['an']) != NULL) {
+
                 $ti = count($datos['datos']['alumnos_seccion'][$llave]['an']);
+
             }else{
+
                 $ti = 0;
+
             }
 
             if($ta > 0){
+
                 $datos['datos']['alumnos_seccion'][$llave]['porcentaje_asistencias'] = round($ti * 100 / $encuentros, 0, PHP_ROUND_HALF_UP);
+
                 $datos['datos']['alumnos_seccion'][$llave]['porcentaje_inasistencias'] = 100 - $datos['datos']['alumnos_seccion'][$llave]['porcentaje_asistencias'];
-            }
-            
-            if($ti > 0){
-                $datos['datos']['alumnos_seccion'][$llave]['porcentaje_inasistencias'] = round($ti * 100 / $encuentros, 0, PHP_ROUND_HALF_UP);
-                $datos['datos']['alumnos_seccion'][$llave]['porcentaje_asistencias'] = 100 - $datos['datos']['alumnos_seccion'][$llave]['porcentaje_inasistencias'];
+
             }
 
+            if($ti > 0){
+
+                $datos['datos']['alumnos_seccion'][$llave]['porcentaje_inasistencias'] = round($ti * 100 / $encuentros, 0, PHP_ROUND_HALF_UP);
+
+                $datos['datos']['alumnos_seccion'][$llave]['porcentaje_asistencias'] = 100 - $datos['datos']['alumnos_seccion'][$llave]['porcentaje_inasistencias'];
+
+            }
         }
 
         // Creamos el archivo PDF
@@ -694,7 +754,7 @@ class SeccionesModel {
 
                 $mail->send();
 
-                return array('datos' => $datos['datos'], 'msg' => 'pdf generado y Correo Enviado!', 'nombre_pdf' => $filename);
+                return array('msg' => 'pdf generado y Correo Enviado!', 'nombre_pdf' => $filename);
 
             } catch (Exception $e) {
 
@@ -707,7 +767,7 @@ class SeccionesModel {
         if(!file_put_contents('app/outputPDF/'.$filename, $pdf_gen)){
             return array('msg' => 'pdf no generado');
         }else{
-            return array('datos' => $datos['datos'], 'msg' => 'pdf generado', 'nombre_pdf' => $filename);
+            return array('msg' => 'pdf generado', 'nombre_pdf' => $filename);
         }
     }
 
