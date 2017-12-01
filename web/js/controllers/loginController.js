@@ -16,7 +16,7 @@ angular.module("GATE")
     bz.ingresar = function () {
       servicioGeneral.ingresar(bz.datos.login).then(function (res) {
         setTimeout(function () {
-          $state.go('listado');
+          $state.go('asistencia');
         }, 2000)
         //console.log($rootScope.objectoCliente);
       }).catch(function (res) {
@@ -29,7 +29,7 @@ angular.module("GATE")
       servicioGeneral.registrar(datos).then(function (res) {
         console.log(res)
         setTimeout(function () {
-          $state.go('listado');
+          $state.go('asistencia');
         }, 2000);
       }).catch(function (res) {
         console.log(res)

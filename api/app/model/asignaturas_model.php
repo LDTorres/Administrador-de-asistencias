@@ -45,7 +45,7 @@ class AsignaturasModel {
 
         $result = $this->db->lastInsertId();
         
-        return $result;
+        return array('insertId' => $result);
     }
 
     public function update($params){

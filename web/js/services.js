@@ -361,7 +361,6 @@ angular.module('GATE')
 
       $http.post(ruta + '/asignatura/add', datos).then(function (res) {
 
-
         defered.resolve(res);
 
       }).catch(function (res) {
@@ -394,7 +393,7 @@ angular.module('GATE')
 
   /* SECCIONES */
 
-  .service("servicioSecciones", ["$http", "$q", "ruta", "Upload", function ($http, $q, ruta, Upload) {
+  .service("servicioSecciones", ["$http", "$q", "ruta", function ($http, $q, ruta) {
 
     // Espera como parametro {id_seccion, fecha}
 
@@ -636,21 +635,11 @@ angular.module('GATE')
     // Espera como parametro {titulo, descripcion, id_seccion, id_usuario, nombre_archivo}
 
     this.addPost = function (datos) {
+
       var defered = $q.defer();
       var promise = defered.promise;
 
-      /* Ver si se envia el archivo 
-      console.log(datos)
-      */
-
-      Upload.upload({
-        url: ruta + '/seccion/post/add',
-        method: 'POST',
-        file: {
-          archivo: datos.archivo
-        },
-        data: datos
-      }).then(function (res) {
+      $http.post(ruta + '/seccion/post/add', datos).then(function (res) {
 
         defered.resolve(res);
 
@@ -660,27 +649,16 @@ angular.module('GATE')
 
       });
       return promise;
-
     };
 
     // Espera como parametro {titulo, descripcion, nombre_archivo, id_publicacion, id_seccion, id_usuario}
 
     this.updatePost = function (datos) {
+
       var defered = $q.defer();
       var promise = defered.promise;
 
-      /* Ver si se envia el archivo 
-      console.log(datos)
-      */
-
-      Upload.upload({
-        url: ruta + '/seccion/post/update',
-        method: 'POST',
-        file: {
-          archivo: datos.archivo
-        },
-        data: datos
-      }).then(function (res) {
+      $http.post(ruta + '/seccion/post/update', datos).then(function (res) {
 
         defered.resolve(res);
 

@@ -1,15 +1,36 @@
-<div ng-repeat="p in profesores.datos.profesores">
-  <div class="item">
-    <b>Nombre: </b> {{p.nombre_completo}}
-  </div>
-  <div class="item">
-    <b>Cedula:</b> {{p.cedula}}
-  </div>
-  <div class="item">
-    <b>Telefono:</b> {{p.telefono}}
-  </div>
-  <div class="item">
-    <b>Correo:</b> {{p.correo}}
-  </div>
-  <br>
+<div class="container">
+  <h2>Listado De Profesores</h2>
+  <p>Desde aqui puedes modificar informacion sobre los profesores</p>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Cedula</th>
+        <th>Telefono</th>
+        <th>Correo</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="p in profesores.datos.profesores">
+        <td>{{p.nombre_completo}}</td>
+        <td>{{p.cedula}}</td>
+        <td>{{p.telefono}}</td>
+        <td>{{p.correo}}</td>
+        <td>
+          <button class="btn btn-primary" ng-click="profesores.modificarUsuario($index)">Modificar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+<div class="container col-6 " ng-if="profesores.actUsuario">
+  <form class="center-block" ng-submit="profesores.actualizarUsuario(profesores.datos.modificarUsuario)">
+    <input type="text" ng-model="profesores.datos.modificarUsuario.nombre_completo">
+    <input type="text" ng-model="profesores.datos.modificarUsuario.cedula">
+    <input type="text" ng-model="profesores.datos.modificarUsuario.telefono">
+    <input type="text" ng-model="profesores.datos.modificarUsuario.contrasena">
+    <button type="submit" class="btn btn-success">modificar</button>
+  </form>
 </div>

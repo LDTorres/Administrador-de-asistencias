@@ -1,0 +1,66 @@
+<div class="container col-6">
+  <h2>Agregar Asignatura</h2>
+  <div class="form-group col-2">
+
+
+
+
+    <form method="post" class="col-4" ng-submit="malla.crearAsignatura(malla.datos.crearAsignatura)">
+
+      <input placeholder="Nombre de asignatura" type="text" ng-model="malla.datos.crearAsignatura.nombre_asig">
+
+      <select ng-model="malla.datos.crearAsignatura.trimestre" style="padding:.5%; " class="selectpicker btn-primary">
+
+        <option selected>trimestres</option>
+        <option ng-repeat="trimestre in malla.datos.trimestres" ng-value="trimestre.id_trimestre">Trimestre {{trimestre.id_trimestre}} </option>
+
+      </select>
+      <button type="submit" class="btn btn-primary">crear
+
+      </button>
+
+    </form>
+
+  </div>
+
+  <br>
+  <br>
+
+
+
+
+
+
+
+  <h2>Listado De asignaturas</h2>
+  <p>Desde aqui puedes modificar informacion sobre los profesores</p>
+
+  <select style="padding:.5%;" class="selectpicker btn-primary" ng-model="malla.datos.listarAsignaturas.id_trimestre" ng-change="malla.listarAsignaturas(malla.datos.listarAsignaturas)">
+
+    <option selected>trimestres</option>
+    <option ng-repeat="trimestre in malla.datos.trimestres" ng-value="trimestre.id_trimestre">Trimestre {{trimestre.id_trimestre}} </option>
+
+  </select>
+
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>asignatura</th>
+        <th>modificar</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-if="malla.datos.asignaturas.length > 0" ng-repeat="asignatura in malla.datos.asignaturas ">
+        <td>{{asignatura.nombre_asig}}
+        </td>
+
+        <td>
+          <button class="btn btn-primary">Modificar</button>
+        </td>
+
+      </tr>
+    </tbody>
+  </table>
+
+</div>

@@ -6,12 +6,12 @@ angular.module('GATE')
     bz.datos = {
       listarAsignaturas: {},
       trimestres: trimestresConstante,
-      crearSeccion: {
-        id_asignatura: 0,
-        nombre: ''
-      },
-      inscribirSeccion: {}
+      crearAsignatura: {
+        id_malla: 1
+
+      }
     }
+
 
     bz.tema = $rootScope.objectoCliente.preferencias.color_ui;
 
@@ -24,10 +24,17 @@ angular.module('GATE')
       });
     }
 
+    bz.crearAsignatura = function (datos) {
+
+      servicioAsignatura.add(datos).then(function (res) {
+        console.log(res);
+      })
+
+    }
+
     bz.crearSeccion = function () {
       bz.datos.crearSeccion.id_usuario = parseInt($rootScope.objectoCliente.id);
       servicioSecciones.add(bz.datos.crearSeccion).then(function (res) {
-        ionicToast.show(res.data.msg, 'top', false, 2500);
         bz.codigo = res.data.params.codigo;
       }).catch(function (res) {
         console.log(res)
@@ -41,8 +48,5 @@ angular.module('GATE')
       });
     }
 
-    bz.hideToast = function () {
-      ionicToast.hide();
-    };
 
   }])

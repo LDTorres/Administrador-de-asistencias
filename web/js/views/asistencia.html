@@ -1,4 +1,109 @@
-<select ng-model="inscripcion.datos.listarAsignaturas.id_trimestre" ng-change="inscripcion.listarAsignaturas(inscripcion.datos.listarAsignaturas)">
+<div class="container ">
 
-  <option ng-repeat="trimestre in inscripcion.datos.trimestres" ng-value="trimestre.id_trimestre">trimestre {{trimestre.id_trimestre}}</option>
-</select>
+  <h2>Listado De asistencias</h2>
+  <p>Desde aqui puedes modificar la data de las asistencias</p>
+
+  <div class="row col-md-12">
+    <div class="col-md-2">
+      <select style="padding: 1%; " class="selectpicker btn-primary" ng-model="asistencia.datos.listarAsignaturas.id_trimestre"
+        ng-change="asistencia.listarAsignaturas(asistencia.datos.listarAsignaturas)">
+
+        <option selected>trimestres</option>
+        <option ng-repeat="trimestre in asistencia.datos.trimestres" ng-value="trimestre.id_trimestre">Trimestre {{trimestre.id_trimestre}} </option>
+
+      </select>
+    </div>
+
+
+    <div class=" col-md-2">
+
+      <select ng-change="asistencia.listarSecciones(asistencias.asignatura_activa)" style="padding: 1%; " ng-if="asistencia.datos.asignaturas.length > 0"
+        class="selectpicker btn-primary" ng-model="asistencias.asignatura_activa.id_asignatura">
+        <option ng-repeat="asignatura in asistencia.datos.asignaturas " ng-value="asignatura.id_asignatura">
+          {{asignatura.nombre_asig}} </option>
+
+      </select>
+
+    </div>
+    <div class="col-md-2" ng-if="asistencia.tipoUsuario == 'Administrador' ">
+
+
+      <select style="padding: 1%; " class="selectpicker btn-primary" ng-if="asistencia.datos.secciones.length > 0" ng-model="asistencia.id_seccion"
+        ng-change="asistencia.getMiembros()">
+
+        <option ng-repeat="seccion in asistencia.datos.secciones " ng-value="seccion.id_seccion">
+          {{seccion.nombre}}</option>
+
+
+      </select>
+
+
+
+
+
+    </div>
+
+    <br>
+    <br>
+    <div class="row col-md-12" ng-if="asistencia.id_seccion">
+      <input type="date" class="col-md-2" ng-model="asistencia.fecha">
+
+
+      <br>
+      <br>
+      <button class="btn" ng-click="asistencia.getAsistencias()">Obtener
+      </button>
+    </div>
+    <table class="table table-striped" ng-if="asistencia.datos.miembros.length > 0">
+      <br>
+      <br>
+      <h2 ng-if="asistencia.datos.miembros.length > 0">Listado de asistencias</h2>
+
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>cedula</th>
+          <th>Asistencia</th>
+          <th>inasistencia</th>
+          <th ng-if="asistencia.vf">estatus</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-if="asistencia.datos.miembros.length > 0" ng-repeat="miembros in asistencia.datos.miembros ">
+          <td>{{miembros.nombre_completo}}
+          </td>
+          <td>{{miembros.cedula}}
+          </td>
+          <td>
+            <button class="btn btn-success" ng-click="miembros.asistio=1">Asistente</button>
+          </td>
+          <td>
+            <button class="btn btn-warning" ng-click="miembros.asistio=0">Inasistente</button>
+          </td>
+          <td ng-if="miembros.asistio == 1 && asistencia.vf">
+            Asistente
+          </td>
+
+          <td ng-if="miembros.asistio == 0 && asistencia.vf">
+            Inasistente
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div ng-if="asistencia.vf">
+      <input type="date" class="col-md-2" ng-model="asistencia.fechaSeleccionada">
+      <button ng-click="asistencia.setAsistencia()">Colocar Asistencias</button>
+    </div>
+
+  </div>
+
+  <div class="row col-12">
+
+    <input type="date" class="col-md-2">
+
+
+
+  </div>
+
+
+</div>
