@@ -14,7 +14,7 @@ angular.module('GATE', ['ionic', 'ngCordova', 'ngFileUpload', 'ionic-datepicker'
     });
   })
 
-  .config(function ($stateProvider, $urlRouterProvider, $httpProvider, ionicDatePickerProvider, $ionicConfigProvider) {
+  .config(function ($stateProvider, $urlRouterProvider, $httpProvider, ionicDatePickerProvider, $ionicConfigProvider, $ionicSideMenuDelegateProvider) {
 
     $ionicConfigProvider.views.maxCache(5);
     $ionicConfigProvider.tabs.position('bottom');
@@ -73,11 +73,11 @@ angular.module('GATE', ['ionic', 'ngCordova', 'ngFileUpload', 'ionic-datepicker'
           }]
         }
       })
-      // Inicio va a contener {timeline, todas las asignaturas y las secciones, perfil}
-      .state('inicio', {
-        url: '/inicio',
-        templateUrl: 'js/views/inicio.html',
-        controller: 'inicioController as inicio',
+      .state('app', {
+        url: '/app',
+        abstract: true,
+        templateUrl: 'js/views/menu.html',
+        controller: 'sidemenuController as sidemenu',
         resolve: {
           "currentAuth": ["$q", "servicioGeneral", function ($q, servicioGeneral) {
 
@@ -88,137 +88,98 @@ angular.module('GATE', ['ionic', 'ngCordova', 'ngFileUpload', 'ionic-datepicker'
             }
 
           }]
+        }
+      })
+      // Inicio va a contener {timeline, todas las asignaturas y las secciones, perfil}
+      .state('app.inicio', {
+        url: '/inicio',
+        views: {
+          'menuContent': {
+            templateUrl: 'js/views/inicio.html',
+            controller: 'inicioController as inicio'
+          }
         }
       })
       // Ayuda va a contener {informacion de la app, y el manual}
-      .state('inicio/ayuda', {
+      .state('app.inicio/ayuda', {
         url: '/ayuda',
-        templateUrl: 'js/views/ayuda.html',
-        controller: 'ayudaController as ayuda',
-        resolve: {
-          "currentAuth": ["$q", "servicioGeneral", function ($q, servicioGeneral) {
-
-            if (!servicioGeneral.autorizado()) {
-
-              return $q.reject("AUTH_REQUIRED");
-
-            }
-
-          }]
+        views: {
+          'menuContent': {
+            templateUrl: 'js/views/ayuda.html',
+            controller: 'ayudaController as ayuda'
+          }
         }
       })
       // Esta ruta va a contener {inscribir una asignatura {alumno}, crear una seccion {profesor}}
-      .state('inicio/asignatura/inscripcion', {
+      .state('app.inicio/asignatura/inscripcion', {
         url: '/inscripcion',
-        templateUrl: 'js/views/inscripcion.html',
-        controller: 'inscripcionController as inscripcion',
-        resolve: {
-          "currentAuth": ["$q", "servicioGeneral", function ($q, servicioGeneral) {
-
-            if (!servicioGeneral.autorizado()) {
-
-              return $q.reject("AUTH_REQUIRED");
-
-            }
-
-          }]
+        views: {
+          'menuContent': {
+            templateUrl: 'js/views/inscripcion.html',
+            controller: 'inscripcionController as inscripcion'
+          }
         }
       })
       // Esta ruta va a contener {posts de la seccion, miembros, informacion, asistencias}
-      .state('inicio/seccion', {
+      .state('app.inicio/seccion', {
         url: '/seccion:id_seccion',
-        templateUrl: 'js/views/seccion.html',
-        controller: 'seccionController as seccion',
-        resolve: {
-          "currentAuth": ["$q", "servicioGeneral", function ($q, servicioGeneral) {
-
-            if (!servicioGeneral.autorizado()) {
-
-              return $q.reject("AUTH_REQUIRED");
-
-            }
-
-          }]
+        views: {
+          'menuContent': {
+            templateUrl: 'js/views/seccion.html',
+            controller: 'seccionController as seccion'
+          }
         }
       })
       // Esta ruta va a contener {posts de la seccion, miembros, informacion, asistencias}
-      .state('inicio/seccion/asistencias', {
+      .state('app.inicio/seccion/asistencias', {
         url: '/asistencias',
-        templateUrl: 'js/views/asistencia.html',
-        controller: 'asistenciaController as asistencia',
         params: {
           datos: null
         },
-        resolve: {
-          "currentAuth": ["$q", "servicioGeneral", function ($q, servicioGeneral) {
-
-            if (!servicioGeneral.autorizado()) {
-
-              return $q.reject("AUTH_REQUIRED");
-
-            }
-
-          }]
+        views: {
+          'menuContent': {
+            templateUrl: 'js/views/asistencia.html',
+            controller: 'asistenciaController as asistencia'
+          }
         }
       })
       // Esta ruta va a contener {nueva publicacion}
-      .state('inicio/seccion/publicacion', {
+      .state('app.inicio/seccion/publicacion', {
         url: '/publicacion',
-        templateUrl: 'js/views/publicacion.html',
-        controller: 'publicacionController as publicacion',
         params: {
           datos: null
         },
-        resolve: {
-          "currentAuth": ["$q", "servicioGeneral", function ($q, servicioGeneral) {
-
-            if (!servicioGeneral.autorizado()) {
-
-              return $q.reject("AUTH_REQUIRED");
-
-            }
-
-          }]
+        views: {
+          'menuContent': {
+            templateUrl: 'js/views/publicacion.html',
+            controller: 'publicacionController as publicacion'
+          }
         }
       })
-      .state('inicio/seccion/miembro/perfil', {
+      .state('app.inicio/seccion/miembro/perfil', {
         url: '/miembro:id_usuario',
-        templateUrl: 'js/views/perfil.html',
-        controller: 'perfilController as perfil',
-        resolve: {
-          "currentAuth": ["$q", "servicioGeneral", function ($q, servicioGeneral) {
-
-            if (!servicioGeneral.autorizado()) {
-
-              return $q.reject("AUTH_REQUIRED");
-
-            }
-
-          }]
+        views: {
+          'menuContent': {
+            templateUrl: 'js/views/perfil.html',
+            controller: 'perfilController as perfil'
+          }
         }
       })
       // Esta ruta va a contener {posts de la seccion, miembros, informacion, asistencias}
-      .state('inicio/seccion/reportes', {
+      .state('app.inicio/seccion/reportes', {
         url: '/reportes',
-        templateUrl: 'js/views/reportes.html',
-        controller: 'reportesController as reportes',
         params: {
           datos: null
         },
-        resolve: {
-          "currentAuth": ["$q", "servicioGeneral", function ($q, servicioGeneral) {
-
-            if (!servicioGeneral.autorizado()) {
-
-              return $q.reject("AUTH_REQUIRED");
-
-            }
-
-          }]
+        views: {
+          'menuContent': {
+            templateUrl: 'js/views/reportes.html',
+            controller: 'reportesController as reportes'
+          }
         }
       });
 
-    $urlRouterProvider.otherwise('/');
+    $urlRouterProvider.otherwise('/app/inicio');
   })
 
   .run(function ($rootScope, $state) {

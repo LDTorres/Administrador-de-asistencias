@@ -18,7 +18,7 @@ angular.module('GATE')
         confirmPopup.then(function (res) {
           if (res) {
             setTimeout(function () {
-              $state.go('inicio');
+              $state.go('app.inicio');
             }, 2000);
           } else {}
         });

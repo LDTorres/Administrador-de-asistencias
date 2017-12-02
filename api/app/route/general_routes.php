@@ -65,7 +65,7 @@ $app->get('/[{app}]', function ($req, $res, $args) {
         return $this->response->withJson($sth->fetch());
     }
 
-    return $this->renderer->render($res, 'index.php', array('datos' => $sth->fetch()));
+    return $this->renderer->render($res, 'index.html', array('datos' => $sth->fetch()));
 
 });
 

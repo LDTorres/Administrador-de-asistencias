@@ -1,8 +1,5 @@
 <ion-view view-title="Publicacion">
   <ion-pane>
-    <ion-nav-bar class="bar-{{publicacion.tema}}" align-title="center">
-      <ion-nav-back-button></ion-nav-back-button>
-    </ion-nav-bar>
       <ion-content class="padding has-tabs">
         <div ng-if="publicacion.datos.nuevoPost.accion == 'new'">
           <form class="input-inset list" ng-submit="publicacion.nuevoPost(publicacion.datos.nuevoPost)"  name="nuevoPost" novalidate>

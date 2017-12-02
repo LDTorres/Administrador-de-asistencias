@@ -15,6 +15,7 @@ class SeccionesModel {
     private $table2 = 'alumnos_has_secciones';
     private $table3 = 'publicaciones';
     private $table4 = 'alumnos_has_asistencias';
+    private $path_reporte = 'app/outputPDF/';
 
     public function __CONSTRUCT(){
         $this->db = Database::conexion();
@@ -55,6 +56,16 @@ class SeccionesModel {
     }
 
     public function add($params){
+
+                // Creamos La Seccion
+        $sql = "SELECT nombre FROM $this->table WHERE nombre = ?";
+        $sth = $this->db->prepare($sql);
+        $sth->execute(array($params['nombre']));
+
+        // TODO: VALIDAR NOMBRE DE LA SECCION
+        if(count($sth->fetch()) > 0 ){
+            return array('msg' => 'Ya existe esa seccion.');
+        }
 
         // Creamos La Seccion
         $sql = "INSERT INTO $this->table (nombre, id_asignatura, codigo, id_usuario) VALUES (?,?,?,?)";
@@ -754,7 +765,12 @@ class SeccionesModel {
 
                 $mail->send();
 
-                return array('msg' => 'pdf generado y Correo Enviado!', 'nombre_pdf' => $filename);
+                # Registramos el reporte en la base de datos
+
+                $sth = $this->db->prepare("INSERT INTO reportes (nombre_reporte, desde, hasta, id_usuario) VALUES (?,?,?,?)");
+                $sth->execute(array($filename, $params['desde'], $params['hasta'], $params['id_usuario']));
+
+                return array('msg' => 'pdf generado y Correo Enviado!', 'nombre_pdf' => $filename, 'insertId' => $this->db->lastInsertId());
 
             } catch (Exception $e) {
 
@@ -767,8 +783,45 @@ class SeccionesModel {
         if(!file_put_contents('app/outputPDF/'.$filename, $pdf_gen)){
             return array('msg' => 'pdf no generado');
         }else{
-            return array('msg' => 'pdf generado', 'nombre_pdf' => $filename);
+
+            # Registramos el reporte en la base de datos
+
+            $sth = $this->db->prepare("INSERT INTO reportes (nombre_reporte, desde, hasta, id_usuario) VALUES (?,?,?,?)");
+            $sth->execute(array($filename, $params['desde'], $params['hasta'], $params['id_usuario']));
+            
+            return array('msg' => 'pdf generado!', 'nombre_pdf' => $filename, 'insertId' => $this->db->lastInsertId());
         }
+    }
+
+    public function deleteReport($params){
+        
+        if(unlink($this->path_reporte.$params['nombre'])):
+            
+            /* Borrar Registros Base de datos */
+            $sth = $this->db->prepare("DELETE FROM reportes WHERE id_reporte = ?");
+            $result = $sth->execute(array($params['id']));
+
+            if($result == false):
+                return array('msg'=>'No existe el registro');
+            endif;
+
+            return array('archivo eliminado' => $params['nombre'], 'Consulta' => $result);
+        else:
+            return array('msg'=>'No existe el archivo');
+        endif;
+
+    }
+
+    public function getAllReport(){
+
+        $sth = $this->db->prepare("SELECT * FROM reportes");
+        $sth->execute();
+        $reportes = $sth->fetchAll();
+
+        if(count($reportes) > 0){
+            return array('msg' => 'Reportes Cargados', 'reportes' => $reportes);
+        }
+
     }
 
     public function getInfoSeccion($params){

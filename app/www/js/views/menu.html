@@ -1,0 +1,43 @@
+<ion-side-menus>
+  <ion-side-menu-content>
+    <ion-nav-bar class="bar-{{usuario.tema}}" align-title="center">
+      <ion-nav-back-button>
+      </ion-nav-back-button>
+      <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+        </button>
+      </ion-nav-buttons>
+    </ion-nav-bar>
+    <ion-nav-view name="menuContent"></ion-nav-view>
+  </ion-side-menu-content>
+
+  <ion-side-menu side="left">
+    <ion-content class="padding">
+      <br>
+      <div>
+        <img class="gravatar-bello" src="img/{{usuario.gravatar}}.png">
+        <h3 class="text-center">{{usuario.nombre}}</h3>
+        <h5 class="text-center">{{usuario.tipo}}</h5>
+      </div>
+
+      <ion-list>
+        <ion-item class="item-icon-right" menu-close ui-sref="app.inicio">
+          <i class="icon ion-email"></i>
+          Inicio
+        </ion-item>
+        <ion-item class="item-icon-right" menu-close ui-sref="app.inicio/asignatura/inscripcion">
+          <i class="icon ion-university"></i>
+          Inscripcion
+        </ion-item>
+        <ion-item class="item-icon-right" menu-close ui-sref="app.inicio/ayuda">
+          <i class="icon ion-help-circled"></i>
+          Ayuda
+        </ion-item>
+        <ion-item class="item-icon-right" menu-close ng-click="cerrarSesion()">
+          <i class="icon ion-log-out"></i>
+          Cerrar Sesion
+        </ion-item>
+      </ion-list>
+    </ion-content>
+  </ion-side-menu>
+</ion-side-menus>

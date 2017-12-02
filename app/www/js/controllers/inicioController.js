@@ -1,9 +1,9 @@
 angular.module('GATE')
 
-  .controller('inicioController', ["$scope", "servicioGeneral", "$state", "servicioSecciones", "servicioAsignatura", "servicioUsuario", '$rootScope', 'trimestresConstante', '$ionicLoading', '$timeout', '$ionicPopup', '$window', 'ionicToast', '$cordovaFileTransfer', '$cordovaFile', '$ionicHistory', function ($scope, servicioGeneral, $state, servicioSecciones, servicioAsignatura, servicioUsuario, $rootScope, trimestresConstante, $ionicLoading, $timeout, $ionicPopup, $window, ionicToast, $cordovaFileTransfer, $cordovaFile, $ionicHistory) {
+  .controller('inicioController', ["$scope", "servicioGeneral", "$state", "servicioSecciones", "servicioAsignatura", "servicioUsuario", '$rootScope', 'trimestresConstante', '$ionicLoading', '$timeout', '$ionicPopup', '$window', 'ionicToast','$ionicHistory', "$ionicSideMenuDelegate", function ($scope, servicioGeneral, $state, servicioSecciones, servicioAsignatura, servicioUsuario, $rootScope, trimestresConstante, $ionicLoading, $timeout, $ionicPopup, $window, ionicToast,$ionicHistory, $ionicSideMenuDelegate) {
 
     var bz = this;
-
+    
     bz.datos = {
       posts: [],
       listarAsignaturas: {},
@@ -42,7 +42,7 @@ angular.module('GATE')
             bz.datos.posts.push(element)
           }, this);
         } else {
-          ionicToast.show('No hay mas publicaciones', 'top', false, 2500);
+          ionicToast.show('No hay más publicaciones', 'top', false, 2500);
         }
       })
     }
@@ -51,6 +51,7 @@ angular.module('GATE')
       servicioAsignatura.getAll(datos).then(function (res) {
         if (res.data.length == 0) {
           ionicToast.show('No hay ninguna asignatura para ese trimestre', 'top', false, 2500);
+          bz.datos.asignaturas = {};
         } else {
           bz.datos.asignaturas = res.data;
         }
@@ -70,7 +71,7 @@ angular.module('GATE')
 
       servicioSecciones.getAll(bz.da).then(function (res) {
         if (res.data.length == 0) {
-          ionicToast.show('No esta inscrito a ninguna seccion de esa asignatura', 'top', false, 2500);
+          ionicToast.show('No esta inscrito a ninguna sección de esa asignatura', 'top', false, 2500);
           bz.datos.secciones = {};
         } else {
           bz.datos.secciones = res.data;
@@ -118,43 +119,5 @@ angular.module('GATE')
       })
     }
 
-    // Actualizar Preferencias
-
-    bz.preferenciasAct = function (datos) {
-
-      datos.id_usuario = $rootScope.objectoCliente.id;
-      servicioUsuario.updatePreferences(datos).then(function (res) {
-
-        $rootScope.objectoCliente.preferencias = datos;
-        $window.localStorage.setItem('token', angular.toJson($rootScope.objectoCliente));
-
-        var confirmPopup = $ionicPopup.confirm({
-          title: 'Refrescar App',
-          template: 'Para aplicar los cambios debemos refrescar la app, esta de acuerdo?'
-        });
-
-        confirmPopup.then(function (res) {
-          if (res) {
-            location.reload();
-          } else {}
-        });
-
-      })
-    }
-
-    // Cierra Sesion
-    bz.cerrarSesion = function () {
-      var confirmPopup = $ionicPopup.confirm({
-        title: 'CERRAR SESION',
-        template: 'Estas seguro de cerrar sesion?'
-      });
-
-      confirmPopup.then(function (res) {
-        if (res) {
-          servicioGeneral.salir();
-          $state.go('ingreso');
-        } else {}
-      });
-    }
 
   }])

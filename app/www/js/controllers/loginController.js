@@ -11,11 +11,11 @@ angular.module('GATE')
       mostrarForm: 1
     };
 
-    bz.switch = 'Iniciar Sesion';
+    bz.switch = 'Iniciar Sesión';
 
     bz.cambiar = function (vista) {
       if (vista == 1) {
-        bz.switch = 'Iniciar Sesion';
+        bz.switch = 'Iniciar Sesión';
       } else if (2) {
         bz.switch = 'Registrarse';
       } else {
@@ -31,7 +31,7 @@ angular.module('GATE')
         } else {
           ionicToast.show('Datos Correctos', 'top', false, 2500);
           setTimeout(function () {
-            $state.go('inicio');
+            $state.go('app.inicio');
           }, 2000);
         }
       }).catch(function (res) {

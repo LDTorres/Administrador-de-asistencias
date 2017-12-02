@@ -1,7 +1,4 @@
 <ion-view view-title="Información">
-  <ion-nav-bar class="bar-{{ayuda.tema}}" align-title="center">
-    <ion-nav-back-button></ion-nav-back-button>
-  </ion-nav-bar>
   <div class="tabs-striped tabs-background-{{ayuda.tema}} tabs-color-light">
     <ion-tabs class="tabs-icon-top tab-{{ayuda.tema}}">
       <ion-tab title="Ayuda" icon-on="ion-clipboard" icon-off="ion-clipboard">
@@ -16,6 +13,20 @@
             </ion-slide>
 
           </ion-slide-box>
+          <br>
+          <div>
+            <form style="margin-bottom:0px; padding-bottom:0px;" class="list" ng-submit="ayuda.preferenciasAct(ayuda.color_ui)">
+              <label class="item item-input item-select">
+                <div class="input-label">
+                  Color de Tema
+                </div>
+                <select ng-model="ayuda.color_ui">
+                  <option ng-repeat="color in ayuda.datos.colores" ng-value="color">{{color}}</option>
+                </select>
+              </label>
+              <input type="submit" class="button button-outline button-block button-{{ayuda.tema}}" value="Guardar Preferencias">
+            </form>
+          </div>
         </ion-content>
       </ion-tab>
 

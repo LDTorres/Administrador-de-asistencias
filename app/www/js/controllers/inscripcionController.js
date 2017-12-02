@@ -12,9 +12,7 @@ angular.module('GATE')
       },
       inscribirSeccion: {}
     }
-
     bz.tema = $rootScope.objectoCliente.preferencias.color_ui;
-
     bz.datos.objeto = $rootScope.objectoCliente;
     bz.datos.listarAsignaturas.id_malla = $rootScope.objectoCliente.id_malla;
 
@@ -32,7 +30,7 @@ angular.module('GATE')
       bz.datos.crearSeccion.id_usuario = parseInt($rootScope.objectoCliente.id);
 
       $ionicLoading.show({
-        template: 'Creando Nueva Seccion.',
+        template: 'Creando Nueva Sección.',
       });
 
       servicioSecciones.add(bz.datos.crearSeccion).then(function (res) {
@@ -45,7 +43,7 @@ angular.module('GATE')
             bz.copiarSeleccionado(bz.codigo);
 
             var confirmPopup = $ionicPopup.confirm({
-              title: 'Se ha creado la seccion',
+              title: 'Se ha creado la sección',
               template: 'Desea ir hasta allí?'
             });
 
@@ -54,12 +52,12 @@ angular.module('GATE')
             confirmPopup.then(function (res) {
               if (res) {
 
-                $state.go('inicio/seccion', {
+                $state.go('app.inicio/seccion', {
                   id_seccion: id_seccion
                 });
 
               } else {
-                ionicToast.show('El codigo de la seccion se ha copiado en portapapeles', 'top', false, 2500);
+                ionicToast.show('El código de la sección se ha copiado en portapapeles', 'top', false, 2500);
               }
             });
 
@@ -77,7 +75,7 @@ angular.module('GATE')
       aux.select();
       document.execCommand("copy");
       document.body.removeChild(aux);
-      ionicToast.show('Codigo Copiado!', 'top', false, 2500);
+      ionicToast.show('Código Copiado!', 'top', false, 2500);
     }
 
     bz.inscribirSeccion = function (datos) {
@@ -87,7 +85,7 @@ angular.module('GATE')
         if (res.data.msg == 'Registro Exitoso!') {
 
           var confirmPopup = $ionicPopup.confirm({
-            title: 'Te has registrado en la seccion ' + res.data.nombre,
+            title: 'Te has registrado en la sección ' + res.data.nombre,
             template: 'Deseas visitarla?'
           });
 
@@ -95,7 +93,7 @@ angular.module('GATE')
 
           confirmPopup.then(function (res) {
             if (res) {
-              $state.go('inicio/seccion', {
+              $state.go('app.inicio/seccion', {
                 id_seccion: id_seccion
               });
             } else {}

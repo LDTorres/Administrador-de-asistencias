@@ -1,8 +1,5 @@
 <ion-view view-title="Sección">
   <ion-pane>
-    <ion-nav-bar class="bar-{{seccion.tema}}" align-title="center">
-      <ion-nav-back-button></ion-nav-back-button>
-    </ion-nav-bar>
     <div class="tabs-striped tabs-background-{{seccion.tema}} tabs-color-light">
       <ion-tabs class="tabs-{{seccion.tema}} tabs-icon-top">
         <ion-tab title="Publicaciones" icon-on="ion-ios-filing" icon-off="ion-ios-filing-outline">
@@ -10,14 +7,8 @@
             <button class="button button-block button-outline button-{{seccion.tema}}" ng-click="seccion.morePosts()">Refrescar</button>
             <a ng-if="seccion.datos.tipo == 'Administrador' || seccion.datos.tipo == 'Profesor'" class="button button-block button-outline button-{{seccion.tema}}"
               ng-click="seccion.crearPublicacion()"> Nueva Publicación </a>
-            <div class="list" ng-if="seccion.datos.posts.length >= 10">
-              <div class="item item-input-inset">
-                <label class="item-input-wrapper">
-                  <input type="text" placeholder="Buscar" ng-model="seccion.$">
-                </label>
-              </div>
-            </div>
-            <div clas <div class="list card" ng-repeat="post in seccion.datos.posts | filter:seccion.$">
+
+            <div clas <div class="list card" ng-repeat="post in seccion.datos.posts">
               <a ng-if="seccion.datos.tipo == 'Administrador' || seccion.datos.tipo == 'Profesor'" ng-click="seccion.editarPublicacion(post)"
                 class="item item-thumbnail-left item-cabecera {{seccion.tema}}">
                 <img ng-src="img/document.svg">
@@ -57,8 +48,8 @@
 
             <ion-list show-delete="false" show-reorder="false" can-swipe="seccion.eliminarOpcion">
               <ion-item ng-repeat="miembro in seccion.datos.miembros" class="item-avatar-left">
-                <img ui-sref="inicio/seccion/miembro/perfil({id_usuario: miembro.id_usuario})" ng-src="img/{{miembro.gravatar}}.png">
-                <h2 ui-sref="inicio/seccion/miembro/perfil({id_usuario: miembro.id_usuario})">{{miembro.nombre_completo}}</h2>
+                <img ui-sref="app.inicio/seccion/miembro/perfil({id_usuario: miembro.id_usuario})" ng-src="img/{{miembro.gravatar}}.png">
+                <h2 ui-sref="app.inicio/seccion/miembro/perfil({id_usuario: miembro.id_usuario})">{{miembro.nombre_completo}}</h2>
                 <p>{{miembro.cedula}}</p>
                 <ion-option-button class="button-assertive" ng-if="miembro.estado" ng-click="seccion.eliminarMiembro($index, miembro, 0)">
                   Desactivar
@@ -74,11 +65,11 @@
         <ion-tab title="Asistencia" icon-on="ion-ios-gear" icon-off="ion-ios-gear-outline">
           <ion-content class="padding">
             <a ng-if="seccion.datos.tipo == 'Administrador' || seccion.datos.tipo == 'Profesor'" class="button button-block button-outline button-{{seccion.tema}} icon-right ion-ios-plus-outline"
-              ui-sref="inicio/seccion/asistencias({datos: seccion.datos})">
+              ui-sref="app.inicio/seccion/asistencias({datos: seccion.datos})">
               Gestion de Asistencias
             </a>
             <a ng-if="seccion.datos.tipo == 'Administrador' || seccion.datos.tipo == 'Profesor'" class="button button-block button-outline button-balanced icon-right ion-ios-plus-outline"
-              ui-sref="inicio/seccion/reportes({datos: seccion.datos.seccion})">
+              ui-sref="app.inicio/seccion/reportes({datos: seccion.datos.seccion})">
               Reporte
             </a>
 
