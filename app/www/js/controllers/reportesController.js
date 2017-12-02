@@ -2,7 +2,6 @@ angular.module('GATE')
 
   .controller('reportesController', function ($scope, $rootScope, servicioSecciones, ionicDatePicker, $stateParams, $ionicLoading, ionicToast) {
     var bz = this;
-    bz.tema = $rootScope.objectoCliente.preferencias.color_ui;
 
     bz.datos = {
       micorreo: true,
@@ -11,7 +10,7 @@ angular.module('GATE')
         id_usuario: $stateParams.datos[0].id_usuario
       }
     }
-
+    bz.tema = $rootScope.objectoCliente.preferencias.color_ui;
     bz.enviarReporte = function (datos) {
 
       $ionicLoading.show({
@@ -44,7 +43,7 @@ angular.module('GATE')
       templateType: 'popup',
       from: new Date(2017, 1, 1),
       to: new Date(2030, 1, 1),
-      showTodayButton: true
+      showTodayButton: false
     };
 
     bz.openDatePicker2 = function () {

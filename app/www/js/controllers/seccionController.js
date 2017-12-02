@@ -3,8 +3,6 @@ angular.module('GATE')
   .controller('seccionController', ['$scope', '$stateParams', 'servicioSecciones', 'ionicDatePicker', '$state', '$rootScope', 'ionicToast', function ($scope, $stateParams, servicioSecciones, ionicDatePicker, $state, $rootScope, ionicToast) {
     var bz = this;
 
-    bz.tema = $rootScope.objectoCliente.preferencias.color_ui;
-
     bz.datos = {
       seccion: [],
       datosSeccion: {
@@ -18,12 +16,14 @@ angular.module('GATE')
       miembros: []
     }
 
+    bz.tema = $rootScope.objectoCliente.preferencias.color_ui;
+
     bz.datos.tipo = $rootScope.objectoCliente.tipo;
     bz.eliminarOpcion = $rootScope.objectoCliente.tipo == 'Administrador' || $rootScope.objectoCliente.tipo == 'Profesor' ? true : false;
 
     bz.crearPublicacion = function () {
 
-      $state.go('inicio/seccion/publicacion', {
+      $state.go('app.inicio/seccion/publicacion', {
         datos: {
           id_seccion: $stateParams.id_seccion,
           id_usuario: 1,
@@ -35,7 +35,7 @@ angular.module('GATE')
 
     bz.editarPublicacion = function (post) {
       post.accion = 'edit';
-      $state.go('inicio/seccion/publicacion', {
+      $state.go('app.inicio/seccion/publicacion', {
         datos: post
       });
     }
@@ -95,7 +95,7 @@ angular.module('GATE')
       templateType: 'popup',
       from: new Date(2017, 1, 1),
       to: new Date(),
-      showTodayButton: true,
+      showTodayButton: false,
       callback: function (val) {
         date = new Date(val);
         bz.datos.getAsistence.fecha = formatDate(date);
@@ -149,7 +149,7 @@ angular.module('GATE')
       aux.select();
       document.execCommand("copy");
       document.body.removeChild(aux);
-      ionicToast.show('Codigo Copiado!', 'top', false, 2500);
+      ionicToast.show('Código Copiado!', 'top', false, 2500);
     }
 
   }])

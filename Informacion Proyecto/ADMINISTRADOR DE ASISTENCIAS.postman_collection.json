@@ -125,6 +125,20 @@
 			"id": "6cf692b2-b2fb-b982-2010-c98c2c38de39"
 		},
 		{
+			"name": "Reportes",
+			"description": "",
+			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
+			"order": [
+				"0408f49e-c3d2-95ef-aaca-b1c0bff11451",
+				"4ba2a422-76f4-f9a2-5d2f-c8241df5c52c",
+				"3a059460-2425-cddc-a784-5b3b66b1d962"
+			],
+			"owner": "2084589",
+			"folder": "d0a4af9a-1e80-a376-a478-b2d7addd86b1",
+			"folders_order": [],
+			"id": "b0df4eea-9b95-63cd-c179-4d39ef364802"
+		},
+		{
 			"name": "Secciones",
 			"description": "Rutas Para obetener datos de las Secciones",
 			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
@@ -133,14 +147,14 @@
 				"671ce723-b74e-df44-cc47-0f68017a8837",
 				"ca593f2f-4a16-d295-d2d8-aca5e9e977f1",
 				"68657109-ae02-586f-08f0-e805460e63bc",
-				"3964e71a-6bc8-c3ca-c448-f9fd2ad0d60b",
-				"0408f49e-c3d2-95ef-aaca-b1c0bff11451"
+				"3964e71a-6bc8-c3ca-c448-f9fd2ad0d60b"
 			],
 			"owner": "2084589",
 			"folders_order": [
 				"6cf692b2-b2fb-b982-2010-c98c2c38de39",
 				"f1ba4e66-8b37-1bdc-72d0-6981ccb4fc37",
-				"bb0bd518-8bee-2785-0c46-508c4eb322dc"
+				"bb0bd518-8bee-2785-0c46-508c4eb322dc",
+				"b0df4eea-9b95-63cd-c179-4d39ef364802"
 			],
 			"id": "d0a4af9a-1e80-a376-a478-b2d7addd86b1"
 		},
@@ -177,7 +191,7 @@
 	"requests": [
 		{
 			"id": "0408f49e-c3d2-95ef-aaca-b1c0bff11451",
-			"headers": "Content-Type: application/x-www-form-urlencoded\nauth: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MTE1MjEyOTAsImV4cCI6MTUyNDQ4MTI5MCwiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIxIiwibmFtZSI6IkFkbWluaXN0cmFkb3IiLCJ0aXBvIjoiQWRtaW5pc3RyYWRvciIsImlkX21hbGxhIjoiMSJ9fQ.agmCM5aGheMlvBOj6SpgzFMz05C1OEnfi4uyUYvSi6g\n",
+			"headers": "Content-Type: application/x-www-form-urlencoded\nauth: {{token}}\n",
 			"headerData": [
 				{
 					"key": "Content-Type",
@@ -187,13 +201,13 @@
 				},
 				{
 					"key": "auth",
-					"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MTE1MjEyOTAsImV4cCI6MTUyNDQ4MTI5MCwiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIxIiwibmFtZSI6IkFkbWluaXN0cmFkb3IiLCJ0aXBvIjoiQWRtaW5pc3RyYWRvciIsImlkX21hbGxhIjoiMSJ9fQ.agmCM5aGheMlvBOj6SpgzFMz05C1OEnfi4uyUYvSi6g",
+					"value": "{{token}}",
 					"description": "",
 					"enabled": true
 				}
 			],
 			"url": "{{url}}/seccion/reporte",
-			"folder": "d0a4af9a-1e80-a376-a478-b2d7addd86b1",
+			"folder": "b0df4eea-9b95-63cd-c179-4d39ef364802",
 			"queryParams": [],
 			"preRequestScript": null,
 			"pathVariables": {},
@@ -209,14 +223,14 @@
 				},
 				{
 					"key": "desde",
-					"value": "2017-11-02",
+					"value": "2017-11-16",
 					"description": "",
 					"type": "text",
 					"enabled": true
 				},
 				{
 					"key": "hasta",
-					"value": "2017-11-28",
+					"value": "2017-11-29",
 					"description": "",
 					"type": "text",
 					"enabled": true
@@ -227,13 +241,20 @@
 					"description": "",
 					"type": "text",
 					"enabled": true
+				},
+				{
+					"key": "app",
+					"value": "Correo Propio",
+					"description": "",
+					"type": "text",
+					"enabled": false
 				}
 			],
 			"dataMode": "urlencoded",
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1511782262023,
+			"time": 1512147480791,
 			"name": "Reporte",
 			"description": "Reporte de asistencias",
 			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
@@ -315,16 +336,16 @@
 		},
 		{
 			"id": "2a42b3d1-5fec-c6d6-6582-7b0a20a6415c",
-			"headers": "auth: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MTE3NTM2ODYsImV4cCI6MTUyNDcxMzY4NiwiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIxIiwibmFtZSI6IkFkbWluaXN0cmFkb3IiLCJ0aXBvIjoiQWRtaW5pc3RyYWRvciIsImlkX21hbGxhIjoiMSJ9fQ.IfPvFetXRrnWTLWMPEeEY2sc9TiMgWMiv6NXc6MPo8o\n",
+			"headers": "auth: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MTE5Njc3NjEsImV4cCI6MTUyNDkyNzc2MSwiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiI3IiwibmFtZSI6Ikp1YW4gTWFudWVsIiwidGlwbyI6IkVzdHVkaWFudGUiLCJpZF9tYWxsYSI6IjEifX0.UY117dRUWPsLlKBQX3najQ7H_flgk5wWTCzeDeALqtk\n",
 			"headerData": [
 				{
 					"key": "auth",
-					"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MTE3NTM2ODYsImV4cCI6MTUyNDcxMzY4NiwiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIxIiwibmFtZSI6IkFkbWluaXN0cmFkb3IiLCJ0aXBvIjoiQWRtaW5pc3RyYWRvciIsImlkX21hbGxhIjoiMSJ9fQ.IfPvFetXRrnWTLWMPEeEY2sc9TiMgWMiv6NXc6MPo8o",
+					"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MTE5Njc3NjEsImV4cCI6MTUyNDkyNzc2MSwiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiI3IiwibmFtZSI6Ikp1YW4gTWFudWVsIiwidGlwbyI6IkVzdHVkaWFudGUiLCJpZF9tYWxsYSI6IjEifX0.UY117dRUWPsLlKBQX3najQ7H_flgk5wWTCzeDeALqtk",
 					"description": "",
 					"enabled": true
 				}
 			],
-			"url": "{{url}}/user/1",
+			"url": "{{url}}/user/8",
 			"folder": "a2cacbd8-40d4-6e52-ad12-35783c7a6a91",
 			"queryParams": [],
 			"preRequestScript": null,
@@ -337,7 +358,7 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1511753983939,
+			"time": 1511969183604,
 			"name": "Traer usuario por id",
 			"description": "Obetenemos los datos de un usuario por su id",
 			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
@@ -475,16 +496,16 @@
 		},
 		{
 			"id": "316bc884-d3d3-4a97-74ca-2d397520c158",
-			"headers": "auth: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MDg5NjgzMDksImV4cCI6MTUwOTE4NDMwOSwiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIyIiwibmFtZSI6IkFkbWluIiwidGlwbyI6IkFkbWluaXN0cmFkb3IiLCJpZF9tYWxsYSI6IjEifX0.a0uFiy7YBuehvtAOsaP31nekXbv-j7NJRl5sWIJag0I\n",
+			"headers": "auth: {{token}}\n",
 			"headerData": [
 				{
 					"key": "auth",
-					"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MDg5NjgzMDksImV4cCI6MTUwOTE4NDMwOSwiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIyIiwibmFtZSI6IkFkbWluIiwidGlwbyI6IkFkbWluaXN0cmFkb3IiLCJpZF9tYWxsYSI6IjEifX0.a0uFiy7YBuehvtAOsaP31nekXbv-j7NJRl5sWIJag0I",
-					"enabled": true,
-					"description": ""
+					"value": "{{token}}",
+					"description": "",
+					"enabled": true
 				}
 			],
-			"url": "{{url}}/bd/backups",
+			"url": "{{web}}/bd/backups",
 			"folder": "8805482e-d8b8-da8e-16d9-4ddd5b9d58a0",
 			"queryParams": [],
 			"preRequestScript": null,
@@ -495,13 +516,12 @@
 			"dataMode": "params",
 			"tests": null,
 			"currentHelper": "normal",
-			"helperAttributes": "{}",
-			"time": 1508968371376,
+			"helperAttributes": {},
+			"time": 1512134111852,
 			"name": "Respaldos",
 			"description": "Obtenemos todos los respaldos",
 			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
-			"responses": [],
-			"timestamp": null
+			"responses": []
 		},
 		{
 			"id": "364ec9af-c6ab-22fa-bc88-9aa8b298ac43",
@@ -510,8 +530,8 @@
 				{
 					"key": "Content-Type",
 					"value": "application/x-www-form-urlencoded",
-					"enabled": true,
-					"description": ""
+					"description": "",
+					"enabled": true
 				}
 			],
 			"url": "{{url}}/seccion/asistencia",
@@ -521,47 +541,18 @@
 			"pathVariables": {},
 			"pathVariableData": [],
 			"method": "POST",
-			"data": [
-				{
-					"key": "id_usuario",
-					"value": "1",
-					"description": "",
-					"type": "text",
-					"enabled": true
-				},
-				{
-					"key": "id_seccion",
-					"value": "1",
-					"description": "",
-					"type": "text",
-					"enabled": true
-				},
-				{
-					"key": "asistio",
-					"value": "0",
-					"description": "",
-					"type": "text",
-					"enabled": true
-				},
-				{
-					"key": "fecha",
-					"value": "2017-09-09",
-					"description": "",
-					"type": "text",
-					"enabled": true
-				}
-			],
-			"dataMode": "urlencoded",
+			"data": [],
+			"dataMode": "raw",
 			"version": 2,
 			"tests": null,
 			"currentHelper": "normal",
-			"helperAttributes": "{}",
-			"time": 1506885754026,
+			"helperAttributes": {},
+			"time": 1512141958792,
 			"name": "{{url}}/seccion/asistencia",
 			"description": "Colocar asistencia",
 			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
 			"responses": [],
-			"timestamp": null
+			"rawModeData": "{\n\tid_seccion:1,\n\tid_usuario:1,\n\tmiembros:[{id_usuario: 1, asistio: 0}],\n\tfecha: '2017-12-1'\n}"
 		},
 		{
 			"id": "3964e71a-6bc8-c3ca-c448-f9fd2ad0d60b",
@@ -608,6 +599,56 @@
 			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
 			"responses": [],
 			"timestamp": null
+		},
+		{
+			"id": "3a059460-2425-cddc-a784-5b3b66b1d962",
+			"headers": "Content-Type: application/x-www-form-urlencoded\nauth: {{token}}\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/x-www-form-urlencoded",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "auth",
+					"value": "{{token}}",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "{{url}}/seccion/reporte/eliminar",
+			"folder": "b0df4eea-9b95-63cd-c179-4d39ef364802",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [
+				{
+					"key": "nombre",
+					"value": "A-01-12-2017-18-46-19-reporte-asistencias.pdf",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "id",
+					"value": "3",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1512150406026,
+			"name": "Eliminar",
+			"description": "Reporte de asistencias",
+			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
+			"responses": []
 		},
 		{
 			"id": "3ed6e5bb-9aa7-76e5-02e8-2643b83b1664",
@@ -677,16 +718,16 @@
 		},
 		{
 			"id": "3ef918cd-956e-ed4e-6477-609642b63b65",
-			"headers": "auth: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MDg5NjgzMDksImV4cCI6MTUwOTE4NDMwOSwiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIyIiwibmFtZSI6IkFkbWluIiwidGlwbyI6IkFkbWluaXN0cmFkb3IiLCJpZF9tYWxsYSI6IjEifX0.a0uFiy7YBuehvtAOsaP31nekXbv-j7NJRl5sWIJag0I\n",
+			"headers": "auth: {{token}}\n",
 			"headerData": [
 				{
 					"key": "auth",
-					"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MDg5NjgzMDksImV4cCI6MTUwOTE4NDMwOSwiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIyIiwibmFtZSI6IkFkbWluIiwidGlwbyI6IkFkbWluaXN0cmFkb3IiLCJpZF9tYWxsYSI6IjEifX0.a0uFiy7YBuehvtAOsaP31nekXbv-j7NJRl5sWIJag0I",
-					"enabled": true,
-					"description": ""
+					"value": "{{token}}",
+					"description": "",
+					"enabled": true
 				}
 			],
-			"url": "{{url}}/bd/backup",
+			"url": "{{web}}/bd/backup",
 			"folder": "8805482e-d8b8-da8e-16d9-4ddd5b9d58a0",
 			"queryParams": [],
 			"preRequestScript": null,
@@ -698,13 +739,12 @@
 			"version": 2,
 			"tests": null,
 			"currentHelper": "normal",
-			"helperAttributes": "{}",
-			"time": 1508968373600,
+			"helperAttributes": {},
+			"time": 1512134209095,
 			"name": "Respaldar",
 			"description": "Ruta para Hacer una copia de la base de datos",
 			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
-			"responses": [],
-			"timestamp": null
+			"responses": []
 		},
 		{
 			"id": "3ff5c854-9d6f-32fb-6c73-24bcada66f5e",
@@ -956,14 +996,91 @@
 			"timestamp": null
 		},
 		{
-			"id": "5a632524-d9e3-2530-32d8-7a0516f5f754",
-			"headers": "Content-Type: application/x-www-form-urlencoded\n",
+			"id": "4ba2a422-76f4-f9a2-5d2f-c8241df5c52c",
+			"headers": "Content-Type: application/x-www-form-urlencoded\nauth: {{token}}\n",
 			"headerData": [
 				{
 					"key": "Content-Type",
 					"value": "application/x-www-form-urlencoded",
-					"enabled": true,
-					"description": ""
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "auth",
+					"value": "{{token}}",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "{{url}}/seccion/reportes",
+			"folder": "b0df4eea-9b95-63cd-c179-4d39ef364802",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": [
+				{
+					"key": "id_seccion",
+					"value": "1",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "desde",
+					"value": "2017-11-16",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "hasta",
+					"value": "2017-11-29",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "id_usuario",
+					"value": "1",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "app",
+					"value": "Correo Propio",
+					"description": "",
+					"type": "text",
+					"enabled": false
+				}
+			],
+			"dataMode": "urlencoded",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1512147479142,
+			"name": "Reportes",
+			"description": "Reporte de asistencias",
+			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
+			"responses": []
+		},
+		{
+			"id": "5a632524-d9e3-2530-32d8-7a0516f5f754",
+			"headers": "Content-Type: application/x-www-form-urlencoded\nauth: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MTE5NjczNDYsImV4cCI6MTUyNDkyNzM0NiwiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIxIiwibmFtZSI6IkFkbWluaXN0cmFkb3IiLCJ0aXBvIjoiQWRtaW5pc3RyYWRvciIsImlkX21hbGxhIjoiMSJ9fQ.3k746ZpHjGjuhPrxxvrr2i5JT7ubieLrX-Cf_PHsauA\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/x-www-form-urlencoded",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "auth",
+					"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MTE5NjczNDYsImV4cCI6MTUyNDkyNzM0NiwiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIxIiwibmFtZSI6IkFkbWluaXN0cmFkb3IiLCJ0aXBvIjoiQWRtaW5pc3RyYWRvciIsImlkX21hbGxhIjoiMSJ9fQ.3k746ZpHjGjuhPrxxvrr2i5JT7ubieLrX-Cf_PHsauA",
+					"description": "",
+					"enabled": true
 				}
 			],
 			"url": "{{url}}/user/update",
@@ -976,28 +1093,28 @@
 			"data": [
 				{
 					"key": "id_usuario",
-					"value": "1",
+					"value": "12",
 					"description": "",
 					"type": "text",
 					"enabled": true
 				},
 				{
 					"key": "nombre_completo",
-					"value": "Luis Torres",
+					"value": "Adrian",
 					"description": "",
 					"type": "text",
 					"enabled": true
 				},
 				{
 					"key": "cedula",
-					"value": "25659843",
+					"value": "20",
 					"description": "",
 					"type": "text",
 					"enabled": true
 				},
 				{
 					"key": "telefono",
-					"value": "123456789",
+					"value": "41211395800",
 					"description": "",
 					"type": "text",
 					"enabled": true
@@ -1013,13 +1130,12 @@
 			"dataMode": "urlencoded",
 			"tests": null,
 			"currentHelper": "normal",
-			"helperAttributes": "{}",
-			"time": 1506623079553,
+			"helperAttributes": {},
+			"time": 1512174938532,
 			"name": "Actualizar usuario",
 			"description": "RUTA PARA MODIFICAR UN USUARIO",
 			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
-			"responses": [],
-			"timestamp": null
+			"responses": []
 		},
 		{
 			"id": "60b62936-3a0d-83f3-4679-c6a7a31f79bf",
@@ -1061,13 +1177,13 @@
 		},
 		{
 			"id": "66dce75a-848a-3a42-ece3-8d679caebe92",
-			"headers": "auth: \n",
+			"headers": "auth: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MTE3OTg3NDQsImV4cCI6MTUyNDc1ODc0NCwiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIxIiwibmFtZSI6IkFkbWluaXN0cmFkb3IiLCJ0aXBvIjoiQWRtaW5pc3RyYWRvciIsImlkX21hbGxhIjoiMSJ9fQ.5MElnm_Wod2MOs1l6IUcd2teP1KQCRS4uB3x-CJSspw\n",
 			"headerData": [
 				{
 					"key": "auth",
-					"value": "",
-					"enabled": true,
-					"description": ""
+					"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MTE3OTg3NDQsImV4cCI6MTUyNDc1ODc0NCwiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIxIiwibmFtZSI6IkFkbWluaXN0cmFkb3IiLCJ0aXBvIjoiQWRtaW5pc3RyYWRvciIsImlkX21hbGxhIjoiMSJ9fQ.5MElnm_Wod2MOs1l6IUcd2teP1KQCRS4uB3x-CJSspw",
+					"description": "",
+					"enabled": true
 				}
 			],
 			"url": "{{url}}/user/all",
@@ -1081,23 +1197,22 @@
 			"dataMode": "params",
 			"tests": null,
 			"currentHelper": "normal",
-			"helperAttributes": "{}",
-			"time": 1508688737440,
+			"helperAttributes": {},
+			"time": 1511799227040,
 			"name": "Todos los usuarios por tipo",
 			"description": "Trae todos los usuarios \nPor defecto trae los usuarios tipo Estudiante\nPara traer otro tipo enviar por parametro el tipo",
 			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
-			"responses": [],
-			"timestamp": null
+			"responses": []
 		},
 		{
 			"id": "66e69161-7400-e514-f0e1-cb3711503cf5",
-			"headers": "auth: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MDg5Njc5NDgsImV4cCI6MTUwOTE4Mzk0OCwiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIyIiwibmFtZSI6IkFkbWluIiwidGlwbyI6IkFkbWluaXN0cmFkb3IiLCJpZF9tYWxsYSI6IjEifX0.RYl7o3ODIdTYq-bnVJBBAJIiAzky7w8ApDEAUXrmw60\n",
+			"headers": "auth: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MTE3OTM3ODcsImV4cCI6MTUyNDc1Mzc4NywiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIxIiwibmFtZSI6IkFkbWluaXN0cmFkb3IiLCJ0aXBvIjoiQWRtaW5pc3RyYWRvciIsImlkX21hbGxhIjoiMSJ9fQ.Mr2gn57KePRKFp3xP__cYvkrgNhGHqzuF-E4I7NWOsM\n",
 			"headerData": [
 				{
 					"key": "auth",
-					"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MDg5Njc5NDgsImV4cCI6MTUwOTE4Mzk0OCwiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIyIiwibmFtZSI6IkFkbWluIiwidGlwbyI6IkFkbWluaXN0cmFkb3IiLCJpZF9tYWxsYSI6IjEifX0.RYl7o3ODIdTYq-bnVJBBAJIiAzky7w8ApDEAUXrmw60",
-					"enabled": true,
-					"description": ""
+					"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MTE3OTM3ODcsImV4cCI6MTUyNDc1Mzc4NywiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIxIiwibmFtZSI6IkFkbWluaXN0cmFkb3IiLCJ0aXBvIjoiQWRtaW5pc3RyYWRvciIsImlkX21hbGxhIjoiMSJ9fQ.Mr2gn57KePRKFp3xP__cYvkrgNhGHqzuF-E4I7NWOsM",
+					"description": "",
+					"enabled": true
 				}
 			],
 			"url": "{{url}}/asignatura/1/1/1",
@@ -1112,13 +1227,12 @@
 			"version": 2,
 			"tests": null,
 			"currentHelper": "normal",
-			"helperAttributes": "{}",
-			"time": 1508968268272,
+			"helperAttributes": {},
+			"time": 1511794778339,
 			"name": "Asignaturas por PNF",
 			"description": "Obtenemos una materia en especifico",
 			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
-			"responses": [],
-			"timestamp": null
+			"responses": []
 		},
 		{
 			"id": "671ce723-b74e-df44-cc47-0f68017a8837",
@@ -1253,13 +1367,6 @@
 					"value": "Administrador",
 					"description": "",
 					"type": "text",
-					"enabled": true
-				},
-				{
-					"key": "viejos",
-					"value": "SI",
-					"description": "",
-					"type": "text",
 					"enabled": false
 				}
 			],
@@ -1267,7 +1374,7 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1511749121220,
+			"time": 1512080741576,
 			"name": "Timeline",
 			"description": "Obtenemos las publicaciones de todas las secciones a las que pertenece el usuario\n\nSi se manda un campo tipo con el valor administrador o profesor entonces traera las publicaciones de las secciones que imparte",
 			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
@@ -1275,19 +1382,19 @@
 		},
 		{
 			"id": "7c7e648b-30fd-70c4-e356-f506117961e1",
-			"headers": "Content-Type: application/x-www-form-urlencoded\nauth: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MTE3MDc3NjEsImV4cCI6MTUyNDY2Nzc2MSwiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIxIiwibmFtZSI6IkFkbWluaXN0cmFkb3IiLCJ0aXBvIjoiQWRtaW5pc3RyYWRvciIsImlkX21hbGxhIjoiMSJ9fQ.ExCXXtdjpevjUiFsEdJxEGydpq5cz3d-pKZ7AtAsyOE\n",
+			"headers": "Content-Type: application/x-www-form-urlencoded\nauth: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MTE5Njc3NjEsImV4cCI6MTUyNDkyNzc2MSwiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiI3IiwibmFtZSI6Ikp1YW4gTWFudWVsIiwidGlwbyI6IkVzdHVkaWFudGUiLCJpZF9tYWxsYSI6IjEifX0.UY117dRUWPsLlKBQX3najQ7H_flgk5wWTCzeDeALqtk\n",
 			"headerData": [
 				{
 					"key": "Content-Type",
 					"value": "application/x-www-form-urlencoded",
-					"enabled": true,
-					"description": ""
+					"description": "",
+					"enabled": true
 				},
 				{
 					"key": "auth",
-					"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MTE3MDc3NjEsImV4cCI6MTUyNDY2Nzc2MSwiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIxIiwibmFtZSI6IkFkbWluaXN0cmFkb3IiLCJ0aXBvIjoiQWRtaW5pc3RyYWRvciIsImlkX21hbGxhIjoiMSJ9fQ.ExCXXtdjpevjUiFsEdJxEGydpq5cz3d-pKZ7AtAsyOE",
-					"enabled": true,
-					"description": ""
+					"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MTE5Njc3NjEsImV4cCI6MTUyNDkyNzc2MSwiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiI3IiwibmFtZSI6Ikp1YW4gTWFudWVsIiwidGlwbyI6IkVzdHVkaWFudGUiLCJpZF9tYWxsYSI6IjEifX0.UY117dRUWPsLlKBQX3najQ7H_flgk5wWTCzeDeALqtk",
+					"description": "",
+					"enabled": true
 				}
 			],
 			"url": "{{url}}/seccion/posts",
@@ -1300,7 +1407,7 @@
 			"data": [
 				{
 					"key": "id_seccion",
-					"value": "1",
+					"value": "2",
 					"description": "",
 					"type": "text",
 					"enabled": true
@@ -1316,23 +1423,22 @@
 			"dataMode": "urlencoded",
 			"tests": null,
 			"currentHelper": "normal",
-			"helperAttributes": "{}",
-			"time": 1511713516769,
+			"helperAttributes": {},
+			"time": 1512080749270,
 			"name": "Todos",
 			"description": "Obtenemos los posts de una seccion \n",
 			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
-			"responses": [],
-			"timestamp": null
+			"responses": []
 		},
 		{
 			"id": "7ecde924-324f-37bb-6021-889a4c5fabb2",
-			"headers": "auth: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MTExOTAwMDAsImV4cCI6MTUxMTQwNjAwMCwiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIxIiwibmFtZSI6IkFkbWluIiwidGlwbyI6IkFkbWluaXN0cmFkb3IiLCJpZF9tYWxsYSI6IjEifX0.ePhwoBoiY86b8XEtabCf0d2_12IqeExtM-eW6lJ2twg\n",
+			"headers": "auth: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MTE5Njc3NjEsImV4cCI6MTUyNDkyNzc2MSwiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiI3IiwibmFtZSI6Ikp1YW4gTWFudWVsIiwidGlwbyI6IkVzdHVkaWFudGUiLCJpZF9tYWxsYSI6IjEifX0.UY117dRUWPsLlKBQX3najQ7H_flgk5wWTCzeDeALqtk\n",
 			"headerData": [
 				{
 					"key": "auth",
-					"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MTExOTAwMDAsImV4cCI6MTUxMTQwNjAwMCwiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIxIiwibmFtZSI6IkFkbWluIiwidGlwbyI6IkFkbWluaXN0cmFkb3IiLCJpZF9tYWxsYSI6IjEifX0.ePhwoBoiY86b8XEtabCf0d2_12IqeExtM-eW6lJ2twg",
-					"enabled": true,
-					"description": ""
+					"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MTE5Njc3NjEsImV4cCI6MTUyNDkyNzc2MSwiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiI3IiwibmFtZSI6Ikp1YW4gTWFudWVsIiwidGlwbyI6IkVzdHVkaWFudGUiLCJpZF9tYWxsYSI6IjEifX0.UY117dRUWPsLlKBQX3najQ7H_flgk5wWTCzeDeALqtk",
+					"description": "",
+					"enabled": true
 				}
 			],
 			"url": "{{url}}/seccion/all",
@@ -1352,14 +1458,7 @@
 				},
 				{
 					"key": "id_usuario",
-					"value": "1",
-					"description": "",
-					"type": "text",
-					"enabled": true
-				},
-				{
-					"key": "tipo",
-					"value": "Profesor",
+					"value": "2",
 					"description": "",
 					"type": "text",
 					"enabled": true
@@ -1369,13 +1468,12 @@
 			"version": 2,
 			"tests": null,
 			"currentHelper": "normal",
-			"helperAttributes": "{}",
-			"time": 1511193746045,
+			"helperAttributes": {},
+			"time": 1511970862295,
 			"name": "Todas las secciones",
 			"description": "Obtenemos todas las secciones de una materia\nSi mandamos el id de un usuario, traera las secciones que tenga inscritas\nSi a parte mandamos un campo tipo con el valor profesor, evaluara si el id del usuario pertenece a un profesor y te traerá todas las secciones que imparte",
 			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
-			"responses": [],
-			"timestamp": null
+			"responses": []
 		},
 		{
 			"id": "83988095-882d-73ad-a6e1-b562c41747a7",
@@ -1459,8 +1557,8 @@
 				{
 					"key": "Content-Type",
 					"value": "application/x-www-form-urlencoded",
-					"enabled": true,
-					"description": ""
+					"description": "",
+					"enabled": true
 				}
 			],
 			"url": "{{url}}/forgotPass",
@@ -1473,7 +1571,7 @@
 			"data": [
 				{
 					"key": "correo",
-					"value": "luisdaniel.programador@gmail.com",
+					"value": "adrian.fl1991@gmail.com",
 					"description": "",
 					"type": "text",
 					"enabled": true
@@ -1482,13 +1580,12 @@
 			"dataMode": "urlencoded",
 			"tests": null,
 			"currentHelper": "normal",
-			"helperAttributes": "{}",
-			"time": 1509726078441,
+			"helperAttributes": {},
+			"time": 1511970857760,
 			"name": "Recuperar Contraseña",
 			"description": "Enviar correo",
 			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
-			"responses": [],
-			"timestamp": null
+			"responses": []
 		},
 		{
 			"id": "9e6faba1-e9fc-ef7c-7b2b-25e042861cbe",
@@ -1630,56 +1727,48 @@
 			"data": [
 				{
 					"key": "usuario",
-					"value": "eudo",
+					"value": "Juan Manuel",
 					"description": "No puede ser repetido"
 				},
 				{
 					"key": "cedula",
-					"value": "67",
+					"value": "27367873",
 					"description": "Unico",
 					"type": "text",
 					"enabled": true
 				},
 				{
 					"key": "correo",
-					"value": "hedfsfl@gmail.com",
+					"value": "juan@gmail.com",
 					"description": "",
 					"type": "text",
 					"enabled": true
 				},
 				{
 					"key": "contrasena",
-					"value": "1",
+					"value": "12345",
 					"description": ""
 				},
 				{
 					"key": "nombre_completo",
-					"value": "Prueba Usuario",
+					"value": "Juan",
 					"description": ""
 				},
 				{
 					"key": "telefono",
-					"value": "3455333",
+					"value": "123456789",
 					"description": ""
-				},
-				{
-					"key": "id_malla",
-					"value": "1",
-					"description": "",
-					"type": "text",
-					"enabled": true
 				}
 			],
 			"dataMode": "urlencoded",
 			"tests": null,
 			"currentHelper": "normal",
-			"helperAttributes": "{}",
-			"time": 1511713504471,
+			"helperAttributes": {},
+			"time": 1511969192086,
 			"name": "Registrarse",
 			"description": "RUTA PARA AGREGAR UN NUEVO USUARIO\n\nDEVUELVE LOS DATOS EN FORMATO JSON",
 			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
-			"responses": [],
-			"timestamp": null
+			"responses": []
 		},
 		{
 			"id": "a66dc360-a527-c6d4-71d2-1681d044b732",
@@ -1740,13 +1829,13 @@
 		},
 		{
 			"id": "ab956e4e-e8e5-ffd1-8dac-28f1969110f4",
-			"headers": "auth: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MDg5Njc5NDgsImV4cCI6MTUwOTE4Mzk0OCwiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIyIiwibmFtZSI6IkFkbWluIiwidGlwbyI6IkFkbWluaXN0cmFkb3IiLCJpZF9tYWxsYSI6IjEifX0.RYl7o3ODIdTYq-bnVJBBAJIiAzky7w8ApDEAUXrmw60\n",
+			"headers": "auth: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MTE3OTM3ODcsImV4cCI6MTUyNDc1Mzc4NywiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIxIiwibmFtZSI6IkFkbWluaXN0cmFkb3IiLCJ0aXBvIjoiQWRtaW5pc3RyYWRvciIsImlkX21hbGxhIjoiMSJ9fQ.Mr2gn57KePRKFp3xP__cYvkrgNhGHqzuF-E4I7NWOsM\n",
 			"headerData": [
 				{
 					"key": "auth",
-					"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MDg5Njc5NDgsImV4cCI6MTUwOTE4Mzk0OCwiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIyIiwibmFtZSI6IkFkbWluIiwidGlwbyI6IkFkbWluaXN0cmFkb3IiLCJpZF9tYWxsYSI6IjEifX0.RYl7o3ODIdTYq-bnVJBBAJIiAzky7w8ApDEAUXrmw60",
-					"enabled": true,
-					"description": ""
+					"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MTE3OTM3ODcsImV4cCI6MTUyNDc1Mzc4NywiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIxIiwibmFtZSI6IkFkbWluaXN0cmFkb3IiLCJ0aXBvIjoiQWRtaW5pc3RyYWRvciIsImlkX21hbGxhIjoiMSJ9fQ.Mr2gn57KePRKFp3xP__cYvkrgNhGHqzuF-E4I7NWOsM",
+					"description": "",
+					"enabled": true
 				}
 			],
 			"url": "{{url}}/asignatura/all/1/1",
@@ -1761,13 +1850,12 @@
 			"version": 2,
 			"tests": null,
 			"currentHelper": "normal",
-			"helperAttributes": "{}",
-			"time": 1508968266168,
+			"helperAttributes": {},
+			"time": 1511794785009,
 			"name": "Asignaturas",
 			"description": "Obtenemos todas las materias de una malla",
 			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
-			"responses": [],
-			"timestamp": null
+			"responses": []
 		},
 		{
 			"id": "abfd641d-f8d6-f6c5-b4d2-494676ba0534",
@@ -1881,16 +1969,22 @@
 		},
 		{
 			"id": "b47705ae-cfb9-1e50-deaa-e642ac2069dc",
-			"headers": "Content-Type: application/x-www-form-urlencoded\n",
+			"headers": "Content-Type: application/x-www-form-urlencoded\nauth: {{token}}\n",
 			"headerData": [
 				{
 					"key": "Content-Type",
 					"value": "application/x-www-form-urlencoded",
-					"enabled": true,
-					"description": ""
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "auth",
+					"value": "{{token}}",
+					"description": "",
+					"enabled": true
 				}
 			],
-			"url": "{{url}}/bd/restore",
+			"url": "{{web}}/bd/restore",
 			"folder": "8805482e-d8b8-da8e-16d9-4ddd5b9d58a0",
 			"queryParams": [],
 			"preRequestScript": null,
@@ -1900,7 +1994,7 @@
 			"data": [
 				{
 					"key": "filename",
-					"value": "bd-19-09-2017-12-57-37.sql",
+					"value": "bd-iuteb-01-12-2017-13-16-51.sql",
 					"description": "Nombre del archivo",
 					"type": "text",
 					"enabled": true
@@ -1909,32 +2003,31 @@
 			"dataMode": "urlencoded",
 			"tests": null,
 			"currentHelper": "normal",
-			"helperAttributes": "{}",
-			"time": 1505818995698,
+			"helperAttributes": {},
+			"time": 1512136158589,
 			"name": "Restaurar",
 			"description": "Ruta para restaurar la base de datos",
 			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
-			"responses": [],
-			"timestamp": null
+			"responses": []
 		},
 		{
 			"id": "b9f3c9f8-f6c0-1bb1-7f96-0821631bba35",
-			"headers": "Content-Type: application/x-www-form-urlencoded\nauth: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MDg5NjgzMDksImV4cCI6MTUwOTE4NDMwOSwiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIyIiwibmFtZSI6IkFkbWluIiwidGlwbyI6IkFkbWluaXN0cmFkb3IiLCJpZF9tYWxsYSI6IjEifX0.a0uFiy7YBuehvtAOsaP31nekXbv-j7NJRl5sWIJag0I\n",
+			"headers": "Content-Type: application/x-www-form-urlencoded\nauth: {{token}}\n",
 			"headerData": [
 				{
 					"key": "Content-Type",
 					"value": "application/x-www-form-urlencoded",
-					"enabled": true,
-					"description": ""
+					"description": "",
+					"enabled": true
 				},
 				{
 					"key": "auth",
-					"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MDg5NjgzMDksImV4cCI6MTUwOTE4NDMwOSwiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIyIiwibmFtZSI6IkFkbWluIiwidGlwbyI6IkFkbWluaXN0cmFkb3IiLCJpZF9tYWxsYSI6IjEifX0.a0uFiy7YBuehvtAOsaP31nekXbv-j7NJRl5sWIJag0I",
-					"enabled": true,
-					"description": ""
+					"value": "{{token}}",
+					"description": "",
+					"enabled": true
 				}
 			],
-			"url": "{{url}}/bd/delete",
+			"url": "{{web}}/bd/delete",
 			"folder": "8805482e-d8b8-da8e-16d9-4ddd5b9d58a0",
 			"queryParams": [],
 			"preRequestScript": null,
@@ -1944,14 +2037,14 @@
 			"data": [
 				{
 					"key": "id",
-					"value": "1",
-					"description": "id de la base de datos",
+					"value": "4",
+					"description": "",
 					"type": "text",
 					"enabled": true
 				},
 				{
 					"key": "filename",
-					"value": "",
+					"value": "bd-iuteb-01-12-2017-13-47-06.sql",
 					"description": "nombre del archivo",
 					"type": "text",
 					"enabled": true
@@ -1960,13 +2053,12 @@
 			"dataMode": "urlencoded",
 			"tests": null,
 			"currentHelper": "normal",
-			"helperAttributes": "{}",
-			"time": 1508968369224,
+			"helperAttributes": {},
+			"time": 1512136153934,
 			"name": "Borrar Registro",
 			"description": "Borrar un archivo sql \n",
 			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
-			"responses": [],
-			"timestamp": null
+			"responses": []
 		},
 		{
 			"id": "bb53b499-7d6c-7799-7426-338f6e256738",
@@ -2040,28 +2132,33 @@
 		},
 		{
 			"id": "bccc4ef9-d2bc-38a8-71d8-cf03936f6747",
-			"headers": "",
-			"headerData": [],
+			"headers": "auth: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MTE3OTM3ODcsImV4cCI6MTUyNDc1Mzc4NywiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIxIiwibmFtZSI6IkFkbWluaXN0cmFkb3IiLCJ0aXBvIjoiQWRtaW5pc3RyYWRvciIsImlkX21hbGxhIjoiMSJ9fQ.Mr2gn57KePRKFp3xP__cYvkrgNhGHqzuF-E4I7NWOsM\n",
+			"headerData": [
+				{
+					"key": "auth",
+					"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MTE3OTM3ODcsImV4cCI6MTUyNDc1Mzc4NywiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIxIiwibmFtZSI6IkFkbWluaXN0cmFkb3IiLCJ0aXBvIjoiQWRtaW5pc3RyYWRvciIsImlkX21hbGxhIjoiMSJ9fQ.Mr2gn57KePRKFp3xP__cYvkrgNhGHqzuF-E4I7NWOsM",
+					"description": "",
+					"enabled": true
+				}
+			],
 			"url": "{{url}}/pnf/all",
+			"folder": "d59b253f-5eae-2b9e-bf61-cc53631735d6",
 			"queryParams": [],
+			"preRequestScript": null,
 			"pathVariables": {},
 			"pathVariableData": [],
-			"preRequestScript": null,
 			"method": "GET",
-			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
 			"data": null,
 			"dataMode": "params",
-			"name": "Todos los PNF",
-			"description": "Obtenemos todas las mallas",
-			"descriptionFormat": "html",
-			"time": 1505265043280,
 			"version": 2,
-			"responses": [],
 			"tests": null,
 			"currentHelper": "normal",
-			"helperAttributes": "{}",
-			"folder": "d59b253f-5eae-2b9e-bf61-cc53631735d6",
-			"timestamp": null
+			"helperAttributes": {},
+			"time": 1511794781416,
+			"name": "Todos los PNF",
+			"description": "Obtenemos todas las mallas",
+			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
+			"responses": []
 		},
 		{
 			"id": "c57dd833-8ae5-c4a8-2374-6a71d09ac3d1",
@@ -2157,14 +2254,12 @@
 				{
 					"key": "usuario",
 					"value": "Administrador",
-					"description": "",
 					"type": "text",
 					"enabled": true
 				},
 				{
 					"key": "contrasena",
 					"value": "1",
-					"description": "",
 					"type": "text",
 					"enabled": true
 				}
@@ -2173,7 +2268,7 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1511780577931,
+			"time": 1512148569184,
 			"name": "Ingreso",
 			"description": "Iniciamos sesion y desbloqueamos las rutas",
 			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",

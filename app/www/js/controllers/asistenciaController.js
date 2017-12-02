@@ -56,6 +56,11 @@ angular.module('GATE')
       });
     }
 
+    function sumarDias(fecha, dias) {
+      fecha.setDate(fecha.getDate() + dias);
+      return fecha;
+    }
+    
     // FUNCION PARA LLAMAR AL DATE PICKER
     var datePickerObj = {
       inputDate: new Date(),
@@ -66,9 +71,9 @@ angular.module('GATE')
       weeksList: ["D", "L", "Ma", "Mi", "J", "V", "S"],
       monthsList: ["Jan", "Feb", "March", "April", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"],
       templateType: 'popup',
-      from: new Date(2017, 1, 1),
+      from: formatDate(sumarDias(new Date(), -7)),
       to: new Date(),
-      showTodayButton: true,
+      showTodayButton: false,
       callback: function (val) {
         date = new Date(val);
         bz.datos.getAsistence.fecha = formatDate(date);

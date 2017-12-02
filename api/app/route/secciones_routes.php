@@ -184,6 +184,15 @@ $app->group('/seccion',function(){
         return $this->response->withJson($GLOBALS['sm']->getReport($params), 200);
     });
 
+    $this->get('/reportes', function($req, $res, $args){
+        return $this->response->withJson($GLOBALS['sm']->getAllReport(), 200);
+    });
+
+    $this->post('/reporte/eliminar', function($req, $res){
+        $params = $req->getParsedBody();
+        return $this->response->withJson($GLOBALS['sm']->deleteReport($params), 200);
+    });
+
 })->add($mw);
 
 // ->add($mw);;

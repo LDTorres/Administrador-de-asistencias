@@ -1,14 +1,8 @@
 <ion-view view-title="Inicio">
-  <ion-nav-bar class="bar-{{inicio.tema}}" align-title="center">
-  </ion-nav-bar>
-  <div class="tabs-striped tabs-background-{{inicio.tema}} tabs-color-light">
+  <div class="tabs-striped tabs-background-positive tabs-color-light">
     <ion-tabs class="tabs-icon-top tab-{{inicio.tema}}">
-
       <ion-tab title="Asignaturas" icon-on="ion-clipboard" icon-off="ion-clipboard">
         <ion-content class="padding">
-          <a class="button button-block button-outline button-{{inicio.tema}} icon-right ion-android-arrow-dropright" ui-sref="inicio/asignatura/inscripcion">
-            Inscripción
-          </a>
           <div class="card-list list">
             <div class="item item-divider">
               <h4 class="text-center">Buscar seccion</h4>
@@ -44,7 +38,7 @@
                       <option ng-repeat="seccion in inicio.datos.secciones" ng-value="seccion.id_seccion">{{seccion.nombre}}</option>
                     </select>
                 </label>
-                <input ui-sref="inicio/seccion({id_seccion: inicio.datos.seccionSeleccionada})" type="submit" ng-if="inicio.datos.seccionSeleccionada"
+                <input ui-sref="app.inicio/seccion({id_seccion: inicio.datos.seccionSeleccionada})" type="submit" ng-if="inicio.datos.seccionSeleccionada"
                   value="IR" class="button button-outline button-block button-{{inicio.tema}}">
                 </form>
             </div>
@@ -67,7 +61,7 @@
           </div>
           <div class="list card" ng-repeat="post in inicio.datos.posts | filter:inicio.$">
 
-            <a ui-sref="inicio/seccion({id_seccion: post.id_seccion})" class="item item-thumbnail-left item-cabecera">
+            <a ui-sref="app.inicio/seccion({id_seccion: post.id_seccion})" class="item item-thumbnail-left item-cabecera">
               <img ng-src="img/document.svg">
               <h2>{{post.titulo}}</h2>
               <h4>Asignatura: {{post.nombre_asig}}</h4>
@@ -136,24 +130,6 @@
               <input type="submit" value="Guardar" class="button button-outline button-block button-{{inicio.tema}}" ng-disabled="!datosPersonales.$valid">
             </form>
           </div>
-        </ion-content>
-      </ion-tab>
-
-      <ion-tab title="Config" icon-on="ion-gear-b" icon-off="ion-gear-b">
-        <ion-content class="padding">
-          <form style="margin-bottom:0px; padding-bottom:0px;" class="list" ng-submit="inicio.preferenciasAct(inicio.datos.preferencias)">
-            <label class="item item-input item-select">
-              <div class="input-label">
-                Color de Tema
-              </div>
-              <select ng-model="inicio.datos.preferencias.color_ui">
-                <option ng-repeat="color in inicio.datos.colores" ng-value="color">{{color}}</option>
-              </select>
-            </label>
-            <input type="submit" class="button button-outline button-block button-{{inicio.tema}}" value="Guardar Preferencias">
-          </form>
-          <button class="button button-outline button-block button-assertive" ng-click="inicio.cerrarSesion()">Cerrar Sesion</button>
-          <button class="button button-outline button-block button-balanced" ui-sref="inicio/ayuda">Información</button>
         </ion-content>
       </ion-tab>
     </ion-tabs>

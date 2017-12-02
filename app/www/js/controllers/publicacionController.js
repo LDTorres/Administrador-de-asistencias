@@ -9,9 +9,7 @@ angular.module('GATE')
       modificarPost: $stateParams.datos,
       miembros: $stateParams.datos.miembros
     };
-
     bz.tema = $rootScope.objectoCliente.preferencias.color_ui;
-
     bz.nuevoPost = function (datos) {
       $ionicLoading.show({
         template: 'Creando Nueva Publicación',
@@ -33,7 +31,7 @@ angular.module('GATE')
         ionicToast.show(res.data.msg, 'top', false, 2500);
 
         $ionicLoading.hide().then(function () {
-          $state.go('inicio/seccion', {
+          $state.go('app.inicio/seccion', {
             id_seccion: $stateParams.datos.id_seccion
           });
         });
@@ -46,7 +44,7 @@ angular.module('GATE')
       servicioSecciones.updatePost(datos).then(function (res) {
         ionicToast.show(res.data.msg, 'top', false, 2500);
         $ionicHistory.clearCache().then(function () {
-          $state.go('inicio/seccion', {
+          $state.go('app.inicio/seccion', {
             id_seccion: $stateParams.datos.id_seccion
           });
         });
@@ -59,7 +57,7 @@ angular.module('GATE')
       servicioSecciones.deletePost($stateParams.datos).then(function (res) {
         ionicToast.show(res.data.msg, 'top', false, 2500);
         $ionicHistory.clearCache().then(function () {
-          $state.go('inicio/seccion', {
+          $state.go('app.inicio/seccion', {
             id_seccion: $stateParams.datos.id_seccion
           });
         });

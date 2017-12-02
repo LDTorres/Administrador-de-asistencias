@@ -1,8 +1,5 @@
 <ion-view view-title="Reporte de asistencias">
   <ion-pane>
-    <ion-nav-bar class="bar-{{reportes.tema}}" align-title="center">
-      <ion-nav-back-button></ion-nav-back-button>
-    </ion-nav-bar>
     <ion-content class="padding">
       <form class="input-inset list" ng-submit="reportes.enviarReporte(reportes.datos.reporte)" name="reporte" novalidate>
         <ion-toggle ng-model="reportes.datos.micorreo" ng-checked="true">
