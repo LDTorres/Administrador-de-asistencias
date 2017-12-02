@@ -44,7 +44,9 @@ angular.module('GATE')
     /* listar secciones*/
 
     bz.listarSecciones = function (datos) {
-      servicioSecciones.getAll(datos).then(function (res) {
+
+      servicioSecciones.getAll(bz.datos.asignatura_activa).then(function (res) {
+
         bz.datos.secciones = res.data;
 
       }).catch(function (res) {

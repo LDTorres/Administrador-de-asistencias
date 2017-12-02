@@ -33,7 +33,7 @@
 
 
   <h2>Listado De asignaturas</h2>
-  <p>Desde aqui puedes modificar informacion sobre los profesores</p>
+  <p>Desde aqui puedes modificar informacion sobre las asignaturas</p>
 
   <select style="padding:.5%;" class="selectpicker btn-primary" ng-model="malla.datos.listarAsignaturas.id_trimestre" ng-change="malla.listarAsignaturas(malla.datos.listarAsignaturas)">
 
@@ -56,11 +56,20 @@
         </td>
 
         <td>
-          <button class="btn btn-primary">Modificar</button>
+          <button class="btn btn-primary" ng-click="malla.modificarAsignatura($index)">Modificar</button>
         </td>
 
       </tr>
     </tbody>
   </table>
+
+
+  <div class="container col-6 " ng-if="malla.actAsignatura">
+    <form class="center-block" ng-submit="malla.actualizarAsignatura(malla.datos.modificarAsignatura)">
+      <input type="text" ng-model="malla.datos.modificarAsignatura.nombre_asig">
+      <button type="submit" class="btn btn-success">modificar</button>
+    </form>
+  </div>
+
 
 </div>

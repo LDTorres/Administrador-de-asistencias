@@ -170,7 +170,7 @@ class UserModel
 
             $jwt = JWT::encode($token, self::$secret_key);
 
-            return array('msg'=>'Registro Exitoso!', 'datos' => array("token" => $jwt, 'id' => $params['id_usuario'],'name' => $params['usuario'],'tipo' => $tipo,'id_malla' => $params['id_malla'], 'preferencias' => array('color_ui' => 'positive')));
+            return array('msg'=>'Registro Exitoso!', 'datos' => array("token" => $jwt, 'id' => $params['id_usuario'],'name' => $params['usuario'],'tipo' => $tipo,'id_malla' => $params['id_malla'], 'preferencias' => array('color_ui' => 'positive', 'gravatar' => $params['gravatar'])));
             
         else:
             return false;

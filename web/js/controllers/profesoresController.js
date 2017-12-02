@@ -13,9 +13,9 @@ angular.module('GATE')
 
 
     bz.crearProfesor = function (datos) {
-      console.log(datos)
-      servicioGeneral.registrar(bz.datos.registroProfesor).then(function (res) {
 
+      servicioGeneral.registrar(bz.datos.registroProfesor).then(function (res) {
+        console.log(res)
       }).catch(function (res) {
         console.log(res)
       });

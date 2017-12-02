@@ -3,7 +3,7 @@ angular.module('GATE')
   // Para probarlo desde el movil http://192.168.1.{tu-puerto}/api/public  
   // Desde windows http://localhost:3454
 
-  .constant("ruta", "http://api.addev.com.ve/")
+  .constant("ruta", "http://localhost:3454")
 
   .constant("trimestresConstante", [{
     id_trimestre: 1
@@ -56,23 +56,23 @@ angular.module('GATE')
 
       $http.post(ruta + '/login', datos).then(function (res) {
 
-        $window.localStorage.setItem('token', JSON.stringify(res.data));
+        $window.localStorage.setItem('token', angular.toJson(res.data));
         $rootScope.objectoCliente = res.data;
         defered.resolve(res);
 
       }).catch(function (res) {
         $window.localStorage.removeItem('token');
+        delete $rootScope.objectoCliente;
         defered.reject(res);
-      })
+      });
 
       return promise;
-    }
+    };
 
     this.salir = function () {
-      $rootScope.objectoCliente = false;
       $window.localStorage.removeItem('token');
-    }
-
+      delete $rootScope.objectoCliente;
+    };
     // Espera por parametro {usuario, contrasena, nombre_completo, cedula, correo, telefono, id_malla}
     this.registrar = function (datos) {
 
@@ -80,16 +80,17 @@ angular.module('GATE')
       var promise = defered.promise;
 
       $http.post(ruta + '/singup', datos).then(function (res) {
-
-        $window.localStorage.setItem('token', JSON.stringify(res.data));
-        $rootScope.objectoCliente = res.data;
+        if (res.data.datos) {
+          $window.localStorage.setItem('token', angular.toJson(res.data.datos));
+          $rootScope.objectoCliente = res.data.datos;
+        }
         defered.resolve(res);
-
       }).catch(function (res) {
 
         defered.reject(res);
       });
       return promise;
+
     };
 
     this.autorizado = function () {
@@ -102,7 +103,7 @@ angular.module('GATE')
 
         if ($window.localStorage.getItem('token')) {
 
-          $rootScope.objectoCliente = JSON.parse($window.localStorage.getItem('token'));
+          $rootScope.objectoCliente = angular.fromJson($window.localStorage.getItem('token'));
 
           return $rootScope.objectoCliente;
 
@@ -114,7 +115,7 @@ angular.module('GATE')
 
       }
 
-    }
+    };
 
     // Devuelve la informacion de la aplicacion
     this.app = function () {
@@ -122,17 +123,12 @@ angular.module('GATE')
       var defered = $q.defer();
       var promise = defered.promise;
 
-      $http.get(ruta + '/app').then(function (res) {
-
-        defered.resolve(res);
-
-      }).catch(function (res) {
-
-        defered.reject(res);
-
-      })
+      $http.get(ruta + '/json').then(function (res) {
+        defered.resolve(res.data);
+      });
       return promise;
     };
+
 
     // Espera como parametro {id_usuario, offset}
 
@@ -249,12 +245,12 @@ angular.module('GATE')
     /*OBTENER TODOS LOS PROFESORES*/
 
 
-    this.getAllTeacher = function (datos) {
+    this.getAllTeacher = function () {
 
       var defered = $q.defer();
       var promise = defered.promise;
 
-      $http.get(ruta + '/user/all/Profesor' + datos).then(function (res) {
+      $http.get(ruta + '/user/all/Profesor').then(function (res) {
 
 
         defered.resolve(res);
@@ -775,8 +771,9 @@ angular.module('GATE')
 
   .factory('AuthInterceptor', function ($window, $q, $rootScope) {
     function salir() {
-      $rootScope.objectoCliente = false;
-      $window.localStorage.removeItem('bzToken');
+      delete $rootScope.objectoCliente;
+      $window.localStorage.removeItem('token');
+      location.reload();
     }
 
     function autorizado() {
@@ -784,7 +781,7 @@ angular.module('GATE')
         return $rootScope.objectoCliente;
       } else {
         if ($window.localStorage.getItem('token')) {
-          $rootScope.objectoCliente = JSON.parse($window.localStorage.getItem('token'));
+          $rootScope.objectoCliente = angular.fromJson($window.localStorage.getItem('token'));
           return $rootScope.objectoCliente;
         } else {
           return false;
@@ -798,15 +795,21 @@ angular.module('GATE')
         if (autorizado()) {
           config.headers.auth = autorizado().token;
         }
-
+        //config.headers.cors = {'Access-Control-Allow-Origin':'*', 'Access-Control-Allow-Headers': 'X-Requested-With, Content-Type, Accept, Origin, Authorization', 'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS'};
         return config || $q.when(config);
 
       },
       response: function (response) {
+        return response || $q.when(response);
+      },
+      responseError: function (response) {
         if (response.status === 401 || response.status === 403) {
           salir();
+        } else if (response.status === 500 && response.data.exception[0].message == "Expired token") {
+          salir();
+        } else {
+          return response || $q.when(response);
         }
-        return response || $q.when(response);
       }
     };
   })

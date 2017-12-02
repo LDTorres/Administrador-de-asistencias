@@ -5,12 +5,15 @@ angular.module('GATE')
 
     bz.datos = {
       listarAsignaturas: {},
+      modificarAsignatura: {},
       trimestres: trimestresConstante,
       crearAsignatura: {
         id_malla: 1
 
       }
     }
+
+
 
 
     bz.tema = $rootScope.objectoCliente.preferencias.color_ui;
@@ -31,6 +34,26 @@ angular.module('GATE')
       })
 
     }
+
+    bz.modificarAsignatura = function (index) {
+
+
+      bz.actAsignatura = true;
+      bz.datos.modificarAsignatura = bz.datos.asignaturas[index];
+      bz.datos.modificarAsignatura.index = index;
+
+    }
+    /*
+    bz.actualizarAsignatura = function (datos) {
+      servicioAsignatura.update(datos).then(function (res) {
+        console.log(datos)
+        bz.datos.profesores[datos.index] = datos;
+        console.log(res);
+      }).catch(function (res) {
+        console.log(res)
+      });
+    }
+*/
 
     bz.crearSeccion = function () {
       bz.datos.crearSeccion.id_usuario = parseInt($rootScope.objectoCliente.id);

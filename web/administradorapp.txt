@@ -23,7 +23,12 @@ asistencias
 ayuda
 {
   manual de usuarios
-  base de datos
-  
+  base de datos{restaurar,respaldo}
+  reportes{
+  listar y eliminar
 }
+}
+
+
+
 

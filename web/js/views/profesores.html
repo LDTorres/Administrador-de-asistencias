@@ -15,6 +15,7 @@
       <input type="number" placeholder="telefono" ng-model="profesores.datos.registroProfesor.telefono">
       <input type="text" placeholder="contraseña" ng-model="profesores.datos.registroProfesor.contrasena">
       <input type="text" placeholder="correo" ng-model="profesores.datos.registroProfesor.correo">
+      <input type="text" placeholder="gravatar" ng-model="profesores.datos.registroProfesor.gravatar">
 
       <button type="submit" class="btn btn-primary">crear
 
@@ -34,7 +35,7 @@
         <th>Nombre</th>
         <th>Cedula</th>
         <th>Telefono</th>
-        <th>Correo</th>
+        <th>contrasena</th>
       </tr>
     </thead>
     <tbody>
@@ -42,7 +43,7 @@
         <td>{{p.nombre_completo}}</td>
         <td>{{p.cedula}}</td>
         <td>{{p.telefono}}</td>
-        <td>{{p.correo}}</td>
+        <td>{{p.contrasena}}</td>
         <td>
           <button class="btn btn-primary" ng-click="profesores.modificarUsuario($index)">Modificar</button>
         </td>

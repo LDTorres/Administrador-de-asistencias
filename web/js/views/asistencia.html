@@ -17,8 +17,8 @@
 
     <div class=" col-md-2">
 
-      <select ng-change="asistencia.listarSecciones(asistencias.asignatura_activa)" style="padding: 1%; " ng-if="asistencia.datos.asignaturas.length > 0"
-        class="selectpicker btn-primary" ng-model="asistencias.asignatura_activa.id_asignatura">
+      <select ng-change="asistencia.listarSecciones(asistencias.datos.asignatura_activa)" style="padding: 1%; " ng-if="asistencia.datos.asignaturas.length > 0"
+        class="selectpicker btn-primary" ng-model="asistencias.datos.asignatura_activa.id_asignatura">
         <option ng-repeat="asignatura in asistencia.datos.asignaturas " ng-value="asignatura.id_asignatura">
           {{asignatura.nombre_asig}} </option>
 

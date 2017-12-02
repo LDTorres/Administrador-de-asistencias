@@ -11,9 +11,9 @@ angular.module('GATE')
     bz.restaurar = function (F) {
 
       servicioDB.restore(F).then(function (res) {
-        console.log(res)
+        console.log(res);
       }).catch(function (res) {
-        console.log(res)
+        console.log(res);
       })
     }
 
@@ -24,19 +24,19 @@ angular.module('GATE')
       }
 
       servicioDB.delete(datos).then(function (res) {
-        console.log(res)
+        console.log(res);
       }).catch(function (res) {
-        console.log(res)
+        console.log(res);
       })
     }
 
 
     bz.respaldos = function () {
       servicioDB.backups().then(function (res) {
-        console.log(res)
+        console.log(res);
         bz.datos.respaldos = res.data;
       }).catch(function (res) {
-        console.log(res)
+        console.log(res);
       })
     }
 

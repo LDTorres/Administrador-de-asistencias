@@ -14,13 +14,14 @@ angular.module("GATE")
     };
 
     bz.ingresar = function () {
+      console.log(bz.datos.login)
       servicioGeneral.ingresar(bz.datos.login).then(function (res) {
         setTimeout(function () {
           $state.go('asistencia');
         }, 2000)
         //console.log($rootScope.objectoCliente);
       }).catch(function (res) {
-        console.log(res)
+        console.log(res);
       });
     }
 
