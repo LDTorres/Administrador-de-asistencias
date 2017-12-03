@@ -1,12 +1,45 @@
+<div class="container"></div>
+
 <div class="respaldos">
   <h1>Respaldos</h1>
 
+  <button ng-click="ayuda.respaldar()">Crear respaldo</button>
 
-  <form method="post" ng-submit="" clas="col-5">
+  <form method="post" ng-submit="" class="col-5">
     <li ng-repeat="respaldo in ayuda.datos.respaldos" value="{{respaldo.id}}">{{respaldo.filename}}</option>
       <button ng-click="ayuda.eliminar($index)">eliminar</button>
       <button ng-click="ayuda.restaurar(respaldo.filename)">restaurar</button>
     </li>
-    <button type="submit" class="btn btn-primary btn-block col-2">Entrar</button>
+    <button type=" submit " class="btn btn-primary btn-block col-2 ">Entrar</button>
   </form>
+</div>
+
+<div class="row ">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Archivo</th>
+        <th>desde</th>
+        <th>hasta</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="reporte in ayuda.datos.reportes ">
+        <td>{{reporte.nombre_reporte}}
+        </td>
+        <td>
+          fecha 1
+        </td>
+        <td>
+          fecha 2
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  ></div>
+
+
 </div>

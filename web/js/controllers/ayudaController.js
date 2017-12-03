@@ -1,15 +1,45 @@
 angular.module('GATE')
 
-  .controller('ayudaController', ['$scope', '$rootScope', '$stateParams', 'servicioDB', function ($scope, $rootScope, $stateParams, servicioDB) {
+  .controller('ayudaController', ['$scope', '$rootScope', '$stateParams', 'servicioDB', 'servicioSecciones', function ($scope, $rootScope, $stateParams, servicioDB, servicioSecciones) {
     var bz = this;
 
     bz.datos = {
 
+      reportes: {}
+
     };
 
 
-    bz.restaurar = function (F) {
+    bz.listarReportes = function () {
 
+      servicioSecciones.reporte().then(function (res) {
+
+        console.log(res);
+
+        bz.datos.reportes = res.data;
+
+      }).catch(function (res) {
+
+        console.log(res);
+
+      });
+
+    }
+
+    bz.respaldar = function () {
+
+      servicioDB.backup().then(function (res) {
+
+        console.log(res);
+
+      }).catch(function (res) {
+        console.log(res);
+      });
+
+    }
+
+    bz.restaurar = function (F) {
+      console.log(F);
       servicioDB.restore(F).then(function (res) {
         console.log(res);
       }).catch(function (res) {
@@ -41,5 +71,6 @@ angular.module('GATE')
     }
 
     bz.respaldos();
+    bz.listarReportes();
 
   }])

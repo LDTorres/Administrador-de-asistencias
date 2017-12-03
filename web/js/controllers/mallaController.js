@@ -37,10 +37,8 @@ angular.module('GATE')
 
     bz.modificarAsignatura = function (index) {
 
-
       bz.actAsignatura = true;
       bz.datos.modificarAsignatura = bz.datos.asignaturas[index];
-      bz.datos.modificarAsignatura.index = index;
 
     }
     /*
