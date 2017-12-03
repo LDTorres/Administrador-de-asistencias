@@ -184,8 +184,8 @@ $app->group('/seccion',function(){
         return $this->response->withJson($GLOBALS['sm']->getReport($params), 200);
     });
 
-    $this->get('/reportes', function($req, $res, $args){
-        return $this->response->withJson($GLOBALS['sm']->getAllReport(), 200);
+    $this->get('/reportes[/usuario/{id_usuario}]', function($req, $res, $args){
+        return $this->response->withJson($GLOBALS['sm']->getAllReport($args), 200);
     });
 
     $this->post('/reporte/eliminar', function($req, $res){

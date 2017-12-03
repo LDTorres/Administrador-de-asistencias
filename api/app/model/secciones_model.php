@@ -26,19 +26,34 @@ class SeccionesModel {
 
         # Si el usuario es profesor
         if(isset($params['tipo']) != NULL){
-            $sth = $this->db->prepare('SELECT nombre, id_seccion FROM secciones WHERE id_usuario = ?');
-            $sth->execute(array($params['id_usuario']));
+            if(isset($params['id_usuario']) != NULL ){
+            $sth = $this->db->prepare('SELECT s.nombre, s.id_seccion FROM secciones AS s INNER JOIN asignaturas as a WHERE a.id_asignatura = ? AND s.id_asignatura = a.id_asignatura AND s.id_usuario = ?');
+            $sth->execute(array($params['id_asignatura'], $params['id_usuario']));
             $result = $sth->fetchAll();
-            return $result;
+
+                if(count($result) > 0){
+                    return $result;
+                }else{
+                    return array('msg' => 'No estas inscrito a ninguna sección.');
+                }
+            }
         }
 
         # Si no es profesor
         if(isset($params['id_usuario']) != NULL ){
-            $sth = $this->db->prepare('SELECT s.nombre, s.id_seccion FROM secciones AS s INNER JOIN alumnos_has_secciones AS ahs WHERE ahs.id_usuario = ? AND s.id_asignatura = ? AND s.id_seccion = ahs.id_seccion');
-            $sth->execute(array($params['id_usuario'], $params['id_asignatura']));
+            $sth = $this->db->prepare('SELECT s.nombre, s.id_seccion FROM alumnos_has_secciones AS ahs INNER JOIN secciones AS s INNER JOIN asignaturas AS a WHERE ahs.id_usuario = ? AND s.id_seccion = ahs.id_seccion AND a.id_asignatura = ? AND a.id_asignatura = s.id_asignatura');
+            $sth->execute(array( $params['id_usuario'], $params['id_asignatura']));
             $result = $sth->fetchAll();
-            return $result;
+
+            if(count($result) > 0){
+                return $result;
+            }else{
+                return array('msg' => 'No estas inscrito a ninguna sección.');
+            }
+
         }
+
+        return array('msg' => 'Debes mandar id_usuario, trimestre y id_asignatura');
 
     }
 
@@ -56,16 +71,6 @@ class SeccionesModel {
     }
 
     public function add($params){
-
-                // Creamos La Seccion
-        $sql = "SELECT nombre FROM $this->table WHERE nombre = ?";
-        $sth = $this->db->prepare($sql);
-        $sth->execute(array($params['nombre']));
-
-        // TODO: VALIDAR NOMBRE DE LA SECCION
-        if(count($sth->fetch()) > 0 ){
-            return array('msg' => 'Ya existe esa seccion.');
-        }
 
         // Creamos La Seccion
         $sql = "INSERT INTO $this->table (nombre, id_asignatura, codigo, id_usuario) VALUES (?,?,?,?)";
@@ -106,7 +111,7 @@ class SeccionesModel {
     // Miembros Seccion
 
     public function getMembers($params){
-        $sql = "SELECT * FROM $this->table2 INNER JOIN usuarios WHERE id_seccion = ? AND $this->table2.id_usuario = usuarios.id_usuario";
+        $sql = "SELECT u.*, ahs.estado, ahs.id_seccion FROM $this->table2 as ahs INNER JOIN usuarios as u WHERE id_seccion = ? AND ahs.id_usuario = u.id_usuario";
 
         $sth = $this->db->prepare($sql);
 
@@ -352,7 +357,7 @@ class SeccionesModel {
 
         #datos profesor
 
-        $sth = $this->db->prepare("SELECT u.nombre_completo, u.correo, a.nombre_asig, a.trimestre, s.nombre AS nombreSeccion,m.nombre AS nombreMalla FROM usuarios AS u INNER JOIN secciones AS s INNER JOIN asignaturas AS a INNER JOIN malla_curricular AS m WHERE u.id_usuario = ? AND s.id_seccion = ? AND u.id_usuario = s.id_usuario AND s.id_asignatura = a.id_asignatura AND u.id_malla = m.id_malla");
+        $sth = $this->db->prepare("SELECT u.usuario, u.nombre_completo, u.correo, a.nombre_asig, a.trimestre, s.nombre AS nombreSeccion,m.nombre AS nombreMalla FROM usuarios AS u INNER JOIN secciones AS s INNER JOIN asignaturas AS a INNER JOIN malla_curricular AS m WHERE u.id_usuario = ? AND s.id_seccion = ? AND u.id_usuario = s.id_usuario AND s.id_asignatura = a.id_asignatura AND u.id_malla = m.id_malla");
 
         $sth->execute(array($params['id_usuario'], $params['id_seccion']));
 
@@ -392,7 +397,7 @@ class SeccionesModel {
 
         #datos alumnos 
 
-        $sql = "SELECT u.id_usuario, u.cedula, u.nombre_completo, ahs.id_seccion FROM alumnos_has_secciones AS ahs INNER JOIN usuarios AS u WHERE id_seccion = ? AND ahs.id_usuario = u.id_usuario GROUP BY cedula ORDER BY cedula ASC";
+        $sql = "SELECT u.id_usuario, u.cedula, u.nombre_completo, ahs.id_seccion, ahs.estado FROM alumnos_has_secciones AS ahs INNER JOIN usuarios AS u WHERE id_seccion = ? AND ahs.id_usuario = u.id_usuario GROUP BY cedula ORDER BY cedula ASC";
 
         $sth = $this->db->prepare($sql);
 
@@ -400,23 +405,30 @@ class SeccionesModel {
 
         $datos['datos']['alumnos_seccion'] = $sth->fetchAll();
 
+        foreach($datos['datos']['alumnos_seccion'] as $llave => $usuario){
+            if($usuario['estado'] == 0){
+                unset($datos['datos']['alumnos_seccion'][$llave]);
+            }
+        }
+
         foreach($datos['datos']['alumnos_seccion'] as $llave => $usuario) {
 
             foreach($datos['datos']['encuentros'] as $llave2 => $enc){
+
+                $asis_n = array('fecha' => $enc['fecha'], 'id_usuario' => $datos['datos']['alumnos_seccion'][$llave]['id_usuario'] ,'asistio' => "0" );
+
+                $datos['datos']['alumnos_seccion'][$llave]['asistencias'][] = $asis_n;
 
                 foreach ($datos['datos']['asistencias'] as $llave3 => $asis) {
 
                     if($enc['fecha'] == $asis['fecha']){
 
                         if($asis['id_usuario'] == $usuario['id_usuario']){
-
-                            $datos['datos']['alumnos_seccion'][$llave]['asistencias'][$llave3] = $asis;
-
-                        }else{
-
-                            $asis_n = array('fecha' => $enc['fecha'], 'id_usuario' => $datos['datos']['alumnos_seccion'][$llave]['id_usuario'] ,'asistio' => "0" );
-
-                            $datos['datos']['alumnos_seccion'][$llave]['asistencias'][$llave3] = $asis_n;
+                            foreach($datos['datos']['alumnos_seccion'][$llave]['asistencias'] as $l => $s){
+                                if($s['fecha'] == $asis['fecha']){
+                                    $datos['datos']['alumnos_seccion'][$llave]['asistencias'][$l] = $asis;
+                                }
+                            }
 
                         }
 
@@ -426,7 +438,7 @@ class SeccionesModel {
             }
 
         }
-
+        
         foreach($datos['datos']['alumnos_seccion'] as $llave => $value) {
 
             foreach ($datos['datos']['alumnos_seccion'][$llave]['asistencias'] as $llave2 => $value) {
@@ -486,7 +498,8 @@ class SeccionesModel {
 
         // Creamos el archivo PDF
         $date = date("d-m-Y-H-i-s");
-        $nombreProfesor = $datos['datos']['seccion'][0]['nombre_completo'];
+        $nombreProfesor = $datos['datos']['seccion'][0]['usuario'];
+
         $filename =  "$nombreProfesor-$date-reporte-asistencias.pdf";
 
         $content = "
@@ -812,7 +825,21 @@ class SeccionesModel {
 
     }
 
-    public function getAllReport(){
+    public function getAllReport($params){
+
+        if(isset($params['id_usuario']) != NULL){
+
+            $sql = "SELECT * FROM reportes WHERE id_usuario = ?";
+
+            $sth = $this->db->prepare($sql);
+
+            $sth->execute(array($params['id_usuario']));
+            $reportes = $sth->fetchAll();
+
+            if(count($reportes) > 0){
+                return array('msg' => 'Reportes Cargados', 'reportes' => $reportes);
+            }
+        }
 
         $sth = $this->db->prepare("SELECT * FROM reportes");
         $sth->execute();

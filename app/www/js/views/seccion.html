@@ -47,14 +47,15 @@
             <h4 class="text-center" ng-if="seccion.datos.miembros.length > 0">Miembros</h4>
 
             <ion-list show-delete="false" show-reorder="false" can-swipe="seccion.eliminarOpcion">
-              <ion-item ng-repeat="miembro in seccion.datos.miembros" class="item-avatar-left">
+              <ion-item ng-repeat="miembro in seccion.datos.miembros" class="item-avatar-left" ng-disabled="miembro.estado == 0">
                 <img ui-sref="app.inicio/seccion/miembro/perfil({id_usuario: miembro.id_usuario})" ng-src="img/{{miembro.gravatar}}.png">
-                <h2 ui-sref="app.inicio/seccion/miembro/perfil({id_usuario: miembro.id_usuario})">{{miembro.nombre_completo}}</h2>
-                <p>{{miembro.cedula}}</p>
-                <ion-option-button class="button-assertive" ng-if="miembro.estado" ng-click="seccion.eliminarMiembro($index, miembro, 0)">
+                <h2 ui-sref="app.inicio/seccion/miembro/perfil({id_usuario: miembro.id_usuario})">{{miembro.nombre_completo}} - </h2>
+                <p><span class="bold">C.I:</span> {{miembro.cedula}}</p>
+                <span class="bold" ng-if="miembro.estado == 0">Innavilitado</span>
+                <ion-option-button class="button-assertive" ng-if="miembro.estado == 1" ng-click="seccion.eliminarMiembro($index, miembro, 0)">
                   Desactivar
                 </ion-option-button>
-                <ion-option-button class="button-positive" ng-if="!miembro.estado" ng-click="seccion.eliminarMiembro($index, miembro, 1)">
+                <ion-option-button class="button-positive" ng-if="miembro.estado == 0" ng-click="seccion.eliminarMiembro($index, miembro, 1)">
                   Activar
                 </ion-option-button>
               </ion-item>
