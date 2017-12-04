@@ -767,20 +767,38 @@ angular.module('GATE')
       return promise;
     };
 
-    this.reports = function () {
+    this.deletereport = function (datos) {
+
+      var defered = $q.defer();
+      var promise = defered.promise;
+
+      $http.post(ruta + '/seccion/reporte/eliminar', datos).then(function (res) {
+
+
+        defered.resolve(res);
+
+      }).catch(function (res) {
+
+
+        defered.reject(res);
+      });
+      return promise;
+    };
+
+    this.reportes = function () {
 
       var defered = $q.defer();
       var promise = defered.promise;
 
       $http.get(ruta + '/seccion/reportes').then(function (res) {
 
-        defered.resolve(res);
+        defered.resolve(res.data.reportes);
 
       }).catch(function (res) {
 
-        defered.reject(res);
 
-      })
+        defered.reject(res);
+      });
       return promise;
     };
 

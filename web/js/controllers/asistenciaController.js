@@ -6,10 +6,9 @@ angular.module('GATE')
 
     bz.id_seccion = $stateParams.id_seccion;
 
-
-
     bz.datos = {
-      listarAsignaturas: {},
+      listarAsignaturas: {
+      },
       trimestres: trimestresConstante,
       asignatura_activa: {
         id_usuario: $rootScope.objectoCliente.id,
@@ -18,8 +17,6 @@ angular.module('GATE')
       obtener: {},
       reporteInfo: {
         id_malla: 1,
-        id_seccion: 1,
-        app: 'correo propio',
         id_usuario: $rootScope.objectoCliente.id
       },
       mostrar_btn: false
@@ -28,24 +25,24 @@ angular.module('GATE')
 
 
     bz.tipoUsuario = $rootScope.objectoCliente.tipo;
-
-    console.log($rootScope.objectoCliente);
-    bz.tema = $rootScope.objectoCliente.preferencias.color_ui;
-
     bz.datos.objeto = $rootScope.objectoCliente;
     bz.datos.listarAsignaturas.id_malla = $rootScope.objectoCliente.id_malla;
 
     /* crear reportes */
 
-    bz.crearReporte = function (datos) {
-      bz.formatDate(bz.datos.reporteInfo.desde);
-      bz.formatDate(bz.datos.reporteInfo.hasta);
+    servicioSecciones.reportes().then(function(res){
+      bz.datos.reportes = res;
+    });
 
-      console.log(datos);
+    bz.crearReporte = function (datos) {
+
+      bz.datos.reporteInfo.desde = bz.formatDate(bz.datos.desde);
+      bz.datos.reporteInfo.hasta = bz.formatDate(bz.datos.hasta);
+      bz.datos.reporteInfo.id_seccion = bz.id_seccion;
+      console.log(bz.datos.reporteInfo);
 
       servicioSecciones.report(bz.datos.reporteInfo).then(function (res) {
-
-        console.log(res);
+        bz.datos.reportes.push(res.data)
       }).catch(function (res) {
         console.log(res);
         swal('Un error ha ocurrido',
@@ -53,10 +50,6 @@ angular.module('GATE')
           'warning'
         );
       });
-
-      console.log(datos);
-
-
 
     }
 
@@ -73,13 +66,15 @@ angular.module('GATE')
 
     /* listar secciones*/
 
-    bz.listarSecciones = function (datos) {
+    bz.listarSecciones = function () {
+
+      if (bz.tipoUsuario != 'Estudiante') {
+        bz.datos.asignatura_activa.tipo = 'Profesor';
+      }
 
       servicioSecciones.getAll(bz.datos.asignatura_activa).then(function (res) {
 
         bz.datos.secciones = res.data;
-        console.log(bz.datos.secciones = res.data);
-        console.log(res);
 
       }).catch(function (res) {
 
@@ -98,8 +93,29 @@ angular.module('GATE')
       }
 
       servicioSecciones.getMembers(datos).then(function (res) {
-        bz.oa = true;
-        bz.datos.miembros = res.data;
+
+        if(res.data.length > 0){
+          bz.oa = true;
+          bz.datos.miembros = res.data;
+        }else{
+          swal('No hay miembros en esta sección! ', 'error');
+        }
+
+      }).catch(function(res){
+        swal('No hay miembros en esta sección! ', 'error');
+      })
+    }
+
+    bz.eliminarReporte = function (i) {
+
+      datos = {
+        nombre: bz.datos.reportes[i].nombre_reporte,
+        id: bz.datos.reportes[i].id_reporte
+      }
+
+      servicioSecciones.deletereport(datos).then(function (res) {
+        swal('Reporte Eliminado! ');
+        bz.datos.reportes.splice(i, 1);
       })
     }
 
