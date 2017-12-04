@@ -45,7 +45,6 @@ angular.module('GATE')
         bz.datos.seccion = res.data
       }).catch(function (res) {
         console.log(res)
-        ionicToast.show('Revisa tu conexión a internet', 'top', false, 2500);
       });
     }
 
@@ -55,7 +54,6 @@ angular.module('GATE')
         bz.getInfo();
       }).catch(function (res) {
         console.log(res)
-        ionicToast.show('Revisa tu conexión a internet', 'top', false, 2500);
       });
     }
 
@@ -77,7 +75,6 @@ angular.module('GATE')
         bz.datos.miembros = res.data;
       }).catch(function (res) {
         console.log(res)
-        ionicToast.show('Revisa tu conexión a internet', 'top', false, 2500);
       });
     }
 
@@ -118,10 +115,7 @@ angular.module('GATE')
       servicioSecciones.getAsistence(datos).then(function (res) {
         ionicToast.show(res.data.msg, 'top', false, 2500);
         bz.datos.asistencias = res.data.consulta;
-      }).catch(function (res) {
-        console.log(res)
-        ionicToast.show('Revisa tu conexión a internet', 'top', false, 2500);
-      });
+      })
     }
 
     function formatDate(date) {
@@ -145,10 +139,7 @@ angular.module('GATE')
           ionicToast.show('Activado', 'top', false, 2500);
         }
         bz.datos.miembros[i].estado = a;
-      }).catch(function (res) {
-        console.log(res)
-        ionicToast.show('Revisa tu conexión a internet', 'top', false, 2500);
-      });
+      })
     }
 
     bz.copiarSeleccionado = function (texto) {

@@ -46,7 +46,7 @@
         </ion-content>
       </ion-tab>
 
-      <ion-tab title="Publicaciones" icon-on="ion-compose" icon-off="ion-compose" ng-if="inicio.datos.posts.length > 0">
+      <ion-tab title="Publicaciones" icon-on="ion-compose" icon-off="ion-compose">
         <ion-content class="padding">
           <button class="button button-block button-outline button-{{inicio.tema}}" ng-click="inicio.morePosts()">Refrescar</button>
           <div class="list" ng-if="inicio.datos.posts.length >= 10">
@@ -55,6 +55,9 @@
                 <input type="text" placeholder="Buscar" ng-model="inicio.$">
               </label>
             </div>
+          </div>
+          <div class="text-center">
+            <h5 ng-if="inicio.datos.posts.length < 1">NO TIENE PUBLICACIONES</h5>
           </div>
           <div class="list card" ng-repeat="post in inicio.datos.posts | filter:inicio.$">
 

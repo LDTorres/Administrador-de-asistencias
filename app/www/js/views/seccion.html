@@ -49,7 +49,7 @@
             <ion-list show-delete="false" show-reorder="false" can-swipe="seccion.eliminarOpcion">
               <ion-item ng-repeat="miembro in seccion.datos.miembros" class="item-avatar-left" ng-disabled="miembro.estado == 0">
                 <img ui-sref="app.inicio/seccion/miembro/perfil({id_usuario: miembro.id_usuario})" ng-src="img/{{miembro.gravatar}}.png">
-                <h2 ui-sref="app.inicio/seccion/miembro/perfil({id_usuario: miembro.id_usuario})">{{miembro.nombre_completo}}</h2>
+                <h2 ui-sref="app.inicio/seccion/miembro/perfil({id_usuario: miembro.id_usuario})">{{miembro.nombre_completo}} - </h2>
                 <p><span class="bold">C.I:</span> {{miembro.cedula}}</p>
                 <span class="bold" ng-if="miembro.estado == 0">Innavilitado</span>
                 <ion-option-button class="button-assertive" ng-if="miembro.estado == 1" ng-click="seccion.eliminarMiembro($index, miembro, 0)">
@@ -63,7 +63,7 @@
           </ion-content>
         </ion-tab>
 
-        <ion-tab title="Asistencia" icon-on="ion-ios-gear" icon-off="ion-ios-gear-outline" ng-if="seccion.datos.miembros.length > 0">
+        <ion-tab title="Asistencia" icon-on="ion-ios-gear" icon-off="ion-ios-gear-outline">
           <ion-content class="padding">
             <a ng-if="seccion.datos.tipo == 'Administrador' || seccion.datos.tipo == 'Profesor'" class="button button-block button-outline button-{{seccion.tema}} icon-right ion-ios-plus-outline"
               ui-sref="app.inicio/seccion/asistencias({datos: seccion.datos})">
