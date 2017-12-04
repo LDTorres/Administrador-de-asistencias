@@ -7,7 +7,7 @@ use mysqli;
 class BDModel {
     
     private $db;
-    private $path = "public/backups/";
+    private $path = "app/lib/backups/";
     private $table;
     private $aplication = 'Administrador de Asistencias';
     private $database = 'iuteb_asignaturas';

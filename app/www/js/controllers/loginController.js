@@ -25,23 +25,18 @@ angular.module('GATE')
     }
 
     bz.ingresar = function (datos) {
-      $ionicLoading.show({
-        template: 'Ingresando...',
-      });
       servicioGeneral.ingresar(datos).then(function (res) {
-        $ionicLoading.hide().then(function () {
-          if (res.data.error == 'invalido') {
-            ionicToast.show('Datos Invalidos', 'top', false, 2500);
-          } else {
-            ionicToast.show('Datos Correctos', 'top', false, 2500);
-            setTimeout(function () {
-              $state.go('app.inicio');
-            }, 2000);
-          }
-        });
+        if (res.data.error == 'invalido') {
+          ionicToast.show('Datos Invalidos', 'top', false, 2500);
+        } else {
+          ionicToast.show('Datos Correctos', 'top', false, 2500);
+          setTimeout(function () {
+            $state.go('app.inicio');
+          }, 2000);
+        }
       }).catch(function (res) {
-        ionicToast.show('Revisa tu conexion a internet', 'top', false, 3000);
-        $ionicLoading.hide();
+        console.log(res)
+        ionicToast.show('Datos Invalidos', 'top', false, 2500);
       });
     }
 
@@ -62,7 +57,6 @@ angular.module('GATE')
 
       }).catch(function (res) {
         console.log(res)
-        ionicToast.show('Revisa tu conexion a internet', 'top', false, 2500);
       });
     }
 
@@ -76,7 +70,6 @@ angular.module('GATE')
         });
       }).catch(function (res) {
         console.log(res)
-        ionicToast.show('Revisa tu conexion a internet', 'top', false, 2500);
       });
     }
 

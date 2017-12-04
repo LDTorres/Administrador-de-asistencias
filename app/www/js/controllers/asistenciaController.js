@@ -30,10 +30,7 @@ angular.module('GATE')
           }, this);
         }, this);
         bz.mostrar = 1;
-      }).catch(function (res) {
-        console.log(res)
-        ionicToast.show('Revisa tu conexión a internet', 'top', false, 2500);
-      });
+      })
     }
 
     bz.setAsistencia = function () {
@@ -56,7 +53,6 @@ angular.module('GATE')
         ionicToast.show('Asistencias Colocadas', 'top', false, 2500);
       }).catch(function (res) {
         console.log(res)
-        ionicToast.show('Revisa tu conexión a internet', 'top', false, 2500);
       });
     }
 

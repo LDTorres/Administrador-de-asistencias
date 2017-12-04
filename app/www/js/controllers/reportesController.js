@@ -29,7 +29,6 @@ angular.module('GATE')
         });
       }).catch(function (res) {
         console.log(res)
-        ionicToast.show('Revisa tu conexión a internet', 'top', false, 2500);
       });
     }
 

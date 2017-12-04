@@ -7,8 +7,7 @@ angular.module('GATE')
     bz.id_seccion = $stateParams.id_seccion;
 
     bz.datos = {
-      listarAsignaturas: {
-      },
+      listarAsignaturas: {},
       trimestres: trimestresConstante,
       asignatura_activa: {
         id_usuario: $rootScope.objectoCliente.id,
@@ -30,11 +29,16 @@ angular.module('GATE')
 
     /* crear reportes */
 
-    servicioSecciones.reportes().then(function(res){
+    servicioSecciones.reportes().then(function (res) {
       bz.datos.reportes = res;
     });
 
     bz.crearReporte = function (datos) {
+
+
+
+      bz.formatDate(bz.datos.reporteInfo.desde);
+      bz.formatDate(bz.datos.reporteInfo.hasta);
 
       bz.datos.reporteInfo.desde = bz.formatDate(bz.datos.desde);
       bz.datos.reporteInfo.hasta = bz.formatDate(bz.datos.hasta);
@@ -42,7 +46,17 @@ angular.module('GATE')
       console.log(bz.datos.reporteInfo);
 
       servicioSecciones.report(bz.datos.reporteInfo).then(function (res) {
-        bz.datos.reportes.push(res.data)
+
+        if (res.data.msg == 'No hay asistencias para la fecha dada.') {
+
+          swal('No se encontraron asistencias!',
+            'No hay asistencias para la fecha dada.',
+            'warning'
+          );
+
+        }
+
+        console.log(res.data.msg);
       }).catch(function (res) {
         console.log(res);
         swal('Un error ha ocurrido',
@@ -94,14 +108,14 @@ angular.module('GATE')
 
       servicioSecciones.getMembers(datos).then(function (res) {
 
-        if(res.data.length > 0){
+        if (res.data.length > 0) {
           bz.oa = true;
           bz.datos.miembros = res.data;
-        }else{
+        } else {
           swal('No hay miembros en esta sección! ', 'error');
         }
 
-      }).catch(function(res){
+      }).catch(function (res) {
         swal('No hay miembros en esta sección! ', 'error');
       })
     }

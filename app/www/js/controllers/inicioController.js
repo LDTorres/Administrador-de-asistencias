@@ -56,9 +56,6 @@ angular.module('GATE')
         } else {
           bz.datos.asignaturas = res.data;
         }
-      }).catch(function (res) {
-        console.log(res)
-        ionicToast.show('Revisa tu conexión a internet', 'top', false, 2500);
       });
     }
 
@@ -80,9 +77,8 @@ angular.module('GATE')
         } else {
           bz.datos.secciones = res.data;
         }
-      }).catch(function (res) {
+      }).catch(function(res){
         console.log(res)
-        ionicToast.show('Revisa tu conexión a internet', 'top', false, 2500);
       });
     }
 
@@ -104,10 +100,7 @@ angular.module('GATE')
           bz.datos.user.malla = res.data.nombre;
         });
 
-      }).catch(function (res) {
-        console.log(res)
-        ionicToast.show('Revisa tu conexión a internet', 'top', false, 2500);
-      });
+      })
     }
 
     $scope.$on('$ionicView.beforeEnter', function () {
@@ -126,10 +119,7 @@ angular.module('GATE')
 
         console.log(res)
         ionicToast.show('Datos Actualizados', 'top', false, 2500);
-      }).catch(function (res) {
-        console.log(res)
-        ionicToast.show('Revisa tu conexión a internet', 'top', false, 2500);
-      });
+      })
     }
 
 

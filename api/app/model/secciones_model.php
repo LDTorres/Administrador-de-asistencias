@@ -15,7 +15,7 @@ class SeccionesModel {
     private $table2 = 'alumnos_has_secciones';
     private $table3 = 'publicaciones';
     private $table4 = 'alumnos_has_asistencias';
-    private $path_reporte = 'public/outputPDF/';
+    private $path_reporte = 'app/outputPDF/';
 
     public function __CONSTRUCT(){
         $this->db = Database::conexion();
@@ -586,7 +586,7 @@ class SeccionesModel {
 <body>
         <div>
             <div>
-                <img class='membrete' src='".$this->path_reporte."banner.png'>
+                <img class='membrete' src='app/outputPDF/banner.png'>
             </div>
             
             <div class='datos'>
@@ -735,11 +735,11 @@ class SeccionesModel {
         $pdf_gen = $dompdf->output();
         
         if(isset($params['app']) != NULL){
-            if(!file_put_contents($this->path_reporte.$filename, $pdf_gen)){
+            if(!file_put_contents('app/outputPDF/'.$filename, $pdf_gen)){
                 return array('msg' => 'pdf no generado');
             }
 
-            $adjunto = $this->path_reporte.$filename;
+            $adjunto = 'app/outputPDF/'.$filename;
             $mail = new PHPMailer(true);   
         
             try {
@@ -793,7 +793,7 @@ class SeccionesModel {
             
         }
 
-        if(!file_put_contents($this->path_reporte.$filename, $pdf_gen)){
+        if(!file_put_contents('app/outputPDF/'.$filename, $pdf_gen)){
             return array('msg' => 'pdf no generado');
         }else{
 
@@ -802,7 +802,7 @@ class SeccionesModel {
             $sth = $this->db->prepare("INSERT INTO reportes (nombre_reporte, desde, hasta, id_usuario) VALUES (?,?,?,?)");
             $sth->execute(array($filename, $params['desde'], $params['hasta'], $params['id_usuario']));
             
-            return array('msg' => 'pdf generado!', 'nombre_reporte' => $filename, 'insertId' => $this->db->lastInsertId(), 'nombre_completo' => $nombreProfesor);
+            return array('msg' => 'pdf generado!', 'nombre_pdf' => $filename, 'insertId' => $this->db->lastInsertId());
         }
     }
 
@@ -829,7 +829,7 @@ class SeccionesModel {
 
         if(isset($params['id_usuario']) != NULL){
 
-            $sql = "SELECT * FROM reportes INNER JOIN usuarios WHERE id_usuario = ? AND reportes.id_usuario = usuarios.id_usuario";
+            $sql = "SELECT * FROM reportes WHERE id_usuario = ?";
 
             $sth = $this->db->prepare($sql);
 
@@ -841,7 +841,7 @@ class SeccionesModel {
             }
         }
 
-        $sth = $this->db->prepare("SELECT *, usuarios.nombre_completo FROM reportes INNER JOIN usuarios WHERE reportes.id_usuario = usuarios.id_usuario ");
+        $sth = $this->db->prepare("SELECT * FROM reportes");
         $sth->execute();
         $reportes = $sth->fetchAll();
 
