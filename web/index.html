@@ -31,7 +31,8 @@
   <script src="js/services.js"></script>
 
   <!-- Controladores -->
-
+  <script src="node_modules/sweetalert2/dist/sweetalert2.all.min.js"></script>
+  <link rel="stylesheet" href="node_modules/sweetalert2/dist/sweetalert2.min.css">
   <script src="js/controllers/asistenciaController.js"></script>
   <script src="js/controllers/ayudaController.js"></script>
   <script src="js/controllers/headerController.js"></script>
@@ -45,10 +46,10 @@
 
 
   <header ng-controller="headerController as header">
-    <nav class="navbar navbar-default">
+    <!--    <nav class="navbar navbar-default">
       <div class="container-fluid">
         <div class="navbar-header">
-          <a class="navbar-brand" href="#">GATE</a>
+          <a class="navbar-brand">GATE</a>
         </div>
         <ul class="nav navbar-nav">
           <li class="active">
@@ -62,13 +63,35 @@
             <a href="#!/malla">Malla</a>
           </li>
           <li>
-            <a href="#!/ayuda">Ayuda</a>
+            <a href="#!/ayuda ">Ayuda</a>
           </li>
           <li>
             <a href="#" ng-click="header.cerrarSesion()">Salir</a>
           </li>
         </ul>
+      -->
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand">GATE</a>
+        </div>
+        <ul class="nav navbar-nav">
+          <li ng-repeat='item in menuItems' ng-class="{active : activeMenu === item}" class="active" ng-click="setActive(item)">
+            <a href="#!{{ item }}">{{ item }}</a>
+          </li>
+          <li>
+            <a href="#" ng-click="header.cerrarSesion()">Salir</a>
+          </li>
+
+        </ul>
       </div>
+      </div>
+
+      </div>
+      <script>
+
+
+      </script>
     </nav>
 
     <!--   <button ng-click="header.cerrarSesion()">Cerrar Sesion</button>-->
@@ -76,17 +99,19 @@
 
   <ui-view></ui-view>
 
-  <div id="footer">
-    <div class="container">
+  <footer id="footer" style=" padding:.2%;background: #e7e7e7;">
+    <div class="container" style=" align-items: center; display:flex; flex-flow:row;">
 
 
-      <p class="text-muted credit">Realizado por: Adrian Flores, Luis Torres, Michel Novellino.
+
+      <p class="text-muted credit" style="margin:auto;"> PNF Informatica 2017 - Realizado por: Adrian Flores, Luis Torres, Michel Novellino.
       </p>
+      <img src="/assets/img/icon.png" style="text-align:center;" width="50px" height="50px" alt="logo GATE">
 
 
 
     </div>
-  </div>
+  </footer>
 
 </body>
 

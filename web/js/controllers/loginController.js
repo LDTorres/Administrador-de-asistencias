@@ -16,11 +16,30 @@ angular.module("GATE")
     bz.ingresar = function () {
       console.log(bz.datos.login)
       servicioGeneral.ingresar(bz.datos.login).then(function (res) {
-        setTimeout(function () {
-          $state.go('asistencia');
-        }, 2000)
+
+        if (res.data.error == 'invalido') {
+          swal(
+            'Datos incorrectos!',
+            'intentelo de nuevo.',
+            'error'
+          );
+        } else {
+
+          swal('Inicio exitoso ',
+            'lo estamos redirigiendo.',
+            'success'
+          );
+          setTimeout(function () {
+            $state.go('asistencia');
+          }, 2000)
+        }
         //console.log($rootScope.objectoCliente);
       }).catch(function (res) {
+        swal(
+          'Ha ocurrido un error!',
+          'intentelo de nuevo.',
+          'error'
+        );
         console.log(res);
       });
     }

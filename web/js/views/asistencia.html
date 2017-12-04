@@ -25,7 +25,7 @@
       </select>
 
     </div>
-    <div class="col-md-2" ng-if="asistencia.tipoUsuario == 'Administrador' ">
+    <div class="col-md-2">
 
 
       <select style="padding: 1%; " class="selectpicker btn-primary" ng-if="asistencia.datos.secciones.length > 0" ng-model="asistencia.id_seccion"
@@ -92,7 +92,9 @@
     </table>
     <div ng-if="asistencia.vf">
       <input type="date" class="col-md-2" ng-model="asistencia.fechaSeleccionada">
-      <button ng-click="asistencia.setAsistencia()">Colocar Asistencias</button>
+      <br>
+      <br>
+      <button class="btn btn-primary" ng-click="asistencia.setAsistencia()">Colocar Asistencias</button>
     </div>
 
   </div>
@@ -103,15 +105,18 @@
 
     <h3>Elija un rango de fechas.</h3>
 
-    <input type="date" name="date1" class="col-md-2">
+    <form ng-submit="asistencia.crearReporte(asistencia.datos.reporteInfo)">
 
-    <input type="date" name="date2" class="col-md-2">
+      <input type="date" ng-model="asistencia.datos.reporteInfo.desde" name="date1" class="col-md-2">
 
-    <button class="btn" ng-click="asistencia.datos.mostrar_btn=false">Correo propio</button>
-    <button class="btn" ng-click="asistencia.datos.mostrar_btn=true">Otro Correo</button>
+      <input type="date" ng-model="asistencia.datos.reporteInfo.hasta" name="date2" class="col-md-2">
 
-    <input ng-if="asistencia.datos.mostrar_btn==true" type="text" placeholder="ingrese Correo">
+      <button class="btn" ng-click="asistencia.datos.mostrar_btn=false">Correo propio</button>
+      <button class="btn" ng-click="asistencia.datos.mostrar_btn=true">Otro Correo</button>
 
+      <input type="email" ng-if="asistencia.datos.mostrar_btn==true" ng-model="asistencia.datos.reporteInfo.app" type="text" placeholder="ingrese Correo">
+      <button class="btn btn-primary" type="submit">Crear reporte</button>
+    </form>
   </div>
 
 

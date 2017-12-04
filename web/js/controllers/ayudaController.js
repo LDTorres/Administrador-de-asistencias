@@ -12,12 +12,12 @@ angular.module('GATE')
 
     bz.listarReportes = function () {
 
-      servicioSecciones.reporte().then(function (res) {
+      servicioSecciones.reports().then(function (res) {
 
         console.log(res);
 
         bz.datos.reportes = res.data;
-
+        console.log(res.data);
       }).catch(function (res) {
 
         console.log(res);

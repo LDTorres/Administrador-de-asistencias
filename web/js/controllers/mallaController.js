@@ -30,8 +30,15 @@ angular.module('GATE')
     bz.crearAsignatura = function (datos) {
 
       servicioAsignatura.add(datos).then(function (res) {
+        swal('Se ha creado la asignatura: ' + bz.datos.crearAsignatura.nombre_asig);
         console.log(res);
-      })
+      }).catch(function (res) {
+        swal(
+          'Un error ha ocurrido!',
+          'intentelo de nuevo.',
+          'error'
+        );
+      });
 
     }
 
@@ -39,25 +46,35 @@ angular.module('GATE')
 
       bz.actAsignatura = true;
       bz.datos.modificarAsignatura = bz.datos.asignaturas[index];
-
+      console.log(bz.datos.modificarAsignatura)
     }
-    /*
+
     bz.actualizarAsignatura = function (datos) {
       servicioAsignatura.update(datos).then(function (res) {
-        console.log(datos)
-        bz.datos.profesores[datos.index] = datos;
-        console.log(res);
+        swal('Nuevo Nombre: ' + bz.datos.modificarAsignatura.nombre_asig);
+
+
       }).catch(function (res) {
-        console.log(res)
+        swal(
+          'Un error ha ocurrido!',
+          'intentelo de nuevo.',
+          'error'
+        );
       });
     }
-*/
+
 
     bz.crearSeccion = function () {
       bz.datos.crearSeccion.id_usuario = parseInt($rootScope.objectoCliente.id);
       servicioSecciones.add(bz.datos.crearSeccion).then(function (res) {
         bz.codigo = res.data.params.codigo;
+
       }).catch(function (res) {
+        swal(
+          'Un error ha ocurrido!',
+          'intentelo de nuevo.',
+          'error'
+        );
         console.log(res)
       });
     }

@@ -767,6 +767,24 @@ angular.module('GATE')
       return promise;
     };
 
+    this.reports = function () {
+
+      var defered = $q.defer();
+      var promise = defered.promise;
+
+      $http.get(ruta + '/seccion/reportes').then(function (res) {
+
+        defered.resolve(res);
+
+      }).catch(function (res) {
+
+        defered.reject(res);
+
+      })
+      return promise;
+    };
+
+
   }])
 
   .factory('AuthInterceptor', function ($window, $q, $rootScope) {

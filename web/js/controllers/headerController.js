@@ -14,4 +14,13 @@ angular.module("GATE")
       $state.go('login');
     }
 
+    $scope.menuItems = ['asistencia', 'profesores', 'malla', 'ayuda'];
+
+    $scope.activeMenu = $scope.menuItems[0];
+
+
+    $scope.setActive = function (menuItem) {
+      $scope.activeMenu = menuItem;
+
+    }
   }])

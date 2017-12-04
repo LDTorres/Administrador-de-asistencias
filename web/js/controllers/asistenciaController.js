@@ -17,6 +17,9 @@ angular.module('GATE')
       },
       obtener: {},
       reporteInfo: {
+        id_malla: 1,
+        id_seccion: 1,
+        app: 'correo propio',
         id_usuario: $rootScope.objectoCliente.id
       },
       mostrar_btn: false
@@ -32,6 +35,31 @@ angular.module('GATE')
     bz.datos.objeto = $rootScope.objectoCliente;
     bz.datos.listarAsignaturas.id_malla = $rootScope.objectoCliente.id_malla;
 
+    /* crear reportes */
+
+    bz.crearReporte = function (datos) {
+      bz.formatDate(bz.datos.reporteInfo.desde);
+      bz.formatDate(bz.datos.reporteInfo.hasta);
+
+      console.log(datos);
+
+      servicioSecciones.report(bz.datos.reporteInfo).then(function (res) {
+
+        console.log(res);
+      }).catch(function (res) {
+        console.log(res);
+        swal('Un error ha ocurrido',
+          'vuelva a intentarlo',
+          'warning'
+        );
+      });
+
+      console.log(datos);
+
+
+
+    }
+
     /*listar asignaturas*/
 
     bz.listarAsignaturas = function (datos) {
@@ -41,6 +69,8 @@ angular.module('GATE')
     }
 
 
+
+
     /* listar secciones*/
 
     bz.listarSecciones = function (datos) {
@@ -48,6 +78,8 @@ angular.module('GATE')
       servicioSecciones.getAll(bz.datos.asignatura_activa).then(function (res) {
 
         bz.datos.secciones = res.data;
+        console.log(bz.datos.secciones = res.data);
+        console.log(res);
 
       }).catch(function (res) {
 
@@ -109,8 +141,11 @@ angular.module('GATE')
         fecha: bz.formatDate(bz.fechaSeleccionada)
       }
 
-      servicioSecciones.setAsistence(datos).then(function (res) {}).catch(function (res) {
-        console.log(res)
+      servicioSecciones.setAsistence(datos).then(function (res) {
+        console.log(res);
+        swal('Asistencias guardadas! ');
+      }).catch(function (res) {
+        console.log(res);
       });
     }
 

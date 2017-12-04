@@ -3,18 +3,19 @@
 <div class="respaldos">
   <h1>Respaldos</h1>
 
-  <button ng-click="ayuda.respaldar()">Crear respaldo</button>
+  <button class="btn btn-primary" ng-click="ayuda.respaldar()">Crear respaldo</button>
 
   <form method="post" ng-submit="" class="col-5">
     <li ng-repeat="respaldo in ayuda.datos.respaldos" value="{{respaldo.id}}">{{respaldo.filename}}</option>
-      <button ng-click="ayuda.eliminar($index)">eliminar</button>
-      <button ng-click="ayuda.restaurar(respaldo.filename)">restaurar</button>
+      <button class="btn btn-warning" ng-click="ayuda.eliminar($index)">eliminar</button>
+      <button class="btn btn-success" ng-click="ayuda.restaurar(respaldo.filename)">restaurar</button>
     </li>
-    <button type=" submit " class="btn btn-primary btn-block col-2 ">Entrar</button>
+
   </form>
 </div>
 
-<div class="row ">
+<h2>Reportes en PDF existentes</h2>
+<div class="row col-8 center-block">
   <table class="table table-striped">
     <thead>
       <tr>
@@ -24,14 +25,15 @@
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="reporte in ayuda.datos.reportes ">
-        <td>{{reporte.nombre_reporte}}
+      <tr ng-repeat="reporte in ayuda.datos.reportes.reportes">
+        <td>
+          <a href="{{reporte.nombre_reporte}}">{{reporte.nombre_reporte}}</a>
         </td>
         <td>
-          fecha 1
+          {{reporte.desde}}
         </td>
         <td>
-          fecha 2
+          {{reporte.hasta}}
         </td>
       </tr>
     </tbody>
@@ -39,7 +41,7 @@
 
 
 
-  ></div>
+</div>
 
 
 </div>

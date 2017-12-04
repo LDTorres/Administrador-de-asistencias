@@ -15,9 +15,14 @@ angular.module('GATE')
     bz.crearProfesor = function (datos) {
 
       servicioGeneral.registrar(bz.datos.registroProfesor).then(function (res) {
-        console.log(res)
+        swal('Usuario creado exitosamente! ');
       }).catch(function (res) {
         console.log(res)
+        swal(
+          'Un error ha ocurrido!',
+          'intentelo de nuevo.',
+          'error'
+        );
       });
     }
 
@@ -32,11 +37,16 @@ angular.module('GATE')
 
     bz.actualizarUsuario = function (datos) {
       servicioUsuario.update(datos).then(function (res) {
-        console.log(datos)
+        swal('Usuario modificado exitosamente! ');
         bz.datos.profesores[datos.index] = datos;
         console.log(res);
       }).catch(function (res) {
         console.log(res)
+        swal(
+          'Un error ha ocurrido!',
+          'intentelo de nuevo.',
+          'error'
+        );
       });
     }
 
