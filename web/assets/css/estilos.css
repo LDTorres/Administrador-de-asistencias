@@ -10,3 +10,13 @@
   text-align: center;
   margin-top: 400px;
 }
+
+.input_date {
+  padding: 3px;
+  margin-right: 5px;
+}
+
+.container_1_date,
+.container_2_date {
+  margin-bottom: 2%;
+}

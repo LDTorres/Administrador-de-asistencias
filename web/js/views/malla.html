@@ -7,11 +7,10 @@
 
     <form method="post" class="col-4" ng-submit="malla.crearAsignatura(malla.datos.crearAsignatura)">
 
-      <input placeholder="Nombre de asignatura" type="text" ng-model="malla.datos.crearAsignatura.nombre_asig">
+      <input style="    padding: 4px;" placeholder="Nombre de asignatura" type="text" ng-model="malla.datos.crearAsignatura.nombre_asig">
 
       <select ng-model="malla.datos.crearAsignatura.trimestre" style="padding:.5%; " class="selectpicker btn-primary">
 
-        <option selected>trimestres</option>
         <option ng-repeat="trimestre in malla.datos.trimestres" ng-value="trimestre.id_trimestre">Trimestre {{trimestre.id_trimestre}} </option>
 
       </select>
@@ -29,15 +28,15 @@
 
 
 
-    <h2>Listado De asignaturas</h2>
-    <p>Desde aqui puedes modificar informacion sobre las asignaturas</p>
-    
-    <select style="padding:.5%;" class="selectpicker btn-primary" ng-model="malla.datos.listarAsignaturas.id_trimestre" ng-change="malla.listarAsignaturas(malla.datos.listarAsignaturas)">
-    
-      <option selected>trimestres</option>
-      <option ng-repeat="trimestre in malla.datos.trimestres" ng-value="trimestre.id_trimestre">Trimestre {{trimestre.id_trimestre}} </option>
-    
-    </select>
+  <h2>Listado De asignaturas</h2>
+  <p>Desde aqui puedes modificar informacion sobre las asignaturas</p>
+
+  <select style="padding:.5%;" class="selectpicker btn-primary" ng-model="malla.datos.listarAsignaturas.id_trimestre" ng-change="malla.listarAsignaturas(malla.datos.listarAsignaturas)">
+
+
+    <option ng-repeat="trimestre in malla.datos.trimestres" ng-value="trimestre.id_trimestre">Trimestre {{trimestre.id_trimestre}} </option>
+
+  </select>
 
   <div ng-if="malla.datos.asignaturas.length > 0">
 
