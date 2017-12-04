@@ -1,7 +1,9 @@
 angular.module('GATE')
 
-  .controller('ayudaController', ["$scope", "$rootScope", "servicioGeneral", "constanteTutorial", "servicioUsuario", "$window", "$ionicPopup", function ($scope, $rootScope, servicioGeneral, constanteTutorial, servicioUsuario, $window, $ionicPopup) {
+  .controller('ayudaController', ["$scope", "$rootScope", "servicioGeneral", "constanteTutorial", "servicioUsuario", "$window", "$ionicPopup", "ruta", function ($scope, $rootScope, servicioGeneral, constanteTutorial, servicioUsuario, $window, $ionicPopup, ruta) {
     var bz = this;
+
+    bz.ruta = ruta;
 
     bz.datos = {
       desarrolladores: [{
