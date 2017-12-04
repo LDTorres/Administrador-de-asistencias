@@ -6,9 +6,11 @@
   <button class="btn btn-primary" ng-click="ayuda.respaldar()">Crear respaldo</button>
 
   <form method="post" ng-submit="" class="col-5">
-    <li ng-repeat="respaldo in ayuda.datos.respaldos" value="{{respaldo.id}}">{{respaldo.filename}}</option>
+    <li style="margin-bottom:.3%; " ng-repeat="respaldo in ayuda.datos.respaldos" value="{{respaldo.id}}">{{respaldo.filename}}</option>
       <button class="btn btn-warning" ng-click="ayuda.eliminar($index)">eliminar</button>
       <button class="btn btn-success" ng-click="ayuda.restaurar(respaldo.filename)">restaurar</button>
+      <br>
+
     </li>
 
   </form>

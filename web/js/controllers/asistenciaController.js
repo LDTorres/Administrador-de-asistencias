@@ -19,7 +19,7 @@ angular.module('GATE')
       reporteInfo: {
         id_malla: 1,
         id_seccion: 1,
-        app: 'correo propio',
+
         id_usuario: $rootScope.objectoCliente.id
       },
       mostrar_btn: false
@@ -38,6 +38,9 @@ angular.module('GATE')
     /* crear reportes */
 
     bz.crearReporte = function (datos) {
+
+
+
       bz.formatDate(bz.datos.reporteInfo.desde);
       bz.formatDate(bz.datos.reporteInfo.hasta);
 
@@ -45,7 +48,16 @@ angular.module('GATE')
 
       servicioSecciones.report(bz.datos.reporteInfo).then(function (res) {
 
-        console.log(res);
+        if (res.data.msg == 'No hay asistencias para la fecha dada.') {
+
+          swal('No se encontraron asistencias!',
+            'No hay asistencias para la fecha dada.',
+            'warning'
+          );
+
+        }
+
+        console.log(res.data.msg);
       }).catch(function (res) {
         console.log(res);
         swal('Un error ha ocurrido',
