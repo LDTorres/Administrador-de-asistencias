@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div class="container"></div>
 
 <div class="respaldos">
@@ -46,4 +47,41 @@
 </div>
 
 
+=======
+<div class="container">
+
+  <div class="respaldos">
+    <h1>Respaldos</h1>
+
+    <button class="btn btn-primary" ng-click="ayuda.respaldar()">Crear respaldo</button>
+
+  </div>
+
+  <h2 ng-if="ayuda.datos.respaldos.length > 0">Respaldos De la base de datos</h2>
+  <div ng-if="ayuda.datos.respaldos.length > 0" class="row col-8 center-block">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Archivo</th>
+          <th>Fecha</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="respaldo in ayuda.datos.respaldos">
+          <td>
+            {{respaldo.filename}}
+          </td>
+          <td>
+            {{respaldo.date}}
+          </td>
+          <td>
+            <button class="btn btn-warning" ng-click="ayuda.eliminar($index)">eliminar</button>
+            <button class="btn btn-success" ng-click="ayuda.restaurar(respaldo.filename)">restaurar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+>>>>>>> 68419491846fc2003afa1a31e152dfedd192af84
 </div>

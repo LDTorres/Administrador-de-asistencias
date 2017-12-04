@@ -9,23 +9,6 @@ angular.module('GATE')
 
     };
 
-
-    bz.listarReportes = function () {
-
-      servicioSecciones.reports().then(function (res) {
-
-        console.log(res);
-
-        bz.datos.reportes = res.data;
-        console.log(res.data);
-      }).catch(function (res) {
-
-        console.log(res);
-
-      });
-
-    }
-
     bz.respaldar = function () {
 
       servicioDB.backup().then(function (res) {
@@ -87,17 +70,8 @@ angular.module('GATE')
 
     }
 
-
-    bz.respaldos = function () {
-      servicioDB.backups().then(function (res) {
-        console.log(res);
-        bz.datos.respaldos = res.data;
-      }).catch(function (res) {
-        console.log(res);
-      })
-    }
-
-    bz.respaldos();
-    bz.listarReportes();
+    servicioDB.backups().then(function (res) {
+      bz.datos.respaldos = res.data;
+    })
 
   }])

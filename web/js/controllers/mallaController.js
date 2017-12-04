@@ -31,7 +31,8 @@ angular.module('GATE')
 
       servicioAsignatura.add(datos).then(function (res) {
         swal('Se ha creado la asignatura: ' + bz.datos.crearAsignatura.nombre_asig);
-        console.log(res);
+        bz.datos.crearAsignatura.id_asignatura = res.data.insertId;
+        bz.datos.asignaturas.push(bz.datos.crearAsignatura);
       }).catch(function (res) {
         swal(
           'Un error ha ocurrido!',

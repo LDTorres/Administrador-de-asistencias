@@ -1,7 +1,6 @@
 <div class="container ">
 
-  <h2>Listado De asistencias.</h2>
-  <p>Desde aqui puedes modificar la data de las asistencias.</p>
+  <h2>Listar Secciones.</h2>
 
   <div class="row col-md-12">
     <div class="col-md-2">
@@ -17,8 +16,8 @@
 
     <div class=" col-md-2">
 
-      <select ng-change="asistencia.listarSecciones(asistencias.datos.asignatura_activa)" style="padding: 1%; " ng-if="asistencia.datos.asignaturas.length > 0"
-        class="selectpicker btn-primary" ng-model="asistencias.datos.asignatura_activa.id_asignatura">
+      <select ng-change="asistencia.listarSecciones(asistencia.datos.asignatura_activa)" style="padding: 1%; " ng-if="asistencia.datos.asignaturas.length > 0"
+        class="selectpicker btn-primary" ng-model="asistencia.datos.asignatura_activa.id_asignatura">
         <option ng-repeat="asignatura in asistencia.datos.asignaturas " ng-value="asignatura.id_asignatura">
           {{asignatura.nombre_asig}} </option>
 
@@ -45,15 +44,7 @@
 
     <br>
     <br>
-    <div class="row col-md-12" ng-if="asistencia.id_seccion">
-      <input type="date" class="col-md-2" ng-model="asistencia.fecha">
-
-
-      <br>
-      <br>
-      <button class="btn btn-primary" ng-click="asistencia.getAsistencias()">Obtener
-      </button>
-    </div>
+    <br>
     <table class="table table-striped" ng-if="asistencia.datos.miembros.length > 0">
       <br>
       <br>
@@ -63,21 +54,21 @@
         <tr>
           <th>Nombre</th>
           <th>cedula</th>
-          <th>Asistencia</th>
-          <th>inasistencia</th>
+          <th ng-if="asistencia.vf">Asistencia</th>
+          <th ng-if="asistencia.vf">inasistencia</th>
           <th ng-if="asistencia.vf">estatus</th>
         </tr>
       </thead>
       <tbody>
-        <tr ng-if="asistencia.datos.miembros.length > 0" ng-repeat="miembros in asistencia.datos.miembros ">
+        <tr ng-repeat="miembros in asistencia.datos.miembros ">
           <td>{{miembros.nombre_completo}}
           </td>
           <td>{{miembros.cedula}}
           </td>
-          <td>
+          <td ng-if="asistencia.vf">
             <button class="btn btn-success" ng-click="miembros.asistio=1">Asistente</button>
           </td>
-          <td>
+          <td ng-if="asistencia.vf">
             <button class="btn btn-warning" ng-click="miembros.asistio=0">Inasistente</button>
           </td>
           <td ng-if="miembros.asistio == 1 && asistencia.vf">
@@ -90,14 +81,28 @@
         </tr>
       </tbody>
     </table>
-    <div ng-if="asistencia.vf">
-      <input type="date" class="col-md-2" ng-model="asistencia.fechaSeleccionada">
-      <br>
-      <br>
-      <button class="btn btn-primary" ng-click="asistencia.setAsistencia()">Colocar Asistencias</button>
+    <div class="row col-md-12" ng-if="asistencia.datos.miembros.length > 0">
+      <div>
+        <h4>Obtener asistencias</h4>
+        <input type="date" class="col-md-2" ng-model="asistencia.fecha">
+        <br>
+        <br>
+        <button class="btn btn-primary" ng-click="asistencia.getAsistencias()">Obtener
+        </button>
+      </div>
+
+      <div ng-if="asistencia.vf">
+        <input type="date" class="col-md-2" ng-model="asistencia.fechaSeleccionada">
+        <br>
+        <br>
+        <button class="btn btn-primary" ng-click="asistencia.setAsistencia()">Colocar Asistencias</button>
+      </div>
     </div>
 
+
   </div>
+  <br>
+  <br>
 
   <div class="row col-12" ng-if="asistencia.datos.miembros.length > 0">
 
@@ -107,17 +112,37 @@
 
     <form ng-submit="asistencia.crearReporte(asistencia.datos.reporteInfo)">
 
-      <input type="date" ng-model="asistencia.datos.reporteInfo.desde" name="date1" class="col-md-2">
+      <input type="date" ng-model="asistencia.datos.desde" name="date1" class="col-md-2">
 
-      <input type="date" ng-model="asistencia.datos.reporteInfo.hasta" name="date2" class="col-md-2">
-
-      <button class="btn" ng-click="asistencia.datos.mostrar_btn=false">Correo propio</button>
-      <button class="btn" ng-click="asistencia.datos.mostrar_btn=true">Otro Correo</button>
+      <input type="date" ng-model="asistencia.datos.hasta" name="date2" class="col-md-2">
 
       <input type="email" ng-if="asistencia.datos.mostrar_btn==true" type="text" placeholder="ingrese Correo">
       <button class="btn btn-primary" type="submit">Crear reporte</button>
     </form>
   </div>
-
+  <table class="table table-striped" ng-if="asistencia.datos.reportes.length > 0">
+    <br>
+    <br>
+    <h2>Listado de Reportes.</h2>
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Reporte</th>
+        <th>Acción</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="reporte in asistencia.datos.reportes ">
+        <td>{{reporte.nombre_completo}}
+        </td>
+        <td>{{reporte.nombre_reporte}}
+        </td>
+        <td>
+          <a class="btn btn-success" href="http://localhost:3454/outputPDF/{{reporte.nombre_reporte}}" target="new">ver</a>
+          <a class="btn btn-warning" ng-click="asistencia.eliminarReporte($index)" target="new">Eliminar</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 
 </div>
