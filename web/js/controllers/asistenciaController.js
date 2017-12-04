@@ -7,8 +7,7 @@ angular.module('GATE')
     bz.id_seccion = $stateParams.id_seccion;
 
     bz.datos = {
-      listarAsignaturas: {
-      },
+      listarAsignaturas: {},
       trimestres: trimestresConstante,
       asignatura_activa: {
         id_usuario: $rootScope.objectoCliente.id,
@@ -17,11 +16,6 @@ angular.module('GATE')
       obtener: {},
       reporteInfo: {
         id_malla: 1,
-<<<<<<< HEAD
-        id_seccion: 1,
-
-=======
->>>>>>> 68419491846fc2003afa1a31e152dfedd192af84
         id_usuario: $rootScope.objectoCliente.id
       },
       mostrar_btn: false
@@ -35,19 +29,16 @@ angular.module('GATE')
 
     /* crear reportes */
 
-    servicioSecciones.reportes().then(function(res){
+    servicioSecciones.reportes().then(function (res) {
       bz.datos.reportes = res;
     });
 
     bz.crearReporte = function (datos) {
-<<<<<<< HEAD
 
 
 
       bz.formatDate(bz.datos.reporteInfo.desde);
       bz.formatDate(bz.datos.reporteInfo.hasta);
-=======
->>>>>>> 68419491846fc2003afa1a31e152dfedd192af84
 
       bz.datos.reporteInfo.desde = bz.formatDate(bz.datos.desde);
       bz.datos.reporteInfo.hasta = bz.formatDate(bz.datos.hasta);
@@ -55,7 +46,6 @@ angular.module('GATE')
       console.log(bz.datos.reporteInfo);
 
       servicioSecciones.report(bz.datos.reporteInfo).then(function (res) {
-<<<<<<< HEAD
 
         if (res.data.msg == 'No hay asistencias para la fecha dada.') {
 
@@ -67,9 +57,6 @@ angular.module('GATE')
         }
 
         console.log(res.data.msg);
-=======
-        bz.datos.reportes.push(res.data)
->>>>>>> 68419491846fc2003afa1a31e152dfedd192af84
       }).catch(function (res) {
         console.log(res);
         swal('Un error ha ocurrido',
@@ -121,14 +108,14 @@ angular.module('GATE')
 
       servicioSecciones.getMembers(datos).then(function (res) {
 
-        if(res.data.length > 0){
+        if (res.data.length > 0) {
           bz.oa = true;
           bz.datos.miembros = res.data;
-        }else{
+        } else {
           swal('No hay miembros en esta sección! ', 'error');
         }
 
-      }).catch(function(res){
+      }).catch(function (res) {
         swal('No hay miembros en esta sección! ', 'error');
       })
     }
