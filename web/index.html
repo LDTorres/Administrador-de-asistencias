@@ -76,7 +76,8 @@
           <a class="navbar-brand">GATE</a>
         </div>
         <ul class="nav navbar-nav">
-          <li ng-repeat='item in menuItems' ng-class="{active : activeMenu === item}" class="active" ng-click="setActive(item)">
+          <!-- class="active" ng-class="{active : activeMenu === item}" class="active" ng-click="setActive(item)"-->
+          <li ng-repeat='item in menuItems'>
             <a href="#!{{ item }}">{{ item }}</a>
           </li>
           <li>
@@ -103,8 +104,7 @@
     <div class="container" style=" align-items: center; display:flex; flex-flow:row;">
 
 
-
-      <p class="text-muted credit" style="margin:auto;"> PNF Informatica 2017 - Realizado por: Adrian Flores, Luis Torres, Michel Novellino.
+      <p class="text-muted credit" style="margin:auto;">Copyleft © PNF Informatica 2017 - Realizado por: Adrian Flores, Luis Torres, Michel Novellino.
       </p>
       <img src="/assets/img/icon.png" style="text-align:center;" width="50px" height="50px" alt="logo GATE">
 
