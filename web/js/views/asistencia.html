@@ -138,8 +138,8 @@
         <td>{{reporte.nombre_reporte}}
         </td>
         <td>
-          <a href="http://localhost:3454/outputPDF/{{reporte.nombre_reporte}}" target="new">ver</a>
-          <a ng-click="asistencia.eliminarReporte($index)" target="new">Eliminar</a>
+          <a class="btn btn-success" href="http://localhost:3454/outputPDF/{{reporte.nombre_reporte}}" target="new">ver</a>
+          <a class="btn btn-warning" ng-click="asistencia.eliminarReporte($index)" target="new">Eliminar</a>
         </td>
       </tr>
     </tbody>

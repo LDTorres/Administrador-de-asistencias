@@ -1,47 +1,36 @@
-<div class="container"></div>
+<div class="container">
 
-<div class="respaldos">
-  <h1>Respaldos</h1>
+  <div class="respaldos">
+    <h1>Respaldos</h1>
 
-  <button class="btn btn-primary" ng-click="ayuda.respaldar()">Crear respaldo</button>
+    <button class="btn btn-primary" ng-click="ayuda.respaldar()">Crear respaldo</button>
 
-  <form method="post" ng-submit="" class="col-5">
-    <li ng-repeat="respaldo in ayuda.datos.respaldos" value="{{respaldo.id}}">{{respaldo.filename}}</option>
-      <button class="btn btn-warning" ng-click="ayuda.eliminar($index)">eliminar</button>
-      <button class="btn btn-success" ng-click="ayuda.restaurar(respaldo.filename)">restaurar</button>
-    </li>
+  </div>
 
-  </form>
-</div>
-
-<h2>Reportes en PDF existentes</h2>
-<div class="row col-8 center-block">
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>Archivo</th>
-        <th>desde</th>
-        <th>hasta</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr ng-repeat="reporte in ayuda.datos.reportes.reportes">
-        <td>
-          <a href="{{reporte.nombre_reporte}}">{{reporte.nombre_reporte}}</a>
-        </td>
-        <td>
-          {{reporte.desde}}
-        </td>
-        <td>
-          {{reporte.hasta}}
-        </td>
-      </tr>
-    </tbody>
-  </table>
-
-
-
-</div>
-
-
+  <h2 ng-if="ayuda.datos.respaldos.length > 0">Respaldos De la base de datos</h2>
+  <div ng-if="ayuda.datos.respaldos.length > 0" class="row col-8 center-block">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Archivo</th>
+          <th>Fecha</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="respaldo in ayuda.datos.respaldos">
+          <td>
+            {{respaldo.filename}}
+          </td>
+          <td>
+            {{respaldo.date}}
+          </td>
+          <td>
+            <button class="btn btn-warning" ng-click="ayuda.eliminar($index)">eliminar</button>
+            <button class="btn btn-success" ng-click="ayuda.restaurar(respaldo.filename)">restaurar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
