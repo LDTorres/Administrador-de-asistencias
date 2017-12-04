@@ -1,5 +1,5 @@
 <ion-view view-title="Inicio">
-  <div class="tabs-striped tabs-background-positive tabs-color-light">
+  <div class="tabs-striped tabs-background-{{inicio.tema}} tabs-color-light">
     <ion-tabs class="tabs-icon-top tab-{{inicio.tema}}">
       <ion-tab title="Asignaturas" icon-on="ion-clipboard" icon-off="ion-clipboard">
         <ion-content class="padding">
@@ -17,7 +17,7 @@
               </select>
             </label>
 
-            <label class="item item-input item-select" ng-if="inicio.datos.asignaturas">
+            <label class="item item-input item-select" ng-if="inicio.datos.asignaturas.length > 0">
 
               <div class="input-label">
                 Asignaturas

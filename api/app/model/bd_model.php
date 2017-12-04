@@ -89,7 +89,7 @@ class BDModel {
         fwrite($handle,$return);
         fclose($handle);
 
-        return array('Nombre Archivo'=> "bd-iuteb-$fechaNombre.sql", "Consulta" =>$consulta);
+        return array('Nombre Archivo'=> "bd-iuteb-$fechaNombre.sql", "insertId" =>$this->db->lastInsertId());
     }
 
     public function restore($filename){

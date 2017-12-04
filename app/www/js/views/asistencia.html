@@ -12,7 +12,7 @@
       </div>
       <form ng-if="asistencia.mostrar" ng-submit="asistencia.setAsistencia()">
         <ul class="list">
-          <ion-toggle ng-repeat="miembro in asistencia.datos.miembros" ng-model="miembro.asistio_check" ng-checked="miembro.asistio_check">
+          <ion-toggle ng-repeat="miembro in asistencia.datos.miembros" ng-disabled="miembro.estado == 0" ng-model="miembro.asistio_check" ng-checked="miembro.asistio_check">
             {{miembro.nombre_completo}}
           </ion-toggle>
         </ul>

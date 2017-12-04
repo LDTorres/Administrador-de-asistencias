@@ -82,6 +82,14 @@ h4.slider-content {
   min-height: 100vh !important;
 }
 
+.innavilitado {
+  background: silver;
+}
+
+.bold {
+  font-weight: bold;
+}
+
 .gravatar-bello {
   width: 90%;
   border-radius: 50%;

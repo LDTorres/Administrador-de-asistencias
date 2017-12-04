@@ -52,6 +52,7 @@ angular.module('GATE')
         if (res.data.length == 0) {
           ionicToast.show('No hay ninguna asignatura para ese trimestre', 'top', false, 2500);
           bz.datos.asignaturas = {};
+          bz.datos.secciones = {};
         } else {
           bz.datos.asignaturas = res.data;
         }
@@ -76,6 +77,8 @@ angular.module('GATE')
         } else {
           bz.datos.secciones = res.data;
         }
+      }).catch(function(res){
+        console.log(res)
       });
     }
 
