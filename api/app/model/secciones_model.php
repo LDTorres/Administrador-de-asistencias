@@ -586,7 +586,7 @@ class SeccionesModel {
 <body>
         <div>
             <div>
-                <img class='membrete' src='app/outputPDF/banner.png'>
+                <img class='membrete' src='".$this->path_reporte."banner.png'>
             </div>
             
             <div class='datos'>
@@ -735,11 +735,11 @@ class SeccionesModel {
         $pdf_gen = $dompdf->output();
         
         if(isset($params['app']) != NULL){
-            if(!file_put_contents('app/outputPDF/'.$filename, $pdf_gen)){
+            if(!file_put_contents($this->path_reporte.$filename, $pdf_gen)){
                 return array('msg' => 'pdf no generado');
             }
 
-            $adjunto = 'app/outputPDF/'.$filename;
+            $adjunto = $this->path_reporte.$filename;
             $mail = new PHPMailer(true);   
         
             try {
@@ -793,7 +793,7 @@ class SeccionesModel {
             
         }
 
-        if(!file_put_contents('app/outputPDF/'.$filename, $pdf_gen)){
+        if(!file_put_contents($this->path_reporte.$filename, $pdf_gen)){
             return array('msg' => 'pdf no generado');
         }else{
 

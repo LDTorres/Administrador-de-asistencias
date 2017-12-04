@@ -131,7 +131,8 @@
 			"order": [
 				"0408f49e-c3d2-95ef-aaca-b1c0bff11451",
 				"4ba2a422-76f4-f9a2-5d2f-c8241df5c52c",
-				"3a059460-2425-cddc-a784-5b3b66b1d962"
+				"3a059460-2425-cddc-a784-5b3b66b1d962",
+				"f71bebe7-cc03-926a-5a45-b0aff0d058b0"
 			],
 			"owner": "2084589",
 			"folder": "d0a4af9a-1e80-a376-a478-b2d7addd86b1",
@@ -206,7 +207,7 @@
 					"enabled": true
 				}
 			],
-			"url": "{{url}}/seccion/reporte",
+			"url": "{{web}}/seccion/reporte",
 			"folder": "b0df4eea-9b95-63cd-c179-4d39ef364802",
 			"queryParams": [],
 			"preRequestScript": null,
@@ -230,7 +231,7 @@
 				},
 				{
 					"key": "hasta",
-					"value": "2017-11-29",
+					"value": "2017-12-02",
 					"description": "",
 					"type": "text",
 					"enabled": true
@@ -254,7 +255,7 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1512147480791,
+			"time": 1512299826350,
 			"name": "Reporte",
 			"description": "Reporte de asistencias",
 			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
@@ -811,8 +812,8 @@
 				{
 					"key": "auth",
 					"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MTEyNzM2MzksImV4cCI6MTUxMTQ4OTYzOSwiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiIxIiwibmFtZSI6IkFkbWluaXN0cmFkb3IiLCJ0aXBvIjoiQWRtaW5pc3RyYWRvciIsImlkX21hbGxhIjoiMSJ9fQ.LFRVyYkWfMCKRRH8tV20LZ6IPfKgHWvQJY4pRoBGwr8",
-					"enabled": true,
-					"description": ""
+					"description": "",
+					"enabled": true
 				}
 			],
 			"url": "{{url}}/user/setPrefencias",
@@ -842,13 +843,12 @@
 			"version": 2,
 			"tests": null,
 			"currentHelper": "normal",
-			"helperAttributes": "{}",
-			"time": 1511279612212,
+			"helperAttributes": {},
+			"time": 1512178502522,
 			"name": "Cambiar preferencias",
 			"description": "COlocar preferencias",
 			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
-			"responses": [],
-			"timestamp": null
+			"responses": []
 		},
 		{
 			"id": "45189f9f-dc2d-c55c-070d-bbc28762bad5",
@@ -994,77 +994,6 @@
 			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
 			"responses": [],
 			"timestamp": null
-		},
-		{
-			"id": "4ba2a422-76f4-f9a2-5d2f-c8241df5c52c",
-			"headers": "Content-Type: application/x-www-form-urlencoded\nauth: {{token}}\n",
-			"headerData": [
-				{
-					"key": "Content-Type",
-					"value": "application/x-www-form-urlencoded",
-					"description": "",
-					"enabled": true
-				},
-				{
-					"key": "auth",
-					"value": "{{token}}",
-					"description": "",
-					"enabled": true
-				}
-			],
-			"url": "{{url}}/seccion/reportes",
-			"folder": "b0df4eea-9b95-63cd-c179-4d39ef364802",
-			"queryParams": [],
-			"preRequestScript": null,
-			"pathVariables": {},
-			"pathVariableData": [],
-			"method": "GET",
-			"data": [
-				{
-					"key": "id_seccion",
-					"value": "1",
-					"description": "",
-					"type": "text",
-					"enabled": true
-				},
-				{
-					"key": "desde",
-					"value": "2017-11-16",
-					"description": "",
-					"type": "text",
-					"enabled": true
-				},
-				{
-					"key": "hasta",
-					"value": "2017-11-29",
-					"description": "",
-					"type": "text",
-					"enabled": true
-				},
-				{
-					"key": "id_usuario",
-					"value": "1",
-					"description": "",
-					"type": "text",
-					"enabled": true
-				},
-				{
-					"key": "app",
-					"value": "Correo Propio",
-					"description": "",
-					"type": "text",
-					"enabled": false
-				}
-			],
-			"dataMode": "urlencoded",
-			"tests": null,
-			"currentHelper": "normal",
-			"helperAttributes": {},
-			"time": 1512147479142,
-			"name": "Reportes",
-			"description": "Reporte de asistencias",
-			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
-			"responses": []
 		},
 		{
 			"id": "5a632524-d9e3-2530-32d8-7a0516f5f754",
@@ -1432,16 +1361,16 @@
 		},
 		{
 			"id": "7ecde924-324f-37bb-6021-889a4c5fabb2",
-			"headers": "auth: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MTE5Njc3NjEsImV4cCI6MTUyNDkyNzc2MSwiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiI3IiwibmFtZSI6Ikp1YW4gTWFudWVsIiwidGlwbyI6IkVzdHVkaWFudGUiLCJpZF9tYWxsYSI6IjEifX0.UY117dRUWPsLlKBQX3najQ7H_flgk5wWTCzeDeALqtk\n",
+			"headers": "auth: {{token}}\n",
 			"headerData": [
 				{
 					"key": "auth",
-					"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1MTE5Njc3NjEsImV4cCI6MTUyNDkyNzc2MSwiYXVkIjoiZGZlZmYwOGU4ODdjZWRlYzNjYTk3OWEwM2FlOGUxN2EyZmUwYTIwNyIsImRhdGEiOnsiaWQiOiI3IiwibmFtZSI6Ikp1YW4gTWFudWVsIiwidGlwbyI6IkVzdHVkaWFudGUiLCJpZF9tYWxsYSI6IjEifX0.UY117dRUWPsLlKBQX3najQ7H_flgk5wWTCzeDeALqtk",
+					"value": "{{token}}",
 					"description": "",
 					"enabled": true
 				}
 			],
-			"url": "{{url}}/seccion/all",
+			"url": "{{web}}/seccion/all",
 			"folder": "d0a4af9a-1e80-a376-a478-b2d7addd86b1",
 			"queryParams": [],
 			"preRequestScript": null,
@@ -1458,7 +1387,7 @@
 				},
 				{
 					"key": "id_usuario",
-					"value": "2",
+					"value": "1",
 					"description": "",
 					"type": "text",
 					"enabled": true
@@ -1469,7 +1398,7 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1511970862295,
+			"time": 1512299829628,
 			"name": "Todas las secciones",
 			"description": "Obtenemos todas las secciones de una materia\nSi mandamos el id de un usuario, traera las secciones que tenga inscritas\nSi a parte mandamos un campo tipo con el valor profesor, evaluara si el id del usuario pertenece a un profesor y te traerá todas las secciones que imparte",
 			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
@@ -2243,7 +2172,7 @@
 					"enabled": true
 				}
 			],
-			"url": "{{url}}/login",
+			"url": "{{web}}/login",
 			"folder": "f32508d4-730e-12e8-2acc-776205cef0e8",
 			"queryParams": [],
 			"preRequestScript": null,
@@ -2268,7 +2197,7 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1512148569184,
+			"time": 1512299833059,
 			"name": "Ingreso",
 			"description": "Iniciamos sesion y desbloqueamos las rutas",
 			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
@@ -2410,13 +2339,19 @@
 		},
 		{
 			"id": "e433b67a-5ceb-b7e6-1ffd-6df8ae3844a4",
-			"headers": "Content-Type: application/x-www-form-urlencoded\n",
+			"headers": "Content-Type: application/x-www-form-urlencoded\nauth: {{token}}\n",
 			"headerData": [
 				{
 					"key": "Content-Type",
 					"value": "application/x-www-form-urlencoded",
-					"enabled": true,
-					"description": ""
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "auth",
+					"value": "{{token}}",
+					"description": "",
+					"enabled": true
 				}
 			],
 			"url": "{{url}}/seccion/members",
@@ -2439,13 +2374,12 @@
 			"version": 2,
 			"tests": null,
 			"currentHelper": "normal",
-			"helperAttributes": "{}",
-			"time": 1506530918111,
+			"helperAttributes": {},
+			"time": 1512266535134,
 			"name": "Por id seccion",
 			"description": "Obtenemos todos los miembros de una seccion",
 			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
-			"responses": [],
-			"timestamp": null
+			"responses": []
 		},
 		{
 			"id": "eed56c47-ab9f-2690-9500-f7efbfaea38a",
@@ -2563,6 +2497,77 @@
 			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
 			"responses": [],
 			"timestamp": null
+		},
+		{
+			"id": "f71bebe7-cc03-926a-5a45-b0aff0d058b0",
+			"headers": "Content-Type: application/x-www-form-urlencoded\nauth: {{token}}\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/x-www-form-urlencoded",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "auth",
+					"value": "{{token}}",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "{{web}}/seccion/reportes",
+			"folder": "b0df4eea-9b95-63cd-c179-4d39ef364802",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": [
+				{
+					"key": "id_seccion",
+					"value": "1",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "desde",
+					"value": "2017-11-16",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "hasta",
+					"value": "2017-11-29",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "id_usuario",
+					"value": "1",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "app",
+					"value": "Correo Propio",
+					"description": "",
+					"type": "text",
+					"enabled": false
+				}
+			],
+			"dataMode": "urlencoded",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1512305962835,
+			"name": "{{url}}/seccion/reportes[/usuario/hola]",
+			"description": "Reporte de asistencias, is se pasa adicional /usuario/id_usuario entonces mandara los reportes de cierto usuario",
+			"collectionId": "63af86f0-f554-a12d-33bc-7b8b1e7f25a0",
+			"responses": []
 		},
 		{
 			"folder": "f1ba4e66-8b37-1bdc-72d0-6981ccb4fc37",
