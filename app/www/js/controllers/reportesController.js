@@ -1,7 +1,9 @@
 angular.module('GATE')
 
-  .controller('reportesController', function ($scope, $rootScope, servicioSecciones, ionicDatePicker, $stateParams, $ionicLoading, ionicToast) {
+  .controller('reportesController', function ($scope, $rootScope, servicioSecciones, ionicDatePicker, $stateParams, $ionicLoading, ionicToast, $document, $window) {
     var bz = this;
+
+    bz.urlPDF = false;
 
     bz.datos = {
       micorreo: true,
@@ -23,9 +25,16 @@ angular.module('GATE')
         datos.app = 'Correo Externo';
       }
 
-      servicioSecciones.reporte(datos).then(function (res) {
-        $ionicLoading.hide().then(function () {
-          ionicToast.show(res.data.msg, 'top', false, 2500);
+      servicioSecciones.reporte(datos).then(function (reporte) {
+        $ionicLoading.hide().then(function (res) {
+
+          console.log(reporte)
+          bz.urlPDF = 'http://localhost:3454/outputPDF/' +
+            reporte.data.nombre_pdf;
+            
+          console.log(bz.urlPDF)
+
+          ionicToast.show(reporte.data.msg, 'top', false, 2500);
         });
       }).catch(function (res) {
         console.log(res)

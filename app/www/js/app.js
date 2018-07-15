@@ -100,6 +100,15 @@ angular.module('GATE', ['ionic', 'ngCordova', 'ngFileUpload', 'ionic-datepicker'
           }
         }
       })
+      .state('app.inicio/usuario', {
+        url: '/perfil',
+        views: {
+          'menuContent': {
+            templateUrl: 'js/views/usuario.html',
+            controller: 'usuarioController as usuario'
+          }
+        }
+      })
       // Ayuda va a contener {informacion de la app, y el manual}
       .state('app.inicio/ayuda', {
         url: '/ayuda',
@@ -160,8 +169,8 @@ angular.module('GATE', ['ionic', 'ngCordova', 'ngFileUpload', 'ionic-datepicker'
         url: '/miembro:id_usuario',
         views: {
           'menuContent': {
-            templateUrl: 'js/views/perfil.html',
-            controller: 'perfilController as perfil'
+            templateUrl: 'js/views/miembro.html',
+            controller: 'miembroController as miembro'
           }
         }
       })

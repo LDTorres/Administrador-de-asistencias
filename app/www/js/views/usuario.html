@@ -1,0 +1,50 @@
+<ion-view view-title="Perfil">
+  <ion-content class="padding">
+    <div>
+      <div class="list card">
+        <div class="item item-avatar">
+          <img ng-src="img/{{usuario.datos.user.gravatar}}.png">
+          <h2>{{usuario.datos.user.usuario}}</h2>
+          <p>{{usuario.datos.user.malla}}</p>
+        </div>
+        <div ng-if="false">
+          <cambiar-foto ng-click="usuario.subirFoto()">Subir Foto</cambiar-foto>
+          <cambiar-foto ng-click="usuario.descargarArchivo()">Descargar Archivo</cambiar-foto>
+        </div>
+      </div>
+
+      <form class="input-inset list" ng-submit="usuario.actualizarUsuario(usuario.datos.user)" name="datosPersonales" novalidate>
+        <h4 class="text-center item-cabecera {{usuario.tema}} item text-white">Datos</h4>
+        <label class="item item-input">
+          <span class="input-label">Nombre</span>
+          <input type="text" ng-model="usuario.datos.user.nombre_completo" name="nombre_completo" required>
+        </label>
+        <div class="item" style="color:maroon" role="alert" ng-show="datosPersonales.nombre_completo.$touched && datosPersonales.nombre_completo.$invalid">
+          <div ng-message="required">Este campo es requerido.</div>
+        </div>
+        <label class="item item-input">
+          <span class="input-label">Cedula</span>
+          <input type="number" ng-model="usuario.datos.user.cedula" name="cedula" required>
+        </label>
+        <div class="item" style="color:maroon" role="alert" ng-show="datosPersonales.cedula.$touched && datosPersonales.cedula.$invalid">
+          <div ng-message="required">Este campo es requerido.</div>
+        </div>
+        <label class="item item-input">
+          <span class="input-label">Teléfono</span>
+          <input type="tel" ng-model="usuario.datos.user.telefono" name="telefono" required>
+        </label>
+        <div class="item" style="color:maroon" role="alert" ng-show="datosPersonales.telefono.$touched && datosPersonales.telefono.$invalid">
+          <div ng-message="required">Este campo es requerido.</div>
+        </div>
+        <label class="item item-input">
+          <span class="input-label">Contraseña</span>
+          <input type="password" ng-model="usuario.datos.user.contrasena" name="contrasena" required>
+        </label>
+        <div class="item" ng-messages="datosPersonales.contrasena.$error" style="color:maroon" role="alert" ng-show="datosPersonales.contrasena.$touched && datosPersonales.contrasena.$invalid">
+          <div ng-message="required">Este campo es requerido.</div>
+        </div>
+        <input type="submit" value="Guardar" class="button button-outline button-block button-{{usuario.tema}}" ng-disabled="!datosPersonales.$valid">
+      </form>
+    </div>
+  </ion-content>
+</ion-view>

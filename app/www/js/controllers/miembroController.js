@@ -1,6 +1,6 @@
 angular.module('GATE')
 
-  .controller('perfilController', ['$scope', '$rootScope', 'servicioUsuario', '$stateParams', function ($scope, $rootScope, servicioUsuario, $stateParams) {
+  .controller('miembroController', ['$scope', '$rootScope', 'servicioUsuario', '$stateParams', function ($scope, $rootScope, servicioUsuario, $stateParams) {
     var bz = this;
 
     bz.datos = {

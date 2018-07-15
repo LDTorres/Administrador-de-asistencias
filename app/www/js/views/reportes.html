@@ -20,6 +20,8 @@
           <h4 class="col col-30 col-offset-10"> {{reportes.datos.reporte.hasta}}</h4>
         </div>
         <input type="submit" value="Enviar" class="button button-outline button-block button-{{reportes.tema}}" ng-disabled="!reporte.$valid">
+
+        <a class="button  button-block button-positive" ng-show="reportes.urlPDF" ng-href="{{reportes.urlPDF}}" target="_new">DESCARGAR REPORTE</a>
       </form>
     </ion-content>
   </ion-pane>

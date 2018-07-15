@@ -176,3 +176,8 @@ h4.slider-content {
   text-transform: uppercase;
   text-align: center;
 }
+
+.elementos-menu>ion-item {
+    border-color: transparent;
+    font-size: 18px;
+}
