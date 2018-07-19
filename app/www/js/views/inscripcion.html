@@ -20,12 +20,12 @@
             <option ng-repeat="asignatura in inscripcion.datos.asignaturas" ng-value="asignatura.id_asignatura">{{asignatura.nombre_asig}}</option>
           </select>
         </label>
-        <form class="input-inset list" ng-if="inscripcion.datos.asignaturas" ng-submit="inscripcion.crearSeccion(inscripcion.datos.crearSeccion)">
+<form class="input-inset list" ng-if="inscripcion.datos.crearSeccion.id_asignatura" ng-submit="inscripcion.crearSeccion(inscripcion.datos.crearSeccion)">
           <label class="item item-input">
             <span class="input-label">Nombre</span>
-            <input type="text" placeholder="Nombre" ng-model="inscripcion.datos.crearSeccion.nombre">
+            <input type="text" placeholder="Nombre" ng-model="inscripcion.datos.crearSeccion.nombre" required>
           </label>
-          <input type="submit" value="Crear" class="button button-block button-{{inscripcion.tema}}">
+          <input type="submit" value="CREAR" class="button button-block button-{{inscripcion.tema}}">
           <h3 ng-if="inscripcion.codigo" class="text-center" ng-click="inscripcion.copiarSeleccionado(inscripcion.codigo)">Codigo: {{inscripcion.codigo}}</h3>
         </form>
       </div>

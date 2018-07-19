@@ -3,46 +3,25 @@
     <ion-tabs class="tabs-icon-top tab-{{inicio.tema}}">
       <ion-tab title="Asignaturas" icon-on="ion-clipboard" icon-off="ion-clipboard">
         <ion-content class="padding">
-          <div class="card-list list">
-            <div class="item item-divider">
-              <h4 class="text-center">Buscar seccion</h4>
-            </div>
-            <label class="item item-input item-select">
-
-              <div class="input-label">
-                Trimestre
-              </div>
-              <select ng-model="inicio.datos.listarAsignaturas.id_trimestre" ng-change="inicio.listarAsignaturas(inicio.datos.listarAsignaturas)">
-                <option ng-repeat="trimestre in inicio.datos.trimestres" ng-value="trimestre.id_trimestre">trimestre {{trimestre.id_trimestre}}</option>
-              </select>
-            </label>
-
-            <label class="item item-input item-select" ng-if="inicio.datos.asignaturas.length > 0">
-
-              <div class="input-label">
-                Asignaturas
-              </div>
-              <select ng-model="inicio.datos.asignaturaSeleccionada" ng-change="inicio.buscarSecciones(inicio.datos)">
-                <option ng-repeat="asignatura in inicio.datos.asignaturas" ng-value="asignatura.id_asignatura">{{asignatura.nombre_asig}}</option>
-              </select>
-            </label>
-
-            <div class="list" ng-if="inicio.datos.secciones.length > 0">
-              <form>
-                <label class="item item-input item-select">
-                  <form ng-if="inicio.datos.secciones">
-                    <div class="input-label">
-                      Secciones
-                    </div>
-                    <select ng-model="inicio.datos.seccionSeleccionada">
-                      <option ng-repeat="seccion in inicio.datos.secciones" ng-value="seccion.id_seccion">{{seccion.nombre}}</option>
-                    </select>
-                </label>
-                <input ui-sref="app.inicio/seccion({id_seccion: inicio.datos.seccionSeleccionada})" type="submit" ng-if="inicio.datos.seccionSeleccionada"
-                  value="IR" class="button button-outline button-block button-{{inicio.tema}}">
-                </form>
-            </div>
+          <div ng-if="inicio.datos.secciones.length == 0">
+            <h4>No estas inscrito a ningun seccion</h4>
           </div>
+
+          <h4 class="text-center" ng-if="inicio.datos.secciones.length > 0">Secciones</h4>
+
+          <ion-list show-reorder="false">
+            <ion-item class="seccion-item" ui-sref="app.inicio/seccion({id_seccion: seccion.id_seccion})" ng-repeat="seccion in inicio.datos.secciones">
+              <p>
+                <span class="bold">Nombre: </span> {{seccion.nombre_completo}}
+              </p>
+              <p>
+                <span class="bold">Profesor: </span> {{seccion.nombre_completo}}
+              </p>
+              <p>
+                <span class="bold">Trimestre: </span> {{seccion.trimestre}}
+              </p>
+            </ion-item>
+          </ion-list>
         </ion-content>
       </ion-tab>
 

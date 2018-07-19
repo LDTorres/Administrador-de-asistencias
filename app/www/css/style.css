@@ -181,3 +181,15 @@ h4.slider-content {
     border-color: transparent;
     font-size: 18px;
 }
+
+.seccion-item{
+    border-top: 3px solid !important;
+    margin-bottom: 9px !important;
+}
+
+.no-padding {
+  padding: 0 !important;
+}
+.no-margin {
+  margin: 0 !important;
+}

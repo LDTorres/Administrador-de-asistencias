@@ -27,8 +27,8 @@ class SeccionesModel {
         # Si el usuario es profesor
         if(isset($params['tipo']) != NULL){
             if(isset($params['id_usuario']) != NULL ){
-            $sth = $this->db->prepare('SELECT s.nombre, s.id_seccion FROM secciones AS s INNER JOIN asignaturas as a WHERE a.id_asignatura = ? AND s.id_asignatura = a.id_asignatura AND s.id_usuario = ?');
-            $sth->execute(array($params['id_asignatura'], $params['id_usuario']));
+            $sth = $this->db->prepare('SELECT s.*, a.*, u.nombre_completo, u.gravatar FROM secciones AS s INNER JOIN asignaturas as a INNER JOIN usuarios AS u WHERE s.id_asignatura = a.id_asignatura AND s.id_usuario = ? AND S.id_usuario = u.id_usuario');
+            $sth->execute(array($params['id_usuario']));
             $result = $sth->fetchAll();
 
                 if(count($result) > 0){
@@ -41,8 +41,8 @@ class SeccionesModel {
 
         # Si no es profesor
         if(isset($params['id_usuario']) != NULL ){
-            $sth = $this->db->prepare('SELECT s.nombre, s.id_seccion FROM alumnos_has_secciones AS ahs INNER JOIN secciones AS s INNER JOIN asignaturas AS a WHERE ahs.id_usuario = ? AND s.id_seccion = ahs.id_seccion AND a.id_asignatura = ? AND a.id_asignatura = s.id_asignatura');
-            $sth->execute(array( $params['id_usuario'], $params['id_asignatura']));
+            $sth = $this->db->prepare('SELECT s.*, a.*, u.nombre_completo FROM alumnos_has_secciones AS ahs INNER JOIN secciones AS s INNER JOIN asignaturas AS a INNER JOIN usuarios AS u WHERE ahs.id_usuario = ? AND s.id_seccion = ahs.id_seccion AND a.id_asignatura = s.id_asignatura AND s.id_usuario = u.id_usuario');
+            $sth->execute(array($params['id_usuario']));
             $result = $sth->fetchAll();
 
             if(count($result) > 0){

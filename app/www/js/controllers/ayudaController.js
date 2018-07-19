@@ -37,6 +37,7 @@ angular.module('GATE')
 
     servicioGeneral.app().then(function (res) {
       bz.datos.app = res;
+      console.log(res)
     })
 
     // Actualizar Preferencias
