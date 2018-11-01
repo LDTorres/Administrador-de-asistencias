@@ -17,8 +17,6 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 -- Adrian Flores
 
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `Iuteb_asignaturas` ;
-USE `Iuteb_asignaturas` ;
 
 -- -----------------------------------------------------
 -- Table `Iuteb_asignaturas`.`malla_curricular`

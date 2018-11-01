@@ -1,4 +1,4 @@
-angular.module('GATE', ['ionic', 'ngCordova', 'ngFileUpload', 'ionic-datepicker', 'ionic-toast'])
+angular.module('GATE', ['ionic', 'ngCordova', 'ionic-datepicker', 'ionic-toast'])
 
   .run(function ($ionicPlatform) {
     $ionicPlatform.ready(function () {
