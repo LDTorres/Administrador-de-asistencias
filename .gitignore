@@ -5,7 +5,7 @@ node_modules/
 platforms/
 plugins/
 api/public/backups/
-api/public/outputPDF/
+api/public/outputPDF/*.pdf
 *www/lib
 *api/assets
 *api/app/lib/backups

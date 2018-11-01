@@ -184,45 +184,41 @@ class UserModel
         $sth->execute(array($params['correo']));
         $datos = $sth->fetch();
 
-        $mail = new PHPMailer(true);   
         // Passing `true` enables exceptions
-        try {
-            //Server settings                              // Enable verbose debug output
-            $mail->isSMTP();                                      // Set mailer to use SMTP
-            $mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
-            $mail->SMTPAuth = true;                               // Enable SMTP authentication
-            $mail->Username = 'iutebgate@gmail.com';                 // SMTP username
-            $mail->Password = 'SoporteGATE';                           // SMTP password
-            $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
-            $mail->Port = 587;                                    // TCP port to connect to
+        $mail = new PHPMailer(true);   
+        //Server settings   
+        $mail->SMTPDebug = 0;                             // Enable verbose debug output
+        $mail->isSMTP();                                      // Set mailer to use SMTP
+        $mail->SMTPOptions = array(
+            'ssl' => array(
+                'verify_peer' => false,
+                'verify_peer_name' => false,
+                'allow_self_signed' => true
+            )
+        );
+        $mail->Host = 'mail.fladdev.com.ve';  // Specify main and backup SMTP servers
+        $mail->SMTPAuth = true;                              // Enable SMTP authentication
+        $mail->Username = 'soporte@fladdev.com.ve';                 // SMTP username
+        $mail->Password = 'SoporteGATE*';                           // SMTP password
+        $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+        $mail->Port = 587;    
 
-            //Recipients
-            // informatica@iuteb.edu.ve
-            $mail->setFrom('iutebgate@gmail.com', 'IUTEB GATE SOPORTE');
+        //Recipients
+        // informatica@iuteb.edu.ve
+        $mail->setFrom('iutebgate@gmail.com', 'IUTEB GATE SOPORTE');
 
-            $mail->addAddress($datos['correo']);
+        $mail->addAddress($datos['correo']);
 
-            $usuario = $datos['usuario'];
-            $contrasena = $datos['contrasena'];
-            $mail->isHTML(true);                                  // Set email format to HTML
-            $mail->Subject = 'Recuperacion de contrasena!';
-            $mail->Body    = "<div><span><b>Usuario:</b> $usuario </span><span><b>Contraseña:</b> $contrasena </span></div>";
+        $usuario = $datos['usuario'];
+        $contrasena = $datos['contrasena'];
+        $mail->isHTML(true);                                  // Set email format to HTML
+        $mail->Subject = 'Recuperacion de contrasena!';
+        $mail->Body    = "<div><span><b>Usuario:</b> $usuario </span><span><b>Contraseña:</b> $contrasena </span></div>";
+        $mail->CharSet = 'utf-8';
 
-            $mail->CharSet = 'utf-8';
-            $mail->SMTPOptions = array(
-                'ssl' => array(
-                    'verify_peer' => false,
-                    'verify_peer_name' => false,
-                    'allow_self_signed' => true
-                )
-            );
+        $mail->send();
 
-            $mail->send();
-
-            return array('msg' => 'Correo enviado');
-        } catch (Exception $e) {
-            return array('msg' => $mail->ErrorInfo);
-        }     
+        return array('msg' => 'Correo enviado'); 
     }
 
     public function setPrefencias($params){

@@ -27,7 +27,7 @@ class SeccionesModel {
         # Si el usuario es profesor
         if(isset($params['tipo']) != NULL){
             if(isset($params['id_usuario']) != NULL ){
-            $sth = $this->db->prepare('SELECT s.*, a.*, u.nombre_completo, u.gravatar FROM secciones AS s INNER JOIN asignaturas as a INNER JOIN usuarios AS u WHERE s.id_asignatura = a.id_asignatura AND s.id_usuario = ? AND S.id_usuario = u.id_usuario');
+            $sth = $this->db->prepare('SELECT s.*, a.*, u.nombre_completo, u.gravatar FROM secciones AS s INNER JOIN asignaturas as a INNER JOIN usuarios AS u WHERE s.id_asignatura = a.id_asignatura AND s.id_usuario = ? AND s.id_usuario = u.id_usuario');
             $sth->execute(array($params['id_usuario']));
             $result = $sth->fetchAll();
 
@@ -742,55 +742,49 @@ class SeccionesModel {
             $adjunto = $this->path_reporte.$filename;
             $mail = new PHPMailer(true);   
         
-            try {
-                //Server settings                                // Enable verbose debug output
-                $mail->isSMTP();                                      // Set mailer to use SMTP
-                $mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
-                $mail->SMTPAuth = true;                               // Enable SMTP authentication
-                $mail->Username = 'iutebgate@gmail.com';                 // SMTP username
-                $mail->Password = 'SoporteGATE';                           // SMTP password
-                $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
-                $mail->Port = 587;                                    // TCP port to connect to
+            //Server settings   
+            $mail->SMTPDebug = 0;                             // Enable verbose debug output
+            $mail->isSMTP();                                      // Set mailer to use SMTP
+            $mail->SMTPOptions = array(
+                'ssl' => array(
+                    'verify_peer' => false,
+                    'verify_peer_name' => false,
+                    'allow_self_signed' => true
+                )
+            );
+            $mail->Host = 'mail.fladdev.com.ve';  // Specify main and backup SMTP servers
+            $mail->SMTPAuth = true;                              // Enable SMTP authentication
+            $mail->Username = 'soporte@fladdev.com.ve';                 // SMTP username
+            $mail->Password = 'SoporteGATE*';                           // SMTP password
+            $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+            $mail->Port = 587;                                    // TCP port to connect to
 
-                //Recipients
-                $mail->setFrom('iutebgate@gmail.com', 'IUTEB GATE SOPORTE');
+            //Recipients
+            $mail->setFrom('iutebgate@gmail.com', 'IUTEB GATE SOPORTE');
 
-                if($params['app'] == 'Correo Propio'){
-                    $mail->addAddress($datos['datos']['seccion'][0]['correo']);
-                }else{
-                    $mail->addAddress($params['correo']);
-                }
-
-                $mail->addAttachment($adjunto);    // Optional name
-
-                $mail->isHTML(true);                                  // Set email format to HTML
-                $mail->Subject = 'Reporte de Asistencias!';
-                $mail->Body    = "<h2>Reporte adjunto en el correo</h2>";
-
-                $mail->CharSet = 'utf-8';
-                $mail->SMTPOptions = array(
-                    'ssl' => array(
-                        'verify_peer' => false,
-                        'verify_peer_name' => false,
-                        'allow_self_signed' => true
-                    )
-                );
-
-                $mail->send();
-
-                # Registramos el reporte en la base de datos
-
-                $sth = $this->db->prepare("INSERT INTO reportes (nombre_reporte, desde, hasta, id_usuario) VALUES (?,?,?,?)");
-                $sth->execute(array($filename, $params['desde'], $params['hasta'], $params['id_usuario']));
-
-                return array('msg' => 'pdf generado y Correo Enviado!', 'nombre_pdf' => $filename, 'insertId' => $this->db->lastInsertId());
-
-            } catch (Exception $e) {
-
-                return array('msg' => $mail->ErrorInfo);
-
+            if($params['app'] == 'Correo Propio'){
+                $mail->addAddress($datos['datos']['seccion'][0]['correo']);
+            }else{
+                $mail->addAddress($params['correo']);
             }
+
+            $mail->addAttachment($adjunto);    // Optional name
+
+            $mail->isHTML(true);                                  // Set email format to HTML
+            $mail->Subject = 'Reporte de Asistencias!';
+            $mail->Body    = "<h2>Reporte adjunto en el correo</h2>";
+
+            $mail->CharSet = 'utf-8';
             
+
+            $mail->send();
+
+            # Registramos el reporte en la base de datos
+
+            $sth = $this->db->prepare("INSERT INTO reportes (nombre_reporte, desde, hasta, id_usuario) VALUES (?,?,?,?)");
+            $sth->execute(array($filename, $params['desde'], $params['hasta'], $params['id_usuario']));
+
+            return array('msg' => 'pdf generado y Correo Enviado!', 'nombre_pdf' => $filename, 'insertId' => $this->db->lastInsertId());
         }
 
         if(!file_put_contents($this->path_reporte.$filename, $pdf_gen)){
